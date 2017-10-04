@@ -1,4 +1,4 @@
-# Trainers Hub
+# trainers-hub
 
 ## Development with docker
 
