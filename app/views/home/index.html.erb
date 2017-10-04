@@ -1,1 +1,55 @@
-Hello world!
+
+<div class="intro">
+  <div class="left">
+  </div>
+
+  <div class="right">
+    <%= @homepage.welcome.html_safe %>
+  </div>
+</div>
+
+
+<h2>Training Objectives</h2>
+<div class="topics-grid">
+  <% @homepage.promoted_topics.each do |topic| %>
+    <%= render topic %>
+  <% end %>
+</div>
+<div style="clear: both"></div>
+
+<div class="center">
+  <%= link_to "See All", topics_path %>
+</div>
+
+
+<div class="row">
+  <aside>
+    <h2><%= link_to "Teaching Advice", articles_path %></h2>
+    <p>
+      <%= @homepage.teaching_advice.html_safe %>
+    </p>
+  </aside>
+
+  <% @homepage.promoted_articles.each do |article| %>
+    <%= render article %>
+  <% end %>
+</div>
+
+
+<div class="row">
+  <aside>
+    <h2><%= link_to "Materials", materials_path %></h2>
+  </aside>
+
+  <% @homepage.promoted_materials.each do |material| %>
+    <%= render material %>
+  <% end %>
+</div>
+
+<div class="row">
+  <aside>
+    <h2><%= link_to "Blog", blog_path %></h2>
+  </aside>
+
+  <%= render @homepage.promoted_blog_post %>
+</div>
