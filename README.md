@@ -1,24 +1,8 @@
-# README
+# Trainers Hub
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Development with docker
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+    $ cp .env.example .env
+    $ cp docker-compose.yml.example docker-compose.yml
+    $ docker-compose up --build -d
+    $ docker-compose exec app rake db:setup

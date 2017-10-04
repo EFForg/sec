@@ -6,6 +6,7 @@
 
 # Ignore private config
 /.env
+/docker-compose.yml
 
 # Ignore bundler config.
 /.bundle

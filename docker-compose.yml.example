@@ -1,0 +1,28 @@
+version: '2'
+services:
+  app:
+    build: .
+    depends_on:
+      - db
+    restart: unless-stopped
+
+    ports:
+      - '3000:3000'
+
+    volumes:
+      - .:/opt/trainers-hub
+
+    env_file: .env
+
+
+  db:
+    image: postgres
+
+    volumes:
+      - ./db:/opt/trainers-hub/db
+
+    env_file: .env
+    environment:
+      POSTGRES_DB: trainers-hub_development
+
+
