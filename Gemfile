@@ -35,6 +35,7 @@ gem 'jbuilder', '~> 2.5'
 # Content administration
 gem 'devise'
 gem 'activeadmin'
+gem "active_material", github: "vigetlabs/active_material"
 gem 'ckeditor'
 gem 'carrierwave'
 gem 'mini_magick'
