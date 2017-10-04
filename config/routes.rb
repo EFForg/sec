@@ -8,6 +8,8 @@ Rails.application.routes.draw do
     get "/", as: "blog", action: "index"
   end
 
+  resources :topics, only: [:index, :show]
+
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
 end
