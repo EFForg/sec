@@ -10,6 +10,9 @@
 # Ignore bundler config.
 /.bundle
 
+# Ignore user uploads
+/public/uploads/*
+
 # Ignore all logfiles and tempfiles.
 /log/*
 /tmp/*

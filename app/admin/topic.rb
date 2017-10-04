@@ -7,7 +7,7 @@ ActiveAdmin.register Topic do
       f.has_many :lessons, heading: 'Lessons',
                            allow_destroy: true do |a|
         a.input :name
-        a.input :body
+        a.input :body, as: :ckeditor
       end
     end
     f.actions
