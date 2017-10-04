@@ -41,9 +41,9 @@ EOF
 
   def promoted_articles
     [
-      OpenStruct.new(name: "Social Media", to_partial_path: "articles/article"),
-      OpenStruct.new(name: "Phishing", to_partial_path: "articles/article"),
-      OpenStruct.new(name: "Passwords", to_partial_path: "articles/article")
+      Article.new(name: "Social Media"),
+      Article.new(name: "Phishing"),
+      Article.new(name: "Passwords")
     ]
   end
 
@@ -55,6 +55,6 @@ EOF
   end
 
   def promoted_blog_post
-    OpenStruct.new(name: "Highlighted post", to_partial_path: "blog/blog_post")
+    BlogPost.new(name: "Highlighted post")
   end
 end
