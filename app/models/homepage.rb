@@ -31,7 +31,9 @@ EOF
     topics = []
 
     4.times do
-      topics << Topic.new(name: "Title")
+      topic = Topic.new(name: "Title")
+      topic.lessons.build(duration: 0.25 + 4 * rand)
+      topics << topic
     end
 
     topics
