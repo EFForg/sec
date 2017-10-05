@@ -91,14 +91,14 @@ ActiveRecord::Schema.define(version: 20171004235651) do
     t.index ["topic_id"], name: "index_lessons_on_topic_id"
   end
 
-  create_table "promoted_content", force: :cascade do |t|
+  create_table "featured_content", force: :cascade do |t|
     t.integer "homepage_id", null: false
     t.string "content_type", null: false
     t.bigint "content_id", null: false
     t.integer "position", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["content_type", "content_id"], name: "index_promoted_content_on_content_type_and_content_id"
+    t.index ["content_type", "content_id"], name: "index_featured_content_on_content_type_and_content_id"
   end
 
   create_table "topics", force: :cascade do |t|

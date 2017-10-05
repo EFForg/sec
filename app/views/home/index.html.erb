@@ -11,7 +11,7 @@
 
 <h2>Training Objectives</h2>
 <div class="topics-grid">
-  <% @homepage.promoted_topics.each do |topic| %>
+  <% @homepage.featured_topics.each do |topic| %>
     <%= render topic %>
   <% end %>
 </div>
@@ -30,7 +30,7 @@
     </p>
   </aside>
 
-  <% @homepage.promoted_articles.each do |article| %>
+  <% @homepage.featured_articles.each do |article| %>
     <%= render article %>
   <% end %>
 </div>
@@ -41,7 +41,7 @@
     <h2><%= link_to "Materials", materials_path %></h2>
   </aside>
 
-  <% @homepage.promoted_materials.each do |material| %>
+  <% @homepage.featured_materials.each do |material| %>
     <%= render material %>
   <% end %>
 </div>
@@ -51,5 +51,5 @@
     <h2><%= link_to "Blog", blog_path %></h2>
   </aside>
 
-  <%= render @homepage.promoted_blog_post %>
+  <%= render @homepage.featured_blog_post %>
 </div>

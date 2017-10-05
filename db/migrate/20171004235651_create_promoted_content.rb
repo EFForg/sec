@@ -1,6 +1,6 @@
-class CreatePromotedContent < ActiveRecord::Migration[5.1]
+class CreateFeaturedContent < ActiveRecord::Migration[5.1]
   def change
-    create_table :promoted_content do |t|
+    create_table :featured_content do |t|
       t.integer :homepage_id, null: false
       t.references :content, polymorphic: true, null: false
 

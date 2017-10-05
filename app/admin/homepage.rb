@@ -3,10 +3,10 @@ ActiveAdmin.register Homepage do
   actions :all, except: [:create, :destroy]
 
   permit_params :welcome, :articles_intro,
-    promoted_topic_content_attributes: [
+    featured_topic_content_attributes: [
       :id, :_destroy, :content_type, :content_id_string, :position
     ],
-    promoted_article_content_attributes: [
+    featured_article_content_attributes: [
       :id, :_destroy, :content_type, :content_id_string, :position
     ]
 
@@ -22,11 +22,11 @@ ActiveAdmin.register Homepage do
       input :articles_intro, as: :ckeditor
     end
 
-    f.inputs "Promoted Topics" do
+    f.inputs "Featured Topics" do
       topic_options = Topic.all.map{ |t| "#{t.name} (##{t.id})" }
-      f.has_many :promoted_topic_content,
+      f.has_many :featured_topic_content,
                  heading: nil,
-                 new_record: "Add New Promoted Topic",
+                 new_record: "Add New Featured Topic",
                  allow_destroy: true,
                  sortable: :position do |t|
         t.input :content_type, as: :hidden,
@@ -36,11 +36,11 @@ ActiveAdmin.register Homepage do
       end
     end
 
-    f.inputs "Promoted Articles" do
+    f.inputs "Featured Articles" do
       article_options = Article.all.map{ |t| "#{t.name} (##{t.id})" }
-      f.has_many :promoted_article_content,
+      f.has_many :featured_article_content,
                  heading: nil,
-                 new_record: "Add New Promoted Article",
+                 new_record: "Add New Featured Article",
                  allow_destroy: true,
                  sortable: :position do |t|
         t.input :content_type, as: :hidden,

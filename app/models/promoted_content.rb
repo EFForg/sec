@@ -1,5 +1,5 @@
-class PromotedContent < ApplicationRecord
-  self.table_name = "promoted_content"
+class FeaturedContent < ApplicationRecord
+  self.table_name = "featured_content"
 
   belongs_to :content, polymorphic: true
 
