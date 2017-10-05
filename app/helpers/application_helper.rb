@@ -3,7 +3,7 @@ module ApplicationHelper
     if @page_title.present?
       "#{@page_title} | TrainersHub"
     elsif breadcrumbs.present?
-      "#{breadcrumbs.last[0]} | TrainersHub"
+      "#{breadcrumb_names.last} | TrainersHub"
     else
       "TrainersHub"
     end
