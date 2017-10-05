@@ -1,4 +1,7 @@
 ActiveAdmin.register Homepage do
+  menu label: "Homepage"
+  actions :all, except: [:create, :destroy]
+
   permit_params :welcome, :articles_intro,
     promoted_topic_content_attributes: [
       :id, :_destroy, :content_type, :content_id_string, :position
@@ -6,6 +9,12 @@ ActiveAdmin.register Homepage do
     promoted_article_content_attributes: [
       :id, :_destroy, :content_type, :content_id_string, :position
     ]
+
+  controller do
+    def index
+      redirect_to edit_admin_homepage_path(Homepage.take)
+    end
+  end
 
   form do |f|
     inputs do
