@@ -1,0 +1,11 @@
+f.fields_for :lessons, lesson do |l|
+  l.input :level_id, as: :select, collection: topic.lessons.unused_levels if lesson.new_record?
+  l.input :duration_hours, as: :number, label: 'Hours'
+  l.input :duration_minutes, as: :number, label: 'Minutes'
+  l.input :instructors, as: :number
+  l.input :students, as: :number
+  l.input :objective, as: :ckeditor
+  l.input :body, as: :ckeditor
+  l.input :_destroy, as: :boolean, label: 'Delete this level' if lesson.persisted?
+end
+

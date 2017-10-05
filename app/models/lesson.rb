@@ -1,6 +1,22 @@
 class Lesson < ApplicationRecord
+  LEVELS = { 0 => 'Base', 1 => 'Medium', 2 => 'Advanced' }
+
   belongs_to :topic
+  default_scope { order(level_id: :asc) }
+  validates :level_id, uniqueness: { scope: :topic },
+                    presence: true,
+                    inclusion: { in: 0..LEVELS.length,
+                                 message: "must be a valid level" }
   before_save :set_duration
+
+  def self.unused_levels
+    used_levels = all.pluck(:level_id).uniq
+    LEVELS.select{ |key, value| used_levels.exclude?(key) }.invert
+  end
+
+  def level
+    LEVELS[level_id]
+  end
 
   def set_duration
     if @duration_hours.present? or @duration_minuts.present?

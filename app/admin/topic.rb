@@ -1,26 +1,22 @@
 ActiveAdmin.register Topic do
-  permit_params :name, lessons_attributes: [:id, :name, :duration_hours, :duration_minutes, :body, :topic_id, :_destroy]
+  permit_params :name, lessons_attributes: [:id, :level_id, :duration_hours, :duration_minutes, :body, :topic_id, :_destroy]
 
   form do |f|
     f.inputs do
+      f.semantic_errors *f.object.errors.keys
       f.input :name
       tabs do
         topic.lessons.each do |lesson|
-          tab lesson.name do
-            f.fields_for :lessons, lesson do |l|
-              l.input :duration_hours, as: :number, label: 'Hours'
-              l.input :duration_minutes, as: :number, label: 'Minutes'
-              l.input :body, as: :ckeditor
-              l.input :_destroy, as: :boolean, label: 'Delete this level'
+          if lesson.persisted?
+            tab lesson.level do
+              render partial: 'admin/lessons/fields', locals: { f: f, lesson: lesson }
             end
           end
         end
-        tab '+Add' do
-          f.fields_for :lessons, topic.lessons.new do |l|
-            l.input :name
-            l.input :duration_hours, as: :number, label: 'Hours'
-            l.input :duration_minutes, as: :number, label: 'Minutes'
-            l.input :body, as: :ckeditor
+        if topic.lessons.unused_levels.any?
+          tab '+Add' do
+            render partial: 'admin/lessons/fields',
+              locals: { f: f, topic: topic, lesson: topic.unsaved_or_new_lesson }
           end
         end
       end
