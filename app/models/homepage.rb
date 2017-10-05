@@ -1,51 +1,28 @@
-# coding: utf-8
-class Homepage # < ApplicationRecord
-  def welcome
-    <<-EOF
-<p>Welcome to the Security Education website!</p>
+class Homepage < ApplicationRecord
+  has_many :promoted_content
 
-<p>Here you can find training materials for all your
-security education needs.</p>
+  has_many :promoted_topic_content,
+           ->{ where(content_type: "Topic") },
+           class_name: "PromotedContent"
 
-<p><a href="#">I’m lost! Take me back to SSD!</a></p>
+  has_many :promoted_article_content,
+           ->{ where(content_type: "Article") },
+           class_name: "PromotedContent"
 
-<p><a href="#">Training modules</a></p>
+  has_one :promoted_blog_post_content,
+          ->{ where(content_type: "BlogPost") },
+          class_name: "PromotedContent"
 
-<p><a href="#">Being a Trainer - Advice</a></p>
+  has_many :promoted_topics, through: :promoted_topic_content,
+           source: :content, source_type: "Topic",
+           class_name: "Topic"
 
-<p><a href="#">Blog</a></p>
+  has_many :promoted_articles, through: :promoted_article_content,
+           source: :content, source_type: "Article",
+           class_name: "Article"
 
-<p><a href="#">Enrichment Materials</a></p>
-EOF
-  end
-
-  def teaching_advice
-    <<-EOF
-<p>Whether you’re a computer scientist, a community organizer or
-just a curious person, Security Education’s collection of
-resources has something for you.</p>
-EOF
-  end
-
-  def promoted_topics
-    topics = []
-
-    4.times do
-      topic = Topic.new(name: "Title")
-      topic.lessons.build(duration: 0.25 + 4 * rand)
-      topics << topic
-    end
-
-    topics
-  end
-
-  def promoted_articles
-    [
-      Article.new(name: "Social Media"),
-      Article.new(name: "Phishing"),
-      Article.new(name: "Passwords")
-    ]
-  end
+  accepts_nested_attributes_for :promoted_topic_content
+  accepts_nested_attributes_for :promoted_article_content
 
   def promoted_materials
     [
