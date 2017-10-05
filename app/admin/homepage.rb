@@ -16,6 +16,7 @@ ActiveAdmin.register Homepage do
     f.inputs "Promoted Topics" do
       topic_options = Topic.all.map{ |t| "#{t.name} (##{t.id})" }
       f.has_many :promoted_topic_content,
+                 heading: nil,
                  new_record: "Add New Promoted Topic",
                  allow_destroy: true,
                  sortable: :position do |t|
@@ -29,6 +30,7 @@ ActiveAdmin.register Homepage do
     f.inputs "Promoted Articles" do
       article_options = Article.all.map{ |t| "#{t.name} (##{t.id})" }
       f.has_many :promoted_article_content,
+                 heading: nil,
                  new_record: "Add New Promoted Article",
                  allow_destroy: true,
                  sortable: :position do |t|

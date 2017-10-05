@@ -29,3 +29,18 @@
     color: white;
   }
 }
+
+
+.has_many_container.ui-sortable {
+  li {
+    display: inline-block;
+  }
+
+  .datalist {
+    width: 30%;
+  }
+
+  .handle {
+    cursor: pointer;
+  }
+}
