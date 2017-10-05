@@ -21,8 +21,8 @@ class Homepage < ApplicationRecord
            source: :content, source_type: "Article",
            class_name: "Article"
 
-  accepts_nested_attributes_for :promoted_topic_content
-  accepts_nested_attributes_for :promoted_article_content
+  accepts_nested_attributes_for :promoted_topic_content, allow_destroy: true
+  accepts_nested_attributes_for :promoted_article_content, allow_destroy: true
 
   def promoted_materials
     [
