@@ -76,11 +76,14 @@ ActiveRecord::Schema.define(version: 20171004223955) do
 
   create_table "lessons", force: :cascade do |t|
     t.bigint "topic_id"
-    t.string "name"
     t.integer "duration"
     t.text "body"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "instructors"
+    t.integer "students"
+    t.text "objective"
+    t.integer "level_id", default: 0, null: false
     t.index ["topic_id"], name: "index_lessons_on_topic_id"
   end
 
