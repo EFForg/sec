@@ -7,6 +7,9 @@ ActiveAdmin.register Topic do
         lesson_prereqs_attributes: [
           :id, :_destroy, :resource_type, :resource_id, :position
         ],
+        lesson_materials_attributes: [
+          :id, :_destroy, :resource_type, :resource_id, :position
+        ],
         lesson_articles_attributes: [
           :id, :_destroy, :resource_type, :resource_id, :position
         ],
