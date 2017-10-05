@@ -277,6 +277,7 @@ DEPENDENCIES
   selenium-webdriver
   spring
   spring-watcher-listen (~> 2.0.0)
+  truncate_html
   turbolinks (~> 5)
   tzinfo-data
   uglifier (>= 1.3.0)
