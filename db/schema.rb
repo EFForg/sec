@@ -74,6 +74,16 @@ ActiveRecord::Schema.define(version: 20171004235651) do
     t.index ["assetable_type", "type", "assetable_id"], name: "idx_ckeditor_assetable_type"
   end
 
+  create_table "featured_content", force: :cascade do |t|
+    t.integer "homepage_id", null: false
+    t.string "content_type", null: false
+    t.bigint "content_id", null: false
+    t.integer "position", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["content_type", "content_id"], name: "index_featured_content_on_content_type_and_content_id"
+  end
+
   create_table "homepages", force: :cascade do |t|
     t.text "welcome", null: false
     t.text "articles_intro", null: false
@@ -92,16 +102,6 @@ ActiveRecord::Schema.define(version: 20171004235651) do
     t.text "objective"
     t.integer "level_id", default: 0, null: false
     t.index ["topic_id"], name: "index_lessons_on_topic_id"
-  end
-
-  create_table "featured_content", force: :cascade do |t|
-    t.integer "homepage_id", null: false
-    t.string "content_type", null: false
-    t.bigint "content_id", null: false
-    t.integer "position", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["content_type", "content_id"], name: "index_featured_content_on_content_type_and_content_id"
   end
 
   create_table "topics", force: :cascade do |t|
