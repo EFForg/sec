@@ -22,6 +22,10 @@ class Lesson < ApplicationRecord
 
   before_save :set_duration
 
+  def name
+    "#{topic.name}: #{level}"
+  end
+
   def self.unused_levels
     used_levels = all.pluck(:level_id).uniq
     LEVELS.select{ |key, value| used_levels.exclude?(key) }.invert

@@ -12,8 +12,8 @@ f.fields_for :lessons, lesson do |l|
              new_record: "Add a prerequisite" do |p|
     p.input :resource_type, as: :hidden,
             input_html: { value: "Lesson" }
-    p.input :resource_id, as: :datalist,
-            label: "Prerequisites", collection: Lesson.ids
+    p.input :resource, as: :select,
+            label: "Prerequisites", collection: Lesson.all
   end
   l.input :_destroy, as: :boolean, label: 'Delete this level' if lesson.persisted?
 end
