@@ -6,14 +6,14 @@ f.fields_for :lessons, lesson do |l|
   l.input :students, as: :number
   l.input :objective
   l.input :body, as: :ckeditor
-  l.has_many :lesson_prereqs,
+  l.has_many :prereq_resources,
              heading: false,
              allow_destroy: true,
              new_record: "Add a prerequisite" do |p|
-    p.input :content_type, as: :hidden,
+    p.input :resource_type, as: :hidden,
             input_html: { value: "Lesson" }
-    p.input :content_id, as: :datalist,
-            label: "Prerequisites", collection: Lesson.pluck(:level_id)
+    p.input :resource_id, as: :datalist,
+            label: "Prerequisites", collection: Lesson.ids
   end
   l.input :_destroy, as: :boolean, label: 'Delete this level' if lesson.persisted?
 end

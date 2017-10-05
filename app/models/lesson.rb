@@ -4,12 +4,12 @@ class Lesson < ApplicationRecord
   belongs_to :topic
   has_many :lesson_resources
 
-  has_many :lesson_prereqs,
-           ->{ where(content_type: 'Lesson') },
+  has_many :prereq_resources,
+           ->{ where(resource_type: 'Lesson') },
            class_name: 'LessonResource'
 
-  has_many :prereqs, through: :lesson_prereqs,
-           source: :content, source_type: 'Lesson',
+  has_many :prereqs, through: :prereq_resources,
+           source: :resource, source_type: 'Lesson',
            class_name: "Lesson"
 
   default_scope { order(level_id: :asc) }
@@ -18,7 +18,7 @@ class Lesson < ApplicationRecord
                     inclusion: { in: 0..LEVELS.length,
                                  message: 'must be a valid level' }
 
-  accepts_nested_attributes_for :lesson_prereqs, allow_destroy: true
+  accepts_nested_attributes_for :prereq_resources, allow_destroy: true
 
   before_save :set_duration
 

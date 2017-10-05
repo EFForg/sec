@@ -93,12 +93,12 @@ ActiveRecord::Schema.define(version: 20171005201903) do
 
   create_table "lesson_resources", force: :cascade do |t|
     t.integer "lesson_id", null: false
-    t.string "content_type", null: false
-    t.bigint "content_id", null: false
-    t.integer "position", null: false
+    t.string "resource_type", null: false
+    t.bigint "resource_id", null: false
+    t.integer "position", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["content_type", "content_id"], name: "index_lesson_resources_on_content_type_and_content_id"
+    t.index ["resource_type", "resource_id"], name: "index_lesson_resources_on_resource_type_and_resource_id"
   end
 
   create_table "lessons", force: :cascade do |t|

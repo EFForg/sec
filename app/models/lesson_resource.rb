@@ -1,3 +1,3 @@
 class LessonResource < ApplicationRecord
-  belongs_to :content, polymorphic: true
+  belongs_to :resource, polymorphic: true
 end

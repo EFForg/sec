@@ -4,8 +4,8 @@ ActiveAdmin.register Topic do
         :id, :_destroy, :level_id, :topic_id,
         :duration_hours, :duration_minutes, :instructors, :students,
         :objective, :body,
-        lesson_prereqs_attributes: [
-          :id, :_destroy, :content_type, :content_id, :position
+        prereq_resources_attributes: [
+          :id, :_destroy, :resource_type, :resource_id, :position
         ]
       ]
 
