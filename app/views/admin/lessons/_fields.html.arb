@@ -1,5 +1,5 @@
 f.fields_for :lessons, lesson do |l|
-  l.input :level_id, as: :select, collection: topic.lessons.unused_levels if lesson.new_record?
+  l.input :level_id, as: :select, required: true, collection: topic.lessons.unused_levels if lesson.new_record?
   l.input :duration_hours, as: :number, label: 'Hours'
   l.input :duration_minutes, as: :number, label: 'Minutes'
   l.input :instructors, as: :number
