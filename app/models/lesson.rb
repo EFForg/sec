@@ -5,13 +5,21 @@ class Lesson < ApplicationRecord
 
   has_many :lesson_resources
 
-  has_many :prereq_resources,
+  has_many :lesson_prereqs,
            ->{ where(resource_type: 'Lesson') },
+           class_name: 'LessonResource'
+
+  has_many :lesson_articles,
+           ->{ where(resource_type: 'Article') },
            class_name: 'LessonResource'
 
   has_many :prereqs, through: :prereq_resources,
            source: :resource, source_type: 'Lesson',
-           class_name: "Lesson"
+           class_name: 'Lesson'
+
+  has_many :advice, through: :lesson_articles,
+           source: :resource, source_type: 'Article',
+           class_name: 'Article'
 
   has_many :materials
   accepts_nested_attributes_for :materials, allow_destroy: true
@@ -22,7 +30,8 @@ class Lesson < ApplicationRecord
                     inclusion: { in: 0..LEVELS.length,
                                  message: 'must be a valid level' }
 
-  accepts_nested_attributes_for :prereq_resources, allow_destroy: true
+  accepts_nested_attributes_for :lesson_prereqs, allow_destroy: true
+  accepts_nested_attributes_for :lesson_articles, allow_destroy: true
 
   before_save :set_duration
 

@@ -7,7 +7,7 @@ f.fields_for :lessons, lesson do |l|
   l.input :objective
   l.input :body, as: :ckeditor
 
-  l.has_many :prereq_resources,
+  l.has_many :lesson_prereqs,
              heading: false,
              allow_destroy: true,
              new_record: "Add a prerequisite" do |p|
@@ -29,6 +29,15 @@ f.fields_for :lessons, lesson do |l|
         link_to(t.object.attachment_file_name, t.object.attachment.url)
       end
     end
+
+  l.has_many :lesson_articles,
+             heading: false,
+             allow_destroy: true,
+             new_record: "Add advice" do |p|
+    p.input :resource_type, as: :hidden,
+            input_html: { value: "Article" }
+    p.input :resource, as: :select,
+            label: "Advice", collection: Article.all
   end
 
   l.input :_destroy, as: :boolean, label: 'Delete this level' if lesson.persisted?
