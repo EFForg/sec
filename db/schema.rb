@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171004235651) do
+ActiveRecord::Schema.define(version: 20171005210159) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -102,6 +102,17 @@ ActiveRecord::Schema.define(version: 20171004235651) do
     t.text "objective"
     t.integer "level_id", default: 0, null: false
     t.index ["topic_id"], name: "index_lessons_on_topic_id"
+  end
+
+  create_table "materials", force: :cascade do |t|
+    t.string "name", default: "", null: false
+    t.text "body", default: "", null: false
+    t.string "attachment_file_name"
+    t.string "attachment_content_type"
+    t.integer "attachment_file_size"
+    t.datetime "attachment_updated_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "topics", force: :cascade do |t|
