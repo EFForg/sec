@@ -1,11 +1,20 @@
 f.fields_for :lessons, lesson do |l|
-  l.input :level_id, as: :select, collection: topic.lessons.unused_levels if lesson.new_record?
+  l.input :level_id, as: :select, required: true, collection: topic.lessons.unused_levels if lesson.new_record?
   l.input :duration_hours, as: :number, label: 'Hours'
   l.input :duration_minutes, as: :number, label: 'Minutes'
   l.input :instructors, as: :number
   l.input :students, as: :number
-  l.input :objective, as: :ckeditor
+  l.input :objective
   l.input :body, as: :ckeditor
+  l.has_many :prereq_resources,
+             heading: false,
+             allow_destroy: true,
+             new_record: "Add a prerequisite" do |p|
+    p.input :resource_type, as: :hidden,
+            input_html: { value: "Lesson" }
+    p.input :resource, as: :select,
+            label: "Prerequisites", collection: Lesson.all
+  end
   l.input :_destroy, as: :boolean, label: 'Delete this level' if lesson.persisted?
 end
 
