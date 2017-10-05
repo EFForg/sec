@@ -6,7 +6,8 @@ ActiveAdmin.register Topic do
         :objective, :body,
         prereq_resources_attributes: [
           :id, :_destroy, :resource_type, :resource_id, :position
-        ]
+        ],
+        materials_attributes: [:id, :attachment, :_destroy]
       ]
 
   form do |f|
