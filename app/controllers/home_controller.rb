@@ -1,6 +1,6 @@
 class HomeController < ApplicationController
   def index
-    @homepage = Homepage.new
+    @homepage = Homepage.take
   end
 end
 
