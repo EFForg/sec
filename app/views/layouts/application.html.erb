@@ -17,7 +17,7 @@
       <div id="breadcrumbs">
         <% breadcrumbs.each_with_index do |page, i| %>
           <%= '>' unless i.zero? %>
-          <span class="crumb"><%= page %></span>
+          <span class="crumb"><%= link_to page[0], page[1] %></span>
         <% end %>
       </div>
     <% end %>

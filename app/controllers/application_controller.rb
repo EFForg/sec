@@ -11,6 +11,19 @@ class ApplicationController < ActionController::Base
 
   def breadcrumbs(*pages)
     @breadcrumbs ||= []
-    @breadcrumbs.concat(pages)
+    Array(pages).each do |page|
+      if page.is_a?(Hash)
+        page.each do |name, url|
+          @breadcrumbs.push([name, url])
+        end
+      else
+        @breadcrumbs.push([page, nil])
+      end
+    end
+    @breadcrumbs
+  end
+
+  def self.routes
+    Rails.application.routes.url_helpers
   end
 end

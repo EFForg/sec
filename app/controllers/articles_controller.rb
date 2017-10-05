@@ -1,5 +1,6 @@
 class ArticlesController < ApplicationController
-  breadcrumbs "Security Education", "Articles"
+  breadcrumbs "Security Education" => routes.root_path,
+              "Articles" => routes.articles_path
 
   def index
     @articles = Article.all.page(params[:page])
