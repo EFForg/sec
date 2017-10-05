@@ -2,6 +2,17 @@ class Lesson < ApplicationRecord
   LEVELS = { 0 => 'Base', 1 => 'Medium', 2 => 'Advanced' }
 
   belongs_to :topic
+
+  has_many :lesson_resources
+
+  has_many :prereq_resources,
+           ->{ where(resource_type: 'Lesson') },
+           class_name: 'LessonResource'
+
+  has_many :prereqs, through: :prereq_resources,
+           source: :resource, source_type: 'Lesson',
+           class_name: "Lesson"
+
   has_many :materials
   accepts_nested_attributes_for :materials, allow_destroy: true
 
@@ -9,8 +20,15 @@ class Lesson < ApplicationRecord
   validates :level_id, uniqueness: { scope: :topic },
                     presence: true,
                     inclusion: { in: 0..LEVELS.length,
-                                 message: "must be a valid level" }
+                                 message: 'must be a valid level' }
+
+  accepts_nested_attributes_for :prereq_resources, allow_destroy: true
+
   before_save :set_duration
+
+  def name
+    "#{topic.name}: #{level}"
+  end
 
   def self.unused_levels
     used_levels = all.pluck(:level_id).uniq

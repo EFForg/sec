@@ -1,11 +1,14 @@
 ActiveAdmin.register Topic do
   permit_params :name,
-                lessons_attributes: [
-                  :id, :level_id,
-                  :duration_hours, :duration_minutes,
-                  :body, :topic_id, :_destroy,
-                  materials_attributes: [:id, :attachment, :_destroy]
-                ]
+    lessons_attributes: [
+        :id, :_destroy, :level_id, :topic_id,
+        :duration_hours, :duration_minutes, :instructors, :students,
+        :objective, :body,
+        prereq_resources_attributes: [
+          :id, :_destroy, :resource_type, :resource_id, :position
+        ],
+        materials_attributes: [:id, :attachment, :_destroy]
+      ]
 
   form do |f|
     f.inputs do

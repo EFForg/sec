@@ -91,6 +91,16 @@ ActiveRecord::Schema.define(version: 20171005220807) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "lesson_resources", force: :cascade do |t|
+    t.integer "lesson_id", null: false
+    t.string "resource_type", null: false
+    t.bigint "resource_id", null: false
+    t.integer "position", default: 0, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["resource_type", "resource_id"], name: "index_lesson_resources_on_resource_type_and_resource_id"
+  end
+
   create_table "lessons", force: :cascade do |t|
     t.bigint "topic_id"
     t.integer "duration"
