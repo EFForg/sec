@@ -13,7 +13,6 @@ ActiveAdmin.register Topic do
         lesson_articles_attributes: [
           :id, :_destroy, :resource_type, :resource_id, :position
         ],
-        materials_attributes: [:id, :attachment, :_destroy]
       ]
 
   form do |f|
