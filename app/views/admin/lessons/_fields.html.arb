@@ -4,8 +4,17 @@ f.fields_for :lessons, lesson do |l|
   l.input :duration_minutes, as: :number, label: 'Minutes'
   l.input :instructors, as: :number
   l.input :students, as: :number
-  l.input :objective, as: :ckeditor
+  l.input :objective
   l.input :body, as: :ckeditor
+  l.has_many :lesson_prereqs,
+             heading: false,
+             allow_destroy: true,
+             new_record: "Add a prerequisite" do |p|
+    p.input :content_type, as: :hidden,
+            input_html: { value: "Lesson" }
+    p.input :content_id, as: :datalist,
+            label: "Prerequisites", collection: Lesson.pluck(:level_id)
+  end
   l.input :_destroy, as: :boolean, label: 'Delete this level' if lesson.persisted?
 end
 
