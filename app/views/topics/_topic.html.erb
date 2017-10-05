@@ -1,5 +1,5 @@
 <div class="topic card">
-  <h3><%= topic.name %></h3>
+  <h3><%= link_to topic.name, topic %></h3>
   <div class="tags"><%= tags(topic) %></div>
-  <div class="duration"><%= duration(topic.lessons.take.duration) %></div>
+  <div class="duration"><%= duration(topic.lessons.take.try(:duration)) %></div>
 </div>
