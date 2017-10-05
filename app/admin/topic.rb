@@ -1,5 +1,11 @@
 ActiveAdmin.register Topic do
-  permit_params :name, lessons_attributes: [:id, :level_id, :duration_hours, :duration_minutes, :body, :topic_id, :_destroy]
+  permit_params :name,
+                lessons_attributes: [
+                  :id, :level_id,
+                  :duration_hours, :duration_minutes,
+                  :body, :topic_id, :_destroy,
+                  materials_attributes: [:id, :attachment, :_destroy]
+                ]
 
   form do |f|
     f.inputs do

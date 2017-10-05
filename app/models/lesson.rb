@@ -2,6 +2,9 @@ class Lesson < ApplicationRecord
   LEVELS = { 0 => 'Base', 1 => 'Medium', 2 => 'Advanced' }
 
   belongs_to :topic
+  has_many :materials
+  accepts_nested_attributes_for :materials, allow_destroy: true
+
   default_scope { order(level_id: :asc) }
   validates :level_id, uniqueness: { scope: :topic },
                     presence: true,

@@ -6,6 +6,21 @@ f.fields_for :lessons, lesson do |l|
   l.input :students, as: :number
   l.input :objective, as: :ckeditor
   l.input :body, as: :ckeditor
+
+  l.has_many :materials,
+             heading: "Lesson Materials",
+             new_record: "Add File",
+             allow_destroy: true do |t|
+    if t.object.new_record?
+      t.input :attachment
+    else
+      content_tag(:li, class: "input label") do
+        label_tag("Attachment") +
+        link_to(t.object.attachment_file_name, t.object.attachment.url)
+      end
+    end
+  end
+
   l.input :_destroy, as: :boolean, label: 'Delete this level' if lesson.persisted?
 end
 

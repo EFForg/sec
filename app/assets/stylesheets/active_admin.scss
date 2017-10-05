@@ -50,3 +50,12 @@
   }
 }
 
+.has_many_container.materials {
+  .input.label, .has_many_delete {
+    display: inline-block;
+  }
+
+  .input.label {
+    width: 30%;
+  }
+}
