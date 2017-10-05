@@ -4,7 +4,7 @@ module ApplicationHelper
 
   def duration(time)
     if time
-      distance_of_time_in_words(60 * 60 * time)
+      distance_of_time_in_words(time)
     end
   end
 
