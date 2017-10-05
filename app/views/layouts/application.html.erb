@@ -9,6 +9,25 @@
   </head>
 
   <body>
-    <%= yield %>
+    <header>
+      <h1>Logo + Title</h1>
+    </header>
+
+    <% if breadcrumbs.present? %>
+      <div id="breadcrumbs">
+        <% breadcrumbs.each_with_index do |page, i| %>
+          <%= '>' unless i.zero? %>
+          <span class="crumb"><%= page %></span>
+        <% end %>
+      </div>
+    <% end %>
+
+    <div id="main-content">
+      <%= yield %>
+    </div>
+
+    <footer>
+      Footer
+    </footer>
   </body>
 </html>

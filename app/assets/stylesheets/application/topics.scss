@@ -1,0 +1,14 @@
+
+
+.topics-grid {
+  .topic.card {
+    border: 1px solid #aaa;
+    width: 40%;
+    margin-bottom: 2rem;
+
+    float: left;
+    &:nth-child(2n) {
+      float: right;
+    }
+  }
+}
