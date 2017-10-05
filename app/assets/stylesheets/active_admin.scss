@@ -30,6 +30,11 @@
   }
 }
 
+.errors {
+  margin-top: 8px;
+  padding-top: 8px;
+}
+
 
 .has_many_container.ui-sortable {
   li {
@@ -44,3 +49,4 @@
     cursor: pointer;
   }
 }
+
