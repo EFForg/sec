@@ -41,6 +41,9 @@ gem 'paperclip'
 # Web requests
 gem 'httparty'
 
+# Slugging/permalinks
+gem 'friendly_id'
+
 
 # Content administration
 gem 'devise'

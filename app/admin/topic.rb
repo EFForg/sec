@@ -1,5 +1,5 @@
 ActiveAdmin.register Topic do
-  permit_params :name,
+  permit_params :name, :slug,
     lessons_attributes: [
         :id, :_destroy, :level_id, :topic_id,
         :duration_hours, :duration_minutes, :instructors, :students,
@@ -15,10 +15,18 @@ ActiveAdmin.register Topic do
         ],
       ]
 
+
+  controller do
+    def find_resource
+      scoped_collection.friendly.find(params[:id])
+    end
+  end
+
   form do |f|
     f.inputs do
       f.semantic_errors *f.object.errors.keys
       f.input :name
+      f.input :slug, hint: "Leave blank to auto-generate"
       tabs do
         topic.lessons.each do |lesson|
           if lesson.persisted?
