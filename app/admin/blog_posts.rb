@@ -1,7 +1,9 @@
 ActiveAdmin.register BlogPost do
   menu label: "Blog"
+  config.sort_order = "published_at_desc"
 
   index do
+    selectable_column
     id_column
 
     column :name
@@ -10,7 +12,7 @@ ActiveAdmin.register BlogPost do
       link_to blog.original_url, blog.original_url
     end
 
-    column :updated_at
+    column :published_at
     actions
   end
 
