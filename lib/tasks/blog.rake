@@ -5,4 +5,3 @@ namespace :blog do
     UpdateBlog.perform_now
   end
 end
-
