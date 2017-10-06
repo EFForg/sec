@@ -2,6 +2,14 @@ ActiveAdmin.register BlogPost do
   menu label: "Blog"
   config.sort_order = "published_at_desc"
 
+  permit_params :name, :body, :slug
+
+  controller do
+    def find_resource
+      scoped_collection.friendly.find(params[:id])
+    end
+  end
+
   collection_action :import, method: :post do
     UpdateBlogPost.perform_now params[:deeplinks_url]
     redirect_to admin_blog_posts_path
@@ -39,6 +47,7 @@ ActiveAdmin.register BlogPost do
   form do |f|
     f.inputs do
       f.input :name
+      f.input :slug, hint: "Leave blank to auto-generate"
       f.input :body, as: :ckeditor
     end
 
