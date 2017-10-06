@@ -1,0 +1,9 @@
+<% @blog_posts.each do |blog_post| %>
+  <h2><%= link_to blog_post.name, blog_post %></h2>
+
+  <div class="content">
+    <%= preview blog_post.body %>
+  </div>
+<% end %>
+
+<%= paginate @blog_posts %>

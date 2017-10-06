@@ -37,6 +37,9 @@ gem "kaminari"
 # File attachments
 gem "paperclip"
 
+# Web requests
+gem 'httparty'
+
 # Content administration
 gem "active_material", github: "vigetlabs/active_material"
 gem "activeadmin"
