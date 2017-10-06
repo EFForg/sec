@@ -1,39 +1,39 @@
 class Lesson < ApplicationRecord
-  LEVELS = { 0 => 'Base', 1 => 'Medium', 2 => 'Advanced' }
+  LEVELS = { 0 => "Base", 1 => "Medium", 2 => "Advanced" }
 
   belongs_to :topic
 
   has_many :lesson_resources
 
   has_many :lesson_prereqs,
-           ->{ where(resource_type: 'Lesson') },
-           class_name: 'LessonResource'
+           ->{ where(resource_type: "Lesson") },
+           class_name: "LessonResource"
 
   has_many :lesson_materials,
-           ->{ where(resource_type: 'Material') },
-           class_name: 'LessonResource'
+           ->{ where(resource_type: "Material") },
+           class_name: "LessonResource"
 
   has_many :lesson_articles,
-           ->{ where(resource_type: 'Article') },
-           class_name: 'LessonResource'
+           ->{ where(resource_type: "Article") },
+           class_name: "LessonResource"
 
   has_many :prereqs, through: :lesson_prereqs,
-           source: :resource, source_type: 'Lesson',
-           class_name: 'Lesson'
+           source: :resource, source_type: "Lesson",
+           class_name: "Lesson"
 
   has_many :materials, through: :lesson_materials,
-           source: :resource, source_type: 'Material',
-           class_name: 'Material'
+           source: :resource, source_type: "Material",
+           class_name: "Material"
 
   has_many :advice, through: :lesson_articles,
-           source: :resource, source_type: 'Article',
-           class_name: 'Article'
+           source: :resource, source_type: "Article",
+           class_name: "Article"
 
   default_scope { order(level_id: :asc) }
   validates :level_id, uniqueness: { scope: :topic },
                     presence: true,
                     inclusion: { in: 0..LEVELS.length,
-                                 message: 'must be a valid level' }
+                                 message: "must be a valid level" }
 
   accepts_nested_attributes_for :lesson_prereqs, allow_destroy: true
   accepts_nested_attributes_for :lesson_materials, allow_destroy: true

@@ -3,4 +3,3 @@ class HomeController < ApplicationController
     @homepage = Homepage.take
   end
 end
-

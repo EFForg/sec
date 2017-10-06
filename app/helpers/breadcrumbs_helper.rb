@@ -1,7 +1,7 @@
 module BreadcrumbsHelper
   def render_breadcrumbs
     breadcrumbs.each_with_index.map do |page, i|
-      (i.zero? ? '' : ' > ') + 
+      (i.zero? ? "" : " > ") +
         content_tag(:span, class: "crumb") {
           link_to page[0], page[1]
         }
