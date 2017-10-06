@@ -38,7 +38,10 @@ gem "kaminari"
 gem "paperclip"
 
 # Web requests
-gem 'httparty'
+gem "httparty"
+
+# Slugging/permalinks
+gem "friendly_id"
 
 # Content administration
 gem "active_material", github: "vigetlabs/active_material"

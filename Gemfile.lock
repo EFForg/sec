@@ -107,6 +107,8 @@ GEM
     formtastic (3.1.5)
       actionpack (>= 3.2.13)
     formtastic_i18n (0.6.0)
+    friendly_id (5.2.3)
+      activerecord (>= 4.0.0)
     globalid (0.4.0)
       activesupport (>= 4.2.0)
     has_scope (0.7.1)
@@ -293,6 +295,7 @@ DEPENDENCIES
   ckeditor
   devise
   dotenv
+  friendly_id
   httparty
   jbuilder (~> 2.5)
   kaminari
