@@ -1,11 +1,11 @@
 module BreadcrumbsHelper
   def render_breadcrumbs
-    breadcrumbs.each_with_index.map do |page, i|
-      (i.zero? ? '' : ' > ') + 
-        content_tag(:span, class: "crumb") {
-          link_to page[0], page[1]
-        }
-    end.join.html_safe
+    crumbs = breadcrumbs.each_with_index.map do |page, i|
+      content_tag(:span, class: "crumb") {
+        link_to page[0], page[1]
+      }
+    end
+    safe_join(crumbs, " > ")
   end
 
   def breadcrumb_names
