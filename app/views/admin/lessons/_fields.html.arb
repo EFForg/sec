@@ -21,7 +21,7 @@ f.fields_for :lessons, lesson do |l|
     p.input :resource_type, as: :hidden,
             input_html: { value: "Lesson" }
     p.input :resource, as: :select,
-            label: "Prerequisites", collection: Lesson.all
+            label: "Prerequisite", collection: Lesson.all
   end
 
   l.has_many :lesson_materials,
@@ -31,7 +31,7 @@ f.fields_for :lessons, lesson do |l|
     p.input :resource_type, as: :hidden,
             input_html: { value: "Material" }
     p.input :resource, as: :select,
-            label: "Materials", collection: Material.all
+            label: "Material", collection: Material.all
   end
 
   l.has_many :lesson_articles,
