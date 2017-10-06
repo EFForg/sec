@@ -1,10 +1,17 @@
 f.fields_for :lessons, lesson do |l|
   l.input :level_id, as: :select, required: true, collection: topic.lessons.unused_levels if lesson.new_record?
-  l.input :duration_hours, as: :number, label: 'Hours'
-  l.input :duration_minutes, as: :number, label: 'Minutes'
-  l.input :instructors, as: :number
-  l.input :students, as: :number
   l.input :objective
+
+  f.inputs "Duration", class: 'input duration' do
+    l.input :duration_hours, as: :number, label: 'Hours'
+    l.input :duration_minutes, as: :number, label: 'Minutes'
+  end
+
+  f.inputs "Teaching Ratio", class: 'input ratio' do
+    l.input :instructors, as: :number
+    l.input :students, as: :number
+  end
+
   l.input :body, as: :ckeditor
 
   l.has_many :lesson_prereqs,
@@ -39,4 +46,3 @@ f.fields_for :lessons, lesson do |l|
 
   l.input :_destroy, as: :boolean, label: 'Delete this level' if lesson.persisted?
 end
-
