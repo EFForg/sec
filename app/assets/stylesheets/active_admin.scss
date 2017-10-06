@@ -50,12 +50,22 @@
   }
 }
 
-.has_many_container.materials {
-  .input.label, .has_many_delete {
-    display: inline-block;
+.has_many_container {
+  .select,
+  select,
+  .has_many_delete,
+  .has_many_remove {
+    float: left;
+    margin-bottom: 0;
+    padding-bottom: 0;
   }
 
-  .input.label {
-    width: 30%;
+  .has_many_delete,
+  .has_many_remove {
+    margin-top: 40px;
+  }
+
+  .has_many_delete label > input {
+    top: 2px;
   }
 }
