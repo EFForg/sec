@@ -30,11 +30,11 @@ f.fields_for :lessons, lesson do |l|
   l.has_many :lesson_articles,
              heading: false,
              allow_destroy: true,
-             new_record: "Add advice" do |p|
+             new_record: "Add an article" do |p|
     p.input :resource_type, as: :hidden,
             input_html: { value: "Article" }
     p.input :resource, as: :select,
-            label: "Advice", collection: Article.all
+            label: "Article", collection: Article.all
   end
 
   l.input :_destroy, as: :boolean, label: 'Delete this level' if lesson.persisted?
