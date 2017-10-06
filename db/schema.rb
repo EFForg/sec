@@ -126,7 +126,6 @@ ActiveRecord::Schema.define(version: 20171006004500) do
     t.datetime "attachment_updated_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "lesson_id"
   end
 
   create_table "topics", force: :cascade do |t|
