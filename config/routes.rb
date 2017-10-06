@@ -6,6 +6,7 @@ Rails.application.routes.draw do
 
   scope :blog, controller: "blog" do
     get "/", as: "blog", action: "index"
+    get "/:id", as: "blog_post", action: "show"
   end
 
   resources :topics, only: [:index, :show]
