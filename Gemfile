@@ -38,6 +38,9 @@ gem 'kaminari'
 # File attachments
 gem 'paperclip'
 
+# Web requests
+gem 'httparty'
+
 
 # Content administration
 gem 'devise'
