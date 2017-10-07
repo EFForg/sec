@@ -62,6 +62,20 @@ Rails.application.configure do
   # config.active_job.queue_name_prefix = "trainers-hub_#{Rails.env}"
   config.action_mailer.perform_caching = false
 
+  config.action_mailer.default_url_options = { host: ENV["SERVER_HOST"] }
+  config.action_mailer.smtp_settings = {
+    address: ENV["SMTP_ADDRESS"],
+    port: ENV.fetch("SMTP_PORT"){ 587 },
+    authentication: ENV["SMTP_AUTHENTICATION"],
+    user_name: ENV["SMTP_USER_NAME"],
+    password: ENV["SMTP_PASSWORD"]
+  }
+
+  config.action_mailer.default_options = {
+    from: ENV["MAIL_FROM"]
+  }
+
+
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
   # config.action_mailer.raise_delivery_errors = false
