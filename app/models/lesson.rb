@@ -29,6 +29,8 @@ class Lesson < ApplicationRecord
            source: :resource, source_type: "Article",
            class_name: "Article"
 
+  acts_as_taggable
+
   default_scope { order(level_id: :asc) }
   validates :level_id, uniqueness: { scope: :topic },
                     presence: true,
