@@ -1,0 +1,14 @@
+sudo: required
+language: generic
+services:
+  - docker
+before_install:
+  - docker pull postgres
+  - docker run -d --name=testdb -e POSTGRES_DB trainers-hub_test -e POSTGRES_PASSWORD=mysecretpassword postgres
+  - docker build -t app .
+script:
+  - docker run --link testdb:testdb -e DATABASE_HOST=testdb \
+                                    -e DATABASE_USERNAME=postgres \
+                                    -e DATABASE_PASSWORD=mysecretpassword \
+                                    -e RAILS_ENV=test \
+                                    app bundle exec rspec
