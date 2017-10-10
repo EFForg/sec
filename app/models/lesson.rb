@@ -35,11 +35,15 @@ class Lesson < ApplicationRecord
                     inclusion: { in: 0..LEVELS.length,
                                  message: 'must be a valid level' }
 
-  accepts_nested_attributes_for :lesson_prereqs, allow_destroy: true
-  accepts_nested_attributes_for :lesson_materials, allow_destroy: true
-  accepts_nested_attributes_for :lesson_articles, allow_destroy: true
+  accepts_nested_attributes_for :lesson_prereqs, allow_destroy: true, reject_if: :resource_blank
+  accepts_nested_attributes_for :lesson_materials, allow_destroy: true, reject_if: :resource_blank
+  accepts_nested_attributes_for :lesson_articles, allow_destroy: true, reject_if: :resource_blank
 
   before_save :set_duration
+
+  def resource_blank(attributes)
+    attributes[:resource_id].blank?
+  end
 
   def name
     "#{topic.name}: #{level}"
