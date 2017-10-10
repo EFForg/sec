@@ -10,7 +10,7 @@
 // Active Admin's got SASS!
 @import "active_admin/mixins";
 @import "active_material";
-
+@import "admin/**/*";
 
 // Overriding any non-variable SASS must be done after the fact.
 // For example, to change the default status-tag color:
@@ -35,27 +35,28 @@
   padding-top: 8px;
 }
 
+.handle {
+  cursor: pointer;
+}
 
-.has_many_container.ui-sortable {
+.has_many_container {
   li {
-    display: inline-block;
+    float: left;
+    margin-bottom: 0;
+    padding-bottom: 0;
   }
 
-  .datalist {
-    width: 30%;
+  .has_many_delete,
+  .has_many_remove,
+  .handle {
+    margin-top: 40px;
   }
 
   .handle {
-    cursor: pointer;
-  }
-}
-
-.has_many_container.materials {
-  .input.label, .has_many_delete {
-    display: inline-block;
+    padding-top: 10px;
   }
 
-  .input.label {
-    width: 30%;
+  .has_many_delete label > input {
+    top: 2px;
   }
 }

@@ -1,10 +1,17 @@
 f.fields_for :lessons, lesson do |l|
   l.input :level_id, as: :select, required: true, collection: topic.lessons.unused_levels if lesson.new_record?
-  l.input :duration_hours, as: :number, label: 'Hours'
-  l.input :duration_minutes, as: :number, label: 'Minutes'
-  l.input :instructors, as: :number
-  l.input :students, as: :number
   l.input :objective
+
+  f.inputs "Duration", class: 'input duration' do
+    l.input :duration_hours, as: :number, label: 'Hours'
+    l.input :duration_minutes, as: :number, label: 'Minutes'
+  end
+
+  f.inputs "Teaching Ratio", class: 'input ratio' do
+    l.input :instructors, as: :number
+    l.input :students, as: :number
+  end
+
   l.input :body, as: :ckeditor
 
   l.has_many :lesson_prereqs,
@@ -14,7 +21,7 @@ f.fields_for :lessons, lesson do |l|
     p.input :resource_type, as: :hidden,
             input_html: { value: "Lesson" }
     p.input :resource, as: :select,
-            label: "Prerequisites", collection: Lesson.all
+            label: "Prerequisite", collection: Lesson.all
   end
 
   l.has_many :lesson_materials,
@@ -24,19 +31,18 @@ f.fields_for :lessons, lesson do |l|
     p.input :resource_type, as: :hidden,
             input_html: { value: "Material" }
     p.input :resource, as: :select,
-            label: "Materials", collection: Material.all
+            label: "Material", collection: Material.all
   end
 
   l.has_many :lesson_articles,
              heading: false,
              allow_destroy: true,
-             new_record: "Add advice" do |p|
+             new_record: "Add an article" do |p|
     p.input :resource_type, as: :hidden,
             input_html: { value: "Article" }
     p.input :resource, as: :select,
-            label: "Advice", collection: Article.all
+            label: "Article", collection: Article.all
   end
 
   l.input :_destroy, as: :boolean, label: 'Delete this level' if lesson.persisted?
 end
-

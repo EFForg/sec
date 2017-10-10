@@ -1,0 +1,23 @@
+.duration,
+.ratio {
+  width: 50%;
+  float: left;
+  margin-bottom: 0;
+  padding-bottom: 0;
+
+  ol {
+    padding-left: 0;
+  }
+
+  li {
+    padding-top: 0;
+    margin-top: 0;
+    width: 50%;
+    float: left;
+    list-style-type: none;
+  }
+}
+
+.ratio + li {
+  clear: both;
+}
