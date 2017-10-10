@@ -1,0 +1,19 @@
+<h1><%= @topic.name %></h1>
+
+<div class="tabs">
+  <% @topic.lessons.each do |lesson| %>
+    <div class="tab">
+      <%= link_to "#{lesson.level} lesson", anchor: lesson.level.parameterize %>
+    </div>
+  <% end %>
+</div>
+
+<div class="lessons">
+  <% @topic.lessons.each do |lesson| %>
+    <div class="lesson" name=<%= lesson.name.parameterize %>>
+      <%= render lesson %>
+    </div>
+  <% end %>
+</div>
+
+
