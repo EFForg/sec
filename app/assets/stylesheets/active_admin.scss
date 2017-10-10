@@ -35,34 +35,25 @@
   padding-top: 8px;
 }
 
-
-.has_many_container.ui-sortable {
-  li {
-    display: inline-block;
-  }
-
-  .datalist {
-    width: 30%;
-  }
-
-  .handle {
-    cursor: pointer;
-  }
+.handle {
+  cursor: pointer;
 }
 
 .has_many_container {
-  .select,
-  select,
-  .has_many_delete,
-  .has_many_remove {
+  li {
     float: left;
     margin-bottom: 0;
     padding-bottom: 0;
   }
 
   .has_many_delete,
-  .has_many_remove {
+  .has_many_remove,
+  .handle {
     margin-top: 40px;
+  }
+
+  .handle {
+    padding-top: 10px;
   }
 
   .has_many_delete label > input {
