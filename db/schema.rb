@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171006192845) do
+ActiveRecord::Schema.define(version: 20171010190007) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -85,7 +85,7 @@ ActiveRecord::Schema.define(version: 20171006192845) do
     t.integer "homepage_id", null: false
     t.string "content_type", null: false
     t.bigint "content_id", null: false
-    t.integer "position", null: false
+    t.integer "position", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["content_type", "content_id"], name: "index_featured_content_on_content_type_and_content_id"
