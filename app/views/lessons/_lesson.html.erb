@@ -23,8 +23,9 @@
 <% end %>
 
 <% if lesson.duration? %>
-  <%# <% @todo: use helpers, be more specific %>
-  <%= distance_of_time_in_words(lesson.duration) %>
+  <div class="duration">
+    <%= duration_in_words(lesson) %>
+  </div>
 <% end %>
 
 <% if lesson.prereqs.any? %>
