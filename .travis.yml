@@ -1,14 +1,12 @@
-sudo: required
-language: generic
+language: ruby
+rvm:
+  - 2.4
 services:
-  - docker
+  - postgresql
 before_install:
-  - docker pull postgres
-  - docker run -d --name=testdb -e POSTGRES_DB=trainers-hub_test -e POSTGRES_PASSWORD=mysecretpassword postgres
-  - docker build -t app .
+  - gem install bundler
+before_script:
+  - psql -c 'create database trainers-hub_test;' -U postgres
 script:
-  - docker run --link testdb:testdb -e DATABASE_HOST=testdb \
-                                    -e DATABASE_USERNAME=postgres \
-                                    -e DATABASE_PASSWORD=mysecretpassword \
-                                    -e RAILS_ENV=test \
-                                    app bundle exec rspec
+  - rubocop app/ lib/
+  - bundle exec rspec
