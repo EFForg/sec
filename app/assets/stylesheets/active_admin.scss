@@ -10,7 +10,7 @@
 // Active Admin's got SASS!
 @import "active_admin/mixins";
 @import "active_material";
-
+@import "admin/**/*";
 
 // Overriding any non-variable SASS must be done after the fact.
 // For example, to change the default status-tag color:
@@ -59,28 +59,4 @@
   .has_many_delete label > input {
     top: 2px;
   }
-}
-
-.duration,
-.ratio {
-  width: 50%;
-  float: left;
-  margin-bottom: 0;
-  padding-bottom: 0;
-
-  ol {
-    padding-left: 0;
-  }
-
-  li {
-    padding-top: 0;
-    margin-top: 0;
-    width: 50%;
-    float: left;
-    list-style-type: none;
-  }
-}
-
-.ratio + li {
-  clear: both;
 }
