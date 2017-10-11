@@ -33,13 +33,10 @@ ActiveAdmin.register BlogPost do
   index do
     selectable_column
     id_column
-
     column :name
-
-    column "Original Post", :original_url do |blog|
-      link_to blog.original_url, blog.original_url
+    column :slug do |record|
+      link_to record.slug, article_path(record)
     end
-
     column :published_at
     actions
   end

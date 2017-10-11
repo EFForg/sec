@@ -7,6 +7,17 @@ ActiveAdmin.register Article do
     end
   end
 
+  index do
+    selectable_column
+    id_column
+    column :name
+    column :slug do |record|
+      link_to record.slug, article_path(record)
+    end
+    column :updated_at
+    actions
+  end
+
   form do |f|
     inputs do
       f.input :name
