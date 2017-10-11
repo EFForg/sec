@@ -3,6 +3,8 @@ class Article < ApplicationRecord
   friendly_id :name, use: [:slugged, :history]
   before_validation :nillify_empty_slug, prepend: true
 
+  include Publishing
+
   acts_as_taggable
 
   def nillify_empty_slug

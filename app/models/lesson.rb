@@ -34,6 +34,8 @@ class Lesson < ApplicationRecord
   default_scope { order(level_id: :asc) }
   scope :with_level, -> (name) { where(level_id: LEVELS.invert[name]) }
 
+  include Publishing
+
   validates :level_id, uniqueness: { scope: :topic },
                     presence: true,
                     inclusion: { in: 0..LEVELS.length,
