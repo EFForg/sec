@@ -2,10 +2,10 @@ class LessonsController < ApplicationController
   def show
     @topic = Topic.friendly.find(params[:topic_id])
     @lesson = @topic.lessons.with_level(params[:id]).take
-    if @lesson.nil? or @lesson.level_id == 0
-      redirect_to @topic
-    else
-      render "topics/show"
+    redirect_to @topic && return if @lesson.nil?
+    respond_to do |format|
+      format.html { render "topics/show" }
+      format.js
     end
   end
 end
