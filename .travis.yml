@@ -5,8 +5,12 @@ services:
   - postgresql
 before_install:
   - gem install bundler
+install:
+  - bundle install --path vendor/bundle
+  - npm install
 before_script:
   - psql -c 'create database "trainers-hub_test";' -U postgres
 script:
   - bundle exec rubocop app/ lib/
+  - $(npm bin)/sass-lint -vq
   - bundle exec rspec
