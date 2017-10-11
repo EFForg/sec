@@ -12,5 +12,5 @@ before_script:
   - psql -c 'create database "trainers-hub_test";' -U postgres
 script:
   - bundle exec rubocop app/ lib/
-  - sass-lint -vq
+  - $(npm bin)/sass-lint -vq
   - bundle exec rspec
