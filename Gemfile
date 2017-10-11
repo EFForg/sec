@@ -22,6 +22,8 @@ gem "uglifier", ">= 1.3.0"
 gem "turbolinks", "~> 5"
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem "jbuilder", "~> 2.5"
+# Autocomplete select menus
+gem "select2-rails"
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 3.0'
 # Use ActiveModel has_secure_password
@@ -50,10 +52,15 @@ gem "carrierwave"
 gem "ckeditor"
 gem "devise"
 gem "mini_magick"
+gem "acts-as-taggable-on"
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem "byebug", platforms: %i[mri mingw x64_mingw]
+  # Testing
+  gem "rspec-core"
+  gem "rspec-rails"
+  gem "factory_girl_rails"
   # Adds support for Capybara system testing and selenium driver
   gem "capybara", "~> 2.13"
   gem "selenium-webdriver"

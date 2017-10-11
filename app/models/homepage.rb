@@ -21,6 +21,10 @@ class Homepage < ApplicationRecord
            source: :content, source_type: "Article",
            class_name: "Article"
 
+  has_one :featured_blog_post, through: :featured_blog_post_content,
+           source: :content, source_type: "BlogPost",
+           class_name: "BlogPost"
+
   accepts_nested_attributes_for :featured_topic_content, allow_destroy: true
   accepts_nested_attributes_for :featured_article_content, allow_destroy: true
 
