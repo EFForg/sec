@@ -1,9 +1,11 @@
 body {
-  background-color: $light-teal;
-//  font-size: $default-font-size;
-  line-height: 2rem;
+  background-color: white;
+  font-size: $default-font-size;
   font-family: $sans-serif;
   font-weight: 400;
+  line-height: 2rem;
+  margin: 0;
+  padding: 0;
 }
 
 a {
