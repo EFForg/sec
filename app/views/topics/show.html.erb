@@ -3,7 +3,7 @@
 <div class="tabs">
   <% @topic.lessons.each do |lesson| %>
     <div class="tab <%= "active" if @lesson == lesson %>">
-      <%= link_to "#{lesson.level} lesson", [@topic, lesson] %>
+      <%= link_to "#{lesson.level} lesson", lesson_path(@topic, lesson) %>
     </div>
   <% end %>
 </div>
