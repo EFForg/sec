@@ -6,7 +6,7 @@ class UpdateBlog < ApplicationJob
   include BlogHelper
 
   def perform
-    rss = HTTParty.get("https://www.eff.org/rss/updates.xml")
+    rss = HTTParty.get("https://www.eff.org/deeplinks.xml?field_issue_tid=11461")
     feed = RSS::Parser.parse(rss)
 
     new_blog_posts = 0
