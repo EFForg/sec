@@ -6,10 +6,10 @@ module Publishing
   end
 
   def published?
-    not published_at.nil?
+    published_at.present?
   end
 
   def unpublished?
-    not published?
+    !published?
   end
 end
