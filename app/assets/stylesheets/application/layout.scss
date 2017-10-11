@@ -1,8 +1,10 @@
-
+body {
+  background-color: $light-teal;
+}
 header {
   padding-top: 6rem;
   padding-bottom: 4rem;
-  background-color: #1a3141;
+  background-color: $light-teal;
 
   color: #fff;
   font-size: 3.5rem;
@@ -36,7 +38,7 @@ header {
 footer {
   padding-top: 2rem;
   padding-bottom: 2rem;
-  background-color: #1a3141;  
+  background-color: #1a3141;
 
   color: #fff;
   font-size: 2.3rem;
