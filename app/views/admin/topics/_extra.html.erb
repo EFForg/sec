@@ -1,0 +1,7 @@
+<%= semantic_form_for(topic, url: admin_topic_path(topic)) do |f| %>
+  <%= f.inputs do %>
+    <% f.input :slug, hint: "Leave blank to auto-generate" %>
+  <% end %>
+
+  <%= f.actions %>
+<% end %>

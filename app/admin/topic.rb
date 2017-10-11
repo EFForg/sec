@@ -27,7 +27,6 @@ ActiveAdmin.register Topic do
     f.inputs do
       f.semantic_errors *f.object.errors.keys
       f.input :name
-      f.input :slug, hint: "Leave blank to auto-generate"
       tabs do
         topic.lessons.each do |lesson|
           if lesson.persisted?
@@ -45,5 +44,10 @@ ActiveAdmin.register Topic do
       end
     end
     f.actions
+  end
+
+  sidebar :topic_extras, only: :edit do
+    render partial: "admin/topics/extra",
+      locals: { topic: resource }
   end
 end

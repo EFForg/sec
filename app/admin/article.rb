@@ -10,10 +10,15 @@ ActiveAdmin.register Article do
   form do |f|
     inputs do
       f.input :name
-      f.input :slug, hint: "Leave blank to auto-generate"
       f.input :body, as: :ckeditor
     end
 
     f.actions
+  end
+
+
+  sidebar :article_extras, only: :edit do
+    render partial: "admin/articles/extra",
+      locals: { article: resource }
   end
 end
