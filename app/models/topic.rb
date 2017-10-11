@@ -1,8 +1,12 @@
 class Topic < ApplicationRecord
   has_many :lessons do
     def unused_levels
-      unused_levels = Lesson::LEVELS.keys - pluck(:level_id)
+      unused_levels = Lesson::LEVELS.keys - map(&:level_id)
       Lesson::LEVELS.slice(*unused_levels).invert
+    end
+
+    def build_unused_level
+      build if unused_levels.any?
     end
   end
 
