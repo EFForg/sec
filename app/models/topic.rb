@@ -15,9 +15,6 @@ class Topic < ApplicationRecord
   extend FriendlyId
   friendly_id :name, use: [:slugged, :history]
   before_validation :nillify_empty_slug, prepend: true
-  def unsaved_or_new_lesson
-    lessons.find(&:new_record?) || lessons.new
-  end
 
   def nillify_empty_slug
     self.slug = nil if slug.blank?
