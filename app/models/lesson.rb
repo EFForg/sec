@@ -1,5 +1,5 @@
 class Lesson < ApplicationRecord
-  LEVELS = { 0 => "Base", 1 => "Medium", 2 => "Advanced" }
+  LEVELS = { 0 => "base", 1 => "medium", 2 => "advanced" }
 
   belongs_to :topic
 
@@ -30,6 +30,8 @@ class Lesson < ApplicationRecord
            class_name: "Article"
 
   default_scope { order(level_id: :asc) }
+  scope :with_level, -> (name) { where(level_id: LEVELS.invert[name]) }
+
   validates :level_id, uniqueness: { scope: :topic },
                     presence: true,
                     inclusion: { in: 0..LEVELS.length,
@@ -56,6 +58,10 @@ class Lesson < ApplicationRecord
 
   def level
     LEVELS[level_id]
+  end
+
+  def to_param
+    level
   end
 
   def set_duration

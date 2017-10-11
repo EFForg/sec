@@ -3,17 +3,13 @@
 <div class="tabs">
   <% @topic.lessons.each do |lesson| %>
     <div class="tab">
-      <%= link_to "#{lesson.level} lesson", anchor: lesson.level.parameterize %>
+      <%= link_to "#{lesson.level} lesson", [@topic, lesson] %>
     </div>
   <% end %>
 </div>
 
-<div class="lessons">
-  <% @topic.lessons.each do |lesson| %>
-    <div class="lesson" name=<%= lesson.name.parameterize %>>
-      <%= render lesson %>
-    </div>
-  <% end %>
+<div class="tab-content">
+  <%= render @lesson %>
 </div>
 
 

@@ -9,7 +9,9 @@ Rails.application.routes.draw do
     get "/:id", as: "blog_post", action: "show"
   end
 
-  resources :topics, only: [:index, :show]
+  resources :topics, only: [:index, :show] do
+    resources :lessons, path: "", only: [:show]
+  end
 
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)

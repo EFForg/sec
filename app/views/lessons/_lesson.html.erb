@@ -35,8 +35,7 @@
 
     <ul>
       <% lesson.prereqs.each do |prereq| %>
-        <%# <% @todo link to lesson on topic page %>
-        <li><%= link_to prereq.name, prereq.topic %></li>
+        <li><%= link_to prereq.name, [prereq.topic, prereq] %></li>
       <% end %>
     </ul>
 
