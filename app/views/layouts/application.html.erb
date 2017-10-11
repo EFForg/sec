@@ -9,8 +9,15 @@
   </head>
 
   <body>
+    <div class="top-bar">
+      <span class="eff-branding">(logo) A Project of the Electronic Frontier Foundation</span>
+      <span class="search">
+        Search&nbsp;
+        <input type="text">
+      </span>
+    </div>
     <header>
-      Logo + Title
+      <span class="logo">Logo + Title</span>
     </header>
 
     <% if breadcrumbs.present? %>
@@ -19,6 +26,14 @@
       </div>
     <% end %>
 
+    <div id="main-menu">
+      <ul>
+        <li><a href="#">Lessons</a></li>
+        <li><a href="#">Blog</a></li>
+        <li><a href="#">Training 101</a></li>
+        <li><a href="#">Materials</a></li>
+      </ul>
+    </div>
     <div id="main-content">
       <%= yield %>
     </div>
