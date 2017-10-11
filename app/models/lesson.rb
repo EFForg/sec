@@ -1,5 +1,5 @@
 class Lesson < ApplicationRecord
-  LEVELS = { 0 => "base", 1 => "medium", 2 => "advanced" }
+  LEVELS = { 1 => "base", 2 => "medium", 3 => "advanced" }
 
   belongs_to :topic
 

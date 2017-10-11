@@ -19,7 +19,23 @@ ActiveAdmin.register Topic do
 
   controller do
     def find_resource
-      scoped_collection.friendly.find(params[:id])
+      topic = scoped_collection.friendly.find(params[:id])
+
+      if action_name == "edit" && topic.lessons.unused_levels.any?
+        topic.lessons.build
+      end
+
+      topic
+    end
+
+    def build_resource
+      topic = super
+
+      if action_name == "new" && topic.lessons.unused_levels.any?
+        topic.lessons.build
+      end
+
+      topic
     end
 
     before_action :blankify_empty_tags_list, only: [:create, :update]
@@ -37,16 +53,9 @@ ActiveAdmin.register Topic do
       f.input :name
       tabs do
         topic.lessons.each do |lesson|
-          if lesson.persisted?
-            tab lesson.level do
-              render partial: "admin/lessons/fields", locals: { f: f, lesson: lesson }
-            end
-          end
-        end
-        if topic.lessons.unused_levels.any?
-          tab "+Add" do
+          tab(lesson.level || "+Add") do
             render partial: "admin/lessons/fields",
-              locals: { f: f, topic: topic, lesson: topic.unsaved_or_new_lesson }
+              locals: { f: f, lesson: lesson }
           end
         end
       end
