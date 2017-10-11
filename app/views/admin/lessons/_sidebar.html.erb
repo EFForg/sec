@@ -55,5 +55,7 @@
     <% end %>
   <% end %>
 
-  <%= f.actions %>
+  <%= f.actions do %>
+    <%= f.action :submit, label: "Update Lesson" %>
+  <% end %>
 <% end %>
