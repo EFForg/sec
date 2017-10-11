@@ -46,4 +46,9 @@ ActiveAdmin.register Topic do
     end
     f.actions
   end
+
+  sidebar :lesson_extras, only: :edit do
+    render partial: "admin/lessons/sidebar",
+      locals: { topic: resource, lesson: topic.lessons.take }
+  end
 end
