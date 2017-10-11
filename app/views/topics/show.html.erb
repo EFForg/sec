@@ -2,7 +2,7 @@
 
 <div class="tabs">
   <% @topic.lessons.each do |lesson| %>
-    <div class="tab">
+    <div class="tab <%= "active" if @lesson == lesson %>">
       <%= link_to "#{lesson.level} lesson", [@topic, lesson] %>
     </div>
   <% end %>
