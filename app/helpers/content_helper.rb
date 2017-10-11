@@ -1,6 +1,9 @@
 module ContentHelper
+  def allowed_tags
+    allowed_tags = %w(a b strong i em u s strike del p)
+  end
+
   def preview(html)
-    allowed_tags = %w(a b strong i em u s strike del)
     html = truncate(sanitize(html, tags: allowed_tags),
                     length: 500, escape: false)
 

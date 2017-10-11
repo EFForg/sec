@@ -4,6 +4,7 @@ ActiveAdmin.register Topic do
         :id, :_destroy, :level_id, :topic_id,
         :duration_hours, :duration_minutes, :instructors, :students,
         :objective, :body,
+        tag_ids: [],
         lesson_prereqs_attributes: [
           :id, :_destroy, :resource_type, :resource_id, :position
         ],
@@ -20,13 +21,20 @@ ActiveAdmin.register Topic do
     def find_resource
       scoped_collection.friendly.find(params[:id])
     end
+
+    before_action :blankify_empty_tags_list, only: [:create, :update]
+
+    def blankify_empty_tags_list
+      params[:topic][:lessons_attributes].each_key do |key|
+        params[:topic][:lessons_attributes][key][:tag_ids].reject!(&:blank?)
+      end
+    end
   end
 
   form do |f|
     f.inputs do
       f.semantic_errors *f.object.errors.keys
       f.input :name
-      f.input :slug, hint: "Leave blank to auto-generate"
       tabs do
         topic.lessons.each do |lesson|
           if lesson.persisted?
@@ -44,5 +52,10 @@ ActiveAdmin.register Topic do
       end
     end
     f.actions
+  end
+
+  sidebar :topic_extras, only: :edit do
+    render partial: "admin/topics/extra",
+      locals: { topic: resource }
   end
 end

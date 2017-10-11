@@ -47,10 +47,14 @@ ActiveAdmin.register BlogPost do
   form do |f|
     f.inputs do
       f.input :name
-      f.input :slug, hint: "Leave blank to auto-generate"
       f.input :body, as: :ckeditor
     end
 
     f.actions
+  end
+
+  sidebar :blog_post_extras, only: :edit do
+    render partial: "admin/blog_posts/extra",
+      locals: { blog_post: resource }
   end
 end

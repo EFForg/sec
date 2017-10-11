@@ -1,0 +1,15 @@
+<h1><%= @topic.name %></h1>
+
+<div class="tabs">
+  <% @topic.lessons.each do |lesson| %>
+    <div class="tab <%= "active" if @lesson == lesson %>">
+      <%= link_to "#{lesson.level} lesson", [@topic, lesson] %>
+    </div>
+  <% end %>
+</div>
+
+<div class="tab-content">
+  <%= render @lesson %>
+</div>
+
+

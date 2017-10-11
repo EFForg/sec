@@ -1,5 +1,8 @@
 {
   "name": "trainers-hub",
   "private": true,
-  "dependencies": {}
+  "dependencies": {},
+  "devDependencies": {
+    "sass-lint": "^1.12.0"
+  }
 }
