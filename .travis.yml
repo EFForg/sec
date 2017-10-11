@@ -5,6 +5,9 @@ services:
   - postgresql
 before_install:
   - gem install bundler
+install:
+  - bundle install --path vendor/bundle
+  - npm install
 before_script:
   - psql -c 'create database "trainers-hub_test";' -U postgres
 script:
