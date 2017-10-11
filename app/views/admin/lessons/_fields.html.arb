@@ -2,9 +2,11 @@ f.fields_for :lessons, lesson do |l|
   l.input :level_id, as: :select, required: true, collection: topic.lessons.unused_levels if lesson.new_record?
   l.input :objective
 
-  f.inputs "Duration", class: 'input duration' do
-    l.input :duration_hours, as: :number, label: 'Hours'
-    l.input :duration_minutes, as: :number, label: 'Minutes'
+  l.fields_for :duration, l.object.duration do |d|
+    f.inputs "Duration", class: 'input duration' do
+      d.input :hours, as: :number, label: 'Hours'
+      d.input :minutes, as: :number, label: 'Minutes'
+    end
   end
 
   f.inputs "Teaching Ratio", class: 'input ratio' do

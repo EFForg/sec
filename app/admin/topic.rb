@@ -2,9 +2,10 @@ ActiveAdmin.register Topic do
   permit_params :name, :slug,
     lessons_attributes: [
         :id, :_destroy, :level_id, :topic_id,
-        :duration_hours, :duration_minutes, :instructors, :students,
+        :instructors, :students,
         :objective, :body,
         tag_ids: [],
+        duration: [:hours, :minutes],
         lesson_prereqs_attributes: [
           :id, :_destroy, :resource_type, :resource_id, :position
         ],

@@ -43,7 +43,7 @@ class Lesson < ApplicationRecord
   accepts_nested_attributes_for :lesson_materials, allow_destroy: true, reject_if: :resource_blank
   accepts_nested_attributes_for :lesson_articles, allow_destroy: true, reject_if: :resource_blank
 
-  before_save :set_duration
+  before_validation :set_duration
 
   def resource_blank(attributes)
     attributes[:resource_id].blank?
@@ -66,30 +66,37 @@ class Lesson < ApplicationRecord
     level
   end
 
+  def duration
+    if self[:duration]
+      @duration ||= Duration.new((self[:duration]/3600).floor,
+                                 (self[:duration]%3600)/60)
+    end
+  end
+
+  def duration=(val)
+    case val
+    when Duration
+      @duration = val
+    when Hash
+      @duration = Duration.new(val[:hours], val[:minutes])
+    else
+      @duration = nil
+      self[:duration] = val
+    end
+  end
+
   def set_duration
-    if @duration_hours.present? or @duration_minuts.present?
-      self.duration = @duration_hours.hours.to_i + @duration_minutes.minutes.to_i
+    if @duration
+      duration_will_change! unless self[:duration] == @duration.to_i
+      self[:duration] = @duration.to_i
     end
   end
 
-  def duration_hours
-    (duration/3600).floor if duration.present? and duration > 0
-  end
+  private
 
-  def duration_minutes
-    if duration.present? and duration > 0
-      minutes = (duration % 3600)/60
-      minutes.round
+  Duration = Struct.new(:hours, :minutes) do
+    def to_i
+      hours.hours + minutes.minutes
     end
-  end
-
-  def duration_hours=(hours)
-    duration_will_change! unless hours == duration_hours
-    @duration_hours = hours.to_f
-  end
-
-  def duration_minutes=(minutes)
-    duration_will_change! unless minutes == duration_minutes
-    @duration_minutes = minutes.to_f
   end
 end
