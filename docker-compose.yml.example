@@ -22,4 +22,5 @@ services:
     environment:
       POSTGRES_DB: trainers-hub_development
 
-
+  redis:
+    image: redis
