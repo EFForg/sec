@@ -3,5 +3,9 @@
     <% f.input :slug, hint: "Leave blank to auto-generate" %>
   <% end %>
 
+  <%= f.inputs class: 'inputs inline-choice' do %>
+    <% f.input :published?, as: :radio %>
+  <% end %>
+
   <%= f.actions %>
 <% end %>

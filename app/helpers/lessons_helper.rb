@@ -9,4 +9,9 @@ module LessonsHelper
     end
     duration.join(" and ")
   end
+
+  def lesson_path(topic, lesson)
+    return [topic] if lesson.level_id == 0
+    [topic, lesson]
+  end
 end
