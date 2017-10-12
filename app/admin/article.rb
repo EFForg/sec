@@ -1,4 +1,6 @@
 ActiveAdmin.register Article do
+  menu priority: 4
+
   permit_params :name, :body, :slug, :published
 
   controller do
