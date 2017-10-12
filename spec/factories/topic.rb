@@ -5,7 +5,11 @@ FactoryGirl.define do
     after(:create) do |topic|
       FactoryGirl.create(:lesson, topic_id: topic.id)
     end
+
+    published_at Time.now
   end
 
-  factory :lesson
+  factory :lesson do
+    published_at Time.now
+  end
 end
