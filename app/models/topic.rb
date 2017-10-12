@@ -6,6 +6,7 @@ class Topic < ApplicationRecord
   friendly_id :name, use: [:slugged, :history]
   before_validation :nillify_empty_slug, prepend: true
 
+  include Publishing
 
   def unsaved_or_new_lesson
     lessons.find(&:new_record?) || lessons.new

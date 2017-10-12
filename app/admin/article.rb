@@ -1,10 +1,23 @@
 ActiveAdmin.register Article do
-  permit_params :name, :body, :slug
+  menu priority: 4
+
+  permit_params :name, :body, :slug, :published
 
   controller do
     def find_resource
       scoped_collection.friendly.find(params[:id])
     end
+  end
+
+  index do
+    selectable_column
+    id_column
+    column :name
+    column :slug do |record|
+      link_to record.slug, article_path(record)
+    end
+    column :published_at
+    actions
   end
 
   form do |f|

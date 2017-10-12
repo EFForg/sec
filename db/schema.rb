@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171010225762) do
+ActiveRecord::Schema.define(version: 20171012002152) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -52,6 +52,7 @@ ActiveRecord::Schema.define(version: 20171010225762) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "slug"
+    t.datetime "published_at"
     t.index ["slug"], name: "index_articles_on_slug", unique: true
   end
 
@@ -130,6 +131,7 @@ ActiveRecord::Schema.define(version: 20171010225762) do
     t.integer "students"
     t.text "objective"
     t.integer "level_id", default: 0, null: false
+    t.datetime "published_at"
     t.index ["topic_id"], name: "index_lessons_on_topic_id"
   end
 
@@ -174,6 +176,7 @@ ActiveRecord::Schema.define(version: 20171010225762) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "slug"
+    t.datetime "published_at"
     t.index ["slug"], name: "index_topics_on_slug", unique: true
   end
 

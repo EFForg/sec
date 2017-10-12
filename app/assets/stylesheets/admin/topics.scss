@@ -21,3 +21,12 @@
 .ratio + li {
   clear: both;
 }
+
+.inline-choice .choices-group {
+  list-style: none;
+  padding-left: 0;
+
+  li {
+    display: inline;
+  }
+}
