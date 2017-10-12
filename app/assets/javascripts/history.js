@@ -15,8 +15,8 @@ $(document).on("ajax:before", function(e) {
   e.target.href = mark_remote(e.target.href);
 });
 
-$("[data-history='true']").on("ajax:success", function(e) {
-  if (history && history.pushState) {
+$(document).on("ajax:success", function(e) {
+  if (e.target.dataset.history && history && history.pushState) {
     history.pushState({remote: true}, "", unmark_remote(e.target.href));
   }
 });
