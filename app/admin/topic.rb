@@ -27,7 +27,7 @@ ActiveAdmin.register Topic do
     before_action :blankify_empty_tags_list, only: [:create, :update]
 
     def blankify_empty_tags_list
-      params[:topic][:lessons_attributes].try(:each_key) do |key|
+      params[:topic][:lessons_attributes].try(:each_pair) do |key, _|
         params[:topic][:lessons_attributes][key][:tag_ids].reject!(&:blank?)
       end
     end
