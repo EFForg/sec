@@ -10,6 +10,7 @@ FactoryGirl.define do
   end
 
   factory :lesson do
+    level_id 1
     published_at Time.now
   end
 end
