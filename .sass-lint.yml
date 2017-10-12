@@ -28,7 +28,11 @@ rules:
     -
       include: true
 
-  nesting-depth: 2
+  nesting-depth:
+    - 2
+    -
+      max-depth: 3
+
   no-duplicate-properties: 2
   no-important: 2
   no-invalid-hex: 2
