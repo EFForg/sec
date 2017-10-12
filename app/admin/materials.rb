@@ -20,7 +20,7 @@ ActiveAdmin.register Material do
       f.input :name
       f.input :body, label: "Description", as: :ckeditor
 
-      f.input :attachment
+      f.input :attachment, as: :file
     end
 
     f.actions
