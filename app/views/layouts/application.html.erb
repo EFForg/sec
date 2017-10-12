@@ -1,14 +1,18 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
     <title><%= page_title %></title>
     <%= csrf_meta_tags %>
-
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag "vendor/modernizr" %>
   </head>
 
   <body>
+
     <div class="top-bar">
       <span class="eff-branding">(logo) A Project of the Electronic Frontier Foundation</span>
       <span class="search">
@@ -41,5 +45,6 @@
     <footer>
       Footer
     </footer>
+    <%= javascript_include_tag "application" %>
   </body>
 </html>
