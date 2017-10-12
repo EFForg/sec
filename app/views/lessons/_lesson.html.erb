@@ -43,7 +43,7 @@
 <% end %>
 
 <div class="@lesson-body">
-  <%= sanitize(@lesson.body, tags: allowed_tags) %>
+  <%= @lesson.body.html_safe %>
 </div>
 
 <% if @lesson.materials.any? %>
