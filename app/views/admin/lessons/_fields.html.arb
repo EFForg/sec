@@ -44,11 +44,5 @@ f.fields_for :lessons, lesson do |l|
             label: "Article", collection: Article.all
   end
 
-  l.input :tags,
-          as: :select,
-          multiple: true,
-          collection: ActsAsTaggableOn::Tag.order(:name).select(:id, :name).all,
-          input_html: { class: "select2" }
-
   l.input :_destroy, as: :boolean, label: 'Delete this level' if lesson.persisted?
 end

@@ -2,6 +2,8 @@ class Topic < ApplicationRecord
   has_many :lessons
   accepts_nested_attributes_for :lessons, allow_destroy: true, reject_if: :all_blank
 
+  acts_as_taggable
+
   extend FriendlyId
   friendly_id :name, use: [:slugged, :history]
   before_validation :nillify_empty_slug, prepend: true
