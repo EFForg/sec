@@ -7,6 +7,7 @@ class Topic < ApplicationRecord
   before_validation :nillify_empty_slug, prepend: true
 
   include Publishing
+  include Featuring
 
   def unsaved_or_new_lesson
     lessons.find(&:new_record?) || lessons.new
