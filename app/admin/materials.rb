@@ -8,11 +8,10 @@ ActiveAdmin.register Material do
     column :name
 
     column "Attached File", :attachment_file_name do |material|
-      link_to material.attachment_file_name, material.attachment.url,
+      link_to material.attachment_identifier, material.attachment.url,
               target: "_blank"
     end
 
-    column :attachment_updated_at
     actions
   end
 

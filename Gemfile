@@ -37,7 +37,8 @@ gem "select2-rails"
 gem "kaminari"
 
 # File attachments
-gem "paperclip"
+gem "carrierwave"
+gem "mini_magick"
 
 # Web requests
 gem "httparty"
@@ -48,10 +49,8 @@ gem "friendly_id"
 # Content administration
 gem "active_material", github: "vigetlabs/active_material"
 gem "activeadmin"
-gem "carrierwave"
 gem "ckeditor"
 gem "devise"
-gem "mini_magick"
 gem "acts-as-taggable-on"
 
 group :development, :test do
