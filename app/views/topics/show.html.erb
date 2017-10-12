@@ -3,7 +3,8 @@
 <div class="tabs">
   <% @topic.lessons.each do |lesson| %>
     <div class="tab <%= "active" if @lesson == lesson %>">
-      <%= link_to "#{lesson.level} lesson", [@topic, lesson], remote: true, data: { history: true } %>
+      <%= link_to "#{lesson.level} lesson", lesson_path(@topic, lesson),
+                  remote: true, data: { history: true } %>
     </div>
   <% end %>
 </div>
