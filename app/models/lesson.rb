@@ -46,7 +46,7 @@ class Lesson < ApplicationRecord
   accepts_nested_attributes_for :lesson_articles, allow_destroy: true, reject_if: :resource_blank
 
   before_save :set_duration
-  before_save :publish!
+  after_save :publish!
 
   def resource_blank(attributes)
     attributes[:resource_id].blank?
