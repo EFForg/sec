@@ -29,10 +29,10 @@ class Lesson < ApplicationRecord
            source: :resource, source_type: "Article",
            class_name: "Article"
 
-  acts_as_taggable
-
   default_scope { order(level_id: :asc) }
   scope :with_level, -> (name) { where(level_id: LEVELS.invert[name]) }
+
+  include Publishing
 
   validates :level_id, uniqueness: { scope: :topic },
                     presence: true,
@@ -44,6 +44,7 @@ class Lesson < ApplicationRecord
   accepts_nested_attributes_for :lesson_articles, allow_destroy: true, reject_if: :resource_blank
 
   before_save :set_duration
+  after_save :publish!
 
   def resource_blank(attributes)
     attributes[:resource_id].blank?

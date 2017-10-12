@@ -24,11 +24,25 @@
     <span class="logo">Logo + Title</span>
   </header>
 
+
   <% if breadcrumbs.present? %>
   <div id="breadcrumbs">
     <%= render_breadcrumbs %>
   </div>
   <% end %>
+
+    <div id="main-menu">
+      <ul>
+        <li><%= link_to "Lessons", topics_path %></li>
+        <li><%= link_to "Blog", blog_path %></li>
+        <li><%= link_to "Training 101", articles_path %></li>
+        <li><%= link_to "Materials", materials_path %></li>
+      </ul>
+    </div>
+    <div id="main-content">
+      <%= yield %>
+    </div>
+
 
   <div id="main-menu">
     <ul>

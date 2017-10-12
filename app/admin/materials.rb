@@ -1,4 +1,6 @@
 ActiveAdmin.register Material do
+  menu priority: 3
+
   permit_params :name, :body, :attachment
 
   index do
