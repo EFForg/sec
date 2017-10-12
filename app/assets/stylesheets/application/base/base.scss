@@ -66,20 +66,20 @@ h2 {
 h3 {
   font-size: 1.4rem;
   line-height: 1.8rem;
-  margin-bottom: .7rem;
+  margin-bottom: 0.7rem;
 }
 
 h4 {
   font-size: 1.2rem;
   line-height: 1.4rem;
-  margin-bottom: .5rem;
+  margin-bottom: 0.5rem;
   text-align: left;
 }
 
 h5 {
   font-size: 1.2rem;
   line-height: 1.4rem;
-  margin-bottom: .5rem;
+  margin-bottom: 0.5rem;
   margin-left: 2rem;
   text-align: left;
 }
@@ -90,10 +90,6 @@ h6 {
   line-height: 1.6rem;
   margin: 0 1rem 1.7rem 1rem;
   text-align: left;
-//  @include susy-breakpoint($narrow) {
-//    margin: 0 6rem 1.7rem 3rem;
-//    text-align: justify;
-//  }
 }
 
 p {
@@ -103,9 +99,9 @@ p {
 pre,
 kbd {
   font-family: monospace;
-  //background-color: $light-gray;
+  background-color: $light-gray;
   padding: 10px;
-  //border-left: 3px solid $gray;
+  border-left: 3px solid $gray;
   overflow: auto;
   margin: 1em 30px 1em 10px;
 }
