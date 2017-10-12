@@ -41,9 +41,16 @@
     <h2><%= link_to "Materials", materials_path %></h2>
   </aside>
 
-  <% @homepage.featured_materials.each do |material| %>
-    <%= render material %>
+  <% @homepage.featured_materials.in_groups_of(3, false) do |row| %>
+    <div class="row">
+      <% for material in row %>
+        <div class="large-4 columns end">
+          <%= render material %>
+        </div>
+      <% end %>
+    </div>
   <% end %>
+
 </div>
 
 <div class="row">
