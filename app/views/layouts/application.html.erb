@@ -1,50 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title><%= page_title %></title>
-    <%= csrf_meta_tags %>
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag "vendor/modernizr" %>
-  </head>
+  <title><%= page_title %></title>
+  <%= csrf_meta_tags %>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_include_tag "vendor/modernizr" %>
+</head>
 
-  <body>
+<body>
 
-    <div class="top-bar">
-      <span class="eff-branding">(logo) A Project of the Electronic Frontier Foundation</span>
-      <span class="search">
-        Search&nbsp;
-        <input type="text">
-      </span>
-    </div>
-    <header>
-      <span class="logo">Logo + Title</span>
-    </header>
+  <div class="top-bar">
+    <span class="eff-branding">(logo) A Project of the Electronic Frontier Foundation</span>
+    <span class="search">
+      Search&nbsp;
+      <input type="text">
+    </span>
+  </div>
+  <header>
+    <span class="logo">Logo + Title</span>
+  </header>
 
-    <% if breadcrumbs.present? %>
-      <div id="breadcrumbs">
-        <%= render_breadcrumbs %>
-      </div>
-    <% end %>
+  <% if breadcrumbs.present? %>
+  <div id="breadcrumbs">
+    <%= render_breadcrumbs %>
+  </div>
+  <% end %>
 
-    <div id="main-menu">
-      <ul>
-        <li><a href="#">Lessons</a></li>
-        <li><a href="#">Blog</a></li>
-        <li><a href="#">Training 101</a></li>
-        <li><a href="#">Materials</a></li>
-      </ul>
-    </div>
-    <div id="main-content">
-      <%= yield %>
-    </div>
+  <div id="main-menu">
+    <ul>
+      <li><a href="#">Lessons</a></li>
+      <li><a href="#">Blog</a></li>
+      <li><a href="#">Training 101</a></li>
+      <li><a href="#">Materials</a></li>
+    </ul>
+  </div>
+  <div id="main-content">
+    <%= yield %>
+  </div>
 
-    <footer>
+  <footer>
+    <div class="row">
       Footer
-    </footer>
-    <%= javascript_include_tag "application" %>
-  </body>
+    </div>
+  </footer>
+  <%= javascript_include_tag "application" %>
+</body>
 </html>
