@@ -1,4 +1,6 @@
 ActiveAdmin.register Topic do
+  menu priority: 2
+
   permit_params :name, :slug, :published,
     lessons_attributes: [
         :id, :_destroy, :level_id, :topic_id,

@@ -1,5 +1,6 @@
 ActiveAdmin.register BlogPost do
-  menu label: "Blog"
+  menu label: "Blog", priority: 5
+
   config.sort_order = "published_at_desc"
 
   permit_params :name, :body, :slug, :published
