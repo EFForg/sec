@@ -6,7 +6,7 @@ class Topic < ApplicationRecord
     end
 
     def build_unused_level
-      build if unused_levels.any?
+      build if unused_levels.any? && all?(&:persisted?)
     end
   end
 
