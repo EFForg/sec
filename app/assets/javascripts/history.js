@@ -16,7 +16,7 @@ window.onload = function() {
     e.target.href = mark_remote(e.target.href);
   });
 
-  document.body.addEventListener("ajax:success", function(e) {
+  $("[data-history='true']").on("ajax:success", function(e) {
     if (history && history.pushState) {
       history.pushState({remote: true}, "", unmark_remote(e.target.href));
     }
