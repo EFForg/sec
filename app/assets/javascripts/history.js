@@ -11,21 +11,19 @@ unmark_remote = function(url) {
   return url.replace("?remote", "");
 }
 
-window.onload = function() {
-  document.body.addEventListener("ajax:before", function(e) {
-    e.target.href = mark_remote(e.target.href);
-  });
+$(document).on("ajax:before", function(e) {
+  e.target.href = mark_remote(e.target.href);
+});
 
-  $("[data-history='true']").on("ajax:success", function(e) {
-    if (history && history.pushState) {
-      history.pushState({remote: true}, "", unmark_remote(e.target.href));
-    }
-  });
+$("[data-history='true']").on("ajax:success", function(e) {
+  if (history && history.pushState) {
+    history.pushState({remote: true}, "", unmark_remote(e.target.href));
+  }
+});
 
-  document.body.addEventListener("ajax:complete", function(e) {
-    e.target.href = unmark_remote(e.target.href);
-  });
-}
+$(document).on("ajax:complete", function(e) {
+  e.target.href = unmark_remote(e.target.href);
+});
 
 window.onpopstate = function(event) {
   console.log(event);
