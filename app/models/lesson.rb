@@ -1,7 +1,7 @@
 class Lesson < ApplicationRecord
   LEVELS = { 0 => "base", 1 => "medium", 2 => "advanced" }
 
-  belongs_to :topic
+  belongs_to :topic, touch: true
 
   has_many :lesson_resources
 

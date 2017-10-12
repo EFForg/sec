@@ -4,6 +4,7 @@ class BlogPost < ApplicationRecord
   before_validation :nillify_empty_slug, prepend: true
 
   include Publishing
+  include Featuring
 
   def self._to_partial_path
     "blog/blog_post"

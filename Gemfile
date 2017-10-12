@@ -22,10 +22,14 @@ gem "uglifier", ">= 1.3.0"
 gem "turbolinks", "~> 5"
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem "jbuilder", "~> 2.5"
+
 # Autocomplete select menus
 gem "select2-rails"
-# Use Redis adapter to run Action Cable in production
-# gem 'redis', '~> 3.0'
+
+# Redis for caching
+gem 'redis', '~> 3.0'
+gem 'redis-rails'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 # gem 'coffee-rails'
