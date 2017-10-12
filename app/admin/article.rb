@@ -1,5 +1,5 @@
 ActiveAdmin.register Article do
-  permit_params :name, :body, :slug
+  permit_params :name, :body, :slug, :published
 
   controller do
     def find_resource
@@ -14,7 +14,7 @@ ActiveAdmin.register Article do
     column :slug do |record|
       link_to record.slug, article_path(record)
     end
-    column :updated_at
+    column :published_at
     actions
   end
 

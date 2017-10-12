@@ -2,7 +2,7 @@ ActiveAdmin.register BlogPost do
   menu label: "Blog"
   config.sort_order = "published_at_desc"
 
-  permit_params :name, :body, :slug
+  permit_params :name, :body, :slug, :published
 
   controller do
     def find_resource

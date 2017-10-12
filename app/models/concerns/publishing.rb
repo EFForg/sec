@@ -12,4 +12,16 @@ module Publishing
   def unpublished?
     !published?
   end
+
+  def published=(x)
+    if x && x != "false"
+      assign_attributes(published_at: Time.now)
+    else
+      assign_attributes(published_at: nil)
+    end
+  end
+
+  def publish!
+    touch(:published_at)
+  end
 end

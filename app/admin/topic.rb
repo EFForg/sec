@@ -1,5 +1,5 @@
 ActiveAdmin.register Topic do
-  permit_params :name, :slug,
+  permit_params :name, :slug, :published,
     lessons_attributes: [
         :id, :_destroy, :level_id, :topic_id,
         :duration_hours, :duration_minutes, :instructors, :students,
