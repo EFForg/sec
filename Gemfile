@@ -38,7 +38,6 @@ gem "kaminari"
 
 # File attachments
 gem "carrierwave"
-gem "mini_magick"
 
 # Web requests
 gem "httparty"
