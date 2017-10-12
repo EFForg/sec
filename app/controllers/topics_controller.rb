@@ -6,6 +6,11 @@ class TopicsController < ApplicationController
 
   def show
     @topic = Topic.published.friendly.find(params[:id])
-    @lesson = @topic.lessons.published.first || not_found
+    @lesson = @topic.lessons.published.take!
+
+    respond_to do |format|
+      format.html
+      format.js { render "lessons/show" }
+    end
   end
 end
