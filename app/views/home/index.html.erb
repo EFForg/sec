@@ -9,9 +9,9 @@
 
 <div class="row">
   <h2>Lessons</h2>
-  <% @homepage.featured_topics.in_groups_of(2, false) do |row| %>
+  <% @homepage.featured_topics.each_slice(2) do |row| %>
   <div class="row">
-    <% for topic in row %>
+    <% row.each do |topic| %>
     <div class="large-6 columns end">
       <%= render topic %>
     </div>
@@ -25,9 +25,9 @@
 
 <div class="row">
   <h2><%= link_to "Training 101", articles_path %></h2>
-  <% @homepage.featured_articles.in_groups_of(4, false) do |row| %>
+  <% @homepage.featured_articles.each_slice(3) do |row| %>
   <div class="row">
-    <% for article in row %>
+    <% row.each do |article| %>
     <div class="large-6 columns end">
       <%= render article %>
     </div>
