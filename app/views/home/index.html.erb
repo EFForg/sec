@@ -8,7 +8,25 @@
 <div style="clear: both"></div>
 
 <div class="row">
-  <h2>Lessons</h2>
+  <h1><%= link_to "Training 101", articles_path %></h1>
+  <p class="description-text">Description text goes here.</p>
+  <% @homepage.featured_articles.each_slice(4) do |row| %>
+  <div class="row">
+    <% row.each do |article| %>
+    <div class="large-3 columns end">
+      <%= render article %>
+    </div>
+    <% end %>
+  </div>
+  <% end %>
+  <div class="right">
+    <%= link_to "See All Training", topics_path %>
+  </div>
+</div>
+
+<div class="row">
+  <h1>Lessons</h1>
+  <p class="description-text">Description text goes here.</p>
   <% @homepage.featured_topics.each_slice(2) do |row| %>
   <div class="row">
     <% row.each do |topic| %>
@@ -24,23 +42,8 @@
 </div>
 
 <div class="row">
-  <h2><%= link_to "Training 101", articles_path %></h2>
-  <% @homepage.featured_articles.each_slice(3) do |row| %>
-  <div class="row">
-    <% row.each do |article| %>
-    <div class="large-6 columns end">
-      <%= render article %>
-    </div>
-    <% end %>
-  </div>
-  <% end %>
-  <div class="right">
-    <%= link_to "See All Training", topics_path %>
-  </div>
-</div>
-
-<div class="row">
-  <h2><%= link_to "Materials", materials_path %></h2>
+  <h1><%= link_to "Educational Materials", materials_path %></h1>
+  <p class="description-text">Description text goes here.</p>
   <div class="row">
     <% @homepage.featured_materials.each do |material| %>
     <%= render material %>
@@ -53,7 +56,8 @@
 
 
 <div class="row">
-  <h2><%= link_to "Blog", blog_path %></h2>
+  <h1><%= link_to "Blog", blog_path %></h1>
+  <p class="description-text">Description text goes here.</p>
   <div class="row">
     <%= render @homepage.featured_blog_post %>
   </div>
