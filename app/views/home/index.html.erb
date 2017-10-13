@@ -1,55 +1,64 @@
-
-<div class="intro">
-  <div class="left">
+<div class="intro row">
+  <div class="large-6 columns">
   </div>
-
-  <div class="right">
+  <div class="large-6 columns">
     <%= @homepage.welcome.html_safe %>
   </div>
 </div>
-
-
-<h2>Training Objectives</h2>
-<div class="topics-grid">
-  <% @homepage.featured_topics.each do |topic| %>
-    <%= render topic %>
-  <% end %>
-</div>
 <div style="clear: both"></div>
 
-<div class="center">
-  <%= link_to "See All", topics_path %>
-</div>
-
-
 <div class="row">
-  <aside>
-    <h2><%= link_to "Teaching Advice", articles_path %></h2>
-    <p>
-      <%= @homepage.articles_intro.html_safe %>
-    </p>
-  </aside>
-
-  <% @homepage.featured_articles.each do |article| %>
-    <%= render article %>
+  <h2>Lessons</h2>
+  <% @homepage.featured_topics.in_groups_of(2, false) do |row| %>
+  <div class="row">
+    <% for topic in row %>
+    <div class="large-6 columns end">
+      <%= render topic %>
+    </div>
+    <% end %>
+  </div>
   <% end %>
+  <div class="right">
+    <%= link_to "See All Lessons", topics_path %>
+  </div>
 </div>
 
+<div class="row">
+  <h2><%= link_to "Training 101", articles_path %></h2>
+  <% @homepage.featured_articles.in_groups_of(4, false) do |row| %>
+  <div class="row">
+    <% for article in row %>
+    <div class="large-6 columns end">
+      <%= render article %>
+    </div>
+    <% end %>
+  </div>
+  <% end %>
+  <div class="right">
+    <%= link_to "See All Training", topics_path %>
+  </div>
+</div>
 
 <div class="row">
-  <aside>
-    <h2><%= link_to "Materials", materials_path %></h2>
-  </aside>
-
-  <% @homepage.featured_materials.each do |material| %>
+  <h2><%= link_to "Materials", materials_path %></h2>
+  <div class="row">
+    <% @homepage.featured_materials.each do |material| %>
     <%= render material %>
-  <% end %>
+    <% end %>
+  </div>
+  <div class="right">
+    <%= link_to "See All Materials", topics_path %>
+  </div>
 </div>
 
-<div class="row">
-  <aside>
-    <h2><%= link_to "Blog", blog_path %></h2>
-  </aside>
 
-  <%= render @homepage.featured_blog_post %>
+<div class="row">
+  <h2><%= link_to "Blog", blog_path %></h2>
+  <div class="row">
+    <%= render @homepage.featured_blog_post %>
+  </div>
+  <div class="right">
+    <%= link_to "Read All Blog Posts", topics_path %>
+  </div>
+</div>
 </div>

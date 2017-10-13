@@ -1,30 +1,35 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title><%= page_title %></title>
-    <%= csrf_meta_tags %>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-  </head>
+  <title><%= page_title %></title>
+  <%= csrf_meta_tags %>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_include_tag "vendor/modernizr" %>
+</head>
 
-  <body>
-    <div class="top-bar">
-      <span class="eff-branding">(logo) A Project of the Electronic Frontier Foundation</span>
-      <span class="search">
-        Search&nbsp;
-        <input type="text">
-      </span>
-    </div>
-    <header>
-      <span class="logo">Logo + Title</span>
-    </header>
+<body>
 
-    <% if breadcrumbs.present? %>
-      <div id="breadcrumbs">
-        <%= render_breadcrumbs %>
-      </div>
-    <% end %>
+  <div class="top-bar">
+    <span class="eff-branding">(logo) A Project of the Electronic Frontier Foundation</span>
+    <span class="search">
+      Search&nbsp;
+      <input type="text">
+    </span>
+  </div>
+  <header>
+    <span class="logo">Logo + Title</span>
+  </header>
+
+
+  <% if breadcrumbs.present? %>
+  <div id="breadcrumbs">
+    <%= render_breadcrumbs %>
+  </div>
+  <% end %>
 
     <div id="main-menu">
       <ul>
@@ -38,8 +43,11 @@
       <%= yield %>
     </div>
 
-    <footer>
+  <footer>
+    <div class="row">
       Footer
-    </footer>
-  </body>
+    </div>
+  </footer>
+  <%= javascript_include_tag "application" %>
+</body>
 </html>
