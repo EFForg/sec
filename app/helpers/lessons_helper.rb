@@ -14,4 +14,19 @@ module LessonsHelper
     return [topic] if lesson.level_id == 0
     [topic, lesson]
   end
+
+  def difficulty_tag(level_id)
+    c = (Lesson::LEVELS[level_id] || "?")[0]
+    content_tag(:span, class: "difficulty-tag #{c}"){ c }
+  end
+
+  def difficulty_legend
+    levels = Lesson::LEVELS.each_pair.map do |level, name|
+      content_tag(:li) {
+        difficulty_tag(level) + name.capitalize
+      }
+    end
+
+    content_tag(:ul, class: "difficulty-legend") { safe_join(levels) }
+  end
 end

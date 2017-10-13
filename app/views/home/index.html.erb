@@ -12,6 +12,7 @@
   <div class="content">
     <%= @homepage.lessons_intro.html_safe %>
   </div>
+  <%= difficulty_legend %>
   <% @homepage.featured_topics.in_groups_of(2, false) do |row| %>
   <div class="row">
     <% for topic in row %>
