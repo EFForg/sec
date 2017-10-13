@@ -29,8 +29,8 @@ gem "jbuilder", "~> 2.5"
 gem "select2-rails"
 
 # Redis for caching
-gem 'redis', '~> 3.0'
-gem 'redis-rails'
+gem "redis", "~> 3.0"
+gem "redis-rails"
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
@@ -44,7 +44,7 @@ gem "kaminari"
 
 # File attachments
 gem "carrierwave"
-gem "mini_magick"
+gem "rmagick"
 
 # Web requests
 gem "httparty"
@@ -55,20 +55,22 @@ gem "friendly_id"
 # Content administration
 gem "active_material", github: "vigetlabs/active_material"
 gem "activeadmin"
+gem "acts-as-taggable-on", "~> 5.0"
 gem "ckeditor"
 gem "devise"
-gem "acts-as-taggable-on", "~> 5.0"
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem "byebug", platforms: %i[mri mingw x64_mingw]
+
   # Testing
-  gem "rspec-core"
-  gem "rspec-rails"
-  gem "factory_girl_rails"
   # Adds support for Capybara system testing and selenium driver
   gem "capybara", "~> 2.13"
+  gem "factory_girl_rails"
+  gem "rspec-core"
+  gem "rspec-rails"
   gem "selenium-webdriver"
+
   # Linting
   gem "rubocop-github"
 end
