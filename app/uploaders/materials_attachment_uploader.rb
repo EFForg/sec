@@ -46,4 +46,7 @@ class MaterialsAttachmentUploader < CarrierWave::Uploader::Base
   #   "something.jpg" if original_filename
   # end
 
+  def image?
+    content_type.include? 'image'
+  end
 end
