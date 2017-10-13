@@ -1,8 +1,5 @@
 class MaterialsAttachmentUploader < CarrierWave::Uploader::Base
-
-  # Include RMagick or MiniMagick support:
-  include CarrierWave::RMagick
-  # include CarrierWave::MiniMagick
+  include CarrierWave::MiniMagick
 
   # Choose what kind of storage to use for this uploader:
   storage :file
@@ -23,23 +20,10 @@ class MaterialsAttachmentUploader < CarrierWave::Uploader::Base
   # end
 
   def convert_to_image(height, width)
-    image = ::Magick::Image.read(current_path + "[0]")[0]
-    image.resize_to_fit(height, width)
-
-    # Put it on a white background.
-    canvas = ::Magick::Image.new(image.columns, image.rows) { self.background_color = "#FFF" }
-    canvas.composite!(image, ::Magick::CenterGravity, ::Magick::OverCompositeOp)
-
-    # Save as a jpeg
-    canvas.write("jpg:#{current_path}")
-    file.move_to current_path.sub(/\.pdf\z/, ".jpg")
-
-    # Free memory allocated by RMagick which isn't managed by Ruby.
-    image.destroy!
-    canvas.destroy!
-  rescue ::Magick::ImageMagickError => e
-    Rails.logger.error "Failed to create PDF thumbnail: #{e.message}"
-    raise CarrierWave::ProcessingError, "is not a valid PDF file"
+    manipulate! do |image|
+      image.resize "#{height}x#{width}"
+      image.format "png"
+    end
   end
 
   version :thumbnail, if: :is_previewable? do
