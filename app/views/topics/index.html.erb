@@ -4,9 +4,14 @@
 
 <%= difficulty_legend %>
 
-<div class="topics-grid">
-  <% @topics.each do |topic| %>
-    <%= render topic %>
-  <% end %>
-</div>
+<% cache(cache_key_for_topics(@topics)) do %>
+  <div class="topics-grid">
+    <% @topics.each do |topic| %>
+      <%= render topic %>
+    <% end %>
+  </div>
+<% end %>
+
 <div style="clear: both"></div>
+
+<%= paginate @topics %>
