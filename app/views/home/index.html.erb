@@ -1,9 +1,9 @@
-<% cache(@homepage) do %>
+<% cache(cache_key_for_homepage) do %>
   <div class="intro row">
     <div class="large-6 columns">
     </div>
     <div class="large-6 columns">
-      <%= @homepage.welcome.html_safe %>
+      <%= homepage.welcome.html_safe %>
     </div>
   </div>
   <div style="clear: both"></div>
@@ -11,10 +11,10 @@
   <div class="row">
     <h2>Lessons</h2>
     <div class="content">
-      <%= @homepage.lessons_intro.html_safe %>
+      <%= homepage.lessons_intro.html_safe %>
     </div>
     <%= difficulty_legend %>
-    <% @homepage.featured_topics.in_groups_of(2, false) do |row| %>
+    <% homepage.featured_topics.in_groups_of(2, false) do |row| %>
     <div class="row">
       <% for topic in row %>
       <div class="large-6 columns end">
@@ -31,9 +31,9 @@
   <div class="row">
     <h2><%= link_to "Training 101", articles_path %></h2>
     <div class="content">
-      <%= @homepage.articles_intro.html_safe %>
+      <%= homepage.articles_intro.html_safe %>
     </div>
-    <% @homepage.featured_articles.in_groups_of(4, false) do |row| %>
+    <% homepage.featured_articles.in_groups_of(4, false) do |row| %>
     <div class="row">
       <% for article in row %>
       <div class="large-6 columns end">
@@ -50,10 +50,10 @@
   <div class="row">
     <h2><%= link_to "Materials", materials_path %></h2>
     <div class="content">
-      <%= @homepage.materials_intro.html_safe %>
+      <%= homepage.materials_intro.html_safe %>
     </div>
     <div class="row">
-      <% @homepage.featured_materials.each do |material| %>
+      <% homepage.featured_materials.each do |material| %>
       <%= render material %>
       <% end %>
     </div>
@@ -65,9 +65,9 @@
   <div class="row">
     <h2><%= link_to "Blog", blog_path %></h2>
     <div class="content">
-      <%= @homepage.blog_intro.html_safe %>
+      <%= homepage.blog_intro.html_safe %>
     </div>
-    <% @homepage.featured_blog_posts.each do |blog_post| %>
+    <% homepage.featured_blog_posts.each do |blog_post| %>
     <div class="row">
       <%= render blog_post %>
     </div>
