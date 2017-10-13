@@ -1,10 +1,40 @@
 .top-bar {
   background: black;
   color: $dark-teal;
-  padding: 1rem;
   text-transform: uppercase;
-  .search {
-    float: right;
+  .back-ssd {
+    background: $dark-teal;
+    color: black;
+    height: 100%;
+    line-height: 1rem;
+    .back-arrow {
+      float: left;
+      font-size: 5.5rem;
+      font-weight: 100;
+      line-height: 1.5rem;
+    }
+    .back-text {
+      float: right;
+      font-size: 0.8rem;
+      line-height: 1rem;
+      padding-top: 0.5rem;
+      width: 86%;
+    }
+  }
+
+  .logo-tagline {
+    padding-left: 0;
+    .tagline-bevel {
+      background:
+      linear-gradient(135deg,  $dark-teal 1.1rem, transparent 1rem),
+      linear-gradient(45deg,  $dark-teal 1.1rem, transparent 1rem);
+      float: left;
+      width: 5rem;
+      height: 100%;
+    }
+    .eff-tagline {
+      padding-left: 10%;
+    }
   }
 }
 header {
