@@ -1,8 +1,18 @@
-<% @blog_posts.each do |blog_post| %>
-  <h2><%= link_to blog_post.name, blog_post %></h2>
+<h1>Blog</h2>
 
-  <div class="content">
-    <%= preview blog_post.body %>
+<%= render "tags/nav", tags: @tags %>
+
+<% @blog_posts.each do |blog_post| %>
+  <div class="blog_post card">
+    <h2><%= link_to blog_post.name, blog_post %></h2>
+
+    <div class="content">
+      <%= preview blog_post.body %>
+    </div>
+
+    <div class="tags">
+      <%= tags(blog_post, :blog_path) %>
+    </div>
   </div>
 <% end %>
 
