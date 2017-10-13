@@ -22,38 +22,6 @@ class MaterialsAttachmentUploader < CarrierWave::Uploader::Base
   #   "/images/fallback/" + [version_name, "default.png"].compact.join('_')
   # end
 
-  # Process files as they are uploaded:
-  # process scale: [200, 300]
-  #
-  # def scale(width, height)
-  #   # do something
-  # end
-
-  # Create different versions of your uploaded files:
-  # version :thumb do
-  #   process resize_to_fit: [50, 50]
-  # end
-
-  # Add a white list of extensions which are allowed to be uploaded.
-  # For images you might use something like this:
-  # def extension_whitelist
-  #   %w(jpg jpeg gif png)
-  # end
-
-  # Override the filename of the uploaded files:
-  # Avoid using model.id or version_name here, see uploader/store.rb for details.
-  # def filename
-  #   "something.jpg" if original_filename
-  # end
-
-  def is_image?
-    content_type.include? "image"
-  end
-
-  def is_previewable?
-    content_type == "application/pdf" || content_type == "text/plain"
-  end
-
   def convert_to_image(height, width)
     image = ::Magick::Image.read(current_path + "[0]")[0]
     image.resize_to_fit(height, width)
@@ -61,9 +29,12 @@ class MaterialsAttachmentUploader < CarrierWave::Uploader::Base
     # Put it on a white background.
     canvas = ::Magick::Image.new(image.columns, image.rows) { self.background_color = "#FFF" }
     canvas.composite!(image, ::Magick::CenterGravity, ::Magick::OverCompositeOp)
-    canvas.write(current_path)
 
-    # Free memory allocated by RMagick which isn't managed by Ruby
+    # Save as a jpeg
+    canvas.write("jpg:#{current_path}")
+    file.move_to current_path.sub(/\.pdf\z/, ".jpg")
+
+    # Free memory allocated by RMagick which isn't managed by Ruby.
     image.destroy!
     canvas.destroy!
   rescue ::Magick::ImageMagickError => e
@@ -71,12 +42,25 @@ class MaterialsAttachmentUploader < CarrierWave::Uploader::Base
     raise CarrierWave::ProcessingError, "is not a valid PDF file"
   end
 
-  version :preview do
-    process :convert_to_image => [310, 438]
-    process :convert => :jpg
+  version :thumbnail, if: :is_previewable? do
+    process :resize_to_fit => [210, 297] if :is_image?
+    process :convert_to_image => [210, 297] if :is_pdf?
 
-    def full_filename (for_file = model.source.file)
-      super.chomp(File.extname(super)) + '.jpg'
+    def full_filename (filename = model.source.file)
+      "thumb_#{filename.sub(/\.pdf\z/, ".jpg")}"
     end
+  end
+
+  private
+  def is_image?(file)
+    content_type.include? "image"
+  end
+
+  def is_pdf?(file)
+    content_type == "application/pdf" || content_type == "text/plain"
+  end
+
+  def is_previewable?(file)
+    is_image?(file) || is_pdf?(file)
   end
 end
