@@ -16,11 +16,11 @@ module LessonsHelper
   end
 
   def difficulty_tag(level_id)
-    p level_id
-    Array(level_id).map do |id|
+    levels = Array(level_id).map do |id|
       c = (Lesson::LEVELS[id] || "?")[0]
       content_tag(:span, class: "difficulty-tag #{c}"){ c }
-    end.join.html_safe # rubocop:disable Rails/OutputSafety
+    end
+    safe_join(levels)
   end
 
   def difficulty_legend
