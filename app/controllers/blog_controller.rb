@@ -18,9 +18,6 @@ class BlogController < ApplicationController
 
   private
 
-
-  private
-
   def blog_post_scope
     if params[:tag]
       BlogPost.tagged_with(params[:tag])

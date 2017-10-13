@@ -32,4 +32,8 @@ module LessonsHelper
 
     content_tag(:ul, class: "difficulty-legend") { safe_join(levels) }
   end
+
+  def cache_key_for_topics(topics)
+    [Topic.all.cache_key, topics.current_page, params[:tag]]
+  end
 end
