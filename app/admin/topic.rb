@@ -1,12 +1,11 @@
 ActiveAdmin.register Topic do
   menu priority: 2
 
-  permit_params :name, :slug, :published,
+  permit_params :name, :slug, :published, tag_ids: [],
     lessons_attributes: [
         :id, :_destroy, :level_id, :topic_id,
         :duration_hours, :duration_minutes, :instructors, :students,
         :objective, :body,
-        tag_ids: [],
         lesson_prereqs_attributes: [
           :id, :_destroy, :resource_type, :resource_id, :position
         ],
@@ -22,14 +21,6 @@ ActiveAdmin.register Topic do
   controller do
     def find_resource
       scoped_collection.friendly.find(params[:id])
-    end
-
-    before_action :blankify_empty_tags_list, only: [:create, :update]
-
-    def blankify_empty_tags_list
-      params[:topic][:lessons_attributes].try(:each_key) do |key|
-        params[:topic][:lessons_attributes][key][:tag_ids].reject!(&:blank?)
-      end
     end
   end
 

@@ -1,7 +1,7 @@
 class Lesson < ApplicationRecord
   LEVELS = { 0 => "base", 1 => "medium", 2 => "advanced" }
 
-  belongs_to :topic
+  belongs_to :topic, touch: true
 
   has_many :lesson_resources
 
@@ -28,8 +28,6 @@ class Lesson < ApplicationRecord
   has_many :advice, through: :lesson_articles,
            source: :resource, source_type: "Article",
            class_name: "Article"
-
-  acts_as_taggable
 
   default_scope { order(level_id: :asc) }
   scope :with_level, -> (name) { where(level_id: LEVELS.invert[name]) }

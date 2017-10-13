@@ -1,6 +1,8 @@
 ActiveAdmin.register ActsAsTaggableOn::Tag, as: "tag" do
   menu priority: 6
 
+  permit_params :name
+
   index do
     selectable_column
     id_column

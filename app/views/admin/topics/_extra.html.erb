@@ -1,6 +1,12 @@
 <%= semantic_form_for(topic, url: admin_topic_path(topic)) do |f| %>
   <%= f.inputs do %>
     <% f.input :slug, hint: "Leave blank to auto-generate" %>
+
+    <% f.input :tags,
+             as: :select,
+             multiple: true,
+             collection: ActsAsTaggableOn::Tag.order(:name).select(:id, :name).all,
+             input_html: { class: "select2" } %>
   <% end %>
 
   <%= f.inputs class: 'inputs inline-choice' do %>

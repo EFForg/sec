@@ -1,4 +1,7 @@
 <h2>Lesson Topics</h2>
+
+<%= render "tags/nav", tags: @tags %>
+
 <div class="topics-grid">
   <% @topics.each do |topic| %>
     <%= render topic %>

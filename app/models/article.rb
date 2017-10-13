@@ -4,6 +4,7 @@ class Article < ApplicationRecord
   before_validation :nillify_empty_slug, prepend: true
 
   include Publishing
+  include Featuring
 
   acts_as_taggable
 
