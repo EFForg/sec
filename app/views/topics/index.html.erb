@@ -2,6 +2,8 @@
 
 <%= render "tags/nav", tags: @tags %>
 
+<%= difficulty_legend %>
+
 <div class="topics-grid">
   <% @topics.each do |topic| %>
     <%= render topic %>
