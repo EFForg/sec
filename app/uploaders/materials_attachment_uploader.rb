@@ -43,10 +43,10 @@ class MaterialsAttachmentUploader < CarrierWave::Uploader::Base
   end
 
   version :thumbnail, if: :is_previewable? do
-    process :resize_to_fit => [210, 297] if :is_image?
-    process :convert_to_image => [210, 297] if :is_pdf?
+    process resize_to_fit: [210, 297], if: :is_image?
+    process convert_to_image: [210, 297], if: :is_pdf?
 
-    def full_filename (filename = model.source.file)
+    def full_filename(filename = model.source.file)
       "thumb_#{filename.sub(/\.pdf\z/, ".jpg")}"
     end
   end
