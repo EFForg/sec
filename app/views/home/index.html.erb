@@ -54,9 +54,11 @@
 
 <div class="row">
   <h2><%= link_to "Blog", blog_path %></h2>
+  <% @homepage.featured_blog_posts.each do |blog_post| %>
   <div class="row">
-    <%= render @homepage.featured_blog_post %>
+    <%= render blog_post %>
   </div>
+  <% end %>
   <div class="right">
     <%= link_to "Read All Blog Posts", topics_path %>
   </div>
