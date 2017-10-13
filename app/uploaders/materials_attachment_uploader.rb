@@ -47,6 +47,6 @@ class MaterialsAttachmentUploader < CarrierWave::Uploader::Base
   # end
 
   def image?
-    content_type.include? 'image'
+    content_type.include? "image"
   end
 end
