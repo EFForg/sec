@@ -10,6 +10,11 @@ module ContentHelper
     Nokogiri::HTML.fragment(html).to_html.html_safe # rubocop:disable Rails/OutputSafety
   end
 
-  def tags(object)
+  def tags(object, url_helper)
+    url_base = breadcrumbs[-2]
+    links = object.tags.map do |tag|
+      link_to tag.name, send(url_helper, tag: tag.name)
+    end
+    safe_join(links)
   end
 end
