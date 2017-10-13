@@ -15,7 +15,7 @@ module Publishing
 
   def published=(x)
     if x && x != "false"
-      assign_attributes(published_at: Time.now)
+      assign_attributes(published_at: Time.now) unless published?
     else
       assign_attributes(published_at: nil)
     end
