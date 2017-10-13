@@ -22,12 +22,6 @@ ActiveAdmin.register Topic do
     def find_resource
       scoped_collection.friendly.find(params[:id])
     end
-
-    before_action :blankify_empty_tags_list, only: [:create, :update]
-
-    def blankify_empty_tags_list
-      params[:topic][:tag_ids].try(:reject!, &:blank?)
-    end
   end
 
   form do |f|

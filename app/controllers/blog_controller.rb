@@ -3,13 +3,29 @@ class BlogController < ApplicationController
               "Blog" => routes.blog_path
 
   def index
-    @blog_posts = BlogPost.published.
+    @blog_posts = blog_post_scope.published.
                   order(published_at: :desc).
                   page(params[:page])
+    @tags = ActsAsTaggableOn::Tag.joins(:taggings).
+            where(taggings: { taggable_type: "BlogPost" }).
+            distinct
   end
 
   def show
     @blog_post = BlogPost.published.friendly.find(params[:id])
     breadcrumbs @blog_post.name
+  end
+
+  private
+
+
+  private
+
+  def blog_post_scope
+    if params[:tag]
+      BlogPost.tagged_with(params[:tag])
+    else
+      BlogPost.all
+    end
   end
 end
