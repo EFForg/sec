@@ -1,4 +1,7 @@
 class TopicsController < ApplicationController
+  breadcrumbs "Security Education" => routes.root_path,
+              "Lessons" => routes.topics_path
+
   def index
     @title = "Lesson Topics"
     @topics = topics_scope.published.order(published_at: :desc)
