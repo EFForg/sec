@@ -3,8 +3,8 @@ class BlogController < ApplicationController
               "Blog" => routes.blog_path
 
   def index
-    @blog_posts = blog_post_scope.published.
-                  order(published_at: :desc).
+    @blog_posts = blog_post_scope.preload(:tags).
+                  published.order(published_at: :desc).
                   page(params[:page])
     @tags = ActsAsTaggableOn::Tag.joins(:taggings).
             where(taggings: { taggable_type: "BlogPost" }).
