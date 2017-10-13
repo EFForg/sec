@@ -3,7 +3,6 @@ class TopicsController < ApplicationController
               "Lessons" => routes.topics_path
 
   def index
-    @title = "Lesson Topics"
     @topics = topics_scope.published.order(published_at: :desc)
     @tags = ActsAsTaggableOn::Tag.joins(:taggings).
             where(taggings: { taggable_type: "Topic" }).
@@ -13,6 +12,7 @@ class TopicsController < ApplicationController
   def show
     @topic = Topic.published.friendly.find(params[:id])
     @lesson = @topic.lessons.published.take!
+    breadcrumbs @topic.name
 
     respond_to do |format|
       format.html
