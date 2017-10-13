@@ -3,7 +3,8 @@ class TopicsController < ApplicationController
               "Lessons" => routes.topics_path
 
   def index
-    @topics = topics_scope.published.order(published_at: :desc)
+    @topics = topics_scope.preload(:lessons, :tags).
+              published.order(published_at: :desc)
     @tags = ActsAsTaggableOn::Tag.joins(:taggings).
             where(taggings: { taggable_type: "Topic" }).
             distinct

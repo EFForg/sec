@@ -2,11 +2,18 @@ ActiveAdmin.register Homepage do
   menu label: "Homepage", priority: 1
   actions :all, except: [:create, :destroy]
 
-  permit_params :welcome, :articles_intro,
+  permit_params :welcome,
+    :articles_intro,
+    :lessons_intro,
+    :materials_intro,
+    :blog_intro,
     featured_topic_content_attributes: [
       :id, :_destroy, :content_type, :content_id_string, :position
     ],
     featured_article_content_attributes: [
+      :id, :_destroy, :content_type, :content_id_string, :position
+    ],
+    featured_blog_post_content_attributes: [
       :id, :_destroy, :content_type, :content_id_string, :position
     ]
 
@@ -20,6 +27,9 @@ ActiveAdmin.register Homepage do
     inputs do
       input :welcome, as: :ckeditor
       input :articles_intro, as: :ckeditor
+      input :lessons_intro, as: :ckeditor
+      input :materials_intro, as: :ckeditor
+      input :blog_intro, as: :ckeditor
     end
 
     f.inputs "Featured Topics" do
@@ -47,6 +57,20 @@ ActiveAdmin.register Homepage do
                 input_html: { value: "Article" }
         t.input :content_id_string, as: :datalist,
                 label: "Article", collection: article_options
+      end
+    end
+
+    f.inputs "Featured Blog Posts" do
+      blog_post_options = BlogPost.all.map{ |t| "#{t.name} (##{t.id})" }
+      f.has_many :featured_blog_post_content,
+                 heading: nil,
+                 new_record: "Add New Featured Blog Post",
+                 allow_destroy: true,
+                 sortable: :position do |t|
+        t.input :content_type, as: :hidden,
+                input_html: { value: "BlogPost" }
+        t.input :content_id_string, as: :datalist,
+                label: "Blog Post", collection: blog_post_options
       end
     end
 
