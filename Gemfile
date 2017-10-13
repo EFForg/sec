@@ -41,7 +41,7 @@ gem 'redis-rails'
 gem "kaminari"
 
 # File attachments
-gem "paperclip"
+gem "carrierwave"
 
 # Web requests
 gem "httparty"
@@ -52,10 +52,8 @@ gem "friendly_id"
 # Content administration
 gem "active_material", github: "vigetlabs/active_material"
 gem "activeadmin"
-gem "carrierwave"
 gem "ckeditor"
 gem "devise"
-gem "mini_magick"
 gem "acts-as-taggable-on", "~> 5.0"
 
 group :development, :test do
