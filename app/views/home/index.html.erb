@@ -9,6 +9,9 @@
 
 <div class="row">
   <h2>Lessons</h2>
+  <div class="content">
+    <%= @homepage.lessons_intro.html_safe %>
+  </div>
   <% @homepage.featured_topics.in_groups_of(2, false) do |row| %>
   <div class="row">
     <% for topic in row %>
@@ -25,6 +28,9 @@
 
 <div class="row">
   <h2><%= link_to "Training 101", articles_path %></h2>
+  <div class="content">
+    <%= @homepage.articles_intro.html_safe %>
+  </div>
   <% @homepage.featured_articles.in_groups_of(4, false) do |row| %>
   <div class="row">
     <% for article in row %>
@@ -41,6 +47,9 @@
 
 <div class="row">
   <h2><%= link_to "Materials", materials_path %></h2>
+  <div class="content">
+    <%= @homepage.materials_intro.html_safe %>
+  </div>
   <div class="row">
     <% @homepage.featured_materials.each do |material| %>
     <%= render material %>
@@ -54,6 +63,9 @@
 
 <div class="row">
   <h2><%= link_to "Blog", blog_path %></h2>
+  <div class="content">
+    <%= @homepage.blog_intro.html_safe %>
+  </div>
   <% @homepage.featured_blog_posts.each do |blog_post| %>
   <div class="row">
     <%= render blog_post %>
