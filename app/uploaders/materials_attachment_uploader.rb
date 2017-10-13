@@ -57,7 +57,7 @@ class MaterialsAttachmentUploader < CarrierWave::Uploader::Base
   end
 
   def is_pdf?(file)
-    content_type == "application/pdf" || content_type == "text/plain"
+    content_type == "application/pdf"
   end
 
   def is_previewable?(file)
