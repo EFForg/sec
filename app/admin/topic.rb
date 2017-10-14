@@ -1,7 +1,7 @@
 ActiveAdmin.register Topic do
   menu priority: 2
 
-  permit_params :name, :slug, :published, tag_ids: [],
+  permit_params :name, :description, :slug, :published, tag_ids: [],
     lessons_attributes: [
         :id, :_destroy, :level_id, :topic_id,
         :duration_hours, :duration_minutes, :instructors, :students,
@@ -28,6 +28,7 @@ ActiveAdmin.register Topic do
     f.inputs do
       f.semantic_errors *f.object.errors.keys
       f.input :name
+      f.input :description
       tabs do
         topic.lessons.each do |lesson|
           if lesson.persisted?
