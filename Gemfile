@@ -45,7 +45,6 @@ gem "kaminari"
 # File attachments
 gem "carrierwave"
 gem "mini_magick"
-gem "rmagick"
 
 # Web requests
 gem "httparty"

@@ -242,7 +242,6 @@ GEM
     responders (2.4.0)
       actionpack (>= 4.2.0, < 5.3)
       railties (>= 4.2.0, < 5.3)
-    rmagick (2.16.0)
     rspec-core (3.6.0)
       rspec-support (~> 3.6.0)
     rspec-expectations (3.6.0)
@@ -350,7 +349,6 @@ DEPENDENCIES
   rails (~> 5.1.4)
   redis (~> 3.0)
   redis-rails
-  rmagick
   rspec-core
   rspec-rails
   rubocop-github
