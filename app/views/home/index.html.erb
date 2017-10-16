@@ -1,68 +1,76 @@
-<div class="intro row">
-  <div class="large-6 columns">
+<div class="homepage">
+  <div class="intro row">
+    <div class="large-6 columns">
+    </div>
+    <div class="large-6 columns">
+      <%= @homepage.welcome.html_safe %>
+      <div class="update">Update test blah blah blah</div>
+    </div>
   </div>
-  <div class="large-6 columns">
-    <%= @homepage.welcome.html_safe %>
-  </div>
-</div>
-<div style="clear: both"></div>
+  <div style="clear: both"></div>
 
-<div class="row">
-  <h1><%= link_to "Training 101", articles_path %></h1>
-  <p class="description-text">Description text goes here.</p>
-  <% @homepage.featured_articles.each_slice(4) do |row| %>
   <div class="row">
-    <% row.each do |article| %>
-    <div class="large-3 columns end">
-      <%= render article %>
+    <h1><%= link_to "1st Time Trainer?", articles_path %></h1>
+    <p class="description-text">Description text goes here.</p>
+    <% @homepage.featured_articles.each_slice(4) do |row| %>
+    <div class="row">
+      <% row.each do |article| %>
+      <div class="large-3 columns end">
+        <%= render article %>
+      </div>
+      <% end %>
     </div>
     <% end %>
+    <div class="see-all right">
+      <%= link_to "See All Training", topics_path %>
+    </div>
   </div>
-  <% end %>
-  <div class="right">
-    <%= link_to "See All Training", topics_path %>
-  </div>
-</div>
 
-<div class="row">
-  <h1>Lessons</h1>
-  <p class="description-text">Description text goes here.</p>
-  <% @homepage.featured_topics.each_slice(2) do |row| %>
   <div class="row">
-    <% row.each do |topic| %>
-    <div class="large-6 columns end">
-      <%= render topic %>
+    <h1>Lessons</h1>
+    <p class="description-text">Description text goes here.</p>
+    <ul class="lesson-levels">
+      <span class="beginner badge">B</span><li>Beginner</li>
+      <span class="intermediate badge">I</span><li>Intermediate</li>
+      <span class="advanced badge">A</span><li>Advanced</li>
+    </ul>
+    <% @homepage.featured_topics.each_slice(2) do |row| %>
+    <div class="row">
+      <% row.each do |topic| %>
+      <div class="large-6 columns end">
+        <%= render topic %>
+      </div>
+      <% end %>
     </div>
     <% end %>
+    <div class="see-all right">
+      <%= link_to "See All Lessons", topics_path %>
+    </div>
   </div>
-  <% end %>
-  <div class="right">
-    <%= link_to "See All Lessons", topics_path %>
-  </div>
-</div>
 
-<div class="row">
-  <h1><%= link_to "Educational Materials", materials_path %></h1>
-  <p class="description-text">Description text goes here.</p>
   <div class="row">
-    <% @homepage.featured_materials.each do |material| %>
-    <%= render material %>
-    <% end %>
+    <h1><%= link_to "Educational Materials", materials_path %></h1>
+    <p class="description-text">Description text goes here.</p>
+    <div class="row">
+      <% @homepage.featured_materials.each do |material| %>
+      <%= render material %>
+      <% end %>
+    </div>
+    <div class="see-all right">
+      <%= link_to "See All Materials", topics_path %>
+    </div>
   </div>
-  <div class="right">
-    <%= link_to "See All Materials", topics_path %>
-  </div>
-</div>
 
 
-<div class="row">
-  <h1><%= link_to "Blog", blog_path %></h1>
-  <p class="description-text">Description text goes here.</p>
   <div class="row">
-    <%= render @homepage.featured_blog_post %>
-  </div>
-  <div class="right">
-    <%= link_to "Read All Blog Posts", topics_path %>
+    <h1><%= link_to "Blog", blog_path %></h1>
+    <p class="description-text">Description text goes here.</p>
+    <div class="row">
+      <%= render @homepage.featured_blog_post %>
+    </div>
+    <div class="see-all right">
+      <%= link_to "Read All Blog Posts", topics_path %>
+    </div>
   </div>
 </div>
 </div>
