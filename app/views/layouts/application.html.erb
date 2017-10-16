@@ -24,8 +24,10 @@
       </div>
   </div>
   <header>
-    <span class="logo"></span>
-    <span class="site-name">Security Education Companion</span>
+    <div class="logo">
+      <%= image_tag("sec-logo.png", :alt => "SEC logo") %>
+    </div>
+    <div class="site-name">Security Education Companion</div>
   </header>
 
 
@@ -46,7 +48,7 @@
     <div id="main-content">
       <%= yield %>
     </div>
-    
+
 <%= render "layouts/footer" %>
 
 </body>
