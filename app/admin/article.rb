@@ -4,8 +4,18 @@ ActiveAdmin.register Article do
   permit_params :name, :body, :slug, :published
 
   controller do
+    after_action :flash_to_headers
+
     def find_resource
       scoped_collection.friendly.find(params[:id])
+    end
+
+    def flash_to_headers
+      return unless request.xhr?
+      response.headers['X-Message'] = flash[:error] unless flash[:error].blank?
+      response.headers['X-Message'] = flash[:notice] unless flash[:notice].blank?
+
+      flash.discard
     end
   end
 
