@@ -8,10 +8,6 @@ class Article < ApplicationRecord
 
   acts_as_taggable
 
-  def author
-    OpenStruct.new(name: "So and So")
-  end
-
   def nillify_empty_slug
     self.slug = nil if slug.blank?
   end
