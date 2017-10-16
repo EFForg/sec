@@ -12,10 +12,6 @@ class BlogPost < ApplicationRecord
     "blog/blog_post"
   end
 
-  def author
-    OpenStruct.new(name: "So and So")
-  end
-
   def nillify_empty_slug
     self.slug = nil if slug.blank?
   end
