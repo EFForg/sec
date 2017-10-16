@@ -1,6 +1,8 @@
 language: ruby
 cache:
-  bundler: true
+  directories:
+    - vendor/bundle
+    - node_modules
 rvm:
   - 2.4
 services:
