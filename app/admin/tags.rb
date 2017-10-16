@@ -3,6 +3,8 @@ ActiveAdmin.register ActsAsTaggableOn::Tag, as: "tag" do
 
   permit_params :name
 
+  filter :name
+
   index do
     selectable_column
     column :name

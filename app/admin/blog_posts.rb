@@ -31,6 +31,14 @@ ActiveAdmin.register BlogPost do
     end
   end
 
+  filter :name
+  filter :body
+  filter :original_url
+  filter :tags
+  filter :created_at
+  filter :updated_at
+  filter :slug
+
   index do
     selectable_column
     column :name

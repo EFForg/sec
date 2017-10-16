@@ -17,6 +17,12 @@ ActiveAdmin.register Topic do
         ],
       ]
 
+  filter :name
+  filter :tags
+  filter :created_at
+  filter :updated_at
+  filter :slug
+
   index do
     selectable_column
     column :name
