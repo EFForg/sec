@@ -3,19 +3,7 @@
 <%= render "tags/nav", tags: @tags %>
 
 <% cache(cache_key_for_blog_posts(@blog_posts)) do %>
-  <% @blog_posts.each do |blog_post| %>
-    <div class="blog_post card">
-      <h2><%= link_to blog_post.name, blog_post %></h2>
-
-      <div class="content">
-        <%= preview blog_post.body %>
-      </div>
-
-      <div class="tags">
-        <%= tags(blog_post, :blog_path) %>
-      </div>
-    </div>
-  <% end %>
+  <%= render @blog_posts %>
 <% end %>
 
 <%= paginate @blog_posts %>

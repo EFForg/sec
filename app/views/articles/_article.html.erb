@@ -3,4 +3,8 @@
   <% if article.authorship.present? %>
     <div class="byline">by <span class="author"><%= article.authorship %></span></div>
   <% end %>
+
+  <div class="content">
+    <%= preview article.body %>
+  </div>
 </div>
