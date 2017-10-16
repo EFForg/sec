@@ -2,12 +2,12 @@ f.fields_for :lessons, lesson do |l|
   l.input :level_id, as: :select, required: true, collection: topic.lessons.unused_levels if lesson.new_record?
   l.input :objective
 
-  f.inputs "Duration", class: 'input duration' do
+  f.inputs "Duration", class: "input duration" do
     l.input :duration_hours, as: :number, label: 'Hours'
     l.input :duration_minutes, as: :number, label: 'Minutes'
   end
 
-  f.inputs "Teaching Ratio", class: 'input ratio' do
+  f.inputs "Teaching Ratio", class: "input ratio" do
     l.input :instructors, as: :number
     l.input :students, as: :number
   end
@@ -24,5 +24,5 @@ f.fields_for :lessons, lesson do |l|
   l.input :advice,
           input_html: { class: "select2", style: "width: 100%" }
 
-  l.input :_destroy, as: :boolean, label: 'Delete this level' if lesson.persisted?
+  l.input :_destroy, as: :boolean, label: "Delete this level" if lesson.persisted?
 end
