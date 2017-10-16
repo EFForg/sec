@@ -40,14 +40,18 @@
 }
 header {
   background-color: $light-teal;
-  padding: 6rem 0 4rem;
+  padding: 3rem 0 4rem;
   color: black;
   font-size: 2.5rem;
   font-weight: 400;
   text-align: center;
   text-transform: uppercase;
   .logo {
-
+    margin-bottom: 2rem;
+    img {
+      height: auto;
+      max-width: 150px;
+    }
   }
 }
 
@@ -123,10 +127,4 @@ header {
     }
   }
 
-}
-
-footer {
-  background-color: $light-teal ;
-  color: black;
-  padding: 2rem 0;
 }
