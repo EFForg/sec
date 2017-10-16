@@ -2,6 +2,7 @@
 //= require ckeditor/init
 //= active_material
 //= require select2
+//= require jquery_ujs
 
 $(window).on("load", function() {
   $("select.select2").select2();
