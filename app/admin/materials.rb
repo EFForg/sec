@@ -4,7 +4,7 @@ ActiveAdmin.register Material do
   permit_params :name, :body, :attachment
 
   index do
-    id_column
+    selectable_column
     column :name
 
     column "Attached File", :attachment_file_name do |material|

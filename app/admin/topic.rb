@@ -17,6 +17,12 @@ ActiveAdmin.register Topic do
         ],
       ]
 
+  index do
+    selectable_column
+    column :name
+    column :published_at
+    actions
+  end
 
   controller do
     def find_resource
