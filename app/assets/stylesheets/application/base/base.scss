@@ -12,9 +12,10 @@ body {
 a {
   color: $dark-teal;
   text-decoration: underline;
-
+  &:focus,
+  &:active,
   &:visited {
-    color: #666;
+    color: $dark-teal;
   }
 }
 

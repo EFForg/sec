@@ -1,6 +1,7 @@
 @import "foundation_and_overrides";
 @import "application/variables/**/*";
 @import "application/base/**/*";
+@import "application/components/**/*";
 @import "application/**/*";
 
 .center {
@@ -15,14 +16,4 @@
   display: inline-block;
   min-width: 10%;
   max-width: 25%;
-}
-
-.card {
-  display: inline-block;
-  border: 1px solid #aaa;
-  margin: 0 1rem;
-  min-height: 10rem;
-  padding-top: 3rem;
-  padding-left: 1rem;
-  padding-right: 1.5rem;
 }
