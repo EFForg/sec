@@ -41,8 +41,3 @@ $(document).ajaxComplete(function(e, request) {
     $("<div>", { class: "flash" }).text(message).appendTo(".flashes");
   }
 });
-
-// Disable turbolinks in activeadmin.
-// $(document).on("turbolinks:before-visit", function(event) {
-//   event.preventDefault();
-// });
