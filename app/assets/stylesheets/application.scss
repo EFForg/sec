@@ -9,7 +9,10 @@
 }
 
 .row {
-  margin-top: 2rem;
+  margin-top: 0;
+  @media #{$medium-up} {
+    margin-top: 2rem;
+  }
 }
 
 .row aside {

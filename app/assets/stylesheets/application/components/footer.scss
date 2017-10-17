@@ -11,13 +11,21 @@ footer {
   }
   h1 {
     color: $darkest-teal;
-    font-size: 2.5rem;
+    font-size: 1.8rem;
     font-weight: 400;
     text-align: center;
+    @media #{$medium-up} {
+      font-size: 2.5rem;
+    }
   }
   img {
     display: block;
-    margin: 0 auto;
+    margin: 0 auto 1rem;
+    max-width: 200px;
+    @media #{$medium-up} {
+      margin: 0 auto;
+      max-width: 100%;
+    }
   }
   .footer-links {
     margin-top: 5rem;

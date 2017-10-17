@@ -3,6 +3,9 @@
     margin-bottom: 0;
   }
   .see-all {
-    font-size: 1.4rem;
+    font-size: 1rem;
+    @media #{$medium-up} {
+      font-size: 1.4rem;
+    }
   }
 }

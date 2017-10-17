@@ -1,158 +1,28 @@
-.top-bar {
-  background: black;
-  color: $dark-teal;
-  text-transform: uppercase;
-  line-height: 1rem;
-  @media #{$small} {
-    line-height: 1rem;
-    height: 5rem;
-  }
-  @media #{$medium-up} {
-    height: 45px;
-    line-height: 45px;
-  }
-  .back-ssd {
-    background: $dark-teal;
-    color: black;
-    height: 100%;
-    @media #{$small-only} {
-      float: none;
-      height: 2rem;
-    }
-    line-height: 1rem;
-    .back-arrow {
-      float: left;
-      font-size: 5.5rem;
-      font-weight: 100;
-      line-height: 1.5rem;
-    }
-    .back-text {
-      float: right;
-      font-size: 0.8rem;
-      line-height: 1rem;
-      @media #{$small} {
-        float: none;
-        padding-top: 0.5rem;
-        width: 80%;
-      }
-      @media #{$medium} {
-        padding-top: 0.5rem;
-        width: 80%;
-      }
-      @media #{$xlarge-up} {
-        padding-top: 0.5rem;
-        width: 86%;
-      }
-    }
-    .ssd-long {
-      display: none;
-      @media #{$large-up} {
-        display: inline;
-      }
-    }
-  }
-
-  .tagline {
-    padding-left: 0;
-    .tagline-bevel {  // to create left-pointing arrow out of tagline on tobpar
-      background:
-      linear-gradient(135deg,  $dark-teal 1.1rem, transparent 1rem),
-      linear-gradient(45deg,  $dark-teal 1.1rem, transparent 1rem);
-      float: left;
-      width: 6%;
-      height: 100%;
-      @media #{$small-only} {
-        clear: both;
-        float: none;
-      }
-    }
-    .eff-tagline {
-      @media #{$medium-only} {
-        font-size: 0.9rem;
-      }
-      @media #{$large-up} {
-        padding-left: 10%;
-      }
-    }
-  }
-}
-header {
-  background-color: $light-teal;
-  padding: 3rem 0 4rem;
-  color: black;
-  font-size: 2.5rem;
-  font-weight: 400;
-  text-align: center;
-  text-transform: uppercase;
-  .logo {
-    margin-bottom: 2rem;
-    img {
-      height: auto;
-      max-width: 150px;
-    }
-  }
-}
-
-#breadcrumbs {
-  padding-top: 1rem;
-  padding-bottom: 1rem;
-  padding-left: 3rem;
-  background-color: #556677;
-
-  color: #fff;
-
-  a {
-    color: #fff;
-  }
-
-  .crumb:last-child {
-    font-weight: bold;
-  }
-}
-
-#main-menu {
-  margin-bottom: 4rem;
-  text-align: center;
-  background: $darkest-teal;
-  color: white;
-  text-transform: uppercase;
-  font-weight: 600;
-  ul li {
-    border-left: 4px solid $light-teal;
-    display: inline-block;
-    margin: 0;
-    padding: 0.2rem 3rem;
-    text-decoration: none;
-    &:last-child {
-      border-right: 4px solid $light-teal;
-    }
-    a {
-      color: white;
-      font-size: 1.2rem;
-      text-decoration: none;
-      &:hover,
-      &:active {
-        text-decoration: underline;
-      }
-    }
-  }
-}
-
 #main-content {
-  margin: 2rem 5rem;
+  margin: 1rem;
+  @media #{$medium-up} {
+    margin: 2rem 5rem;
+  }
   .intro,
   .intro p {
     color: black;
-    font-size: 1.5rem;
-    line-height: 1.8rem;
+    font-size: 1.2rem;
+    line-height: 1.4rem;
+    margin-bottom: 2rem;
+    @media #{$medium-up} {
+      font-size: 1.5rem;
+      line-height: 1.8rem;
+    }
   }
   .update {
     border: 2px solid $light-teal;
     padding: 1rem;
   }
   .description-text {
-    font-size: 1.4rem;
-    margin-bottom: 1.2rem;
+    @media #{$medium-up} {
+      font-size: 1.4rem;
+      margin-bottom: 1.2rem;
+    }
   }
   ul.lesson-levels {
     list-style: none;
@@ -164,5 +34,4 @@ header {
       margin-right: 2rem;
     }
   }
-
 }
