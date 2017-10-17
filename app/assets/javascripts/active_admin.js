@@ -41,6 +41,6 @@ $(document).ajaxComplete(function(e, request) {
 });
 
 // Disable turbolinks in activeadmin.
-$(document).on("turbolinks:before-visit", function(event) {
-  event.preventDefault();
-});
+// $(document).on("turbolinks:before-visit", function(event) {
+//   event.preventDefault();
+// });

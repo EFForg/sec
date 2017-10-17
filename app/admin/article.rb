@@ -6,6 +6,13 @@ ActiveAdmin.register Article do
   controller do
     after_action :flash_to_headers
 
+    def update
+      update! do |format|
+        format.html { redirect_to edit_admin_article_path resource }
+        format.js { render json: { success: true } }
+      end
+    end
+
     def find_resource
       scoped_collection.friendly.find(params[:id])
     end
