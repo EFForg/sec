@@ -37,7 +37,9 @@ file_type = function(result) {
 // Show flash messages after ajax requests.
 $(document).ajaxComplete(function(e, request) {
   var message = request.getResponseHeader("X-Message");
-  $("<div>", { class: "flash" }).text(message).appendTo(".flashes");
+  if (message) {
+    $("<div>", { class: "flash" }).text(message).appendTo(".flashes");
+  }
 });
 
 // Disable turbolinks in activeadmin.
