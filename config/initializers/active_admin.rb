@@ -146,6 +146,15 @@ ActiveAdmin.setup do |config|
   # Active Admin resources and pages from here.
   #
   # config.before_action :do_something_awesome
+  class ActiveAdmin::BaseController
+    actions :all, except: [:show]
+
+    def update
+      update! do |format|
+        format.js { render json: { success: true } }
+      end
+    end
+  end
 
   config.after_action do
     if request.xhr?
