@@ -5,7 +5,6 @@ ActiveAdmin.register BlogPost do
 
   permit_params :name, :body, :slug, :published, tag_ids: []
 
-  
 
   controller do
     def find_resource
