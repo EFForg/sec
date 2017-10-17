@@ -147,6 +147,14 @@ ActiveAdmin.setup do |config|
   #
   # config.before_action :do_something_awesome
 
+  config.after_action do
+    if request.xhr?
+      response.headers['X-Message'] = flash[:error] unless flash[:error].blank?
+      response.headers['X-Message'] = flash[:notice] unless flash[:notice].blank?
+      flash.discard
+    end
+  end
+
   # == Localize Date/Time Format
   #
   # Set the localize format to display dates and times.
