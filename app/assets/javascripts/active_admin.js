@@ -2,6 +2,8 @@
 //= require ckeditor/init
 //= active_material
 //= require select2
+//= require rails-ujs
+//= require turbolinks
 
 $(window).on("load", function() {
   $("select.select2").select2();
@@ -31,3 +33,11 @@ preview_file = function(file, field) {
 file_type = function(result) {
   return result.split(",")[0].split(":")[1].split(";")[0].split("/")[0];
 }
+
+// Show flash messages after ajax requests.
+$(document).ajaxComplete(function(e, request) {
+  var message = request.getResponseHeader("X-Message");
+  if (message) {
+    $("<div>", { class: "flash" }).text(message).appendTo(".flashes");
+  }
+});

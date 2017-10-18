@@ -2,47 +2,27 @@ f.fields_for :lessons, lesson do |l|
   l.input :level_id, as: :select, required: true, collection: topic.lessons.unused_levels if lesson.new_record?
   l.input :objective
 
-  f.inputs "Duration", class: 'input duration' do
+  f.inputs "Duration", class: "input duration" do
     l.input :duration_hours, as: :number, label: 'Hours'
     l.input :duration_minutes, as: :number, label: 'Minutes'
   end
 
-  f.inputs "Teaching Ratio", class: 'input ratio' do
+  f.inputs "Teaching Ratio", class: "input ratio" do
     l.input :instructors, as: :number
     l.input :students, as: :number
   end
 
   l.input :body, as: :ckeditor
 
-  l.has_many :lesson_prereqs,
-             heading: false,
-             allow_destroy: true,
-             new_record: "Add a prerequisite" do |p|
-    p.input :resource_type, as: :hidden,
-            input_html: { value: "Lesson" }
-    p.input :resource, as: :select,
-            label: "Prerequisite", collection: Lesson.all
-  end
+  l.input :prereqs,
+          label: "Prerequisites",
+          input_html: { class: "select2", style: "width: 100%" }
 
-  l.has_many :lesson_materials,
-             heading: false,
-             allow_destroy: true,
-             new_record: "Add a training material" do |p|
-    p.input :resource_type, as: :hidden,
-            input_html: { value: "Material" }
-    p.input :resource, as: :select,
-            label: "Material", collection: Material.all
-  end
+  l.input :materials,
+          input_html: { class: "select2", style: "width: 100%" }
 
-  l.has_many :lesson_articles,
-             heading: false,
-             allow_destroy: true,
-             new_record: "Add an article" do |p|
-    p.input :resource_type, as: :hidden,
-            input_html: { value: "Article" }
-    p.input :resource, as: :select,
-            label: "Article", collection: Article.all
-  end
+  l.input :advice,
+          input_html: { class: "select2", style: "width: 100%" }
 
-  l.input :_destroy, as: :boolean, label: 'Delete this level' if lesson.persisted?
+  l.input :_destroy, as: :boolean, label: "Delete this level" if lesson.persisted?
 end

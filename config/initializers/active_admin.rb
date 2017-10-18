@@ -146,6 +146,23 @@ ActiveAdmin.setup do |config|
   # Active Admin resources and pages from here.
   #
   # config.before_action :do_something_awesome
+  class ActiveAdmin::BaseController
+    actions :all, except: [:show]
+
+    def update
+      update! do |format|
+        format.js { render json: { success: true } }
+      end
+    end
+  end
+
+  config.after_action do
+    if request.xhr?
+      response.headers['X-Message'] = flash[:error] unless flash[:error].blank?
+      response.headers['X-Message'] = flash[:notice] unless flash[:notice].blank?
+      flash.discard
+    end
+  end
 
   # == Localize Date/Time Format
   #
