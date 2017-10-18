@@ -3,9 +3,10 @@ ActiveAdmin.register ActsAsTaggableOn::Tag, as: "tag" do
 
   permit_params :name
 
+  filter :name
+
   index do
     selectable_column
-    id_column
     column :name
     column "Taggings", :taggings_count
     actions

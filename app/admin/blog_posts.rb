@@ -31,13 +31,17 @@ ActiveAdmin.register BlogPost do
     end
   end
 
+  filter :name
+  filter :body
+  filter :original_url
+  filter :tags
+  filter :created_at
+  filter :updated_at
+  filter :slug
+
   index do
     selectable_column
-    id_column
     column :name
-    column :slug do |record|
-      link_to record.slug, article_path(record)
-    end
     column :published_at
     actions
   end

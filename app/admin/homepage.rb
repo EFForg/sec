@@ -23,6 +23,10 @@ ActiveAdmin.register Homepage do
     end
   end
 
+  breadcrumb do
+    [link_to("Admin", "/admin"), link_to("Homepage")]
+  end
+
   form do |f|
     inputs do
       input :welcome, as: :ckeditor

@@ -6,17 +6,23 @@ ActiveAdmin.register Topic do
         :id, :_destroy, :level_id, :topic_id,
         :duration_hours, :duration_minutes, :instructors, :students,
         :objective, :body,
-        lesson_prereqs_attributes: [
-          :id, :_destroy, :resource_type, :resource_id, :position
-        ],
-        lesson_materials_attributes: [
-          :id, :_destroy, :resource_type, :resource_id, :position
-        ],
-        lesson_articles_attributes: [
-          :id, :_destroy, :resource_type, :resource_id, :position
-        ],
+        prereq_ids: [],
+        material_ids: [],
+        advice_ids: [],
       ]
 
+  filter :name
+  filter :tags
+  filter :created_at
+  filter :updated_at
+  filter :slug
+
+  index do
+    selectable_column
+    column :name
+    column :published_at
+    actions
+  end
 
   controller do
     def find_resource
