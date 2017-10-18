@@ -19,14 +19,3 @@
 <div style="clear: both"></div>
 
 <%= paginate @topics %>
-
-
-<% topic.topics_in_groups_of(2, false) do |row| %>
-<div class="row">
-  <% for topic in row %>
-  <div class="large-6 columns end">
-    <%= render "topic", topic: topic %>
-  </div>
-  <% end %>
-</div>
-<% end %>
