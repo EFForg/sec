@@ -11,6 +11,10 @@ class Topic < ApplicationRecord
   include Publishing
   include Featuring
 
+  include PgSearch
+  multisearchable against: %i(name lesson_bodies tag_list),
+                  if: :published?
+
   def all_blank_or_empty_multiselect(attributes)
     attributes.all? do |key, value|
       key == "_destory" || value == [""] || value.blank?
@@ -23,5 +27,11 @@ class Topic < ApplicationRecord
 
   def nillify_empty_slug
     self.slug = nil if slug.blank?
+  end
+
+  private
+
+  def lesson_bodies
+    lessons.map(&:body).join(" ")
   end
 end
