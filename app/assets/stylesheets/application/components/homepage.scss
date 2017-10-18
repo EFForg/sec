@@ -1,7 +1,21 @@
 .homepage {
   .row {
-    h1 {
+    h2 {
+      color: black;
+      font-size: 1.6rem;
+      line-height: 2rem;
       margin-bottom: 0;
+      a,
+      a:focus,
+      a:active,
+      a:hover {
+        color: black;
+      }
+      @media #{$medium-up} {
+        font-size: 2rem;
+        line-height: 2.3rem;
+        margin-bottom: 1.6rem;
+      }
     }
     p {
       @media #{$medium-up} {

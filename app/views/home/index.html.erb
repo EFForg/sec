@@ -12,7 +12,7 @@
 
   <div class="row">
 
-    <h1><%= link_to "1st Time Trainer?", articles_path %></h1>
+    <h2><%= link_to "1st Time Trainer?", articles_path %></h2>
     <p class="description-text"><%= homepage.articles_intro.html_safe %></p>
     <% @homepage.featured_articles.each_slice(4) do |row| %>
     <div class="row">
@@ -29,7 +29,7 @@
   </div>
 
   <div class="row">
-    <h1><%= link_to "Lessons", topics_path %></h1>
+    <h2><%= link_to "Lessons", topics_path %></h2>
     <div class="description-text">
       <%= homepage.lessons_intro.html_safe %>
     </div>
@@ -43,13 +43,13 @@
       <% end %>
     </div>
     <% end %>
-    <div class="right">
+    <div class="see-all right">
       <%= link_to "See All Lessons", topics_path %>
     </div>
   </div>
 
   <div class="row">
-    <h1><%= link_to "Educational Materials", materials_path %></h1>
+    <h2><%= link_to "Educational Materials", materials_path %></h2>
     <p class="description-text"><%= homepage.materials_intro.html_safe %></p>
     <div class="row">
       <% @homepage.featured_materials.each do |material| %>
@@ -63,7 +63,7 @@
 
 
   <div class="row">
-    <h1><%= link_to "Blog", blog_path %></h1>
+    <h2><%= link_to "Blog", blog_path %></h2>
     <div class="description-text">
       <%= homepage.blog_intro.html_safe %>
     </div>
@@ -72,7 +72,7 @@
       <%= render blog_post %>
     </div>
     <% end %>
-    <div class="right">
+    <div class="see-all right">
       <%= link_to "Read All Blog Posts", blog_path %>
     </div>
   </div>

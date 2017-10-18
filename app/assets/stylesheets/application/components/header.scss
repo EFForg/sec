@@ -104,14 +104,11 @@ header {
   padding-top: 1rem;
   padding-bottom: 1rem;
   padding-left: 3rem;
-  background-color: #556677;
-
+  background-color: $light-teal;
   color: #fff;
-
   a {
     color: #fff;
   }
-
   .crumb:last-child {
     font-weight: bold;
   }
@@ -143,14 +140,11 @@ header {
     }
     a {
       color: white;
-      font-size: 1rem;
+      font-size: 1.2rem;
       text-decoration: none;
       &:hover,
       &:active {
         text-decoration: underline;
-      }
-      @media #{$medium-up} {
-        font-size: 1.2rem;
       }
     }
   }
