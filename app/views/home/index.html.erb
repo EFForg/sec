@@ -29,21 +29,22 @@
   </div>
 
   <div class="row">
-    <h2><%= link_to "Training 101", articles_path %></h2>
+    <h1><%= link_to "Lessons", topics_path %></h1>
     <div class="description-text">
-      <%= homepage.articles_intro.html_safe %>
+      <%= homepage.lessons_intro.html_safe %>
     </div>
-    <% homepage.featured_articles.in_groups_of(4, false) do |row| %>
+    <%= difficulty_legend %>
+    <% homepage.featured_topics.in_groups_of(2, false) do |row| %>
     <div class="row">
-      <% for article in row %>
+      <% for topic in row %>
       <div class="large-6 columns end">
-        <%= render article %>
+        <%= render "topic", topic: topic %>
       </div>
       <% end %>
     </div>
     <% end %>
     <div class="right">
-      <%= link_to "See All Training", articles_path %>
+      <%= link_to "See All Lessons", topics_path %>
     </div>
   </div>
 
@@ -62,7 +63,7 @@
 
 
   <div class="row">
-    <h2><%= link_to "Blog", blog_path %></h2>
+    <h1><%= link_to "Blog", blog_path %></h1>
     <div class="description-text">
       <%= homepage.blog_intro.html_safe %>
     </div>
