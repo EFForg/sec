@@ -1,7 +1,17 @@
 <h2>Lesson Topics</h2>
-<div class="topics-grid">
-  <% @topics.each do |topic| %>
-    <%= render topic %>
-  <% end %>
-</div>
+
+<%= render "tags/nav", tags: @tags %>
+
+<%= difficulty_legend %>
+
+<% cache(cache_key_for_topics(@topics)) do %>
+  <div class="topics-grid">
+    <% @topics.each do |topic| %>
+      <%= render topic %>
+    <% end %>
+  </div>
+<% end %>
+
 <div style="clear: both"></div>
+
+<%= paginate @topics %>

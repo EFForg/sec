@@ -1,5 +1,7 @@
 <h1><%= @blog_post.name %></h1>
 
+<%= tags(@blog_post, :blog_path) %>
+
 <div class="content">
   <%= @blog_post.body.html_safe %>
 </div>

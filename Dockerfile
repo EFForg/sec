@@ -11,7 +11,10 @@ RUN apt-get update && \
     curl \
     git \
     libpq-dev \
-    postgresql-client
+    postgresql-client \
+    imagemagick \
+    libmagickcore-dev \
+    libmagickwand-dev
 
 RUN set -x; \
   curl -sL https://deb.nodesource.com/setup_6.x -o nodesource_setup.sh \

@@ -24,10 +24,14 @@ gem "uglifier", ">= 1.3.0"
 gem "turbolinks", "~> 5"
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem "jbuilder", "~> 2.5"
+
 # Autocomplete select menus
 gem "select2-rails"
-# Use Redis adapter to run Action Cable in production
-# gem 'redis', '~> 3.0'
+
+# Redis for caching
+gem "redis", "~> 3.0"
+gem "redis-rails"
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 # gem 'coffee-rails'
@@ -39,7 +43,8 @@ gem "select2-rails"
 gem "kaminari"
 
 # File attachments
-gem "paperclip"
+gem "carrierwave"
+gem "mini_magick"
 
 # Web requests
 gem "httparty"
@@ -50,22 +55,22 @@ gem "friendly_id"
 # Content administration
 gem "active_material", github: "vigetlabs/active_material"
 gem "activeadmin"
-gem "carrierwave"
+gem "acts-as-taggable-on", "~> 5.0"
 gem "ckeditor"
 gem "devise"
-gem "mini_magick"
-gem "acts-as-taggable-on"
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem "byebug", platforms: %i[mri mingw x64_mingw]
+
   # Testing
-  gem "rspec-core"
-  gem "rspec-rails"
-  gem "factory_girl_rails"
   # Adds support for Capybara system testing and selenium driver
   gem "capybara", "~> 2.13"
+  gem "factory_girl_rails"
+  gem "rspec-core"
+  gem "rspec-rails"
   gem "selenium-webdriver"
+
   # Linting
   gem "rubocop-github"
 end

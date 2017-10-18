@@ -3,7 +3,7 @@ ActiveAdmin.register BlogPost do
 
   config.sort_order = "published_at_desc"
 
-  permit_params :name, :body, :slug, :published
+  permit_params :name, :authorship, :body, :slug, :published, tag_ids: []
 
   controller do
     def find_resource
@@ -45,6 +45,7 @@ ActiveAdmin.register BlogPost do
   form do |f|
     f.inputs do
       f.input :name
+      f.input :authorship, label: "Authors"
       f.input :body, as: :ckeditor
     end
 

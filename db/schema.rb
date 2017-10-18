@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171012002152) do
+ActiveRecord::Schema.define(version: 20171016220725) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -53,6 +53,7 @@ ActiveRecord::Schema.define(version: 20171012002152) do
     t.datetime "updated_at", null: false
     t.string "slug"
     t.datetime "published_at"
+    t.string "authorship"
     t.index ["slug"], name: "index_articles_on_slug", unique: true
   end
 
@@ -64,6 +65,7 @@ ActiveRecord::Schema.define(version: 20171012002152) do
     t.string "original_url"
     t.datetime "published_at"
     t.string "slug"
+    t.string "authorship"
     t.index ["slug"], name: "index_blog_posts_on_slug", unique: true
   end
 
@@ -105,10 +107,13 @@ ActiveRecord::Schema.define(version: 20171012002152) do
   end
 
   create_table "homepages", force: :cascade do |t|
-    t.text "welcome", null: false
-    t.text "articles_intro", null: false
+    t.text "welcome", default: "", null: false
+    t.text "articles_intro", default: "", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.text "lessons_intro", default: "", null: false
+    t.text "blog_intro", default: "", null: false
+    t.text "materials_intro", default: "", null: false
   end
 
   create_table "lesson_resources", force: :cascade do |t|
@@ -138,12 +143,9 @@ ActiveRecord::Schema.define(version: 20171012002152) do
   create_table "materials", force: :cascade do |t|
     t.string "name", default: "", null: false
     t.text "body", default: "", null: false
-    t.string "attachment_file_name"
-    t.string "attachment_content_type"
-    t.integer "attachment_file_size"
-    t.datetime "attachment_updated_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "attachment"
   end
 
   create_table "taggings", id: :serial, force: :cascade do |t|
@@ -177,6 +179,7 @@ ActiveRecord::Schema.define(version: 20171012002152) do
     t.datetime "updated_at", null: false
     t.string "slug"
     t.datetime "published_at"
+    t.text "description"
     t.index ["slug"], name: "index_topics_on_slug", unique: true
   end
 

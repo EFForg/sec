@@ -10,6 +10,7 @@
   <div style="clear: both"></div>
 
   <div class="row">
+
     <h1><%= link_to "1st Time Trainer?", articles_path %></h1>
     <p class="description-text">Description text goes here.</p>
     <% @homepage.featured_articles.each_slice(4) do |row| %>
@@ -27,24 +28,21 @@
   </div>
 
   <div class="row">
-    <h1>Lessons</h1>
-    <p class="description-text">Description text goes here.</p>
-    <ul class="lesson-levels">
-      <span class="beginner badge">B</span><li>Beginner</li>
-      <span class="intermediate badge">I</span><li>Intermediate</li>
-      <span class="advanced badge">A</span><li>Advanced</li>
-    </ul>
-    <% @homepage.featured_topics.each_slice(2) do |row| %>
+    <h2><%= link_to "Training 101", articles_path %></h2>
+    <div class="description-text">
+      <%= homepage.articles_intro.html_safe %>
+    </div>
+    <% homepage.featured_articles.in_groups_of(4, false) do |row| %>
     <div class="row">
-      <% row.each do |topic| %>
+      <% for article in row %>
       <div class="large-6 columns end">
-        <%= render topic %>
+        <%= render article %>
       </div>
       <% end %>
     </div>
     <% end %>
-    <div class="see-all right">
-      <%= link_to "See All Lessons", topics_path %>
+    <div class="right">
+      <%= link_to "See All Training", articles_path %>
     </div>
   </div>
 
@@ -72,5 +70,3 @@
       <%= link_to "Read All Blog Posts", topics_path %>
     </div>
   </div>
-</div>
-</div>

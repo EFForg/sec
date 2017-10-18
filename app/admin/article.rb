@@ -1,7 +1,7 @@
 ActiveAdmin.register Article do
   menu priority: 4
 
-  permit_params :name, :body, :slug, :published
+  permit_params :name, :authorship, :body, :slug, :published
 
   controller do
     def find_resource
@@ -23,6 +23,7 @@ ActiveAdmin.register Article do
   form do |f|
     inputs do
       f.input :name
+      f.input :authorship, label: "Authors"
       f.input :body, as: :ckeditor
     end
 

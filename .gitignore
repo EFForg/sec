@@ -12,7 +12,7 @@
 /.bundle
 
 # Ignore user uploads
-/public/files/*
+/public/uploads/*
 
 # Ignore all logfiles and tempfiles.
 /log/*
