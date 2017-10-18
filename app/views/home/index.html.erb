@@ -1,9 +1,10 @@
+<% cache(cache_key_for_homepage) do %>
 <div class="homepage">
   <div class="intro row">
     <div class="large-6 columns">
     </div>
     <div class="large-6 columns">
-      <%= @homepage.welcome.html_safe %>
+      <%= homepage.welcome.html_safe %>
       <div class="update">Update test blah blah blah</div>
     </div>
   </div>
@@ -12,7 +13,7 @@
   <div class="row">
 
     <h1><%= link_to "1st Time Trainer?", articles_path %></h1>
-    <p class="description-text">Description text goes here.</p>
+    <p class="description-text"><%= homepage.articles_intro.html_safe %></p>
     <% @homepage.featured_articles.each_slice(4) do |row| %>
     <div class="row">
       <% row.each do |article| %>
@@ -48,7 +49,7 @@
 
   <div class="row">
     <h1><%= link_to "Educational Materials", materials_path %></h1>
-    <p class="description-text">Description text goes here.</p>
+    <p class="description-text"><%= homepage.materials_intro.html_safe %></p>
     <div class="row">
       <% @homepage.featured_materials.each do |material| %>
       <%= render material %>
@@ -61,12 +62,17 @@
 
 
   <div class="row">
-    <h1><%= link_to "Blog", blog_path %></h1>
-    <p class="description-text">Description text goes here.</p>
-    <div class="row">
-      <%= render @homepage.featured_blog_post %>
+    <h2><%= link_to "Blog", blog_path %></h2>
+    <div class="description-text">
+      <%= homepage.blog_intro.html_safe %>
     </div>
-    <div class="see-all right">
-      <%= link_to "Read All Blog Posts", topics_path %>
+    <% homepage.featured_blog_posts.each do |blog_post| %>
+    <div class="row">
+      <%= render blog_post %>
+    </div>
+    <% end %>
+    <div class="right">
+      <%= link_to "Read All Blog Posts", blog_path %>
     </div>
   </div>
+<% end %>
