@@ -15,10 +15,10 @@
 
   <div class="top-bar">
     <span class="eff-branding">(logo) A Project of the Electronic Frontier Foundation</span>
-    <span class="search">
-      Search&nbsp;
-      <input type="text">
-    </span>
+    <%= form_tag("/search") do %>
+      <%= search_field_tag :q %>
+      <%= submit_tag "Search" %>
+    <% end %>
   </div>
   <header>
     <span class="logo">Logo + Title</span>

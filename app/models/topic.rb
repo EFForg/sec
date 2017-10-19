@@ -29,6 +29,10 @@ class Topic < ApplicationRecord
     self.slug = nil if slug.blank?
   end
 
+  def body
+    lessons.first.try(:body)
+  end
+
   private
 
   def lesson_bodies
