@@ -1,4 +1,6 @@
 class TopicsController < ApplicationController
+  include Publishable
+
   breadcrumbs "Security Education" => routes.root_path,
               "Lessons" => routes.topics_path
 
@@ -12,7 +14,8 @@ class TopicsController < ApplicationController
   end
 
   def show
-    @topic = Topic.published.friendly.find(params[:id])
+    @topic = Topic.friendly.find(params[:id])
+    protect_unpublished! @topic
     @lesson = @topic.lessons.take!
     breadcrumbs @topic.name
 

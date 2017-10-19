@@ -1,4 +1,5 @@
 class BlogController < ApplicationController
+  include Publishable
   breadcrumbs "Security Education" => routes.root_path,
               "Blog" => routes.blog_path
 
@@ -13,6 +14,7 @@ class BlogController < ApplicationController
 
   def show
     @blog_post = BlogPost.friendly.find(params[:id])
+    protect_unpublished! @blog_post
     breadcrumbs @blog_post.name
   end
 
