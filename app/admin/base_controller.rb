@@ -10,10 +10,9 @@ class ActiveAdmin::BaseController
 
   def set_flash_header
     if request.xhr?
-      response.headers['X-Message'] = flash[:error] unless flash[:error].blank?
-      response.headers['X-Message'] = flash[:notice] unless flash[:notice].blank?
+      response.headers["X-Message"] = flash[:error] unless flash[:error].blank?
+      response.headers["X-Message"] = flash[:notice] unless flash[:notice].blank?
       flash.discard
     end
   end
 end
-
