@@ -1,0 +1,8 @@
+
+.section-search #main-content form {
+  display: flex;
+
+  input[type=search] {
+    flex: 1 0;
+  }
+}

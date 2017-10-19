@@ -11,14 +11,14 @@
   <%= javascript_include_tag "vendor/modernizr" %>
 </head>
 
-<body>
+<body class="section-<%= controller_name %> page-<%= action_name %>">
 
   <div class="top-bar">
     <span class="eff-branding">(logo) A Project of the Electronic Frontier Foundation</span>
-    <span class="search">
-      Search&nbsp;
-      <input type="text">
-    </span>
+    <%= form_tag(search_path, method: :get) do %>
+      <%= search_field_tag :q %>
+      <%= submit_tag "Search" %>
+    <% end %>
   </div>
   <header>
     <span class="logo">Logo + Title</span>
