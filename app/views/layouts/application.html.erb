@@ -12,43 +12,13 @@
 </head>
 
 <body class="section-<%= controller_name %> page-<%= action_name %>">
+  <%= render "layouts/header" %>
 
-  <div class="top-bar">
-    <span class="eff-branding">(logo) A Project of the Electronic Frontier Foundation</span>
-    <%= form_tag(search_path, method: :get) do %>
-      <%= search_field_tag :q %>
-      <%= submit_tag "Search" %>
-    <% end %>
+  <div id="main-content">
+    <%= yield %>
   </div>
-  <header>
-    <span class="logo">Logo + Title</span>
-  </header>
 
-
-  <% if breadcrumbs.present? %>
-  <div id="breadcrumbs">
-    <%= render_breadcrumbs %>
-  </div>
-  <% end %>
-
-    <div id="main-menu">
-      <ul>
-        <li><%= link_to "Lessons", topics_path %></li>
-        <li><%= link_to "Blog", blog_path %></li>
-        <li><%= link_to "Training 101", articles_path %></li>
-        <li><%= link_to "Materials", materials_path %></li>
-      </ul>
-    </div>
-    <div id="main-content">
-      <%= yield %>
-    </div>
-
-  <footer>
-    <div class="row">
-      Footer
-    </div>
-  </footer>
-  <%= javascript_include_tag "application" %>
+  <%= render "layouts/footer" %>
 
   <div id="anon-stats">
     <noscript>
@@ -58,6 +28,5 @@
       document.getElementById('anon-stats').innerHTML = '<img src="https://anon-stats.eff.org/js/?idsite=7&amp;rec=1&amp;urlref='+encodeURIComponent(document.referrer)+'&amp;action_name=<%= escape_page_title -%>" style="border:0" alt="" />';
     </script>
   </div>
-
 </body>
 </html>

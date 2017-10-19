@@ -1,6 +1,6 @@
 body {
   background-color: white;
-  color: $dark-gray;
+  color: black;
   font-size: $default-font-size;
   font-family: $sans-serif;
   font-weight: 400;
@@ -12,9 +12,10 @@ body {
 a {
   color: $dark-teal;
   text-decoration: underline;
-
+  &:focus,
+  &:active,
   &:visited {
-    color: #666;
+    color: $dark-teal;
   }
 }
 
@@ -34,7 +35,7 @@ h3,
 h4,
 h5,
 h6 {
-  color: $dark-gray;
+  color: black;
   font-family: $sans-serif;
   text-align: left;
   text-transform: uppercase;
@@ -50,9 +51,14 @@ h6 {
 }
 
 h1 {
-  font-size: 2rem;
-  line-height: 2.3rem;
-  margin-bottom: 1.6rem;
+  font-size: 1.6rem;
+  line-height: 2rem;
+  margin-bottom: 1rem;
+  @media #{$medium-up} {
+    font-size: 2rem;
+    line-height: 2.3rem;
+    margin-bottom: 1.6rem;
+  }
 }
 
 h2 {
@@ -60,6 +66,11 @@ h2 {
   line-height: 1.9rem;
   margin-bottom: 1.3rem;
   margin-top: 3rem;
+  @media #{$medium-up} {
+    font-size: 1.5rem;
+    line-height: 1.7rem;
+    margin-bottom: 1.6rem;
+  }
 }
 
 
