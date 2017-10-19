@@ -1,4 +1,5 @@
 ActiveAdmin.register BlogPost do
+  include ViewableInApp
   menu label: "Blog", priority: 5
 
   config.sort_order = "published_at_desc"
@@ -43,7 +44,9 @@ ActiveAdmin.register BlogPost do
     selectable_column
     column :name
     column :published_at
-    actions
+    actions do |resource|
+      link_to "View", resource
+    end
   end
 
   form do |f|

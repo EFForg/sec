@@ -12,7 +12,7 @@ class BlogController < ApplicationController
   end
 
   def show
-    @blog_post = BlogPost.published.friendly.find(params[:id])
+    @blog_post = BlogPost.friendly.find(params[:id])
     breadcrumbs @blog_post.name
   end
 

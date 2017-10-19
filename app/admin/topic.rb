@@ -1,4 +1,5 @@
 ActiveAdmin.register Topic do
+  include ViewableInApp
   menu priority: 2
 
   permit_params :name, :description, :slug, :published, tag_ids: [],
@@ -21,7 +22,9 @@ ActiveAdmin.register Topic do
     selectable_column
     column :name
     column :published_at
-    actions
+    actions do |resource|
+      link_to "View", resource
+    end
   end
 
   controller do

@@ -1,4 +1,5 @@
 ActiveAdmin.register Article do
+  include ViewableInApp
   menu priority: 4
 
   permit_params :name, :body, :slug, :published
@@ -20,7 +21,9 @@ ActiveAdmin.register Article do
     selectable_column
     column :name
     column :published_at
-    actions
+    actions do |resource|
+      link_to "View", resource
+    end
   end
 
   form do |f|

@@ -13,7 +13,7 @@ class TopicsController < ApplicationController
 
   def show
     @topic = Topic.published.friendly.find(params[:id])
-    @lesson = @topic.lessons.published.take!
+    @lesson = @topic.lessons.take!
     breadcrumbs @topic.name
 
     respond_to do |format|
