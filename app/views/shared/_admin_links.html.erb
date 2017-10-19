@@ -1,0 +1,10 @@
+<% if current_admin_user %>
+  <div class="edit">
+    <%= link_to "Edit", [:edit, :admin, resource] %>
+  </div>
+
+  <% if resource.unpublished? %>
+    <div class="unpublished">Unpublished</div>
+  <% end %>
+<% end %>
+
