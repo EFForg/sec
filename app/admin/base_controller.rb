@@ -1,6 +1,6 @@
 class ActiveAdmin::BaseController
   actions :all, except: [:show]
-  before_action :set_flash_header
+  after_action :set_flash_header
 
   def update
     update! do |format|
