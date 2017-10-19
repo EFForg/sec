@@ -7,6 +7,25 @@
 $(window).on("load", function() {
   $("select.select2").select2();
 
+  // Confirm form submission with nested delete
+  $("#edit_topic").on("submit", function(e) {
+    e.preventDefault();
+    var tabs = $(".ui-tabs-panel");
+
+    for (var i = 0; i < tabs.length - 1; i++) {
+      var level = $(tabs[i]).attr("id");
+      var destroy = $("#topic_lessons_attributes_" + i + "__destroy").is(":checked");
+
+      if (destroy == 1) {
+        var message = "Are you sure you want to delete the " + level + " lesson?";
+        if (!confirm(message)) { return false; }
+      }
+    }
+
+    this.submit();
+  })
+
+  // Show a preview before submitting a file upload field
   $("input[type='file']").on("change", function(event) {
     var field = $(this);
     var files = event.target.files;
