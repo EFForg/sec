@@ -36,10 +36,10 @@
     <%= difficulty_legend %>
     <% homepage.featured_topics.each_slice(2) do |row| %>
     <div class="row">
-      <% for topic in row %>
-      <div class="large-6 columns end">
-        <%= render "topic", topic: topic %>
-      </div>
+      <% row.each do |topic| %>
+        <div class="large-6 columns end">
+          <%= render "topic", topic: topic %>
+        </div>
       <% end %>
     </div>
     <% end %>
