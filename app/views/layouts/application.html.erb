@@ -11,15 +11,16 @@
   <%= javascript_include_tag "vendor/modernizr" %>
 </head>
 
-<body>
-<%= render "layouts/header" %>
+<body class="section-<%= controller_name %> page-<%= action_name %>">
+  <%= render "layouts/header" %>
 
-    <div id="main-content">
-      <%= yield %>
-    </div>
+  <div id="main-content">
+    <%= yield %>
+  </div>
 
-<%= render "layouts/footer" %>
-<div id="anon-stats">
-</div>
+  <%= render "layouts/footer" %>
+
+  <div id="anon-stats">
+  </div>
 </body>
 </html>
