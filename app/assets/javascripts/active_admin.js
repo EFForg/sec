@@ -3,7 +3,6 @@
 //= active_material
 //= require select2
 //= require rails-ujs
-//= require turbolinks
 
 $(window).on("load", function() {
   $("select.select2").select2();
