@@ -1,5 +1,5 @@
 class SearchController < ApplicationController
-  def results
+  def index
     @results = PgSearch.multisearch(params[:q]).page(params[:page])
   end
 end
