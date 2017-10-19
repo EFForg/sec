@@ -15,7 +15,7 @@
 
   <div class="top-bar">
     <span class="eff-branding">(logo) A Project of the Electronic Frontier Foundation</span>
-    <%= form_tag("/search") do %>
+    <%= form_tag(search_path, method: :get) do %>
       <%= search_field_tag :q %>
       <%= submit_tag "Search" %>
     <% end %>
