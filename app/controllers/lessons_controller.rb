@@ -8,7 +8,7 @@ class LessonsController < ApplicationController
       format.html { render "topics/show" }
       format.js
       format.pdf {
-        render pdf: @topic.name, show_as_html: params.key?("debug")
+        render pdf: @topic.name, show_as_html: params.key?("debug") # rubocop:disable GitHub/RailsControllerRenderLiteral
       }
     end
   end
