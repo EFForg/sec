@@ -1,4 +1,4 @@
-module ViewableInApp
+module ViewingInApp
   extend ActiveSupport::Concern
 
   def self.included(base)
