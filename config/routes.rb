@@ -13,6 +13,8 @@ Rails.application.routes.draw do
     resources :lessons, path: "", only: [:show]
   end
 
+  resources :lesson_plans, only: [:create, :update]
+
   get "/search", as: :search, to: "search#index"
 
   devise_for :admin_users, ActiveAdmin::Devise.config

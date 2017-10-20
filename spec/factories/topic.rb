@@ -12,5 +12,6 @@ FactoryGirl.define do
 
   factory :lesson do
     published_at Time.now
+    body "lesson body"
   end
 end
