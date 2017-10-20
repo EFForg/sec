@@ -1,5 +1,5 @@
 ActiveAdmin.register Article do
-  include ViewableInApp
+  include ViewingInApp
   menu priority: 4
 
   permit_params :name, :body, :slug, :published

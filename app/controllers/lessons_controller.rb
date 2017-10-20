@@ -1,5 +1,5 @@
 class LessonsController < ApplicationController
-  include Publishable
+  include ContentPermissioning
 
   def show
     @topic = Topic.friendly.find(params[:topic_id])

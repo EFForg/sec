@@ -1,5 +1,5 @@
 class ArticlesController < ApplicationController
-  include Publishable
+  include ContentPermissioning
   breadcrumbs "Security Education" => routes.root_path,
               "Articles" => routes.articles_path
 

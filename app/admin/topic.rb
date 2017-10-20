@@ -1,5 +1,5 @@
 ActiveAdmin.register Topic do
-  include ViewableInApp
+  include ViewingInApp
   menu priority: 2
 
   permit_params :name, :description, :slug, :published, tag_ids: [],

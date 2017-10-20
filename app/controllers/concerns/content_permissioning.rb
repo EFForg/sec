@@ -1,4 +1,4 @@
-module Publishable
+module ContentPermissioning
   extend ActiveSupport::Concern
 
   def protect_unpublished!(resource)
