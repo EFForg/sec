@@ -1,4 +1,10 @@
 <div class="article card">
   <h3><%= link_to article.name, article %></h3>
-  <div class="byline">by <span class="author"><%= article.author.name %></span></div>
+  <% if article.authorship.present? %>
+    <div class="byline">by <span class="author"><%= article.authorship %></span></div>
+  <% end %>
+
+  <div class="content">
+    <%= preview article.body %>
+  </div>
 </div>

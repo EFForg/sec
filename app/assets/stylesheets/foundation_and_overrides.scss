@@ -1435,9 +1435,9 @@ $xxlarge-only: "#{$screen} and (min-width:#{lower-bound($xxlarge-range)}) and (m
 // 36. Visibility Classes
 // - - - - - - - - - - - - - - - - - - - - - - - - -
 
-// $include-html-visibility-classes: $include-html-classes;
-// $include-table-visibility-classes: true;
-// $include-legacy-visibility-classes: true;
-// $include-accessibility-classes: true;
+$include-html-visibility-classes: $include-html-classes;
+$include-table-visibility-classes: true;
+$include-legacy-visibility-classes: true;
+$include-accessibility-classes: true;
 
 @import 'foundation';

@@ -8,9 +8,8 @@ class Article < ApplicationRecord
 
   acts_as_taggable
 
-  def author
-    OpenStruct.new(name: "So and So")
-  end
+  include PgSearch
+  multisearchable against: %i(name body tag_list), if: :published?
 
   def nillify_empty_slug
     self.slug = nil if slug.blank?

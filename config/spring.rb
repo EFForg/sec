@@ -6,6 +6,7 @@ Spring::Watcher::Listen.class_eval do
 end
 
 %w(
+  .env
   .ruby-version
   .rbenv-vars
   tmp/restart.txt

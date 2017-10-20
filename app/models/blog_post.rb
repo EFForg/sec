@@ -8,12 +8,11 @@ class BlogPost < ApplicationRecord
   include Publishing
   include Featuring
 
+  include PgSearch
+  multisearchable against: %i(name body tag_list), if: :published?
+
   def self._to_partial_path
     "blog/blog_post"
-  end
-
-  def author
-    OpenStruct.new(name: "So and So")
   end
 
   def nillify_empty_slug

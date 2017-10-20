@@ -1,0 +1,35 @@
+.card {
+  border: 2px solid $light-teal;
+  border-top: 16px solid $light-teal;
+  display: inline-block;
+  margin: 0 1rem 3rem;
+  min-height: 10rem;
+  padding: 1.5rem 1.5rem 3rem 1rem;
+  position: relative;
+  width: 100%;
+  h3 {
+    font-size: 1.6rem;
+    line-height: 1.6rem;
+    text-transform: capitalize;
+  }
+  &:before {
+    content: "";
+    position: absolute;
+    bottom: 0%;
+    right: 0%;
+    width: 0px;
+    height: 0px;
+    border-top: 2.2rem solid #e6e5e5;
+    border-right: 2.2rem solid transparent;
+  }
+  &:after {
+    content: "";
+    position: absolute;
+    bottom: 0%;
+    right: 0%;
+    width: 0px;
+    height: 0px;
+    border-bottom: 2.2rem solid $light-teal;
+    border-left: 2.2rem solid transparent;
+  }
+}
