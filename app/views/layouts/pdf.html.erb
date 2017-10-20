@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title><%= page_title %></title>
+
+  <%= wicked_pdf_stylesheet_link_tag("application") %>
+</head>
+
+<body class="section-<%= controller_name %> page-<%= action_name %>">
+  <div id="main-content">
+    <%= yield %>
+  </div>
+</body>
+</html>

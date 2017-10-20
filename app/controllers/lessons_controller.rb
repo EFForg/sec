@@ -7,6 +7,9 @@ class LessonsController < ApplicationController
     respond_to do |format|
       format.html { render "topics/show" }
       format.js
+      format.pdf {
+        render pdf: @topic.name, show_as_html: params.key?("debug")
+      }
     end
   end
 end
