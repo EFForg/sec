@@ -47,7 +47,7 @@ RUN bundle exec rake assets:precompile \
   DATABASE_URL=postgres://noop
 
 RUN mkdir -p /var/www
-RUN chown -R www-data /opt/trainers-hub /var/www
+RUN chown -R www-data /opt/trainers-hub /var/www /usr/local/bundle
 USER www-data
 
 CMD ["rails", "s", "-b", "0.0.0.0"]
