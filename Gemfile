@@ -46,6 +46,9 @@ gem "httparty"
 # Slugging/permalinks
 gem "friendly_id"
 
+# HTML to PDF
+gem "wicked_pdf"
+
 # Content administration
 gem "active_material", github: "vigetlabs/active_material"
 gem "activeadmin"
