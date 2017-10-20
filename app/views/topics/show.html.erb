@@ -1,5 +1,7 @@
 <h1><%= @topic.name %></h1>
 
+<%= render partial: "shared/admin_links", locals: { resource: @topic } %>
+
 <%= tags(@topic, :topics_path) %>
 
 <div class="tabs">
@@ -14,5 +16,4 @@
 <div id="tab-content">
   <%= render @lesson %>
 </div>
-
 
