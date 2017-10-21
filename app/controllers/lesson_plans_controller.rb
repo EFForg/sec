@@ -1,4 +1,8 @@
 class LessonPlansController < ApplicationController
+  def show
+    @lesson_plan = helpers.current_lesson_plan
+  end
+
   def create
     @lesson_plan = LessonPlan.new(lesson_plan_params)
 
