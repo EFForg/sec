@@ -1,8 +1,14 @@
 <%= form_for(current_lesson_plan) do |f| %>
-  <%= f.fields_for :lesson_plan_lessons, f.object.lesson_plan_lessons.build(lesson_id: @lesson.id) do |sf| %>
+  <%= f.fields_for :lesson_plan_lessons, current_lesson_plan_lesson(@lesson) do |sf| %>
     <%= sf.hidden_field :lesson_id %>
+
+    <% if sf.object.persisted? %>
+      <%= sf.hidden_field :_destroy, value: 1 %>
+      <%= f.submit "Remove From Lesson Plan (#{current_lesson_plan.lessons_count})" %>
+    <% else %>
+      <%= f.submit "Add To Lesson Plan (#{current_lesson_plan.lessons_count})" %>
+    <% end %>
   <% end %>
-  <%= f.submit "Add To Lesson Plan (#{current_lesson_plan.lessons_count})" %>
 <% end %>
 
 <% if @lesson.objective? %>
