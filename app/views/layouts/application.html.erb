@@ -11,7 +11,7 @@
   <%= javascript_include_tag "vendor/modernizr" %>
 </head>
 
-<body class="section-<%= controller_name %> page-<%= action_name %>">
+<body class="section-<%= controller_name %> page-<%= action_name %> <%= Rails.env %>">
   <%= render "layouts/header" %>
 
   <div id="main-content">
