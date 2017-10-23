@@ -32,8 +32,6 @@ class Lesson < ApplicationRecord
   default_scope { order(level_id: :asc) }
   scope :with_level, -> (name) { where(level_id: LEVELS.invert[name]) }
 
-  include Publishing
-
   validates :level_id, uniqueness: { scope: :topic },
                     presence: true,
                     inclusion: { in: 0..LEVELS.length,
@@ -43,8 +41,10 @@ class Lesson < ApplicationRecord
   accepts_nested_attributes_for :lesson_materials, allow_destroy: true, reject_if: :all_blank
   accepts_nested_attributes_for :lesson_articles, allow_destroy: true, reject_if: :all_blank
 
+  delegate :published?, :unpublished, to: :topic
+  scope :published, ->{ joins(:topic).merge(Topic.published) }
+
   before_save :set_duration
-  after_save :publish!
 
   def name
     "#{topic.name}: #{level}"

@@ -21,7 +21,11 @@ module Publishing
     end
   end
 
-  def publish!
+  def publish
     touch(:published_at)
+  end
+
+  def unpublish
+    update(published_at: nil)
   end
 end
