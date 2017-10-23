@@ -1,6 +1,4 @@
 class LessonPlansController < ApplicationController
-  include ContentPermissioning
-
   def create
     @lesson_plan = LessonPlan.new(lesson_plan_params)
 
@@ -28,13 +26,6 @@ class LessonPlansController < ApplicationController
   private
 
   def lesson_plan_params
-    params = self.params[:lesson_plan].
-      permit(lesson_plan_lessons_attributes: [:id, :_destroy, :lesson_id])
-
-    params.tap do |lesson_plan|
-      lesson_plan["lesson_plan_lessons_attributes"].each do |plan_lesson|
-         protect_unpublished!(Lesson.find(plan_lesson["lesson_id"]))
-      end
-    end
+    params[:lesson_plan].permit(lesson_plan_lessons_attributes: [:id, :_destroy, :lesson_id])
   end
 end
