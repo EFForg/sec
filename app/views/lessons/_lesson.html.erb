@@ -1,18 +1,20 @@
-<%= form_for(current_lesson_plan, remote: true) do |f| %>
-  <%= f.fields_for :lesson_plan_lessons, current_lesson_plan_lesson(@lesson) do |sf| %>
-    <div class="actions <%= 'disabled' if sf.object.persisted? %>">
-      <%= sf.hidden_field :lesson_id %>
+<% if Flipper.enabled?(:lesson_plans) %>
+  <%= form_for(current_lesson_plan, remote: true) do |f| %>
+    <%= f.fields_for :lesson_plan_lessons, current_lesson_plan_lesson(@lesson) do |sf| %>
+      <div class="actions <%= 'disabled' if sf.object.persisted? %>">
+        <%= sf.hidden_field :lesson_id %>
 
-      <% if sf.object.persisted? %>
-        <%= sf.hidden_field :_destroy, value: 1 %>
-        <%= f.submit "Remove From Lesson Plan (#{current_lesson_plan.lessons_count})" %>
-      <% else %>
-        <%= f.submit "Add To Lesson Plan (#{current_lesson_plan.lessons_count})" %>
-      <% end %>
-    </div>
+        <% if sf.object.persisted? %>
+          <%= sf.hidden_field :_destroy, value: 1 %>
+          <%= f.submit "Remove From Lesson Plan (#{current_lesson_plan.lessons_count})" %>
+        <% else %>
+          <%= f.submit "Add To Lesson Plan (#{current_lesson_plan.lessons_count})" %>
+        <% end %>
+      </div>
+    <% end %>
+
+    <em class="notice"><%= link_to "Added To Lesson Plan", current_lesson_plan_path %></em>
   <% end %>
-
-  <em class="notice"><%= link_to "Added To Lesson Plan", current_lesson_plan_path %></em>
 <% end %>
 
 <%= render partial: "lessons/summary", locals: { lesson: @lesson } %>

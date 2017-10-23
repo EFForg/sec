@@ -1,4 +1,10 @@
 GIT
+  remote: https://github.com/jnunemaker/flipper.git
+  revision: 987a51fa991dc1e82e9314d85ec7fce76c5ec1fd
+  specs:
+    flipper (0.11.0.beta7)
+
+GIT
   remote: https://github.com/vigetlabs/active_material.git
   revision: 853c60a22be2f6a57163a9d762da50c40e2061ec
   specs:
@@ -342,6 +348,7 @@ DEPENDENCIES
   devise
   dotenv
   factory_girl_rails
+  flipper!
   foundation-rails
   friendly_id
   httparty
