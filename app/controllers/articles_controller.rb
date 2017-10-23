@@ -1,4 +1,5 @@
 class ArticlesController < ApplicationController
+  include ContentPermissioning
   breadcrumbs "Security Education" => routes.root_path,
               "Articles" => routes.articles_path
 
@@ -9,7 +10,8 @@ class ArticlesController < ApplicationController
   end
 
   def show
-    @article = Article.published.friendly.find(params[:id])
+    @article = Article.friendly.find(params[:id])
+    protect_unpublished! @article
     breadcrumbs @article.name
   end
 end
