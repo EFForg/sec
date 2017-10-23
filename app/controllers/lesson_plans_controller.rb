@@ -1,6 +1,7 @@
 class LessonPlansController < ApplicationController
   def show
     @lesson_plan = helpers.current_lesson_plan
+    @lesson_plan_lessons = @lesson_plan.lesson_plan_lessons.published
   end
 
   def create

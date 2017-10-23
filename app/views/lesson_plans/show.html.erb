@@ -1,17 +1,17 @@
 <h1>Lesson Planner</h1>
 
-<% if @lesson_plan.lessons.empty? %>
+<% if @lesson_plan_lessons.empty? %>
   <p>There's nothing here! <%= link_to "Browse our training topics ", topics_path %> to start adding lessons to your plan.</p>
 <% else %>
   <p>Here are your selected lessons. They're remixable! You can click remove to take a lesson off your lesson plan.</p>
 
-  <h2>Your lessons (<span id="lesson-count"><%= @lesson_plan.lessons.count %></span>)</h2>
+  <h2>Your lessons (<span id="lesson-count"><%= @lesson_plan_lessons.count %></span>)</h2>
 
   <%# <% @todo total time %>
   <span class="total-duration">Total time: X hours</span>
 
   <div id="planned-lessons">
-  <% @lesson_plan.lesson_plan_lessons.each do |lesson_plan_lesson| %>
+  <% @lesson_plan_lessons.each do |lesson_plan_lesson| %>
     <% lesson = lesson_plan_lesson.lesson %>
     <div class="lesson" data-lpl="<%= lesson_plan_lesson.id %>">
       <h3><%= lesson.name %></h3>
