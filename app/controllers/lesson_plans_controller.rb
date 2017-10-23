@@ -7,7 +7,7 @@ class LessonPlansController < ApplicationController
 
       respond_to do |format|
         format.html{ redirect_back fallback_location: topics_path }
-        format.js{ render :update_form_state }
+        format.js{ render "update_form_state" } # rubocop:disable GitHub/RailsControllerRenderPathsExist
       end
     end
   end
@@ -18,7 +18,7 @@ class LessonPlansController < ApplicationController
     if @lesson_plan.update_attributes(lesson_plan_params)
       respond_to do |format|
         format.html{ redirect_back fallback_location: topics_path } # @todo go to lesson plan show
-        format.js{ render :update_form_state }
+        format.js{ render "update_form_state" } # rubocop:disable GitHub/RailsControllerRenderPathsExist
       end
     end
   end
