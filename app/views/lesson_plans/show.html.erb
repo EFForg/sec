@@ -5,7 +5,7 @@
 <% else %>
   <p>Here are your selected lessons. They're remixable! You can click remove to take a lesson off your lesson plan.</p>
 
-  <h2>Your lessons (<%= @lesson_plan.lessons.count %>)</h2>
+  <h2>Your lessons (<span id="lesson-count"><%= @lesson_plan.lessons.count %></span>)</h2>
 
   <%# <% @todo total time %>
   <span class="total-duration">Total time: X hours</span>
@@ -14,7 +14,7 @@
     <% lesson = lesson_plan_lesson.lesson %>
     <h3><%= lesson.name %></h3>
 
-    <%= form_for(current_lesson_plan) do |f| %>
+    <%= form_for current_lesson_plan, remote: true do |f| %>
       <%= f.fields_for :lesson_plan_lessons, lesson_plan_lesson do |sf| %>
         <%= sf.hidden_field :_destroy, value: true %>
       <% end %>
