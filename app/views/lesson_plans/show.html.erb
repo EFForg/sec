@@ -10,20 +10,24 @@
   <%# <% @todo total time %>
   <span class="total-duration">Total time: X hours</span>
 
+  <div id="lessons">
   <% @lesson_plan.lesson_plan_lessons.each do |lesson_plan_lesson| %>
     <% lesson = lesson_plan_lesson.lesson %>
-    <h3><%= lesson.name %></h3>
+    <div class="lesson" data-lpl="<%= lesson_plan_lesson.id %>">
+      <h3><%= lesson.name %></h3>
 
-    <%= form_for current_lesson_plan, remote: true do |f| %>
-      <%= f.fields_for :lesson_plan_lessons, lesson_plan_lesson do |sf| %>
-        <%= sf.hidden_field :_destroy, value: true %>
+      <%= form_for current_lesson_plan, remote: true do |f| %>
+        <%= f.fields_for :lesson_plan_lessons, lesson_plan_lesson do |sf| %>
+          <%= sf.hidden_field :_destroy, value: true %>
+        <% end %>
+        <%= f.submit "Remove this lesson" %>
       <% end %>
-      <%= f.submit "Remove this lesson" %>
-    <% end %>
 
-    <%= render partial: "lessons/summary", locals: { lesson: lesson } %>
-    <%= tags(lesson.topic, :topics_path) %>
+      <%= render partial: "lessons/summary", locals: { lesson: lesson } %>
+      <%= tags(lesson.topic, :topics_path) %>
+    </div>
   <% end %>
+  </div>
 <% end %>
 
 

@@ -1,0 +1,7 @@
+$("#lesson-count").html("<%= @lesson_plan.lessons.count %>");
+
+var lesson_plan_lesson_ids = <%= @lesson_plan.lesson_plan_lessons.pluck(:id).to_json %>;
+$(".lesson").each(function(i, el) {
+  var lesson_is_planned = $.inArray($(el).data("lpl"), lesson_plan_lesson_ids);
+  if (lesson_is_planned < 0) { $(el).remove(); }
+});
