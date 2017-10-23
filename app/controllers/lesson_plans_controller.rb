@@ -1,4 +1,8 @@
 class LessonPlansController < ApplicationController
+  def show
+    @lesson_plan = helpers.current_lesson_plan
+  end
+
   def create
     @lesson_plan = LessonPlan.new(lesson_plan_params)
 
@@ -17,8 +21,8 @@ class LessonPlansController < ApplicationController
 
     if @lesson_plan.update_attributes(lesson_plan_params)
       respond_to do |format|
-        format.html{ redirect_back fallback_location: topics_path } # @todo go to lesson plan show
-        format.js{ render :update_form_state }
+        format.html { redirect_back fallback_location: "/lesson-plan" }
+        format.js { render :update_form_state }
       end
     end
   end
