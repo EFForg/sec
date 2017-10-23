@@ -13,8 +13,8 @@ Rails.application.routes.draw do
     resources :lessons, path: "", only: [:show]
   end
 
-  resources :lesson_plans, only: [:create, :update]
-  get "/lesson-plan", to: "lesson_plans#show"
+  resources :lesson_plans, path: "/lesson-plans", only: [:create, :update, :show]
+  get "/lesson-plan", as: :current_lesson_plan, to: "lesson_plans#show"
 
   get "/search", as: :search, to: "search#index"
 

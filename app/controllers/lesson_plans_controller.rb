@@ -1,6 +1,10 @@
 class LessonPlansController < ApplicationController
   def show
-    @lesson_plan = helpers.current_lesson_plan
+    if params[:id]
+      @lesson_plan = LessonPlan.find(params[:id])
+    else
+      @lesson_plan = helpers.current_lesson_plan
+    end
   end
 
   def create
