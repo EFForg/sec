@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171020220950) do
+ActiveRecord::Schema.define(version: 20171023201330) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -149,7 +149,6 @@ ActiveRecord::Schema.define(version: 20171020220950) do
     t.integer "students"
     t.text "objective"
     t.integer "level_id", default: 0, null: false
-    t.datetime "published_at"
     t.index ["topic_id"], name: "index_lessons_on_topic_id"
   end
 
