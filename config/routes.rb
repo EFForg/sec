@@ -14,7 +14,8 @@ Rails.application.routes.draw do
   end
 
   resources :lesson_plans, only: [:create, :update]
-  get "/lesson-plan", to: "lesson_plans#show"
+  get "/lesson-plan", to: "lesson_plans#show",
+                      as: :current_lesson_plan
 
   get "/search", as: :search, to: "search#index"
 

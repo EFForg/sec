@@ -12,7 +12,7 @@
     </div>
   <% end %>
 
-  <em class="notice"><%= link_to "Added To Lesson Plan", lesson_plans_path %></em>
+  <em class="notice"><%= link_to "Added To Lesson Plan", current_lesson_plan_path %></em>
 <% end %>
 
 <%= render partial: "lessons/summary", locals: { lesson: @lesson } %>
