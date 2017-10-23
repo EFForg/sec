@@ -11,6 +11,13 @@
     font-size: 1.6rem;
     line-height: 1.6rem;
     text-transform: capitalize;
+    a {
+      color: black;
+    }
+  }
+  .duration {
+    color: $darkest-teal;
+    text-transform: uppercase;
   }
   &:before {
     content: "";
@@ -19,7 +26,7 @@
     right: 0%;
     width: 0px;
     height: 0px;
-    border-top: 2.2rem solid #e6e5e5;
+    border-top: 2.2rem solid #f3f1f1;
     border-right: 2.2rem solid transparent;
   }
   &:after {
