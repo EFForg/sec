@@ -23,6 +23,6 @@ class LessonPlansController < ApplicationController
   private
 
   def lesson_plan_params
-    params[:lesson_plan].permit(lesson_plan_lessons_attributes: :lesson_id)
+    params[:lesson_plan].permit(lesson_plan_lessons_attributes: [:id, :_destroy, :lesson_id])
   end
 end
