@@ -15,33 +15,7 @@
   <em class="notice"><%= link_to "Added To Lesson Plan", lesson_plans_path %></em>
 <% end %>
 
-<% if @lesson.objective? %>
-  <div class="objective">
-    <div class="label">Learners will:</div>
-    <div class="content">
-      <%= @lesson.objective %>
-    </div>
-  </div>
-<% end %>
-
-<% if @lesson.students? %>
-  <div class="ratio">
-    Ratio:
-    <span class="instructors">
-      <%= @lesson.instructors || 1 %>
-    </span>
-    :
-    <span class="students">
-      <%= @lesson.students %>
-    </span>
-  </div>
-<% end %>
-
-<% if @lesson.duration? %>
-  <div class="duration">
-    <%= duration_in_words(@lesson) %>
-  </div>
-<% end %>
+<%= render partial: "lessons/summary", locals: { lesson: @lesson } %>
 
 <% if @lesson.prereqs.any? %>
   <div class="resources prereqs">
