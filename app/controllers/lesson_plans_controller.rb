@@ -1,4 +1,6 @@
 class LessonPlansController < ApplicationController
+  include ContentPermissioning
+
   def show
     @lesson_plan = helpers.current_lesson_plan
   end
@@ -8,7 +10,11 @@ class LessonPlansController < ApplicationController
 
     if @lesson_plan.save
       session[:lesson_plan_id] = @lesson_plan.id
-      redirect_back fallback_location: topics_path
+
+      respond_to do |format|
+        format.html{ redirect_back fallback_location: topics_path }
+        format.js{ render :update_form_state }
+      end
     end
   end
 
@@ -18,7 +24,7 @@ class LessonPlansController < ApplicationController
     if @lesson_plan.update_attributes(lesson_plan_params)
       respond_to do |format|
         format.html { redirect_back fallback_location: "/lesson-plan" }
-        format.js { render "show" }
+        format.js { render :update_form_state }
       end
     end
   end
@@ -26,6 +32,13 @@ class LessonPlansController < ApplicationController
   private
 
   def lesson_plan_params
-    params[:lesson_plan].permit(lesson_plan_lessons_attributes: [:id, :_destroy, :lesson_id])
+    params = self.params[:lesson_plan].
+      permit(lesson_plan_lessons_attributes: [:id, :_destroy, :lesson_id])
+
+    params.tap do |lesson_plan|
+      lesson_plan["lesson_plan_lessons_attributes"].each do |plan_lesson|
+         protect_unpublished!(Lesson.find(plan_lesson["lesson_id"]))
+      end
+    end
   end
 end

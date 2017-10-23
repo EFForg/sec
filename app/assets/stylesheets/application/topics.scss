@@ -12,3 +12,19 @@
     }
   }
 }
+
+.section-topics {
+  .new_lesson_plan, .edit_lesson_plan {
+    .notice {
+      display: none;
+    }
+
+    .disabled {
+      display: none;
+    }
+
+    .disabled + .notice, .disabled + input + .notice {
+      display: initial;
+    }
+  }
+}

@@ -10,7 +10,7 @@
   <%# <% @todo total time %>
   <span class="total-duration">Total time: X hours</span>
 
-  <div id="lessons">
+  <div id="planned-lessons">
   <% @lesson_plan.lesson_plan_lessons.each do |lesson_plan_lesson| %>
     <% lesson = lesson_plan_lesson.lesson %>
     <div class="lesson" data-lpl="<%= lesson_plan_lesson.id %>">
