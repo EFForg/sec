@@ -10,15 +10,7 @@ class LessonsController < ApplicationController
     respond_to do |format|
       format.html { render "topics/show" }
       format.js
-      format.pdf {
-        if @lesson.pdf.blank?
-          tmp = Tempfile.new(["lesson", ".pdf"])
-          render pdf: @topic.name, save_to_file: tmp.path
-          @lesson.update!(pdf: tmp.tap(&:rewind))
-        else
-          redirect_to @lesson.pdf.url
-        end
-      }
+      format.pdf { redirect_to @lesson.pdf.url }
     end
   end
 end
