@@ -1,7 +1,7 @@
 class LessonPlansController < ApplicationController
   def show
     if params[:id]
-      @lesson_plan = LessonPlan.find(params[:id])
+      @lesson_plan = LessonPlan.find_by(key: params[:id])
     else
       @lesson_plan = helpers.current_lesson_plan
     end
