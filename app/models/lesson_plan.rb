@@ -5,7 +5,7 @@ class LessonPlan < ApplicationRecord
   accepts_nested_attributes_for :lesson_plan_lessons, allow_destroy: true
 
   validates_uniqueness_of :key
-  before_create :create_key
+  before_validation :set_key, on: :create
 
   def to_param
     key
@@ -13,7 +13,7 @@ class LessonPlan < ApplicationRecord
 
   private
 
-  def create_key
+  def set_key
     self.key = SecureRandom.uuid
   end
 end
