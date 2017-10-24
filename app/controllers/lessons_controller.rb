@@ -11,7 +11,13 @@ class LessonsController < ApplicationController
       format.html { render "topics/show" }
       format.js
       format.pdf {
-        render pdf: @topic.name, show_as_html: params.key?("debug") # rubocop:disable GitHub/RailsControllerRenderLiteral
+        if @lesson.pdf.blank?
+          tmp = Tempfile.new(["lesson", ".pdf"])
+          render pdf: @topic.name, save_to_file: tmp.path
+          @lesson.update!(pdf: tmp.tap(&:rewind))
+        else
+          redirect_to @lesson.pdf.url
+        end
       }
     end
   end
