@@ -24,3 +24,6 @@
 /yarn-error.log
 
 .byebug_history
+
+# Ignore feature flags
+flipper.pstore
