@@ -44,6 +44,8 @@ class Lesson < ApplicationRecord
   delegate :published?, :unpublished, to: :topic
   scope :published, ->{ joins(:topic).merge(Topic.published) }
 
+  mount_uploader :pdf, PdfUploader
+
   before_save :set_duration
 
   def name
