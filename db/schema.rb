@@ -127,6 +127,7 @@ ActiveRecord::Schema.define(version: 20171024192008) do
     t.integer "lessons_count", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "key"
   end
 
   create_table "lesson_resources", force: :cascade do |t|
