@@ -14,6 +14,6 @@ class LessonPlan < ApplicationRecord
   private
 
   def set_key
-    self.key = SecureRandom.uuid
+    self.key = SecureRandom.urlsafe_base64
   end
 end
