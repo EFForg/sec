@@ -1,8 +1,10 @@
 ActiveAdmin.register BlogPost do
-  menu label: "Blog"
+  include ViewingInApp
+  menu label: "Blog", priority: 5
+
   config.sort_order = "published_at_desc"
 
-  permit_params :name, :body, :slug
+  permit_params :name, :authorship, :body, :slug, :published, tag_ids: []
 
   controller do
     def find_resource
@@ -30,23 +32,27 @@ ActiveAdmin.register BlogPost do
     end
   end
 
+  filter :name
+  filter :body
+  filter :original_url
+  filter :tags
+  filter :created_at
+  filter :updated_at
+  filter :slug
+
   index do
     selectable_column
-    id_column
-
     column :name
-
-    column "Original Post", :original_url do |blog|
-      link_to blog.original_url, blog.original_url
-    end
-
     column :published_at
-    actions
+    actions do |resource|
+      link_to "View", resource
+    end
   end
 
   form do |f|
     f.inputs do
       f.input :name
+      f.input :authorship, label: "Authors"
       f.input :body, as: :ckeditor
     end
 

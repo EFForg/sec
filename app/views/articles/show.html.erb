@@ -1,5 +1,7 @@
 <h1><%= @article.name %></h1>
 
+<%= render partial: "shared/admin_links", locals: { resource: @article } %>
+
 <div class="content">
   <%= @article.body.html_safe %>
 </div>

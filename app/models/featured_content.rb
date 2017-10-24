@@ -1,6 +1,7 @@
 class FeaturedContent < ApplicationRecord
   self.table_name = "featured_content"
 
+  belongs_to :homepage, touch: true
   belongs_to :content, polymorphic: true
 
   def content_id_string

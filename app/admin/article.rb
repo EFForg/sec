@@ -1,5 +1,8 @@
 ActiveAdmin.register Article do
-  permit_params :name, :body, :slug
+  include ViewingInApp
+  menu priority: 4
+
+  permit_params :name, :authorship, :body, :slug, :published
 
   controller do
     def find_resource
@@ -7,9 +10,26 @@ ActiveAdmin.register Article do
     end
   end
 
+  filter :name
+  filter :body
+  filter :tags
+  filter :created_at
+  filter :updated_at
+  filter :slug
+
+  index do
+    selectable_column
+    column :name
+    column :published_at
+    actions do |resource|
+      link_to "View", resource
+    end
+  end
+
   form do |f|
     inputs do
       f.input :name
+      f.input :authorship, label: "Authors"
       f.input :body, as: :ckeditor
     end
 

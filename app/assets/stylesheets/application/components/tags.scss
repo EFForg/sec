@@ -1,0 +1,17 @@
+.tags {
+  a {
+    border: 2px solid $darkest-teal;
+    border-radius: 10px;
+    color: $darkest-teal;
+    line-height: 3rem;
+    margin-right: 2rem;
+    padding: 0.2rem 0.5rem;
+    text-decoration: none;
+    &:active,
+    &:hover {
+      color: white;
+      background-color: $darkest-teal;
+    }
+
+  }
+}

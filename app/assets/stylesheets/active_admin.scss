@@ -65,3 +65,16 @@
     top: 2px;
   }
 }
+
+// Minimum column widths
+.col-actions {
+  min-width: 78px;
+
+  a {
+    display: inline-block;
+  }
+}
+
+.col-id {
+  min-width: 47px;
+}

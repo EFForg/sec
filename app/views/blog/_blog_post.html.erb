@@ -1,3 +1,10 @@
-<div class="card">
-  <%= blog_post.name %>
+<div class="blog-post card">
+  <h3><%= link_to blog_post.name, blog_post_path(blog_post) %></h3>
+  <% if blog_post.authorship.present? %>
+    <div class="byline">by <span class="author"><%= blog_post.authorship %></span></div>
+  <% end %>
+  <div class="publised-at"><%= blog_post.published_at.strftime("%B %d, %Y") %></div>
+  <div class="blog-source">EFF Deeplinks Blog</div>
+
+  <div class="tags"><%= tags(blog_post, :blog_path) %></div>
 </div>

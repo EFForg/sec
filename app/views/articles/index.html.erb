@@ -1,9 +1,6 @@
-<% @articles.each do |article| %>
-  <h2><%= link_to article.name, article %></h2>
 
-  <div class="content">
-    <%= preview article.body %>
-  </div>
+<% cache(cache_key_for_articles(@articles)) do %>
+  <%= render @articles %>
 <% end %>
 
 <%= paginate @articles %>

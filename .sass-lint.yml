@@ -28,9 +28,13 @@ rules:
     -
       include: true
 
-  nesting-depth: 2
+  nesting-depth:
+    - 2
+    -
+      max-depth: 3
+
   no-duplicate-properties: 2
-  no-important: 2
+  no-important: 1
   no-invalid-hex: 2
   no-misspelled-properties: 2
   no-trailing-whitespace: 2

@@ -7,3 +7,5 @@ AllCops:
     - 'db/**/*'
     - 'config/**/*'
     - 'bin/**/*'
+    - 'spec/**/*'
+    - 'vendor/**/*'

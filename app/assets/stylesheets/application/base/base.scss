@@ -1,0 +1,141 @@
+body {
+  background-color: white;
+  color: black;
+  font-size: $default-font-size;
+  font-family: $sans-serif;
+  font-weight: 400;
+  line-height: 2rem;
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  color: $dark-teal;
+  text-decoration: underline;
+  &:focus,
+  &:active,
+  &:visited {
+    color: $dark-teal;
+  }
+}
+
+sup {
+  vertical-align: super;
+  font-size: smaller;
+}
+
+sub {
+  vertical-align: sub;
+  font-size: smaller;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: black;
+  font-family: $sans-serif;
+  text-align: left;
+  text-transform: uppercase;
+  font-weight: 700;
+
+  a {
+    text-decoration: none;
+
+    &:visited {
+      color: inherit;
+    }
+  }
+}
+
+h1 {
+  font-size: 1.6rem;
+  line-height: 2rem;
+  margin-bottom: 1rem;
+  @media #{$medium-up} {
+    font-size: 2rem;
+    line-height: 2.3rem;
+    margin-bottom: 1.6rem;
+  }
+}
+
+h2 {
+  font-size: 1.7rem;
+  line-height: 1.9rem;
+  margin-bottom: 1.3rem;
+  margin-top: 3rem;
+  @media #{$medium-up} {
+    font-size: 1.5rem;
+    line-height: 1.7rem;
+    margin-bottom: 1.6rem;
+  }
+}
+
+
+h3 {
+  font-size: 1.4rem;
+  line-height: 1.8rem;
+  margin-bottom: 0.7rem;
+}
+
+h4 {
+  font-size: 1.2rem;
+  line-height: 1.4rem;
+  margin-bottom: 0.5rem;
+  text-align: left;
+}
+
+h5 {
+  font-size: 1.2rem;
+  line-height: 1.4rem;
+  margin-bottom: 0.5rem;
+  margin-left: 2rem;
+  text-align: left;
+}
+
+h6 {
+  font-size: 1.2rem;
+  font-weight: 400;
+  line-height: 1.6rem;
+  margin: 0 1rem 1.7rem 1rem;
+  text-align: left;
+}
+
+p {
+  margin-bottom: 2.3rem;
+}
+
+pre,
+kbd {
+  font-family: monospace;
+  background-color: $light-gray;
+  padding: 10px;
+  border-left: 3px solid $gray;
+  overflow: auto;
+  margin: 1em 30px 1em 10px;
+}
+
+code {
+  background-color: $light-gray;
+  font-family: monospace;
+  color: $gray;
+  line-height: 150%;
+}
+
+blockquote {
+  border-left: 0.7rem solid $light-teal;
+  padding-right: 3rem;
+  padding-left: 2rem;
+  margin-bottom: 2.3rem; /* match <p> */
+}
+
+hr {
+  border: none;
+  height: 2px;
+  color: $light-teal;
+  background-color: $light-teal;
+  width: 70%;
+  margin: 3.5rem auto;
+}

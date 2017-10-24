@@ -12,4 +12,8 @@ module BlogHelper
       end
     end
   end
+
+  def cache_key_for_blog_posts(blog_posts)
+    [BlogPost.all.cache_key, blog_posts.current_page, params[:tag]]
+  end
 end

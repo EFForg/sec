@@ -1,5 +1,9 @@
 <h1><%= @blog_post.name %></h1>
 
+<%= render partial: "shared/admin_links", locals: { resource: @blog_post } %>
+
+<%= tags(@blog_post, :blog_path) %>
+
 <div class="content">
   <%= @blog_post.body.html_safe %>
 </div>

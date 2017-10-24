@@ -1,16 +1,17 @@
 ActiveAdmin.register Material do
+  menu priority: 3
+
   permit_params :name, :body, :attachment
 
   index do
-    id_column
+    selectable_column
     column :name
 
     column "Attached File", :attachment_file_name do |material|
-      link_to material.attachment_file_name, material.attachment.url,
+      link_to material.attachment_identifier, material.attachment.url,
               target: "_blank"
     end
 
-    column :attachment_updated_at
     actions
   end
 
@@ -19,7 +20,7 @@ ActiveAdmin.register Material do
       f.input :name
       f.input :body, label: "Description", as: :ckeditor
 
-      f.input :attachment
+      f.input :attachment, as: :file, hint: file_preview(f.object.attachment)
     end
 
     f.actions

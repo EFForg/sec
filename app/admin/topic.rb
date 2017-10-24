@@ -1,22 +1,32 @@
 ActiveAdmin.register Topic do
-  permit_params :name, :slug,
+  include ViewingInApp
+  menu priority: 2
+
+  permit_params :name, :description, :slug, :published, tag_ids: [],
     lessons_attributes: [
         :id, :_destroy, :level_id, :topic_id,
         :instructors, :students,
         :objective, :body,
-        tag_ids: [],
         duration: [:hours, :minutes],
-        lesson_prereqs_attributes: [
-          :id, :_destroy, :resource_type, :resource_id, :position
-        ],
-        lesson_materials_attributes: [
-          :id, :_destroy, :resource_type, :resource_id, :position
-        ],
-        lesson_articles_attributes: [
-          :id, :_destroy, :resource_type, :resource_id, :position
-        ],
+        prereq_ids: [],
+        material_ids: [],
+        advice_ids: [],
       ]
 
+  filter :name
+  filter :tags
+  filter :created_at
+  filter :updated_at
+  filter :slug
+
+  index do
+    selectable_column
+    column :name
+    column :published_at
+    actions do |resource|
+      link_to "View", resource
+    end
+  end
 
   controller do
     def find_resource
@@ -28,6 +38,7 @@ ActiveAdmin.register Topic do
     f.inputs do
       f.semantic_errors *f.object.errors.keys
       f.input :name
+      f.input :description
       tabs do
         topic.lessons.each do |lesson|
           if lesson.persisted?

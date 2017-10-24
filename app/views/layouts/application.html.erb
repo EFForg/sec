@@ -1,30 +1,32 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title><%= page_title %></title>
-    <%= csrf_meta_tags %>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-  </head>
+  <title><%= page_title %></title>
+  <%= csrf_meta_tags %>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_include_tag "vendor/modernizr" %>
+</head>
 
-  <body>
-    <header>
-      Logo + Title
-    </header>
+<body class="section-<%= controller_name %> page-<%= action_name %>">
+  <%= render "layouts/header" %>
 
-    <% if breadcrumbs.present? %>
-      <div id="breadcrumbs">
-        <%= render_breadcrumbs %>
-      </div>
-    <% end %>
+  <div id="main-content">
+    <%= yield %>
+  </div>
 
-    <div id="main-content">
-      <%= yield %>
-    </div>
+  <%= render "layouts/footer" %>
 
-    <footer>
-      Footer
-    </footer>
-  </body>
+  <div id="anon-stats">
+    <noscript>
+      <img src="https://anon-stats.eff.org/js/?idsite=7&amp;rec=1&amp;action_name=<%= escape_page_title -%>" style="border:0" alt="" />
+    </noscript>
+    <script type="text/javascript">
+      document.getElementById('anon-stats').innerHTML = '<img src="https://anon-stats.eff.org/js/?idsite=7&amp;rec=1&amp;urlref='+encodeURIComponent(document.referrer)+'&amp;action_name=<%= escape_page_title -%>" style="border:0" alt="" />';
+    </script>
+  </div>
+</body>
 </html>

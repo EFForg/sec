@@ -1,41 +1,32 @@
-<h2 class='lesson-name'><%= lesson.name %></h2>
+<% if Flipper.enabled?(:lesson_plans) %>
+  <%= form_for(current_lesson_plan, remote: true) do |f| %>
+    <%= f.fields_for :lesson_plan_lessons, current_lesson_plan_lesson(@lesson) do |sf| %>
+      <div class="actions <%= 'disabled' if sf.object.persisted? %>">
+        <%= sf.hidden_field :lesson_id %>
 
-<% if lesson.objective? %>
-  <div class="objective">
-    <div class="label">Learners will:</div>
-    <div class="content">
-      <%= lesson.objective %>
-    </div>
-  </div>
+        <% if sf.object.persisted? %>
+          <%= sf.hidden_field :_destroy, value: 1 %>
+          <%= f.submit "Remove From Lesson Plan (#{current_lesson_plan.lessons_count})" %>
+        <% else %>
+          <%= f.submit "Add To Lesson Plan (#{current_lesson_plan.lessons_count})" %>
+        <% end %>
+      </div>
+    <% end %>
+
+    <em class="notice"><%= link_to "Added To Lesson Plan", current_lesson_plan_path %></em>
+  <% end %>
 <% end %>
 
-<% if lesson.students? %>
-  <div class="ratio">
-    Ratio:
-    <span class="instructors">
-      <%= lesson.instructors || 1 %>
-    </span>
-    :
-    <span class="students">
-      <%= lesson.students %>
-    </span>
-  </div>
-<% end %>
+<%= render partial: "lessons/summary", locals: { lesson: @lesson } %>
 
-<% if lesson.duration? %>
-  <div class="duration">
-    <%= duration_in_words(lesson) %>
-  </div>
-<% end %>
-
-<% if lesson.prereqs.any? %>
+<% if @lesson.prereqs.any? %>
   <div class="resources prereqs">
     <h3>Prerequisites</h3>
     <span>You have already done:</span>
 
     <ul>
-      <% lesson.prereqs.each do |prereq| %>
-        <li><%= link_to prereq.name, [prereq.topic, prereq] %></li>
+      <% @lesson.prereqs.each do |prereq| %>
+        <li><%= link_to prereq.name, lesson_path(prereq.topic, prereq) %></li>
       <% end %>
     </ul>
 
@@ -43,28 +34,27 @@
 <% end %>
 
 <div class="lesson-body">
-  <%= sanitize(lesson.body, tags: allowed_tags) %>
+  <%= @lesson.body.html_safe %>
 </div>
 
-<% if lesson.materials.any? %>
+<% if @lesson.materials.any? %>
   <div class="resources materials">
     <h3>Graphics/Materials</h3>
     <ul>
-      <% lesson.materials.each do |material| %>
+      <% @lesson.materials.each do |material| %>
         <li><%= link_to material.name %></li>
       <% end %>
     </ul>
   </div>
 <% end %>
 
-<% if lesson.advice.any? %>
+<% if @lesson.advice.any? %>
   <div class="resources articles">
     <h3>Relevant Articles</h3>
     <ul>
-      <% lesson.advice.each do |advice| %>
+      <% @lesson.advice.each do |advice| %>
         <li><%= link_to advice.name %></li>
       <% end %>
     </ul>
   </div>
 <% end %>
-

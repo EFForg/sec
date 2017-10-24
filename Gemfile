@@ -7,37 +7,38 @@ end
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem "rails", "~> 5.1.4"
+
 # Use postgresql as the database for Active Record
 gem "pg", "~> 0.18"
+gem "pg_search"
+
 # Use Puma as the app server
 gem "puma", "~> 3.7"
+
 # Use SCSS for stylesheets
+gem "foundation-rails" # Use Foundation for grids and other styles
 gem "sass-rails", "~> 5.0"
-# Use Uglifier as compressor for JavaScript assets
-gem "uglifier", ">= 1.3.0"
-# See https://github.com/rails/execjs#readme for more supported runtimes
-# gem 'therubyracer', platforms: :ruby
+gem "uglifier", ">= 1.3.0" # Use Uglifier as compressor for JavaScript assets
 
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
 gem "turbolinks", "~> 5"
+
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem "jbuilder", "~> 2.5"
+
 # Autocomplete select menus
 gem "select2-rails"
-# Use Redis adapter to run Action Cable in production
-# gem 'redis', '~> 3.0'
-# Use ActiveModel has_secure_password
-# gem 'bcrypt', '~> 3.1.7'
-# gem 'coffee-rails'
 
-# Use Capistrano for deployment
-# gem 'capistrano-rails', group: :development
+# Redis for caching
+gem "redis", "~> 3.0"
+gem "redis-rails"
 
 # Pagination
 gem "kaminari"
 
 # File attachments
-gem "paperclip"
+gem "carrierwave"
+gem "mini_magick"
 
 # Web requests
 gem "httparty"
@@ -45,25 +46,31 @@ gem "httparty"
 # Slugging/permalinks
 gem "friendly_id"
 
+# HTML to PDF
+gem "wicked_pdf"
+
+# Feature flipping
+gem "flipper", github: "jnunemaker/flipper"
+
 # Content administration
 gem "active_material", github: "vigetlabs/active_material"
 gem "activeadmin"
-gem "carrierwave"
+gem "acts-as-taggable-on", "~> 5.0"
 gem "ckeditor"
 gem "devise"
-gem "mini_magick"
-gem "acts-as-taggable-on"
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem "byebug", platforms: %i[mri mingw x64_mingw]
+
   # Testing
-  gem "rspec-core"
-  gem "rspec-rails"
-  gem "factory_girl_rails"
   # Adds support for Capybara system testing and selenium driver
   gem "capybara", "~> 2.13"
+  gem "factory_girl_rails"
+  gem "rspec-core"
+  gem "rspec-rails"
   gem "selenium-webdriver"
+
   # Linting
   gem "rubocop-github"
 end
