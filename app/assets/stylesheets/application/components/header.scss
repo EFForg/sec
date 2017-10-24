@@ -39,6 +39,7 @@
       }
       @media #{$xlarge-up} {
         float: left;
+        max-width: 15rem;
         width: 86%;
       }
     }
@@ -86,17 +87,52 @@ header {
     padding: 3rem 0 4rem;
   }
   .logo {
+    display: none;
+    img {
+      height: auto;
+      max-width: 100px;
+    }
+    @media #{$small-only} {
+      display: inline-block;
+    }
+  }
+
+  .site-name {
+    background: none;
+    @media #{$medium-up} {
+      background: url("http://localhost:3000/assets/sec-logo.png");
+      background-repeat: no-repeat;
+      background-size: 8rem;
+      height: 8rem;
+      width: 100%;
+      min-width: 768px;
+      background-position: 3rem 0rem;
+      margin: 0 auto;
+      padding: 2.7rem 0 0;
+    }
+    @media #{$large-up} {
+      background-position: 5rem 0rem;
+      max-width: 1200px;
+    }
+  }
+}
+
+.section-home {
+  .logo {
+    display: inline-block;
+    float: none;
     margin-bottom: 0.5rem;
     @media #{$medium-up} {
       margin-bottom: 2rem;
     }
     img {
-      height: auto;
-      max-width: 100px;
       @media #{$medium-up} {
         max-width: 150px;
       }
     }
+  }
+  .site-name {
+    background: none;
   }
 }
 
