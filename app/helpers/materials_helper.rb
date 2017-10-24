@@ -1,6 +1,7 @@
 module MaterialsHelper
   def file_preview(attachment)
-    return if attachment.nil?
+    return if attachment.blank?
+
     if attachment.thumbnail.url
       image_tag(attachment.thumbnail.url)
     else
