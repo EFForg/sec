@@ -49,6 +49,9 @@ gem "friendly_id"
 # HTML to PDF
 gem "wicked_pdf"
 
+# Feature flipping
+gem "flipper", github: "jnunemaker/flipper"
+
 # Content administration
 gem "active_material", github: "vigetlabs/active_material"
 gem "activeadmin"

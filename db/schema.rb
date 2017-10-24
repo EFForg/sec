@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171018232157) do
+ActiveRecord::Schema.define(version: 20171023201330) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -116,6 +116,19 @@ ActiveRecord::Schema.define(version: 20171018232157) do
     t.text "materials_intro", default: "", null: false
   end
 
+  create_table "lesson_plan_lessons", force: :cascade do |t|
+    t.integer "lesson_plan_id", null: false
+    t.integer "lesson_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "lesson_plans", force: :cascade do |t|
+    t.integer "lessons_count", default: 0, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "lesson_resources", force: :cascade do |t|
     t.integer "lesson_id", null: false
     t.string "resource_type", null: false
@@ -136,7 +149,6 @@ ActiveRecord::Schema.define(version: 20171018232157) do
     t.integer "students"
     t.text "objective"
     t.integer "level_id", default: 0, null: false
-    t.datetime "published_at"
     t.index ["topic_id"], name: "index_lessons_on_topic_id"
   end
 

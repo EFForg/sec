@@ -13,8 +13,7 @@ RUN apt-get update && \
     libpq-dev \
     postgresql-client \
     imagemagick \
-    libmagickcore-dev \
-    libmagickwand-dev \
+    ghostscript \
     wkhtmltopdf
 
 RUN set -x; \
