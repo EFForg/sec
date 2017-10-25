@@ -52,7 +52,7 @@
       <h3>Graphics/Materials</h3>
       <ul>
         <% @lesson.materials.each do |material| %>
-          <li><%= link_to material.name %></li>
+          <li><%= link_to material.name, "/" %></li>
         <% end %>
       </ul>
     </div>

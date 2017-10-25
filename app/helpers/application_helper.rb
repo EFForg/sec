@@ -12,8 +12,4 @@ module ApplicationHelper
   def escape_page_title
     URI.escape(page_title , Regexp.new("[^#{URI::PATTERN::UNRESERVED}]"))
   end
-
-  def materials_path
-    "/materials"
-  end
 end
