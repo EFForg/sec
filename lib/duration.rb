@@ -1,4 +1,6 @@
 class Duration
+  include ActionView::Helpers::TextHelper
+
   # Used for ActiveRecord serialize method
   def self.load(duration)
     return nil if duration.nil?
@@ -36,5 +38,12 @@ class Duration
 
   def length
     hours.to_i.hours + minutes.to_i.minutes
+  end
+
+  def in_words
+    result = []
+    result.push(pluralize(hours, "hour")) unless hours.zero?
+    result.push(pluralize(minutes, "minute")) unless minutes.zero?
+    result.join(" and ")
   end
 end
