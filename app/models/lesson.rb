@@ -1,4 +1,4 @@
-require "duration_serializer"
+require "duration"
 
 class Lesson < ApplicationRecord
   LEVELS = { 0 => "base", 1 => "medium", 2 => "advanced" }
@@ -43,7 +43,7 @@ class Lesson < ApplicationRecord
   accepts_nested_attributes_for :lesson_materials, allow_destroy: true, reject_if: :all_blank
   accepts_nested_attributes_for :lesson_articles, allow_destroy: true, reject_if: :all_blank
 
-  serialize :duration, DurationSerializer
+  serialize :duration, Duration
 
   delegate :published?, :unpublished, to: :topic
   scope :published, ->{ joins(:topic).merge(Topic.published) }
