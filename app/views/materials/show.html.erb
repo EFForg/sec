@@ -14,8 +14,10 @@
   <h2>Download</h2>
   <%= link_to file_name(@material.attachment), @material.attachment.url %>
 
-  <h2>Accompanying Lessons</h2>
-  <% @topics.each do |topic| %>
-    <%= render topic %>
+  <% if @topics.present? %>
+    <h2>Accompanying Lessons</h2>
+    <% @topics.each do |topic| %>
+      <%= render topic %>
+    <% end %>
   <% end %>
 </div>
