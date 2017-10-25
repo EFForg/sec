@@ -57,4 +57,4 @@ RSpec.configure do |config|
 end
 
 
-# Dir[Rails.root.join("spec/support/**/*.rb")].each{ |f| require f }
+Lesson.skip_callback(:validation, :after, :update_pdf)

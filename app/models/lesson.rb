@@ -44,7 +44,11 @@ class Lesson < ApplicationRecord
   delegate :published?, :unpublished, to: :topic
   scope :published, ->{ joins(:topic).merge(Topic.published) }
 
+  mount_uploader :pdf, PdfUploader
+
   before_save :set_duration
+
+  after_validation :update_pdf
 
   def name
     "#{topic.name}: #{level}"
@@ -88,5 +92,28 @@ class Lesson < ApplicationRecord
   def duration_minutes=(minutes)
     duration_will_change! unless minutes == duration_minutes
     @duration_minutes = minutes.to_f
+  end
+
+  def update_pdf
+    unless changes.keys == ["pdf"]
+      controller = LessonsController.new
+      controller.instance_variable_set("@topic", topic)
+      controller.instance_variable_set("@lesson", self)
+
+      doc = controller.render_to_string(
+        template: "lessons/show.pdf.erb",
+        layout: "layouts/pdf.html.erb"
+      )
+
+      pdf = WickedPdf.new.pdf_from_string(doc, pdf: topic.name)
+
+      tmp = Tempfile.new(["lesson", ".pdf"])
+      tmp.binmode
+      tmp.write(pdf)
+      tmp.flush
+      tmp.rewind
+
+      self.pdf = tmp
+    end
   end
 end
