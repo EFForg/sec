@@ -1,3 +1,5 @@
+require "duration_serializer"
+
 class Lesson < ApplicationRecord
   LEVELS = { 0 => "base", 1 => "medium", 2 => "advanced" }
 
@@ -41,7 +43,7 @@ class Lesson < ApplicationRecord
   accepts_nested_attributes_for :lesson_materials, allow_destroy: true, reject_if: :all_blank
   accepts_nested_attributes_for :lesson_articles, allow_destroy: true, reject_if: :all_blank
 
-  before_validation :set_duration
+  serialize :duration, DurationSerializer
 
   delegate :published?, :unpublished, to: :topic
   scope :published, ->{ joins(:topic).merge(Topic.published) }
@@ -61,39 +63,5 @@ class Lesson < ApplicationRecord
 
   def to_param
     level
-  end
-
-  def duration
-    if self[:duration]
-      @duration ||= Duration.new((self[:duration]/3600).floor,
-                                 (self[:duration]%3600)/60)
-    end
-  end
-
-  def duration=(val)
-    case val
-    when Duration
-      @duration = val
-    when Hash
-      @duration = Duration.new(val[:hours], val[:minutes])
-    else
-      @duration = nil
-      self[:duration] = val
-    end
-  end
-
-  def set_duration
-    if @duration
-      duration_will_change! unless self[:duration] == @duration.to_i
-      self[:duration] = @duration.to_i
-    end
-  end
-
-  private
-
-  Duration = Struct.new(:hours, :minutes) do
-    def to_i
-      hours.hours + minutes.minutes
-    end
   end
 end
