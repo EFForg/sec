@@ -48,7 +48,7 @@ class Lesson < ApplicationRecord
 
   before_save :set_duration
 
-  after_validation :update_pdf
+  # after_validation :update_pdf
 
   def name
     "#{topic.name}: #{level}"
