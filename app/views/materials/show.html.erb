@@ -1,0 +1,23 @@
+<h1><%= @material.name %></h1>
+
+<div class="material-preview">
+  <%= file_preview(@material.attachment) %>
+</div>
+
+<div class="material-details">
+  <h2>Description</h2>
+
+  <div class="content">
+    <%= @material.body.html_safe.presence || "<p>None</p>".html_safe %>
+  </div>
+
+  <h2>Download</h2>
+  <%= link_to file_name(@material.attachment), @material.attachment.url %>
+
+  <% if @topics.present? %>
+    <h2>Accompanying Lessons</h2>
+    <% @topics.each do |topic| %>
+      <%= render topic %>
+    <% end %>
+  <% end %>
+</div>
