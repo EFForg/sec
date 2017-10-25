@@ -30,6 +30,10 @@ class Topic < ApplicationRecord
     self.slug = nil if slug.blank?
   end
 
+  def duration
+    lessons.first.duration
+  end
+
   private
 
   def lesson_bodies
