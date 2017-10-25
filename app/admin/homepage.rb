@@ -53,7 +53,7 @@ ActiveAdmin.register Homepage do
 
     inputs "Lessons" do
       input :lessons_intro, as: :ckeditor
-      
+
       f.inputs "Featured Topics" do
         topic_options = Topic.all.map{ |t| "#{t.name} (##{t.id})" }
         f.has_many :featured_topic_content,
