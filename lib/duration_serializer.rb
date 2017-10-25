@@ -5,8 +5,9 @@ class DurationSerializer
                  (value%3600)/60)
   end
 
-  def self.dump(duration)
-    duration.hours.hours + duration.minutes.minutes
+  def self.dump(value)
+    return nil if value[:hours] == "" and value[:minutes] == ""
+    value[:hours].to_i.hours + value[:minutes].to_i.minutes
   end
 
   Duration = Struct.new(:hours, :minutes)
