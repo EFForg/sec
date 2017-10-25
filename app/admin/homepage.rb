@@ -13,6 +13,9 @@ ActiveAdmin.register Homepage do
     featured_article_content_attributes: [
       :id, :_destroy, :content_type, :content_id_string, :position
     ],
+    featured_material_content_attributes: [
+      :id, :_destroy, :content_type, :content_id_string, :position
+    ],
     featured_blog_post_content_attributes: [
       :id, :_destroy, :content_type, :content_id_string, :position
     ]
@@ -61,6 +64,20 @@ ActiveAdmin.register Homepage do
                 input_html: { value: "Article" }
         t.input :content_id_string, as: :datalist,
                 label: "Article", collection: article_options
+      end
+    end
+
+    f.inputs "Featured Materials" do
+      material_options = Material.all.map{ |t| "#{t.name} (##{t.id})" }
+      f.has_many :featured_material_content,
+                 heading: nil,
+                 new_record: "Add New Featured Material",
+                 allow_destroy: true,
+                 sortable: :position do |t|
+        t.input :content_type, as: :hidden,
+                input_html: { value: "Material" }
+        t.input :content_id_string, as: :datalist,
+                label: "Material", collection: material_options
       end
     end
 
