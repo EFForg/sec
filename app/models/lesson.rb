@@ -49,7 +49,7 @@ class Lesson < ApplicationRecord
   scope :published, ->{ joins(:topic).merge(Topic.published) }
 
   mount_uploader :pdf, PdfUploader
-  # after_validation :update_pdf
+  after_validation :update_pdf
 
   def name
     "#{topic.name}: #{level}"

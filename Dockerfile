@@ -14,7 +14,11 @@ RUN apt-get update && \
     postgresql-client \
     imagemagick \
     ghostscript \
+    xvfb \
     wkhtmltopdf
+
+# xvfb-run "needs" xauth but not really
+RUN ln -s /bin/true /bin/xauth
 
 RUN set -x; \
   curl -sL https://deb.nodesource.com/setup_6.x -o nodesource_setup.sh \
