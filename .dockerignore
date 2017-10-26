@@ -1,0 +1,18 @@
+# Ignore secrets
+.env
+docker-compose.yml
+
+# Ignore git repo
+.git*
+
+# Ignore temporary files and logs
+tmp/*
+log/*
+.byebug_history
+
+# Ignore dependencies fetched as part of build
+node_modules/
+
+# Ignore data
+pgdata/
+public/uploads
