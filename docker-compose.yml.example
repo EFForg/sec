@@ -6,9 +6,6 @@ services:
       - db
     restart: unless-stopped
 
-    ports:
-      - '3000:3000'
-
     volumes:
       - .:/opt/trainers-hub
 
@@ -27,3 +24,14 @@ services:
 
   redis:
     image: redis
+
+  nginx:
+    image: irasnyd/nginx_s3_streaming_zip
+
+    ports:
+      - '3000:80'
+
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+      - ./nginx/init:/init
+      - ./public:/var/www/html
