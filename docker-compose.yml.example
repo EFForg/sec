@@ -10,8 +10,8 @@ services:
       - '3000:3000'
 
     volumes:
-      - .:/opt/trainers-hub
-
+      - .:/opt/trainers-hub # for local development only
+                            # public/uploads should be volumized in production
     env_file: .env
 
 
