@@ -22,6 +22,6 @@
 
 <% if lesson.duration? %>
   <div class="duration">
-    <%= duration_in_words(lesson) %>
+    <%= lesson.duration.in_words %>
   </div>
 <% end %>
