@@ -102,19 +102,21 @@
 #tab-content {
   border: 1px solid $dark-teal;
   padding: 2rem;
-  input[type="submit"] {
-    background: $darkest-teal;
-    border: none;
-    color: white;
-    display: inline-block;
-    font-weight: 700;
-    padding: 0.2rem 1rem;
-    text-transform: uppercase;
+  .actions {
+    input[type="submit"] {
+      background: transparent;
+      border: 2px solid $darkest-teal;
+      color: $darkest-teal;
+      display: inline-block;
+      float: right;
+      font-weight: 700;
+      padding: 0.2rem 1rem;
+      text-transform: uppercase;
+    }
   }
   .objective {
     .label {
       background: none;
-      color: black;
       font-size: 1.5rem;
       font-weight: 700;
       margin-top: 2rem;
