@@ -27,7 +27,8 @@ services:
 
   nginx:
     image: irasnyd/nginx_s3_streaming_zip
-
+    depends_on:
+      - app
     ports:
       - '3000:80'
 
