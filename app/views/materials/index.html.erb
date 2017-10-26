@@ -1,0 +1,9 @@
+<h1>Training Materials</h1>
+
+<div class="row">
+  <% @materials.each do |material| %>
+    <%= render material %>
+  <% end %>
+</div>
+
+<%= paginate @materials %>

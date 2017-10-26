@@ -5,8 +5,9 @@ ActiveAdmin.register Topic do
   permit_params :name, :description, :slug, :published, tag_ids: [],
     lessons_attributes: [
         :id, :_destroy, :level_id, :topic_id,
-        :duration_hours, :duration_minutes, :instructors, :students,
+        :instructors, :students,
         :objective, :body,
+        duration: [:hours, :minutes],
         prereq_ids: [],
         material_ids: [],
         advice_ids: [],

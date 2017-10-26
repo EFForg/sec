@@ -53,11 +53,11 @@
     <p class="description-text"><%= homepage.materials_intro.html_safe %></p>
     <div class="row">
       <% @homepage.featured_materials.each do |material| %>
-      <%= render material %>
+        <%= render material %>
       <% end %>
     </div>
     <div class="see-all right">
-      <%= link_to "See All Materials", topics_path %>
+      <%= link_to "See All Materials", materials_path %>
     </div>
   </div>
 

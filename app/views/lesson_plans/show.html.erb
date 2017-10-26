@@ -8,8 +8,9 @@
   Share this lesson plan: <input type="text" value="<%= lesson_plan_url @lesson_plan %>">
   <h2>Your lessons (<span id="lesson-count"><%= @lesson_plan.lessons.count %></span>)</h2>
 
-  <%# <% @todo total time %>
-  <span class="total-duration">Total time: X hours</span>
+  <% if @lesson_plan.duration %>
+    <span class="total-duration">Total time: <%= @lesson_plan.duration.in_words %></span>
+  <% end %>
 
   <div id="planned-lessons">
   <% @lesson_plan_lessons.each do |lesson_plan_lesson| %>

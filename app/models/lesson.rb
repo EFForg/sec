@@ -1,3 +1,5 @@
+require_dependency "duration"
+
 class Lesson < ApplicationRecord
   LEVELS = { 0 => "base", 1 => "medium", 2 => "advanced" }
 
@@ -41,10 +43,13 @@ class Lesson < ApplicationRecord
   accepts_nested_attributes_for :lesson_materials, allow_destroy: true, reject_if: :all_blank
   accepts_nested_attributes_for :lesson_articles, allow_destroy: true, reject_if: :all_blank
 
+  serialize :duration, Duration
+
   delegate :published?, :unpublished, to: :topic
   scope :published, ->{ joins(:topic).merge(Topic.published) }
 
-  before_save :set_duration
+  mount_uploader :pdf, PdfUploader
+  after_validation :update_pdf
 
   def name
     "#{topic.name}: #{level}"
@@ -63,30 +68,26 @@ class Lesson < ApplicationRecord
     level
   end
 
-  def set_duration
-    if @duration_hours.present? or @duration_minuts.present?
-      self.duration = @duration_hours.hours.to_i + @duration_minutes.minutes.to_i
+  def update_pdf
+    unless changes.keys == ["pdf"]
+      controller = LessonsController.new
+      controller.instance_variable_set("@topic", topic)
+      controller.instance_variable_set("@lesson", self)
+
+      doc = controller.render_to_string(
+        template: "lessons/show.pdf.erb",
+        layout: "layouts/pdf.html.erb"
+      )
+
+      pdf = WickedPdf.new.pdf_from_string(doc, pdf: topic.name)
+
+      tmp = Tempfile.new(["lesson", ".pdf"])
+      tmp.binmode
+      tmp.write(pdf)
+      tmp.flush
+      tmp.rewind
+
+      self.pdf = tmp
     end
-  end
-
-  def duration_hours
-    (duration/3600).floor if duration.present? and duration > 0
-  end
-
-  def duration_minutes
-    if duration.present? and duration > 0
-      minutes = (duration % 3600)/60
-      minutes.round
-    end
-  end
-
-  def duration_hours=(hours)
-    duration_will_change! unless hours == duration_hours
-    @duration_hours = hours.to_f
-  end
-
-  def duration_minutes=(minutes)
-    duration_will_change! unless minutes == duration_minutes
-    @duration_minutes = minutes.to_f
   end
 end

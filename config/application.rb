@@ -14,13 +14,5 @@ module TrainersHub
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
-
-
-    config.action_controller.default_url_options = {}
-    if ENV["RAILS_RELATIVE_URL_ROOT"]
-      config.action_controller.default_url_options.merge!(
-        script_name: ENV["RAILS_RELATIVE_URL_ROOT"]
-      )
-    end
   end
 end
