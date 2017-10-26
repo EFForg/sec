@@ -14,6 +14,7 @@ RUN apt-get update && \
     postgresql-client \
     imagemagick \
     ghostscript \
+    xvfb \
     wkhtmltopdf
 
 RUN set -x; \
