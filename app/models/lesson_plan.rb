@@ -1,4 +1,4 @@
-require "duration"
+require_dependency "duration"
 
 class LessonPlan < ApplicationRecord
   has_many :lesson_plan_lessons

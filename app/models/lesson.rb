@@ -1,4 +1,4 @@
-require "duration"
+require_dependency "duration"
 
 class Lesson < ApplicationRecord
   LEVELS = { 0 => "base", 1 => "medium", 2 => "advanced" }
