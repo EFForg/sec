@@ -1,4 +1,6 @@
 class LessonPlansController < ApplicationController
+  include Zipping
+
   def show
     if params[:id]
       @lesson_plan = LessonPlan.find_by(key: params[:id])
@@ -6,6 +8,13 @@ class LessonPlansController < ApplicationController
       @lesson_plan = helpers.current_lesson_plan
     end
     @lesson_plan_lessons = @lesson_plan.lesson_plan_lessons.published
+
+    respond_to do |format|
+      format.html
+      format.zip do
+        send_archive @lesson_plan_lessons.map{ |lpl| lpl.lesson.pdf }
+      end
+    end
   end
 
   def create
