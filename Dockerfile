@@ -15,19 +15,18 @@ RUN apt-get update && \
     imagemagick \
     ghostscript \
     xvfb \
-    wkhtmltopdf
-
-# xvfb-run "needs" xauth but not really
-RUN ln -s /bin/true /bin/xauth
-
-RUN set -x; \
-  curl -sL https://deb.nodesource.com/setup_6.x -o nodesource_setup.sh \
-  && chmod +x nodesource_setup.sh \
-  && ./nodesource_setup.sh \
-  && apt-get install -y --no-install-recommends \
-    nodejs \
-  && apt-get clean \
-  && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+    wkhtmltopdf \
+  # xvfb-run "needs" xauth but not really.
+  && ln -s /bin/true /bin/xauth \
+  # Install node.
+  && set -x; \
+    curl -sL https://deb.nodesource.com/setup_6.x -o nodesource_setup.sh \
+    && chmod +x nodesource_setup.sh \
+    && ./nodesource_setup.sh \
+    && apt-get install -y --no-install-recommends \
+      nodejs \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 ADD Gemfile* ./
 
@@ -49,8 +48,7 @@ RUN bundle exec rake assets:precompile \
   SECRET_KEY_BASE=noop \
   DATABASE_URL=postgres://noop
 
-RUN mkdir -p /var/www
-RUN chown -R www-data /opt/trainers-hub /var/www /usr/local/bundle
+RUN mkdir -p /var/www && chown -R www-data /opt/trainers-hub /var/www /usr/local/bundle
 USER www-data
 
 CMD ["rails", "s", "-b", "0.0.0.0"]
