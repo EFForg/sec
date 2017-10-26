@@ -12,8 +12,9 @@
     <%= link_to "Download", lesson_plan_path(@lesson_plan, format: "zip") %>
   </div>
 
-  <%# <% @todo total time %>
-  <span class="total-duration">Total time: X hours</span>
+  <% if @lesson_plan.duration %>
+    <span class="total-duration">Total time: <%= @lesson_plan.duration.in_words %></span>
+  <% end %>
 
   <div id="planned-lessons">
   <% @lesson_plan_lessons.each do |lesson_plan_lesson| %>
