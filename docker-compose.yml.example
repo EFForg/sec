@@ -12,9 +12,6 @@ services:
 
     restart: unless-stopped
 
-    ports:
-      - '3000:3000'
-
     volumes:
       - .:/opt/trainers-hub # for local development only
                             # public/uploads should be volumized in production
@@ -37,3 +34,17 @@ services:
 
   redis:
     image: redis
+
+  nginx:
+    build:
+      context: ./nginx
+
+    depends_on:
+      - app
+
+    ports:
+      - '3000:3000'
+
+    volumes:
+      - ./nginx/sec.conf:/etc/nginx/sites-enabled/sec.conf
+      - ./public:/var/www/html

@@ -10,62 +10,7 @@
     </div>
   <% end %>
 
-  <% if @lesson.students? %>
-    <div class="ratio">
-      Ratio:
-      <span class="instructors">
-        <%= @lesson.instructors || 1 %>
-      </span>
-      :
-      <span class="students">
-        <%= @lesson.students %>
-      </span>
-    </div>
-  <% end %>
-
-  <% if @lesson.duration? %>
-    <div class="duration">
-      <%= @lesson.duration.try(:in_words) %>
-    </div>
-  <% end %>
-
-  <% if @lesson.prereqs.any? %>
-    <div class="resources prereqs">
-      <h3>Prerequisites</h3>
-      <span>You have already done:</span>
-
-      <ul>
-        <% @lesson.prereqs.each do |prereq| %>
-          <li><%= link_to prereq.name, lesson_path(prereq.topic, prereq) %></li>
-        <% end %>
-      </ul>
-
-    </div>
-  <% end %>
-
-  <div class="lesson-body">
+  <div class="content">
     <%= @lesson.body.html_safe %>
   </div>
-
-  <% if @lesson.materials.any? %>
-    <div class="resources materials">
-      <h3>Graphics/Materials</h3>
-      <ul>
-        <% @lesson.materials.each do |material| %>
-          <li><%= link_to material.name, "/" %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <% if @lesson.advice.any? %>
-    <div class="resources articles">
-      <h3>Relevant Articles</h3>
-      <ul>
-        <% @lesson.advice.each do |advice| %>
-          <li><%= link_to advice.name %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
 </div>
