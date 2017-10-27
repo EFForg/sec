@@ -1,11 +1,51 @@
-.topic.card {
-  .description {
-    font-size: 1.3rem;
-    line-height: 1.7rem;
-    margin-bottom: 2rem;
+.section-topics {
+  .lesson-back {
+    a {
+      color: $darkest-teal;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      text-decoration: none;
+      text-transform: uppercase;
+    }
   }
-  .levels {
-    margin-bottom: 2rem;
+
+  .last-modified {
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+  }
+
+  .lesson-planner-link {
+    background: $darkest-teal;
+    color: white;
+    display: inline-block;
+    height: 3rem;
+    margin-right: 2.95rem;
+    padding: 0.5rem 1rem;
+    position: relative;
+    text-decoration: none;
+    text-transform: uppercase;
+  }
+  .lesson-arrow {
+    background: white;
+    width: 0;
+    height: 0;
+    border-left: 1.5rem solid $darkest-teal;
+    border-right: 1.5rem solid transparent;
+    border-bottom: 1.5rem solid transparent;
+    border-top: 1.5rem solid transparent;
+    position: absolute;
+    right: 0;
+  }
+
+  .topic.card {
+    .description {
+      font-size: 1.3rem;
+      line-height: 1.7rem;
+      margin-bottom: 2rem;
+    }
+    .levels {
+      margin-bottom: 2rem;
+    }
   }
 }
 .difficulty-legend {
