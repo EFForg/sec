@@ -28,8 +28,6 @@ services:
       retries: 3
 
     env_file: .env
-    environment:
-      POSTGRES_DB: trainers-hub_development
 
     volumes:
       - ./pgdata:/var/lib/postgresql/data
