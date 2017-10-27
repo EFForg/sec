@@ -12,15 +12,15 @@
 </div>
 
 <% cache(cache_key_for_topics(@topics)) do %>
-<% @topics.in_groups_of(2, false) do |row| %>
-<div class="row">
-  <% for topic in row %>
-  <div class="large-6 columns end">
-    <%= render "topic", topic: topic %>
-  </div>
+  <% @topics.each_slice(2) do |row| %>
+    <div class="row">
+      <% @topics.each do |topic| %>
+      <div class="large-6 columns end">
+        <%= render topic %>
+      </div>
+      <% end %>
+    </div>
   <% end %>
-</div>
-<% end %>
 <% end %>
 
 <div style="clear: both"></div>
