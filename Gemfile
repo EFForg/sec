@@ -18,8 +18,11 @@ gem "puma", "~> 3.7"
 # Error reporting
 gem "sentry-raven"
 
-# Use SCSS for stylesheets
+# Foundation and dependencies for styles + js
 gem "foundation-rails", ">= 6" # Use Foundation for grids and other styles
+gem "modernizr-rails"
+
+# Use SCSS for stylesheets
 gem "sass-rails", "~> 5.0"
 gem "uglifier", ">= 1.3.0" # Use Uglifier as compressor for JavaScript assets
 
