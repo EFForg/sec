@@ -33,12 +33,12 @@
     <div class="description-text">
       <%= homepage.lessons_intro.html_safe %>
     </div>
-    <%= difficulty_legend %>
+
     <% homepage.featured_topics.each_slice(2) do |row| %>
     <div class="row">
       <% row.each do |topic| %>
         <div class="large-6 columns end">
-          <%= render "topic", topic: topic %>
+          <%= render topic %>
         </div>
       <% end %>
     </div>

@@ -58,3 +58,7 @@
     </ul>
   </div>
 <% end %>
+
+<%= link_to "Printable Version (PDF)", topic_lesson_path(@lesson.topic, @lesson, format: "pdf"), class: "pdf-link" %>
+
+<%= link_to "View full session", topic_lesson_path(@lesson.topic, @lesson, format: "pdf"), class: "expand-lesson" %>

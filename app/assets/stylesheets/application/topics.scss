@@ -28,3 +28,27 @@
     }
   }
 }
+
+.section-topics.page-index {
+  h1 {
+    float: left;
+  }
+
+  .lesson-planner-link {
+    float: right;
+  }
+
+  .lesson-planner-link + * {
+    clear: left;
+  }
+}
+
+.section-topics.page-show, .section-lessons.page-show {
+  .lesson-planner-link {
+    float: right;
+  }
+
+  .pdf-link {
+    float: right;
+  }
+}
