@@ -14,7 +14,7 @@
 <% cache(cache_key_for_topics(@topics)) do %>
   <% @topics.each_slice(2) do |row| %>
     <div class="row">
-      <% @topics.each do |topic| %>
+      <% row.each do |topic| %>
       <div class="large-6 columns end">
         <%= render topic %>
       </div>
