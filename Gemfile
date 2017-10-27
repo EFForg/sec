@@ -19,7 +19,7 @@ gem "puma", "~> 3.7"
 gem "sentry-raven"
 
 # Use SCSS for stylesheets
-gem "foundation-rails" # Use Foundation for grids and other styles
+gem "foundation-rails", ">= 6" # Use Foundation for grids and other styles
 gem "sass-rails", "~> 5.0"
 gem "uglifier", ">= 1.3.0" # Use Uglifier as compressor for JavaScript assets
 
