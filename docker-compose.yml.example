@@ -1,7 +1,10 @@
 version: '2.1'
 services:
   app:
-    build: .
+    build:
+      context: .
+      args:
+        BUILD_ENV: development # defaults to `production`
 
     depends_on:
       db:

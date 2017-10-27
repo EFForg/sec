@@ -34,10 +34,13 @@ RUN bundle install
 
 COPY . .
 
-RUN bundle exec rake assets:precompile \
+ARG BUILD_ENV=production
+
+RUN if [ "$BUILD_ENV" = "production" ]; \
+  then bundle exec rake assets:precompile \
   RAILS_ENV=production \
   SECRET_KEY_BASE=noop \
-  DATABASE_URL=postgres://noop
+  DATABASE_URL=postgres://noop; fi
 
 RUN mkdir -p /var/www && chown -R www-data /opt/trainers-hub /var/www /usr/local/bundle
 USER www-data
