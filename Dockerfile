@@ -32,16 +32,7 @@ ADD Gemfile* ./
 
 RUN bundle install
 
-ADD bin/ ./bin
-ADD config/ ./config
-ADD config.ru ./
-ADD Rakefile ./
-ADD db/ ./db
-ADD lib/ ./lib
-ADD public/ ./public
-ADD app/ ./app
-ADD vendor/ ./vendor
-ADD entrypoint.sh ./entrypoint.sh
+COPY . .
 
 RUN bundle exec rake assets:precompile \
   RAILS_ENV=production \
