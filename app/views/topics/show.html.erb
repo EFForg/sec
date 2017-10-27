@@ -2,7 +2,9 @@
 
 <%= render partial: "shared/admin_links", locals: { resource: @topic } %>
 
+<div class="tags-list">
 <%= tags(@topic, :topics_path) %>
+</div>
 
 <div class="tabs">
   <% @topic.lessons.each do |lesson| %>
@@ -16,4 +18,3 @@
 <div id="tab-content">
   <%= render @lesson %>
 </div>
-
