@@ -1,9 +1,15 @@
-<h1>Training Materials</h1>
-
 <div class="row">
-  <% @materials.each do |material| %>
-    <%= render material %>
-  <% end %>
-</div>
+  <h1>Training Materials</h1>
 
-<%= paginate @materials %>
+  <% @materials.each_slice(3) do |row| %>
+  <div class="row">
+    <% row.each do |material| %>
+    <div class="medium-6 large-4 columns end">
+      <%= render material %>
+    </div>
+    <% end %>
+  </div>
+  <% end %>
+
+  <%= paginate @materials %>
+</div>
