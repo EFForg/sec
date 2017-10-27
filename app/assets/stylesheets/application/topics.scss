@@ -38,7 +38,7 @@
     float: right;
   }
 
-  .lesson-planner-link + * {
+  h1 + p, .lesson-planner-link + * {
     clear: left;
   }
 }
