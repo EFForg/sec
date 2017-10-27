@@ -2,7 +2,8 @@
   "name": "trainers-hub",
   "private": true,
   "dependencies": {
-    "jquery": "^3.2.1"
+    "jquery": "^3.2.1",
+    "modernizr": "^3.5.0"
   },
   "devDependencies": {
     "sass-lint": "^1.12.0"

@@ -18,12 +18,9 @@ gem "puma", "~> 3.7"
 # Error reporting
 gem "sentry-raven"
 
-# Foundation and dependencies for styles + js
-gem "foundation-rails", ">= 6" # Use Foundation for grids and other styles
-gem "modernizr-rails"
-
 # Use SCSS for stylesheets
 gem "sass-rails", "~> 5.0"
+gem "foundation-rails", ">= 6" # Use Foundation for grids and other styles
 gem "uglifier", ">= 1.3.0" # Use Uglifier as compressor for JavaScript assets
 
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
