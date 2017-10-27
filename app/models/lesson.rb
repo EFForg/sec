@@ -1,7 +1,7 @@
 require_dependency "duration"
 
 class Lesson < ApplicationRecord
-  LEVELS = { 0 => "base", 1 => "medium", 2 => "advanced" }
+  LEVELS = { 0 => "beginning", 1 => "intermediate", 2 => "advanced" }
 
   belongs_to :topic, touch: true
 
