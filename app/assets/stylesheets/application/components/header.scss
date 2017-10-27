@@ -100,7 +100,7 @@ header {
   .site-name {
     background: none;
     @media #{$medium-up} {
-      background: url("http://localhost:3000/assets/sec-logo.png");
+      background: image-url("sec-logo.png");
       background-repeat: no-repeat;
       background-size: 8rem;
       height: 8rem;
