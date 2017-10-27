@@ -12,7 +12,13 @@ class LessonPlansController < ApplicationController
     respond_to do |format|
       format.html
       format.zip do
-        send_archive @lesson_plan_lessons.map{ |lpl| lpl.lesson.pdf }
+        files = @lesson_plan_lessons.map(&:lesson).map(&:pdf)
+
+        unless files.all?(&:present?)
+          raise Exception.new("lesson pdf not present")
+        end
+
+        send_archive(files)
       end
     end
   end
