@@ -8,10 +8,8 @@
       <div class="update">Update test blah blah blah</div>
     </div>
   </div>
-  <div style="clear: both"></div>
 
   <div class="row">
-
     <h2><%= link_to "1st Time Trainer?", articles_path %></h2>
     <p class="description-text"><%= homepage.articles_intro.html_safe %></p>
     <% @homepage.featured_articles.each_slice(4) do |row| %>
@@ -37,9 +35,9 @@
     <% homepage.featured_topics.each_slice(2) do |row| %>
     <div class="row">
       <% row.each do |topic| %>
-        <div class="large-6 columns end">
-          <%= render "topic", topic: topic %>
-        </div>
+      <div class="large-6 columns end">
+        <%= render "topic", topic: topic %>
+      </div>
       <% end %>
     </div>
     <% end %>
@@ -50,10 +48,12 @@
 
   <div class="row">
     <h2><%= link_to "Educational Materials", materials_path %></h2>
-    <p class="description-text"><%= homepage.materials_intro.html_safe %></p>
+    <p class="description-text">
+      <%= homepage.materials_intro.html_safe %>
+    </p>
     <div class="row">
       <% @homepage.featured_materials.each do |material| %>
-        <%= render material %>
+      <%= render material %>
       <% end %>
     </div>
     <div class="see-all right">
@@ -64,17 +64,19 @@
 
   <div class="row">
     <h2><%= link_to "Blog", blog_path %></h2>
-    <div class="description-text">
+    <p class="description-text">
       <%= homepage.blog_intro.html_safe %>
-    </div>
-    <% homepage.featured_blog_posts.each do |blog_post| %>
+    </p>
     <div class="row">
-      <%= render blog_post %>
+      <% homepage.featured_blog_posts.each do |blog_post| %>
+      <div class="large-6 columns">
+        <%= render blog_post %>
+      </div>
+      <% end %>
     </div>
-    <% end %>
     <div class="see-all right">
       <%= link_to "Read All Blog Posts", blog_path %>
     </div>
   </div>
-<% end %>
+  <% end %>
 </div>
