@@ -3,7 +3,9 @@ FROM ruby:2.3-slim
 RUN mkdir /opt/trainers-hub
 WORKDIR /opt/trainers-hub
 
-RUN usermod -u 1000 www-data
+ARG BUILD_ENV=production
+
+RUN if [ "$BUILD_ENV" = "development" ]; then usermod -u 1000 www-data; fi
 
 RUN apt-get update && \
   apt-get install -y --no-install-recommends \
@@ -33,8 +35,6 @@ ADD Gemfile* ./
 RUN bundle install
 
 COPY . .
-
-ARG BUILD_ENV=production
 
 RUN if [ "$BUILD_ENV" = "production" ]; \
   then bundle exec rake assets:precompile \
