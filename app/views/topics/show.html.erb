@@ -1,6 +1,14 @@
 <h1><%= @topic.name %></h1>
+<div class="last-modified">
+  Last modified <%= (@topic.updated_at - 20.days).strftime("%B %e, %Y") %>
+</div>
 
 <%= render partial: "shared/admin_links", locals: { resource: @topic } %>
+
+<% if Flipper.enabled?(:lesson_plans) %>
+  <%= link_to "View Lesson Planner", current_lesson_plan_path,
+      class: "lesson-planner-link" %>
+<% end %>
 
 <div class="tags-list">
 <%= tags(@topic, :topics_path) %>
