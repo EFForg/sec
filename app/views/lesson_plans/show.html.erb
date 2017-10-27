@@ -20,7 +20,7 @@
   <% @lesson_plan_lessons.each do |lesson_plan_lesson| %>
     <% lesson = lesson_plan_lesson.lesson %>
     <div class="lesson" data-lpl="<%= lesson_plan_lesson.id %>">
-      <h3><%= lesson.name %></h3>
+      <h3><%= link_to lesson.name, [lesson.topic, lesson] %></h3>
 
       <%= form_for current_lesson_plan, remote: true do |f| %>
         <%= f.fields_for :lesson_plan_lessons, lesson_plan_lesson do |sf| %>
