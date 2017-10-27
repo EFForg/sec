@@ -36,13 +36,15 @@ services:
     image: redis
 
   nginx:
-    image: irasnyd/nginx_s3_streaming_zip
+    build:
+      context: ./nginx
+
     depends_on:
       - app
+
     ports:
       - '3000:3000'
 
     volumes:
-      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
-      - ./nginx/init:/init
+      - ./nginx/sec.conf:/etc/nginx/sites-enabled/sec.conf
       - ./public:/var/www/html
