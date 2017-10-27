@@ -15,7 +15,7 @@ footer {
     font-size: 1.8rem;
     font-weight: 400;
     text-align: center;
-    @media #{$medium-up} {
+    @include breakpoint(medium) {
       font-size: 2.5rem;
     }
   }
@@ -23,7 +23,7 @@ footer {
     display: block;
     margin: 0 auto 1rem;
     max-width: 200px;
-    @media #{$medium-up} {
+    @include breakpoint(medium) {
       margin: 0 auto;
       max-width: 100%;
     }

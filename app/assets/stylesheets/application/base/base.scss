@@ -54,7 +54,7 @@ h1 {
   font-size: 1.6rem;
   line-height: 2rem;
   margin-bottom: 1rem;
-  @media #{$medium-up} {
+  @include breakpoint(medium) {
     font-size: 2rem;
     line-height: 2.3rem;
     margin-bottom: 1.6rem;
@@ -66,7 +66,7 @@ h2 {
   line-height: 1.9rem;
   margin-bottom: 1.3rem;
   margin-top: 3rem;
-  @media #{$medium-up} {
+  @include breakpoint(medium) {
     font-size: 1.5rem;
     line-height: 1.7rem;
     margin-bottom: 1.6rem;
