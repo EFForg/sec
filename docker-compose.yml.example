@@ -1,26 +1,36 @@
-version: '2'
+version: '2.1'
 services:
   app:
-    build: .
+    build:
+      context: .
+      args:
+        BUILD_ENV: development # defaults to `production`
+
     depends_on:
-      - db
+      db:
+        condition: service_healthy
+
     restart: unless-stopped
 
     ports:
       - '3000:3000'
 
     volumes:
-      - .:/opt/trainers-hub
-
+      - .:/opt/trainers-hub # for local development only
+                            # public/uploads should be volumized in production
     env_file: .env
 
 
   db:
     image: postgres
 
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready"]
+      interval: 30s
+      timeout: 30s
+      retries: 3
+
     env_file: .env
-    environment:
-      POSTGRES_DB: trainers-hub_development
 
     volumes:
       - ./pgdata:/var/lib/postgresql/data
