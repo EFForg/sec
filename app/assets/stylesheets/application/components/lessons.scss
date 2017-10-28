@@ -1,3 +1,13 @@
+@mixin add-lesson {
+  background: transparent;
+  border: 2px solid $darkest-teal;
+  color: $darkest-teal;
+  display: inline-block;
+  float: right;
+  font-weight: 700;
+  padding: 0.2rem 1rem;
+  text-transform: uppercase;
+}
 .difficulty-legend {
   margin: 0;
   li {
@@ -146,15 +156,13 @@
     padding: 2rem;
     .actions {
       input[type="submit"] {
-        background: transparent;
-        border: 2px solid $darkest-teal;
-        color: $darkest-teal;
-        display: inline-block;
-        float: right;
-        font-weight: 700;
-        padding: 0.2rem 1rem;
-        text-transform: uppercase;
+        @include add-lesson;
       }
     }
+  }
+  .notice a {
+    @include add-lesson;
+    font-style: normal;
+    text-decoration: none;
   }
 }
