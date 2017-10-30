@@ -142,39 +142,60 @@ header {
 
 
 #main-menu {
-  clear: both;
-
-  margin-bottom: 4rem;
   text-align: center;
-  background: $darkest-teal;
   color: white;
   text-transform: uppercase;
   font-weight: 600;
-  ul li {
-    border-left: none;
+
+  a {
+    color: white;
+    font-size: 1.2rem;
+    text-decoration: none;
+    &:hover,
+    &:active {
+      text-decoration: underline;
+    }
+  }
+
+  li {
     display: inline-block;
     margin: 0;
-    text-decoration: none;
+  }
+
+  @include breakpoint(small only) {
+    position: fixed;
+    bottom: 0;
     width: 100%;
-    @include breakpoint(medium) {
+
+    ul {
+      margin: 0;
+      width: 100%;
+      display: flex;
+      justify-content: space-evenly;
+    }
+
+    li {
+      background: $darkest-teal;
+      padding: 13px 17px;
+      flex-grow: 1;
+      margin: 0 2px;
+    }
+  }
+
+  @include breakpoint(medium) {
+    clear: both;
+    margin-bottom: 4rem;
+    background: $darkest-teal;
+
+    li {
       border-left: 4px solid $light-teal;
       padding: 0.2rem 3%;
       width: auto;
-    }
-    &:last-child {
-      border-right: none;
-      @include breakpoint(medium) {
+
+      &:last-child {
         border-right: 4px solid $light-teal;
       }
     }
-    a {
-      color: white;
-      font-size: 1.2rem;
-      text-decoration: none;
-      &:hover,
-      &:active {
-        text-decoration: underline;
-      }
-    }
+
   }
 }
