@@ -9,7 +9,7 @@
     </div>
   </div>
 
-  <div class="row">
+  <div class="row" >
     <h2><%= link_to "1st Time Trainer?", articles_path %></h2>
     <p class="description-text"><%= homepage.articles_intro.html_safe %></p>
     <% @homepage.featured_articles.each_slice(4) do |row| %>
