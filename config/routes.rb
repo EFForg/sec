@@ -24,6 +24,8 @@ Rails.application.routes.draw do
   get "/422", to: "errors#unacceptable"
   get "/500", to: "errors#internal_error"
 
-  devise_for :admin_users, ActiveAdmin::Devise.config
+  devise_for :admin_users, ActiveAdmin::Devise.config.deep_merge(
+               controllers: { :invitations => "user_invitations" }
+             )
   ActiveAdmin.routes(self)
 end
