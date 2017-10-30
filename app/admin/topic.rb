@@ -1,6 +1,7 @@
 ActiveAdmin.register Topic do
   include ViewingInApp
-  menu priority: 2
+
+  menu parent: "Content", priority: 1
 
   permit_params :name, :description, :slug, :published, tag_ids: [],
     lessons_attributes: [
