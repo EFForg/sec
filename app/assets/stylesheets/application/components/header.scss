@@ -13,30 +13,60 @@
 .top-bar {
   background-color: $light-teal;
   width: 150px;
-
-  @include breakpoint(medium) {
-    width: 100%;
-  }
+  align-items: stretch;
+  line-height: 1.3rem;
 
   .back-arrow {
     float: left;
     font-size: 5.5rem;
     font-weight: 100;
-    line-height: 1.3rem;
+  }
+
+  .back-ssd {
+    padding-top: 12px;
   }
 
   .back-text {
-    line-height: 1.3rem;
     display: block;
     padding-left: 40px
   }
 
-  .tagline-bevel {  // to create left-pointing arrow out of tagline on tobpar
-    background:
-    linear-gradient(135deg,  $dark-teal 1.1rem, transparent 1rem),
-    linear-gradient(45deg,  $dark-teal 1.1rem, transparent 1rem);
-    width: 6%;
-    height: 100%;
+  @include breakpoint(medium) {
+    width: 100%;
+    padding: 0;
+    text-transform: uppercase;
+
+    .back-ssd {
+      background-color: $dark-teal;
+      padding: 0.5rem;
+      max-width: 300px;
+    }
+
+    .tagline {
+      color: $light-teal;
+      background-color: black;
+      flex-basis: 0;
+      flex-grow: 1;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .tagline-bevel {  // to create left-pointing arrow out of tagline on tobpar
+      background:
+      linear-gradient(135deg,  $dark-teal 1.2rem, transparent 1rem),
+      linear-gradient(45deg,  $dark-teal 1.2rem, transparent 1rem);
+      width: 44px;
+      height: 100%;
+    }
+
+    .eff-tagline {
+      text-align: right;
+      padding: 0.5rem;
+      @include breakpoint(large) {
+        padding-right: 2rem;
+      }
+    }
   }
 }
 
