@@ -102,7 +102,7 @@
 
   .tabs {
     margin-top: 3rem;
-    overflow: hidden;
+    position: relative;
   }
 
   .tab {
@@ -146,6 +146,7 @@
     border: 1px solid $darkest-teal;
     border-bottom: 1px solid white;
     top: 1px;
+    z-index: 1000;
     a {
       color: $darkest-teal;
     }
@@ -153,7 +154,9 @@
 
   #tab-content {
     border: 1px solid $dark-teal;
+    margin-top: -1px;
     padding: 2rem;
+    z-index: 0;
     .actions {
       input[type="submit"] {
         @include add-lesson;
@@ -166,3 +169,5 @@
     text-decoration: none;
   }
 }
+
+// lesson planner
