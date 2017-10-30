@@ -61,6 +61,7 @@ gem "activeadmin"
 gem "acts-as-taggable-on", "~> 5.0"
 gem "ckeditor"
 gem "devise"
+gem "devise_invitable"
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

@@ -1,0 +1,20 @@
+<div id="login">
+  <h2><%= t 'devise.invitations.edit.header' %></h2>
+
+  <%= semantic_form_for resource, :as => resource_name, :url => invitation_path(resource_name), :html => { :method => :put } do |f| %>
+    <%= f.hidden_field :invitation_token %>
+
+    <% if f.object.class.require_password_on_accepting %>
+      <%= f.inputs do %>
+        <%= f.input :password %>
+        <%= f.input :password_confirmation %></p>
+      <% end %>
+    <% end %>
+
+    <%= devise_error_messages! %>
+
+    <%= f.actions do %>
+      <p><%= f.submit t("devise.invitations.edit.submit_button") %></p>
+    <% end %>
+  <% end %>
+</div>
