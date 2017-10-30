@@ -1,6 +1,7 @@
 ActiveAdmin.register Article do
   include ViewingInApp
-  menu priority: 4
+
+  menu parent: "Content", priority: 3
 
   permit_params :name, :authorship, :body, :slug, :published
 

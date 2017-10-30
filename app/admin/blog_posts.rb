@@ -1,6 +1,7 @@
 ActiveAdmin.register BlogPost do
   include ViewingInApp
-  menu label: "Blog", priority: 5
+
+  menu parent: "Content", label: "Blog", priority: 4
 
   config.sort_order = "published_at_desc"
 
