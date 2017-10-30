@@ -17,11 +17,12 @@
   <div class="site-name show-for-medium">Security Education Companion</div>
 </header>
 
-  <div id="main-menu">
-    <ul>
-      <li><%= link_to "Lessons", topics_path %></li>
-      <li><%= link_to "Blog", blog_path %></li>
-      <li><%= link_to "Training 101", articles_path %></li>
-      <li><%= link_to "Materials", materials_path %></li>
-    </ul>
-  </div>
+<nav id="main-menu" aria-labelledby="main-menu-label">
+  <h2 id="main-menu-label" class="show-for-sr">Main Menu</h2>
+  <ul>
+    <li><%= link_with_aria_current "Lessons", topics_path %></li>
+    <li><%= link_with_aria_current "Blog", blog_path %></li>
+    <li><%= link_with_aria_current "Training 101", articles_path %></li>
+    <li><%= link_with_aria_current "Materials", materials_path %></li>
+  </ul>
+</nav>
