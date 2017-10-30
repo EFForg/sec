@@ -1,4 +1,5 @@
 #main-content {
+  position: relative;
   margin: 1rem;
   @include breakpoint(medium) {
     margin: 2rem 5rem;
@@ -25,6 +26,12 @@
     }
   }
 
+}
+
+.admin-links {
+  position: absolute;
+  top: 0;
+  right: 0;
 }
 
 #anon-stats {

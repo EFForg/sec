@@ -1,27 +1,14 @@
+<% if lesson.duration? %>
+  <div class="duration">
+    Duration: <%= lesson.duration.in_words %>
+  </div>
+<% end %>
+
 <% if lesson.objective? %>
   <div class="objective">
-    <div class="label">Learners will:</div>
+    <h3>Learning Objectives</h3>
     <div class="content">
       <%= lesson.objective %>
     </div>
-  </div>
-<% end %>
-
-<% if lesson.students? %>
-  <div class="ratio">
-    Ratio:
-    <span class="instructors">
-      <%= lesson.instructors || 1 %>
-    </span>
-    :
-    <span class="students">
-      <%= lesson.students %>
-    </span>
-  </div>
-<% end %>
-
-<% if lesson.duration? %>
-  <div class="duration">
-    <%= lesson.duration.in_words %>
   </div>
 <% end %>

@@ -1,5 +1,5 @@
 ActiveAdmin.register ActsAsTaggableOn::Tag, as: "tag" do
-  menu priority: 6
+  menu parent: "Content", priority: 5
 
   permit_params :name
 

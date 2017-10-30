@@ -20,7 +20,7 @@
 <%= render partial: "lessons/summary", locals: { lesson: @lesson } %>
 
 <% if @lesson.prereqs.any? %>
-  <div class="resources prereqs">
+  <div class="prereqs">
     <h3>Prerequisites</h3>
     <span>You have already done:</span>
 
@@ -33,12 +33,21 @@
   </div>
 <% end %>
 
-<div class="lesson-body">
-  <%= @lesson.body.html_safe %>
-</div>
+<% if @lesson.students? %>
+  <div class="ratio">
+    <h3>Ratio</h3>
+    <span class="instructors">
+      <%= pluralize(@lesson.instructors || 1, "instructor") %>
+    </span>
+    :
+    <span class="students">
+      <%= pluralize(@lesson.students || 1, "student") %>
+    </span>
+  </div>
+<% end %>
 
 <% if @lesson.materials.any? %>
-  <div class="resources materials">
+  <div class="materials">
     <h3>Graphics/Materials</h3>
     <ul>
       <% @lesson.materials.each do |material| %>
@@ -49,7 +58,7 @@
 <% end %>
 
 <% if @lesson.advice.any? %>
-  <div class="resources articles">
+  <div class="articles">
     <h3>Relevant Articles</h3>
     <ul>
       <% @lesson.advice.each do |advice| %>
@@ -58,3 +67,11 @@
     </ul>
   </div>
 <% end %>
+
+<div class="content">
+  <%= @lesson.body.html_safe %>
+</div>
+
+<%= link_to "Printable Version (PDF)", topic_lesson_path(@lesson.topic, @lesson, format: "pdf"), class: "pdf-link" %>
+
+<%= link_to "View full session", topic_lesson_path(@lesson.topic, @lesson, format: "pdf"), class: "expand-lesson" %>

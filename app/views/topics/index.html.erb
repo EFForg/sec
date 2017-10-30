@@ -1,22 +1,26 @@
 <div class="row">
   <h1>Lesson Topics</h1>
 
-  <%= render "tags/nav", tags: @tags %>
+  <% if Flipper.enabled?(:lesson_plans) %>
+    <%= link_to "View Lesson Planner", current_lesson_plan_path,
+        class: "lesson-planner-link" %>
+  <% end %>
 
   <p class="description-text">Some intro text here.</p>
 
-  <%= difficulty_legend %>
+  <%= render "tags/nav", tags: @tags %>
 </div>
 
-<% #cache(cache_key_for_topics(@topics)) do %>
-<% @topics.in_groups_of(2, false) do |row| %>
-<div class="row">
-  <% for topic in row %>
-  <div class="large-6 columns end">
-    <%= render "topic", topic: topic %>
-  </div>
+<% cache(cache_key_for_topics(@topics)) do %>
+  <% @topics.each_slice(2) do |row| %>
+    <div class="row">
+      <% row.each do |topic| %>
+      <div class="large-6 columns end">
+        <%= render topic %>
+      </div>
+      <% end %>
+    </div>
   <% end %>
-</div>
 <% end %>
 
 <div style="clear: both"></div>

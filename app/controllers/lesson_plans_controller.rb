@@ -1,4 +1,6 @@
 class LessonPlansController < ApplicationController
+  include Zipping
+
   def show
     if params[:id]
       @lesson_plan = LessonPlan.find_by(key: params[:id])
@@ -6,6 +8,19 @@ class LessonPlansController < ApplicationController
       @lesson_plan = helpers.current_lesson_plan
     end
     @lesson_plan_lessons = @lesson_plan.lesson_plan_lessons.published
+
+    respond_to do |format|
+      format.html
+      format.zip do
+        files = @lesson_plan_lessons.map(&:lesson).map(&:pdf)
+
+        unless files.all?(&:present?)
+          raise Exception.new("lesson pdf not present")
+        end
+
+        send_archive(files)
+      end
+    end
   end
 
   def create
