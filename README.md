@@ -1,6 +1,6 @@
 # Security Education Companion [![build Status](https://travis-ci.org/EFForg/sec.svg?branch=master)](https://travis-ci.org/EFForg/trainers-hub)
 
-## Development with docker
+## Development with Docker
 
     $ cp .env.example .env
     $ cp docker-compose.yml.example docker-compose.yml
@@ -11,3 +11,8 @@ After running `rake db:setup` you can navigate to `http://localhost:3000/admin` 
 
 - **User**: admin@example.com
 - **Password**: password
+
+## Development without Docker
+
+* Install Ruby, Rails, and other gems the usual way.
+* [install Yarn](https://yarnpkg.com/lang/en/docs/install/) and run `yarn install` to install Javascript dependencies.
