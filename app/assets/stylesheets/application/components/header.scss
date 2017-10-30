@@ -77,10 +77,6 @@ header {
   font-weight: 400;
   text-transform: uppercase;
 
-  // @include breakpoint(medium) {
-  //   padding: 3rem 0 4rem;
-  // }
-
   .logo {
     float: left;
     display: inline-block;
@@ -97,24 +93,29 @@ header {
     max-width: 340px;
   }
 
-  // .site-name {
-  //   background: none;
-  //   @include breakpoint(medium) {
-  //     background: image-url("sec-logo.png");
-  //     background-repeat: no-repeat;
-  //     background-size: 8rem;
-  //     height: 8rem;
-  //     width: 100%;
-  //     min-width: 768px;
-  //     background-position: 3rem 0rem;
-  //     margin: 0 auto;
-  //     padding: 2.7rem 0 0;
-  //   }
-  //   @include breakpoint(large) {
-  //     background-position: 5rem 0rem;
-  //     max-width: 1200px;
-  //   }
-  // }
+  @include breakpoint(medium) {
+    min-height: 170px;
+    text-align: center;
+    font-size: 2.3rem;
+    line-height: 2.5rem;
+    font-weight: 300;
+    padding: 33px 0 33px 0;
+
+    .logo {
+      display: inline-block;
+      float: none;
+    }
+
+    .logo img {
+      max-width: 100px;
+    }
+
+    .site-name {
+      max-width: none;
+      padding: 20px 0 0 1rem;
+      display: inline-block;
+    }
+  }
 }
 
 .section-home {
