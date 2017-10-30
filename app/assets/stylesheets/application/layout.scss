@@ -1,7 +1,7 @@
 #main-content {
   position: relative;
   margin: 1rem;
-  @media #{$medium-up} {
+  @include breakpoint(medium) {
     margin: 2rem 5rem;
   }
   .intro,
@@ -10,7 +10,7 @@
     font-size: 1.2rem;
     line-height: 1.4rem;
     margin-bottom: 2rem;
-    @media #{$medium-up} {
+    @include breakpoint(medium) {
       font-size: 1.5rem;
       line-height: 1.8rem;
     }
@@ -20,7 +20,7 @@
     padding: 1rem;
   }
   .description-text {
-    @media #{$medium-up} {
+    @include breakpoint(medium) {
       font-size: 1.4rem;
       margin-bottom: 1.2rem;
     }

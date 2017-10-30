@@ -10,7 +10,7 @@
 
 .row {
   margin-top: 0;
-  @media #{$medium-up} {
+  @include breakpoint(medium) {
     margin-top: 2rem;
   }
 }

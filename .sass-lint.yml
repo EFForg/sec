@@ -1,6 +1,8 @@
 files:
   include:
     - 'app/assets/stylesheets/**/*.scss'
+  ignore:
+    - 'app/assets/stylesheets/_settings.scss'
 
 options:
   merge-default-rules: false
