@@ -33,15 +33,15 @@
   </div>
 <% end %>
 
-<% if lesson.students? %>
+<% if @lesson.students? %>
   <div class="ratio">
     <h3>Ratio</h3>
     <span class="instructors">
-      <%= pluralize(lesson.instructors || 1, "instructor") %>
+      <%= pluralize(@lesson.instructors || 1, "instructor") %>
     </span>
     :
     <span class="students">
-      <%= pluralize(lesson.students || 1, "student") %>
+      <%= pluralize(@lesson.students || 1, "student") %>
     </span>
   </div>
 <% end %>
