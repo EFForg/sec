@@ -1,0 +1,10 @@
+<%= semantic_form_for @user, url: invitations_admin_admin_users_path, html: { class: "panel" } do |f| %>
+  <%= f.inputs do %>
+    <% f.input :email %>
+  <% end %>
+
+  <%= f.actions do %>
+    <% f.submit "Send Invitation" %>
+  <% end %>
+
+<% end %>
