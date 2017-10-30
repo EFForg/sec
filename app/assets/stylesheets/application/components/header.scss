@@ -1,174 +1,201 @@
-.top-bar {
-  background: black;
-  color: $dark-teal;
-  text-transform: uppercase;
-  line-height: 3rem;
-  height: 5rem;
+.header-wrapper {
+  display: flex;
+  justify-content: space-between;
+  background-color: $light-teal;
+  color: black;
+
   @include breakpoint(medium) {
-    height: 45px;
-    line-height: 45px;
-  }
-  .back-ssd {
-    background: $dark-teal;
-    color: black;
-    float: none;
-    height: 2rem;
-    @include breakpoint(medium) {
-      float: left;
-      height: 100%;
-    }
-    line-height: 1rem;
-    .back-arrow {
-      float: left;
-      font-size: 5.5rem;
-      font-weight: 100;
-      line-height: 1.5rem;
-    }
-    .back-text {
-      font-size: 0.8rem;
-      line-height: 1rem;
-      float: none;
-      width: 80%;
-      a {
-        color: black;
-      }
-      @include breakpoint(medium) {
-        float: left;
-        padding-top: 0.5rem;
-        width: 80%;
-      }
-      @include breakpoint(xlarge) {
-        float: left;
-        max-width: 15rem;
-        width: 86%;
-      }
-    }
-    .ssd-long {
-      display: none;
-      @include breakpoint(large) {
-        display: inline;
-      }
-    }
+    display: block;
   }
 
-  .tagline {
-    padding-left: 0;
+  a {
+    color: inherit;
+  }
+}
+
+.top-bar {
+  background-color: $light-teal;
+  width: 150px;
+  align-items: stretch;
+  line-height: 1.3rem;
+
+  .back-arrow {
+    float: left;
+    font-size: 5.5rem;
+    font-weight: 100;
+  }
+
+  .back-ssd {
+    padding-top: 12px;
+  }
+
+  .back-text {
+    display: block;
+    padding-left: 40px;
+  }
+
+  @include breakpoint(medium) {
+    width: 100%;
+    padding: 0;
+    text-transform: uppercase;
+
+    .back-ssd {
+      background-color: $dark-teal;
+      padding: 0.5rem;
+      max-width: 300px;
+    }
+
+    .tagline {
+      color: $light-teal;
+      background-color: black;
+      flex-basis: 0;
+      flex-grow: 1;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
     .tagline-bevel {  // to create left-pointing arrow out of tagline on tobpar
       background:
-      linear-gradient(135deg,  $dark-teal 1.1rem, transparent 1rem),
-      linear-gradient(45deg,  $dark-teal 1.1rem, transparent 1rem);
-      width: 6%;
+      linear-gradient(135deg,  $dark-teal 1.2rem, transparent 1rem),
+      linear-gradient(45deg,  $dark-teal 1.2rem, transparent 1rem);
+      width: 44px;
       height: 100%;
-      float: none;
-      @include breakpoint(medium) {
-        float: left;
-        //padding-top: 0.05rem;
-      }
     }
+
     .eff-tagline {
-      @include breakpoint(medium only) {
-        font-size: 0.9rem;
-      }
-      @include breakpoint(large) {
-        padding-left: 10%;
-      }
+      text-align: right;
+      padding: 0.5rem;
+      padding-right: 4%;
     }
   }
 }
+
 header {
-  background-color: $light-teal;
-  padding: 1rem 0 2rem;
-  color: black;
-  font-size: 2.5rem;
+  padding: 0.5rem;
+  font-size: 1.3rem;
+  line-height: 1.7rem;
   font-weight: 400;
-  text-align: center;
   text-transform: uppercase;
-  @include breakpoint(medium) {
-    padding: 3rem 0 4rem;
-  }
+
   .logo {
-    display: none;
+    float: left;
+    display: inline-block;
+
     img {
       height: auto;
+      max-width: 68px;
+    }
+  }
+
+  .site-name {
+    padding-top: 6px;
+    padding-left: 85px;
+    max-width: 340px;
+  }
+
+  a {
+    text-decoration: none;
+  }
+
+  @include breakpoint(medium) {
+    min-height: 170px;
+    text-align: center;
+    font-size: 2.3rem;
+    line-height: 2.5rem;
+    font-weight: 300;
+    padding: 33px 0 33px 0;
+
+    .logo {
+      display: inline-block;
+      float: none;
+    }
+
+    .logo img {
       max-width: 100px;
     }
-    @include breakpoint(small only) {
+
+    .site-name {
+      max-width: none;
+      padding: 20px 0 0 1rem;
       display: inline-block;
     }
   }
-
-  .site-name {
-    background: none;
-    @include breakpoint(medium) {
-      background: image-url("sec-logo.png");
-      background-repeat: no-repeat;
-      background-size: 8rem;
-      height: 8rem;
-      width: 100%;
-      min-width: 768px;
-      background-position: 3rem 0rem;
-      margin: 0 auto;
-      padding: 2.7rem 0 0;
-    }
-    @include breakpoint(large) {
-      background-position: 5rem 0rem;
-      max-width: 1200px;
-    }
-  }
 }
 
-.section-home {
-  .logo {
-    display: inline-block;
-    float: none;
-    margin-bottom: 0.5rem;
-    @include breakpoint(medium) {
-      margin-bottom: 2rem;
+.section-home header {
+  @include breakpoint(medium) {
+    .logo {
+      display: block;
     }
-    img {
-      @include breakpoint(medium) {
-        max-width: 150px;
-      }
+
+    .logo img {
+      max-width: 150px;
     }
-  }
-  .site-name {
-    background: none;
+
+    .site-name {
+      padding-left: 0;
+      display: block;
+    }
   }
 }
 
 
 #main-menu {
-  margin-bottom: 4rem;
   text-align: center;
-  background: $darkest-teal;
   color: white;
   text-transform: uppercase;
   font-weight: 600;
-  ul li {
-    border-left: none;
+
+  a {
+    color: white;
+    font-size: 1.2rem;
+    text-decoration: none;
+    &:hover,
+    &:active {
+      text-decoration: underline;
+    }
+  }
+
+  li {
     display: inline-block;
     margin: 0;
-    text-decoration: none;
+  }
+
+  @include breakpoint(small only) {
+    position: fixed;
+    bottom: 0;
     width: 100%;
-    @include breakpoint(medium) {
+
+    ul {
+      margin: 0;
+      width: 100%;
+      display: flex;
+      justify-content: space-evenly;
+    }
+
+    li {
+      background: $darkest-teal;
+      padding: 13px 17px;
+      flex-grow: 1;
+      margin: 0 2px;
+    }
+  }
+
+  @include breakpoint(medium) {
+    clear: both;
+    margin-bottom: 4rem;
+    background: $darkest-teal;
+
+    li {
       border-left: 4px solid $light-teal;
       padding: 0.2rem 3%;
       width: auto;
-    }
-    &:last-child {
-      border-right: none;
-      @include breakpoint(medium) {
+
+      &:last-child {
         border-right: 4px solid $light-teal;
       }
     }
-    a {
-      color: white;
-      font-size: 1.2rem;
-      text-decoration: none;
-      &:hover,
-      &:active {
-        text-decoration: underline;
-      }
-    }
+
   }
 }
