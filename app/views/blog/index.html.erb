@@ -1,9 +1,11 @@
-<h1>Blog</h2>
+<div class="row">
+  <h1>Blog</h1>
 
-<%= render "tags/nav", tags: @tags %>
+  <%= render "tags/nav", tags: @tags %>
 
-<% cache(cache_key_for_blog_posts(@blog_posts)) do %>
+  <% cache(cache_key_for_blog_posts(@blog_posts)) do %>
   <%= render @blog_posts %>
-<% end %>
+  <% end %>
 
-<%= paginate @blog_posts %>
+  <%= paginate @blog_posts %>
+</div>

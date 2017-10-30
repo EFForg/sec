@@ -1,4 +1,5 @@
 footer {
+  display: none; //small screens
   background-color: $light-teal ;
   color: $darkest-teal;
   margin: 0;
@@ -39,5 +40,9 @@ footer {
         margin-bottom: 1rem;
       }
     }
+  }
+
+  @media #{$medium-up} {
+    display: block;
   }
 }

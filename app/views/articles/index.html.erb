@@ -1,6 +1,7 @@
-
-<% cache(cache_key_for_articles(@articles)) do %>
+<div class="row">
+  <% cache(cache_key_for_articles(@articles)) do %>
   <%= render @articles %>
-<% end %>
+  <% end %>
 
-<%= paginate @articles %>
+  <%= paginate @articles %>
+</div>
