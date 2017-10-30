@@ -118,22 +118,20 @@ header {
   }
 }
 
-.section-home {
-  .logo {
-    display: inline-block;
-    float: none;
-    margin-bottom: 0.5rem;
-    @include breakpoint(medium) {
-      margin-bottom: 2rem;
+.section-home header {
+  @include breakpoint(medium) {
+    .logo {
+      display: block;
     }
-    img {
-      @include breakpoint(medium) {
-        max-width: 150px;
-      }
+
+    .logo img {
+      max-width: 150px;
     }
-  }
-  .site-name {
-    background: none;
+
+    .site-name {
+      padding-left: 0;
+      display: block;
+    }
   }
 }
 
