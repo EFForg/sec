@@ -200,6 +200,11 @@
       transition: max-height 1000ms;
     }
   }
+
+  .meta > * {
+    display: inline-block;
+    width: 33%;
+  }
 }
 
 
