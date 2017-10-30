@@ -1,39 +1,37 @@
 <h1>Lesson Planner</h1>
 
 <% if @lesson_plan_lessons.empty? %>
-  <p>There's nothing here! <%= link_to "Browse our training topics ", topics_path %> to start adding lessons to your plan.</p>
+<p>There's nothing here! <%= link_to "Browse our training topics ", topics_path %> to start adding lessons to your plan.</p>
 <% else %>
-  <p>Here are your selected lessons. They're remixable! You can click remove to take a lesson off your lesson plan.</p>
+<p>Here are your selected lessons. They're remixable! You can click remove to take a lesson off your lesson plan.</p>
 
-  Share this lesson plan: <input type="text" value="<%= lesson_plan_url @lesson_plan %>">
-  <h2>Your lessons (<span id="lesson-count"><%= @lesson_plan.lessons.count %></span>)</h2>
+Share this lesson plan: <input type="text" value="<%= lesson_plan_url @lesson_plan %>">
+<h2>Your lessons (<span id="lesson-count"><%= @lesson_plan.lessons.count %></span>)</h2>
 
-  <div class="export-formats">
-    <%= link_to "Download", lesson_plan_path(@lesson_plan, format: "zip") %>
-  </div>
+<div class="export-formats">
+  <%= link_to "Download", lesson_plan_path(@lesson_plan, format: "zip") %>
+</div>
 
-  <% if @lesson_plan.duration %>
-    <span class="total-duration">Total time: <%= @lesson_plan.duration.in_words %></span>
-  <% end %>
-
-  <div id="planned-lessons">
-  <% @lesson_plan_lessons.each do |lesson_plan_lesson| %>
-    <% lesson = lesson_plan_lesson.lesson %>
-    <div class="lesson" data-lpl="<%= lesson_plan_lesson.id %>">
-      <h3><%= link_to lesson.name, [lesson.topic, lesson] %></h3>
-
-      <%= form_for current_lesson_plan, remote: true do |f| %>
-        <%= f.fields_for :lesson_plan_lessons, lesson_plan_lesson do |sf| %>
-          <%= sf.hidden_field :_destroy, value: true %>
-        <% end %>
-        <%= f.submit "Remove this lesson" %>
-      <% end %>
-
-      <%= render partial: "lessons/summary", locals: { lesson: lesson } %>
-      <%= tags(lesson.topic, :topics_path) %>
-    </div>
-  <% end %>
-  </div>
+<% if @lesson_plan.duration %>
+<span class="total-duration">Total time: <%= @lesson_plan.duration.in_words %></span>
 <% end %>
 
+<div id="planned-lessons">
+  <% @lesson_plan_lessons.each do |lesson_plan_lesson| %>
+  <% lesson = lesson_plan_lesson.lesson %>
+  <div class="lesson" data-lpl="<%= lesson_plan_lesson.id %>">
+    <h3><%= link_to lesson.name, [lesson.topic, lesson] %></h3>
 
+    <%= form_for current_lesson_plan, remote: true do |f| %>
+    <%= f.fields_for :lesson_plan_lessons, lesson_plan_lesson do |sf| %>
+    <%= sf.hidden_field :_destroy, value: true %>
+    <% end %>
+    <%= f.submit "Remove this lesson" %>
+    <% end %>
+
+    <%= render partial: "lessons/summary", locals: { lesson: lesson } %>
+    <div class="tags"><%= tags(lesson.topic, :topics_path) %></div>
+  </div>
+  <% end %>
+</div>
+<% end %>
