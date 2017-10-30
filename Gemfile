@@ -19,8 +19,8 @@ gem "puma", "~> 3.7"
 gem "sentry-raven"
 
 # Use SCSS for stylesheets
-gem "sass-rails", "~> 5.0"
 gem "foundation-rails", ">= 6" # Use Foundation for grids and other styles
+gem "sass-rails", "~> 5.0"
 gem "uglifier", ">= 1.3.0" # Use Uglifier as compressor for JavaScript assets
 
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
@@ -75,6 +75,7 @@ group :development, :test do
   gem "selenium-webdriver"
 
   # Linting
+  gem "rubocop", "0.50.0"
   gem "rubocop-github"
 end
 
