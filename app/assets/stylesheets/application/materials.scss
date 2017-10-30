@@ -1,0 +1,24 @@
+.section-materials {
+  .material.card {
+    padding: 0;
+    .material-name {
+      padding-top: 1rem;
+      a {
+        text-decoration: none;
+      }
+    }
+    .material-image {
+      padding: 0;
+      img {
+        width: 100%;
+        height: 100%;
+      }
+    }
+    &:before {
+      border: none;
+    }
+    &:after {
+      border: none;
+    }
+  }
+}
