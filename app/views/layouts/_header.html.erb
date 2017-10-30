@@ -2,21 +2,34 @@
   <div class="top-bar">
     <div class="back-ssd top-bar-left">
       <span class="back-arrow">&laquo;</span>
-      <span class="back-text show-for-small-only">Back to ssd.eff.org</span>
-      <span class="back-text show-for-medium">Back to Surveillance Self-Defense</span>
+      <span class="back-text show-for-small-only">
+        Back to
+        <%= link_to "ssd.eff.org", "https://ssd.eff.org" %>
+      </span>
+      <span class="back-text show-for-medium">
+        Back to Surveillance Self-Defense
+        <%= link_to "ssd.eff.org", "https://ssd.eff.org" %>
+      </span>
     </div>
 
     <div class="tagline top-bar-right show-for-medium">
       <div class="tagline-bevel">&nbsp;</div>
-      <div class="eff-tagline">A Project of the Electronic Frontier Foundation</div>
+      <div class="eff-tagline">
+        A Project of the
+        <%= link_to "Electronic Frontier Foundation", "https://eff.org" %>
+      </div>
     </div>
   </div>
 
   <header>
     <div class="logo">
-      <%= image_tag("sec-logo.png", :alt => "SEC logo") %>
+      <a href="/">
+        <%= image_tag("sec-logo.png", :alt => "SEC logo") %>
+      </a>
     </div>
-    <div class="site-name">Security Education Companion</div>
+    <div class="site-name">
+      <%= link_to "Security Education Companion", "/" %>
+    </div>
   </header>
 </div>
 

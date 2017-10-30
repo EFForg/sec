@@ -1,12 +1,15 @@
 .header-wrapper {
   display: flex;
   justify-content: space-between;
-  align-items: stretch;
   background-color: $light-teal;
   color: black;
 
   @include breakpoint(medium) {
     display: block;
+  }
+
+  a {
+    color: inherit;
   }
 }
 
@@ -63,9 +66,7 @@
     .eff-tagline {
       text-align: right;
       padding: 0.5rem;
-      @include breakpoint(large) {
-        padding-right: 2rem;
-      }
+      padding-right: 4%;
     }
   }
 }
@@ -91,6 +92,10 @@ header {
     padding-top: 6px;
     padding-left: 85px;
     max-width: 340px;
+  }
+
+  a {
+    text-decoration: none;
   }
 
   @include breakpoint(medium) {
