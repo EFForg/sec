@@ -33,45 +33,47 @@
   </div>
 <% end %>
 
-<% if @lesson.students? %>
-  <div class="ratio">
-    <h3>Ratio</h3>
-    <span class="instructors">
-      <%= pluralize(@lesson.instructors || 1, "instructor") %>
-    </span>
-    :
-    <span class="students">
-      <%= pluralize(@lesson.students || 1, "student") %>
-    </span>
-  </div>
-<% end %>
+<div class="meta">
+  <% if @lesson.students? %>
+    <div class="ratio">
+      <h3>Ratio</h3>
+      <span class="instructors">
+        <%= pluralize(@lesson.instructors || 1, "instructor") %>
+      </span>
+      :
+      <span class="students">
+        <%= pluralize(@lesson.students || 1, "student") %>
+      </span>
+    </div>
+  <% end %>
 
-<% if @lesson.materials.any? %>
-  <div class="materials">
-    <h3>Graphics/Materials</h3>
-    <ul>
-      <% @lesson.materials.each do |material| %>
-        <li><%= link_to material.name %></li>
-      <% end %>
-    </ul>
-  </div>
-<% end %>
+  <% if @lesson.materials.any? %>
+    <div class="materials">
+      <h3>Graphics/Materials</h3>
+      <ul>
+        <% @lesson.materials.each do |material| %>
+          <li><%= link_to material.name %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
 
-<% if @lesson.advice.any? %>
-  <div class="articles">
-    <h3>Relevant Articles</h3>
-    <ul>
-      <% @lesson.advice.each do |advice| %>
-        <li><%= link_to advice.name %></li>
-      <% end %>
-    </ul>
-  </div>
-<% end %>
+  <% if @lesson.advice.any? %>
+    <div class="articles">
+      <h3>Relevant Articles</h3>
+      <ul>
+        <% @lesson.advice.each do |advice| %>
+          <li><%= link_to advice.name %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+</div>
 
-<div class="content">
+<div class="content collapse">
   <%= @lesson.body.html_safe %>
 </div>
 
 <%= link_to "Printable Version (PDF)", topic_lesson_path(@lesson.topic, @lesson, format: "pdf"), class: "pdf-link" %>
 
-<%= link_to "View full session", topic_lesson_path(@lesson.topic, @lesson, format: "pdf"), class: "expand-lesson" %>
+<%= link_to "View full session", topic_lesson_path(@lesson.topic, @lesson, format: "pdf"), class: "expand-collapsed" %>

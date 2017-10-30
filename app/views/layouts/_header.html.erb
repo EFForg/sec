@@ -1,27 +1,44 @@
-<div class="top-bar">
-  <div class="back-ssd medium-3 large-3 columns">
-    <span class="back-arrow show-for-large-up">&laquo;</span>
-    <span class="back-text">Back to <span class="ssd-long">Surveillance Self-Defense </span><a href="https://ssd.eff.org">ssd.eff.org</a></span>
-  </div>
-  <div class="tagline medium-9 large-9 columns">
-    <span class="tagline-bevel show-for-medium-up">&nbsp;</span>
-    <span class="eff-tagline show-for-small-only">A Project of the EFF</span>
-    <span class="eff-tagline show-for-medium-up">A Project of the Electronic Frontier Foundation</span>
+<div class="header-wrapper">
+  <div class="top-bar">
+    <div class="back-ssd top-bar-left">
+      <span class="back-arrow">&laquo;</span>
+      <span class="back-text show-for-small-only">
+        Back to
+        <%= link_to "ssd.eff.org", "https://ssd.eff.org" %>
+      </span>
+      <span class="back-text show-for-medium">
+        Back to Surveillance Self-Defense
+        <%= link_to "ssd.eff.org", "https://ssd.eff.org" %>
+      </span>
     </div>
-</div>
-<header>
-  <div class="logo">
-    <%= image_tag("sec-logo.png", :alt => "SEC logo") %>
-  </div>
-  <div class="site-name show-for-small-only">SEC</div>
-  <div class="site-name show-for-medium-up">Security Education Companion</div>
-</header>
 
-  <div id="main-menu">
-    <ul>
-      <li><%= link_to "Lessons", topics_path %></li>
-      <li><%= link_to "Blog", blog_path %></li>
-      <li><%= link_to "Training 101", articles_path %></li>
-      <li><%= link_to "Materials", materials_path %></li>
-    </ul>
+    <div class="tagline top-bar-right show-for-medium">
+      <div class="tagline-bevel">&nbsp;</div>
+      <div class="eff-tagline">
+        A Project of the
+        <%= link_to "Electronic Frontier Foundation", "https://eff.org" %>
+      </div>
+    </div>
   </div>
+
+  <header>
+    <div class="logo">
+      <a href="/">
+        <%= image_tag("sec-logo.png", :alt => "SEC logo") %>
+      </a>
+    </div>
+    <div class="site-name">
+      <%= link_to "Security Education Companion", "/" %>
+    </div>
+  </header>
+</div>
+
+<nav id="main-menu" aria-labelledby="main-menu-label">
+  <h2 id="main-menu-label" class="show-for-sr">Main Menu</h2>
+  <ul>
+    <li><%= link_with_aria_current "Lessons", topics_path %></li>
+    <li><%= link_with_aria_current "Blog", blog_path %></li>
+    <li><%= link_with_aria_current "Training 101", articles_path %></li>
+    <li><%= link_with_aria_current "Materials", materials_path %></li>
+  </ul>
+</nav>

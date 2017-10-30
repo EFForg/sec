@@ -37,7 +37,7 @@
     border-left: 2.2rem solid transparent;
   }
 
-  @media #{$medium-up} {
+  @include breakpoint(medium) {
     margin: 0 1rem 3rem 0;
   }
 }

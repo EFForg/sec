@@ -9,6 +9,14 @@ module ApplicationHelper
     end
   end
 
+  def link_with_aria_current(text, path)
+    if current_page? path
+      link_to text, path, "aria-current" => "page"
+    else
+      link_to text, path
+    end
+  end
+
   def escape_page_title
     URI.escape(page_title , Regexp.new("[^#{URI::PATTERN::UNRESERVED}]"))
   end

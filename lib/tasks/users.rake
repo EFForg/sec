@@ -23,4 +23,9 @@ namespace :users do
       password_confirmation: password_confirmation
     )
   end
+
+  desc "Invite a new admin user"
+  task :invite_admin, [:email] => :environment do |t, args|
+    AdminUser.invite!(email: args[:email])
+  end
 end

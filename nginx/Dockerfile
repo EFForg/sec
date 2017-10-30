@@ -43,5 +43,6 @@ RUN apt-get update \
 
 COPY init /
 COPY nginx.conf /etc/nginx/
+COPY sec.conf /etc/nginx/sites-enabled
 
 CMD [ "/init", "-c", "/etc/nginx/nginx.conf" ]
