@@ -16,10 +16,12 @@ services:
       - '3000:3000'
 
     volumes:
-      - .:/opt/trainers-hub # for local development only
-                            # public/uploads should be volumized in production
-    env_file: .env
+      # for local development only
+      # public/uploads should be volumized in production
+      - .:/opt/trainers-hub
+      - /opt/trainers-hub/node_modules
 
+    env_file: .env
 
   db:
     image: postgres
