@@ -35,6 +35,9 @@
   .back-text {
     display: block;
     padding-left: 30px;
+    a {
+      text-decoration: none;
+    }
     @include breakpoint(medium) {
       padding-left: 40px;
     }
