@@ -14,7 +14,6 @@
 //= require rails-ujs
 //= require turbolinks
 //= require_tree .
-//= require modernizr/src/Modernizr
 //= require foundation
 
 $(function(){ $(document).foundation(); });
