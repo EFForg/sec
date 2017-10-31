@@ -1,13 +1,3 @@
-@mixin add-lesson {
-  background: transparent;
-  border: 2px solid $darkest-teal;
-  color: $darkest-teal;
-  display: inline-block;
-  float: right;
-  font-weight: 700;
-  padding: 0.2rem 1rem;
-  text-transform: uppercase;
-}
 .difficulty-legend {
   margin: 0;
   li {
@@ -87,6 +77,9 @@
     right: 0;
   }
 
+  .topics-cards {
+    padding-left: 0;
+  }
   .topic.card {
     .description {
       font-size: 1.3rem;
@@ -102,7 +95,7 @@
 
   .tabs {
     margin-top: 3rem;
-    overflow: hidden;
+    position: relative;
   }
 
   .tab {
@@ -146,6 +139,7 @@
     border: 1px solid $darkest-teal;
     border-bottom: 1px solid white;
     top: 1px;
+    z-index: 1000;
     a {
       color: $darkest-teal;
     }
@@ -153,7 +147,9 @@
 
   #tab-content {
     border: 1px solid $dark-teal;
+    margin-top: -1px;
     padding: 2rem;
+    z-index: 0;
     .actions {
       input[type="submit"] {
         @include add-lesson;
@@ -165,6 +161,7 @@
     font-style: normal;
     text-decoration: none;
   }
+
 
   .new_lesson_plan, .edit_lesson_plan {
     .notice {
@@ -189,24 +186,22 @@
   .pdf-link {
     float: right;
   }
+}
 
+.collapse {
+  max-height: 0;
+  overflow: hidden;
 
-  .collapse {
-    max-height: 0;
-    overflow: hidden;
-
-    &.uncollapse {
-      max-height: 1000rem;
-      transition: max-height 1000ms;
-    }
-  }
-
-  .meta > * {
-    display: inline-block;
-    width: 33%;
+  &.uncollapse {
+    max-height: 1000rem;
+    transition: max-height 1000ms;
   }
 }
 
+.meta > * {
+  display: inline-block;
+  width: 33%;
+}
 
 .topics-grid {
   .topic.card {
@@ -234,4 +229,3 @@
     clear: left;
   }
 }
-

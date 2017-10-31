@@ -1,3 +1,26 @@
 // Place all the styles related to the LessonPlans controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+// lesson planner
+.section-lesson_plans {
+  #planned-lessons {
+    h3 {
+      margin-bottom: 0;
+      text-transform: capitalize;
+      a {
+        color: black;
+      }
+    }
+    .lesson {
+      border: 2px solid $dark-teal;
+      margin: 2rem auto;
+      padding: 2rem;
+      input[type="submit"] {
+        @include add-lesson;
+      }
+    }
+    .objective {
+      margin: 2rem auto;
+    }
+  }
+}

@@ -3,11 +3,11 @@
   justify-content: space-between;
   background-color: $light-teal;
   color: black;
-
+  min-height: 4.5rem;
   @include breakpoint(medium) {
     display: block;
+    min-height: none;
   }
-
   a {
     color: inherit;
   }
@@ -15,10 +15,12 @@
 
 .top-bar {
   background-color: $light-teal;
-  width: 150px;
+  width: 34%;
   align-items: stretch;
   line-height: 1.3rem;
-
+  @include breakpoint(medium) {
+    width: 150px;
+  }
   .back-arrow {
     float: left;
     font-size: 5.5rem;
@@ -26,15 +28,23 @@
   }
 
   .back-ssd {
-    padding-top: 12px;
+    font-size: 13px;
+    padding: 0.4rem 0.5rem 0 0;
   }
 
   .back-text {
     display: block;
-    padding-left: 40px;
+    padding-left: 30px;
+    a {
+      text-decoration: none;
+    }
+    @include breakpoint(medium) {
+      padding-left: 40px;
+    }
   }
 
   @include breakpoint(medium) {
+    font-size: 1rem;
     width: 100%;
     padding: 0;
     text-transform: uppercase;
@@ -72,26 +82,57 @@
 }
 
 header {
-  padding: 0.5rem;
+  display: inherit;
   font-size: 1.3rem;
-  line-height: 1.7rem;
   font-weight: 400;
+  line-height: 1.7rem;
+  padding: 0.5rem 0;
   text-transform: uppercase;
-
+  width: 70%;
+  @include breakpoint(medium) {
+    display: block;
+    padding: 0.5rem;
+    width: auto;
+  }
   .logo {
-    float: left;
+    float: none;
     display: inline-block;
-
+    position: absolute;
+    top: 2px;
+    left: 40%;
+    @include breakpoint(medium) {
+      float: left;
+      left: inherit;
+      position: relative;
+    }
     img {
       height: auto;
-      max-width: 68px;
+      max-width: 64px;
+      @include breakpoint(medium) {
+        max-width: 68px;
+      }
     }
   }
 
   .site-name {
-    padding-top: 6px;
-    padding-left: 85px;
-    max-width: 340px;
+    display: none;
+    @include breakpoint(medium) {
+      display: inline-block;
+      padding-top: 6px;
+      padding-left: 85px;
+      max-width: 340px;
+    }
+  }
+
+  .site-name-mobile {
+    display: inline-block;
+    font-size: 2rem;
+    position: absolute;
+    left: 70%;
+    top: 1.35rem;
+    @include breakpoint(medium) {
+      display: none;
+    }
   }
 
   a {
@@ -166,12 +207,21 @@ header {
     position: fixed;
     bottom: 0;
     width: 100%;
-
+    z-index: 1000;
     ul {
       margin: 0;
       width: 100%;
       display: flex;
       justify-content: space-evenly;
+      padding: 0;
+      li {
+        min-height: 4rem;
+        padding: 0 0.5rem 0.5rem;
+        a {
+          font-size: 0.8rem;
+          line-height: 0.8rem;
+        }
+      }
     }
 
     li {
@@ -184,7 +234,7 @@ header {
 
   @include breakpoint(medium) {
     clear: both;
-    margin-bottom: 4rem;
+    margin-bottom: 3rem;
     background: $darkest-teal;
 
     li {

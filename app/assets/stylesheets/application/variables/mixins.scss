@@ -1,0 +1,10 @@
+@mixin add-lesson {
+  background: transparent;
+  border: 2px solid $darkest-teal;
+  color: $darkest-teal;
+  display: inline-block;
+  float: right;
+  font-weight: 700;
+  padding: 0.2rem 1rem;
+  text-transform: uppercase;
+}
