@@ -188,6 +188,20 @@
   }
 }
 
+.collapse {
+  max-height: 0;
+  overflow: hidden;
+
+  &.uncollapse {
+    max-height: 1000rem;
+    transition: max-height 1000ms;
+  }
+}
+
+.meta > * {
+  display: inline-block;
+  width: 33%;
+}
 
 .topics-grid {
   .topic.card {
