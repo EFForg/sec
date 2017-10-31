@@ -4,7 +4,7 @@
     <div class="byline">by <span class="author"><%= blog_post.authorship %></span></div>
   <% end %>
   <div class="publised-at"><%= blog_post.published_at.strftime("%B %d, %Y") %></div>
-  <div class="blog-source">EFF Deeplinks Blog</div>
+  <div class="blog-source"><%= link_to "EFF Deeplinks Blog", "https://www.eff.org/deeplinks" %></div>
 
   <div class="tags"><%= tags(blog_post, :blog_path) %></div>
 </div>
