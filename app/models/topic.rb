@@ -8,6 +8,8 @@ class Topic < ApplicationRecord
   friendly_id :name, use: [:slugged, :history]
   before_validation :nillify_empty_slug, prepend: true
 
+  mount_uploader :icon, IconUploader
+
   include Publishing
   include Featuring
 
