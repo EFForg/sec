@@ -3,9 +3,10 @@
   justify-content: space-between;
   background-color: $light-teal;
   color: black;
-
+  min-height: 72px;
   @include breakpoint(medium) {
     display: block;
+    min-height: inherit;
   }
 
   a {
@@ -28,18 +29,21 @@
   }
 
   .back-ssd {
+    font-size: 13px;
     padding-top: 12px;
+    padding: 0.4rem 0.5rem 0 0;
   }
 
   .back-text {
     display: block;
-    padding-left: 35px;
+    padding-left: 30px;
     @include breakpoint(medium) {
       padding-left: 40px;
     }
   }
 
   @include breakpoint(medium) {
+    font-size: 1rem;
     width: 100%;
     padding: 0;
     text-transform: uppercase;
@@ -81,17 +85,26 @@ header {
   font-size: 1.3rem;
   font-weight: 400;
   line-height: 1.7rem;
-  padding: 0.5rem;
+  padding: 0.5rem 0;
   text-transform: uppercase;
   width: 70%;
   @include breakpoint(medium) {
     display: block;
+    padding: 0.5rem;
     width: auto;
   }
   .logo {
-    float: left;
+    float: none;
     display: inline-block;
-
+    position: absolute;
+    top: 2px;
+    left: 40%;
+    @include breakpoint(medium) {
+      float: left;
+      position: relative;
+      top: auto;
+      left: inherit;
+    }
     img {
       height: auto;
       max-width: 68px;
@@ -100,7 +113,6 @@ header {
 
   .site-name {
     display: none;
-    max-width: none;
     @include breakpoint(medium) {
       display: inline-block;
       padding-top: 6px;
@@ -111,9 +123,10 @@ header {
 
   .site-name-mobile {
     display: inline-block;
-    padding-top: 1rem;
-    padding-left: 1rem;
-    max-width: 340px;
+    font-size: 2rem;
+    position: absolute;
+    top: 1.4rem;
+    left: 73%;
     @include breakpoint(medium) {
       display: none;
     }
