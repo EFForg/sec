@@ -22,7 +22,7 @@
     </div>
     <% end %>
     <div class="see-all right">
-      <%= link_to "See All Training", topics_path %>
+      <%= link_to "See All Articles", topics_path %>
     </div>
   </div>
 
@@ -47,7 +47,7 @@
   </div>
 
   <div class="row">
-    <h2><%= link_to "Educational Materials", materials_path %></h2>
+    <h2><%= link_to "Teaching Materials", materials_path %></h2>
     <p class="description-text">
       <%= homepage.materials_intro.html_safe %>
     </p>
@@ -57,13 +57,13 @@
       <% end %>
     </div>
     <div class="see-all right">
-      <%= link_to "See All Materials", materials_path %>
+      <%= link_to "See All Teaching Materials", materials_path %>
     </div>
   </div>
 
 
   <div class="row">
-    <h2><%= link_to "Blog", blog_path %></h2>
+    <h2><%= link_to "Security News", blog_path %></h2>
     <p class="description-text">
       <%= homepage.blog_intro.html_safe %>
     </p>
@@ -75,7 +75,7 @@
       <% end %>
     </div>
     <div class="see-all right">
-      <%= link_to "Read All Blog Posts", blog_path %>
+      <%= link_to "Read More Security News", blog_path %>
     </div>
   </div>
   <% end %>
