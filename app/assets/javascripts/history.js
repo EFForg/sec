@@ -26,7 +26,6 @@ $(document).on("ajax:complete", function(e) {
 });
 
 window.onpopstate = function(event) {
-  console.log(event);
   if (event.state.remote) {
     var target = mark_remote(window.location.pathname);
     $.getScript(target);

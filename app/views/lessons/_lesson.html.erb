@@ -70,7 +70,7 @@
   <% end %>
 </div>
 
-<div class="content collapse">
+<div class="content collapse <%= 'uncollapse' if params.include?('expand') %>">
   <%= @lesson.body.html_safe %>
 </div>
 
