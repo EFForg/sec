@@ -50,3 +50,16 @@ services:
     volumes:
       - ./nginx/sec.conf:/etc/nginx/sites-enabled/sec.conf
       - ./public:/var/www/html
+
+# DelayedJob worker for production
+#   worker:
+#     build: .
+#     depends_on:
+#       db:
+#         condition: service_healthy
+#
+#     restart: unless-stopped
+#
+#     env_file: .env
+#
+#     command: bundle exec rake jobs:work
