@@ -33,13 +33,17 @@
   }
 
   .back-text {
-    display: block;
-    padding-left: 30px;
+    display: table;
+    line-height: 1rem;
+    padding: 0.5rem 0 0 0;
+    max-width: 100px;
     a {
       text-decoration: none;
     }
     @include breakpoint(medium) {
-      padding-left: 40px;
+      line-height: 1rem;
+      padding: 0.5rem 0 0 0.3rem;
+      max-width: none;
     }
   }
 
