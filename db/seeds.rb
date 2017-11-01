@@ -29,3 +29,4 @@ EOF
 articles_intro = %(<p>Whether you’re a computer scientist, a community organizer or just a curious person, Security Education’s collection of resources has something for you.</p>)
 Homepage.create!(welcome: welcome, articles_intro: articles_intro)
 
+ManagedContent.create!(region: "credits")
