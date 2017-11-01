@@ -48,9 +48,9 @@
 
   <div class="row">
     <h2><%= link_to "Teaching Materials", materials_path %></h2>
-    <p class="description-text">
+    <div class="description-text">
       <%= homepage.materials_intro.html_safe %>
-    </p>
+    </div>
     <div class="row">
       <% @homepage.featured_materials.each do |material| %>
       <%= render material %>
@@ -64,9 +64,9 @@
 
   <div class="row">
     <h2><%= link_to "Security News", blog_path %></h2>
-    <p class="description-text">
+    <div class="description-text">
       <%= homepage.blog_intro.html_safe %>
-    </p>
+    </div>
     <div class="row">
       <% homepage.featured_blog_posts.each do |blog_post| %>
       <div class="large-6 columns">
