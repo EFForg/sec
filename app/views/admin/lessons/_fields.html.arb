@@ -1,14 +1,12 @@
 f.fields_for :lessons, lesson do |l|
-  l.input :level_id, as: :select, required: true, collection: topic.lessons.unused_levels if lesson.new_record?
-
-  unless lesson.persisted?
-    lesson.objective ||= "Students will: <ul><li></li></ul>"
+  if lesson.new_record?
+    f.inputs do
+      l.input :level_id, as: :select, required: true, collection: topic.lessons.unused_levels
+    end
   end
 
-  l.input :objective, as: :ckeditor
-
-  l.fields_for :duration, l.object.duration do |d|
-    f.inputs "Duration", class: 'input duration' do
+  f.inputs "Duration", class: 'input duration' do
+    l.fields_for :duration, l.object.duration do |d|
       d.input :hours, as: :number, label: 'Hours'
       d.input :minutes, as: :number, label: 'Minutes'
     end
@@ -16,6 +14,14 @@ f.fields_for :lessons, lesson do |l|
 
   f.inputs "Teaching Ratio", class: "input ratio" do
     l.input :instructor_students_ratio
+  end
+
+  unless lesson.persisted?
+    lesson.objective ||= "Students will: <ul><li></li></ul>"
+  end
+
+  f.inputs do
+    l.input :objective, as: :ckeditor
   end
 
   f.inputs do
