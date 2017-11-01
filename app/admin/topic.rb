@@ -40,7 +40,7 @@ ActiveAdmin.register Topic do
     f.inputs do
       f.semantic_errors *f.object.errors.keys
       f.input :name
-      f.input :description
+      f.input :description, as: :ckeditor
       tabs do
         topic.lessons.each do |lesson|
           if lesson.persisted?
