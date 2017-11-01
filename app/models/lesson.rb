@@ -49,7 +49,7 @@ class Lesson < ApplicationRecord
   scope :published, ->{ joins(:topic).merge(Topic.published) }
 
   mount_uploader :pdf, PdfUploader
-  after_validation :update_pdf
+  after_validation :enqueue_pdf_update
 
   def name
     "#{topic.name}: #{level}"
@@ -68,26 +68,7 @@ class Lesson < ApplicationRecord
     level
   end
 
-  def update_pdf
-    unless changes.keys == ["pdf"]
-      controller = LessonsController.new
-      controller.instance_variable_set("@topic", topic)
-      controller.instance_variable_set("@lesson", self)
-
-      doc = controller.render_to_string(
-        template: "lessons/show.pdf.erb",
-        layout: "layouts/pdf.html.erb"
-      )
-
-      pdf = WickedPdf.new.pdf_from_string(doc, pdf: topic.name)
-
-      tmp = Tempfile.new(["lesson", ".pdf"])
-      tmp.binmode
-      tmp.write(pdf)
-      tmp.flush
-      tmp.rewind
-
-      self.pdf = tmp
-    end
+  def enqueue_pdf_update
+    UpdateLessonPdf.perform_later(id) unless changes.keys == ["pdf"]
   end
 end
