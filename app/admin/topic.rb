@@ -3,7 +3,8 @@ ActiveAdmin.register Topic do
 
   menu parent: "Content", priority: 1
 
-  permit_params :name, :description, :slug, :published, tag_ids: [],
+  permit_params :name, :description, :icon, :slug, :published,
+    tag_ids: [],
     lessons_attributes: [
         :id, :_destroy, :level_id, :topic_id,
         :instructors, :students,

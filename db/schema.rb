@@ -223,6 +223,7 @@ ActiveRecord::Schema.define(version: 20171101014249) do
     t.string "slug"
     t.datetime "published_at"
     t.text "description"
+    t.string "icon"
     t.index ["slug"], name: "index_topics_on_slug", unique: true
   end
 
