@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171030182600) do
+ActiveRecord::Schema.define(version: 20171101014249) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -164,6 +164,14 @@ ActiveRecord::Schema.define(version: 20171030182600) do
     t.integer "level_id", default: 0, null: false
     t.string "pdf"
     t.index ["topic_id"], name: "index_lessons_on_topic_id"
+  end
+
+  create_table "managed_content", force: :cascade do |t|
+    t.string "region", null: false
+    t.text "body", default: "", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["region"], name: "index_managed_content_on_region", unique: true
   end
 
   create_table "materials", force: :cascade do |t|
