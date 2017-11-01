@@ -11,7 +11,7 @@
 
   <div class="row" >
     <h2><%= link_to "1st Time Trainer?", articles_path %></h2>
-    <p class="description-text"><%= homepage.articles_intro.html_safe %></p>
+    <div class="description-text"><%= homepage.articles_intro.html_safe %></div>
     <% @homepage.featured_articles.each_slice(4) do |row| %>
     <div class="row">
       <% row.each do |article| %>
