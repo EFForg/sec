@@ -7,10 +7,6 @@ class Lesson < ApplicationRecord
 
   has_many :lesson_resources
 
-  has_many :lesson_prereqs,
-           ->{ where(resource_type: "Lesson") },
-           class_name: "LessonResource"
-
   has_many :lesson_materials,
            ->{ where(resource_type: "Material") },
            class_name: "LessonResource"
@@ -18,10 +14,6 @@ class Lesson < ApplicationRecord
   has_many :lesson_articles,
            ->{ where(resource_type: "Article") },
            class_name: "LessonResource"
-
-  has_many :prereqs, through: :lesson_prereqs,
-           source: :resource, source_type: "Lesson",
-           class_name: "Lesson"
 
   has_many :materials, through: :lesson_materials,
            source: :resource, source_type: "Material",
@@ -39,7 +31,6 @@ class Lesson < ApplicationRecord
                     inclusion: { in: 0..LEVELS.length,
                                  message: "must be a valid level" }
 
-  accepts_nested_attributes_for :lesson_prereqs, allow_destroy: true, reject_if: :all_blank
   accepts_nested_attributes_for :lesson_materials, allow_destroy: true, reject_if: :all_blank
   accepts_nested_attributes_for :lesson_articles, allow_destroy: true, reject_if: :all_blank
 

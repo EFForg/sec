@@ -5,8 +5,14 @@
     <div class="objective">
       <div class="label">Learners will:</div>
       <div class="content">
-        <%= @lesson.objective %>
+        <%= @lesson.objective.html_safe %>
       </div>
+    </div>
+  <% end %>
+
+  <% if @lesson.notes? %>
+    <div class="notes content">
+      <%= @lesson.notes.html_safe %>
     </div>
   <% end %>
 

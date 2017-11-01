@@ -7,10 +7,10 @@ ActiveAdmin.register Topic do
     tag_ids: [],
     lessons_attributes: [
         :id, :_destroy, :level_id, :topic_id,
-        :instructors, :students,
-        :objective, :body,
+        :instructor_students_ratio,
+        :objective, :notes, :body,
+        :prerequisites,
         duration: [:hours, :minutes],
-        prereq_ids: [],
         material_ids: [],
         advice_ids: [],
       ]
@@ -40,7 +40,7 @@ ActiveAdmin.register Topic do
     f.inputs do
       f.semantic_errors *f.object.errors.keys
       f.input :name
-      f.input :description
+      f.input :description, as: :ckeditor
       tabs do
         topic.lessons.each do |lesson|
           if lesson.persisted?
