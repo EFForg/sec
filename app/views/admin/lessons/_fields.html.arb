@@ -16,15 +16,19 @@ f.fields_for :lessons, lesson do |l|
     l.input :instructor_students_ratio
   end
 
-  unless lesson.persisted?
-    lesson.objective ||= "Students will: <ul><li></li></ul>"
-  end
-
   f.inputs do
+    unless lesson.persisted?
+      lesson.objective ||= "Students will: <ul><li></li></ul>"
+    end
+
     l.input :objective, as: :ckeditor
   end
 
   f.inputs do
+    unless lesson.persisted?
+      lesson.prerequisites ||= "<ul><li></li></ul>"
+    end
+
     l.input :prerequisites, as: :ckeditor
   end
 
