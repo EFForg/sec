@@ -13,7 +13,9 @@ a {
   color: $dark-teal;
   text-decoration: underline;
   &:focus,
-  &:active,
+  &:active {
+    color: black;
+  }
   &:visited {
     color: $dark-teal;
   }
