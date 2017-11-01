@@ -1,4 +1,4 @@
-class UpdateBlog < ApplicationJob
+class UpdateLessonPdf < ApplicationJob
   queue_as :pdfs
 
   def perform(lesson_id)
