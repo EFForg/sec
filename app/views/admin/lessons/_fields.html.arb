@@ -18,11 +18,11 @@ f.fields_for :lessons, lesson do |l|
     l.input :instructor_students_ratio
   end
 
-  l.input :body, as: :ckeditor
+  f.inputs do
+    l.input :prerequisites, as: :ckeditor
+  end
 
-  l.input :prereqs,
-          label: "Prerequisites",
-          input_html: { class: "select2", style: "width: 100%" }
+  l.input :body, as: :ckeditor
 
   l.input :materials,
           input_html: { class: "select2", style: "width: 100%" }

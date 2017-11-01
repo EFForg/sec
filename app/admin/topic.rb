@@ -9,8 +9,8 @@ ActiveAdmin.register Topic do
         :id, :_destroy, :level_id, :topic_id,
         :instructor_students_ratio,
         :objective, :body,
+        :prerequisites,
         duration: [:hours, :minutes],
-        prereq_ids: [],
         material_ids: [],
         advice_ids: [],
       ]

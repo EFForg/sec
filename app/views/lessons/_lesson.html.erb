@@ -19,17 +19,13 @@
 
 <%= render partial: "lessons/summary", locals: { lesson: @lesson } %>
 
-<% if @lesson.prereqs.any? %>
+<% if @lesson.prerequisites? %>
   <div class="prereqs">
     <h3>Prerequisites</h3>
-    <span>You have already done:</span>
 
-    <ul>
-      <% @lesson.prereqs.each do |prereq| %>
-        <li><%= link_to prereq.name, lesson_path(prereq.topic, prereq) %></li>
-      <% end %>
-    </ul>
-
+    <div class="content">
+      <%= @lesson.prerequisites.html_safe %>
+    </div>
   </div>
 <% end %>
 
