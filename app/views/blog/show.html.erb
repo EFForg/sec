@@ -1,6 +1,12 @@
 <div class="row">
   <h1><%= @blog_post.name %></h1>
-
+  <div class="byline-etc">
+    <% if @blog_post.authorship.present? %>
+      <span class="byline">by <span class="author"><%= @blog_post.authorship %></span></span> |
+      <% end %>
+      <span class="publised-at"><%= @blog_post.published_at.strftime("%B %d, %Y") %></span> |
+      <span class="blog-source"><%= link_to "EFF Deeplinks Blog", "https://www.eff.org/deeplinks" %></span>
+  </div>
   <%= render partial: "shared/admin_links", locals: { resource: @blog_post } %>
   <div class="tags-list">
     <%= tags(@blog_post, :blog_path) %>
