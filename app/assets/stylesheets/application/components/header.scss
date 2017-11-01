@@ -199,12 +199,23 @@ header {
   }
 
   ul {
-    width: 80%;
+    width: 90%;
     margin: 0 auto;
+    max-width: 1660px;
   }
   li {
     display: inline-block;
     margin: 0;
+  }
+
+  .menu-items {
+    div {
+      border-left: 4px solid $light-teal;
+      text-align: center;
+    }
+    &:last-child {
+      border-right: 4px solid $light-teal;
+    }
   }
 
   @include breakpoint(small only) {
