@@ -13,11 +13,9 @@ a {
   color: $dark-teal;
   text-decoration: underline;
   &:focus,
-  &:active {
+  &:active,
+  &:hover {
     color: black;
-  }
-  &:visited {
-    color: $dark-teal;
   }
 }
 
