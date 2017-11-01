@@ -9,7 +9,7 @@ ActiveAdmin.register Topic do
         :id, :_destroy, :level_id, :topic_id,
         :instructor_students_ratio,
         :objective, :notes, :body,
-        :prerequisites,
+        :prerequisites, :required_materials,
         duration: [:hours, :minutes],
         material_ids: [],
         advice_ids: [],
