@@ -61,7 +61,6 @@
       flex-basis: 0;
       flex-grow: 1;
       display: flex;
-      justify-content: space-between;
       align-items: center;
     }
 
@@ -74,9 +73,9 @@
     }
 
     .eff-tagline {
-      text-align: right;
-      padding: 0.5rem;
-      padding-right: 4%;
+      font-size: 0.8rem;
+      margin: 0 auto;
+      text-align: left;
     }
   }
 }
