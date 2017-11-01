@@ -1,6 +1,11 @@
 f.fields_for :lessons, lesson do |l|
   l.input :level_id, as: :select, required: true, collection: topic.lessons.unused_levels if lesson.new_record?
-  l.input :objective
+
+  unless lesson.persisted?
+    lesson.objective ||= "Students will: <ul><li></li></ul>"
+  end
+
+  l.input :objective, as: :ckeditor
 
   l.fields_for :duration, l.object.duration do |d|
     f.inputs "Duration", class: 'input duration' do
