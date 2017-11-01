@@ -8,7 +8,7 @@ ActiveAdmin.register Topic do
     lessons_attributes: [
         :id, :_destroy, :level_id, :topic_id,
         :instructor_students_ratio,
-        :objective, :body,
+        :objective, :notes, :body,
         :prerequisites,
         duration: [:hours, :minutes],
         material_ids: [],

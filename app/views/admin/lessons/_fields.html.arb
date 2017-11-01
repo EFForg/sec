@@ -22,6 +22,10 @@ f.fields_for :lessons, lesson do |l|
     l.input :prerequisites, as: :ckeditor
   end
 
+  f.inputs do
+    l.input :notes, as: :ckeditor, label: "Other Notes"
+  end
+
   l.input :body, as: :ckeditor
 
   l.input :materials,

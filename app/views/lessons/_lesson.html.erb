@@ -62,6 +62,12 @@
   <% end %>
 </div>
 
+<% if @lesson.notes? %>
+  <div class="notes content">
+    <%= @lesson.notes.html_safe %>
+  </div>
+<% end %>
+
 <div class="content collapse <%= 'uncollapse' if params.include?('expand') %>">
   <%= @lesson.body.html_safe %>
 </div>

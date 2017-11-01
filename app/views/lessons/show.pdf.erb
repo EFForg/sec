@@ -10,6 +10,12 @@
     </div>
   <% end %>
 
+  <% if @lesson.notes? %>
+    <div class="notes content">
+      <%= @lesson.notes.html_safe %>
+    </div>
+  <% end %>
+
   <div class="content">
     <%= @lesson.body.html_safe %>
   </div>
