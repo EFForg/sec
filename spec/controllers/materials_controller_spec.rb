@@ -13,7 +13,9 @@ RSpec.describe MaterialsController, type: :controller do
 
   describe "GET #show" do
     it "returns http success" do
-      topic.lessons.take.materials << material
+      topic.lessons.take.update(
+        required_materials: "/materials/#{material.to_param}"
+      )
 
       get :show, params: { id: material.to_param }
       expect(response).to have_http_status(:success)

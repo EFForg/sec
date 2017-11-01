@@ -33,13 +33,18 @@ f.fields_for :lessons, lesson do |l|
   end
 
   f.inputs do
+    unless lesson.persisted?
+      lesson.required_materials ||= "<ul><li></li></ul>"
+    end
+
+    l.input :required_materials, as: :ckeditor
+  end
+
+  f.inputs do
     l.input :notes, as: :ckeditor, label: "Other Notes"
   end
 
   l.input :body, as: :ckeditor
-
-  l.input :materials,
-          input_html: { class: "select2", style: "width: 100%" }
 
   l.input :advice,
           input_html: { class: "select2", style: "width: 100%" }

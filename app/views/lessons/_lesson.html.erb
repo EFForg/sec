@@ -39,14 +39,13 @@
     </div>
   <% end %>
 
-  <% if @lesson.materials.any? %>
-    <div class="materials">
-      <h3>Graphics/Materials</h3>
-      <ul>
-        <% @lesson.materials.each do |material| %>
-          <li><%= link_to material.name %></li>
-        <% end %>
-      </ul>
+  <% if @lesson.required_materials? %>
+    <div class="required-materials">
+      <h3>Required Materials</h3>
+
+      <div class="content">
+        <%= @lesson.required_materials.html_safe %>
+      </div>
     </div>
   <% end %>
 
