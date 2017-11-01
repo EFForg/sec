@@ -1,7 +1,7 @@
 <div class="lesson-back"><a href="/topics">&lt; Back to Lesson Topics</a></div>
 <h1><%= @topic.name %></h1>
 <div class="last-modified">
-  Last modified <%= (@topic.updated_at - 20.days).strftime("%B %e, %Y") %>
+  Last modified <%= @topic.updated_at.strftime("%B %e, %Y") %>
 </div>
 
 <%= render partial: "shared/admin_links", locals: { resource: @topic } %>
