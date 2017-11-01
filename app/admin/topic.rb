@@ -60,6 +60,13 @@ ActiveAdmin.register Topic do
     f.actions
   end
 
+
+  sidebar :last_updated, only: :edit do
+    content_tag(:div, class: "input") do
+      resource.updated_at.strftime("%b %e, %Y %l:%M%P")
+    end
+  end
+
   sidebar :topic_extras, only: :edit do
     render partial: "admin/topics/extra",
       locals: { topic: resource }
