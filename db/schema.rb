@@ -181,6 +181,14 @@ ActiveRecord::Schema.define(version: 20171101023221) do
     t.index ["topic_id"], name: "index_lessons_on_topic_id"
   end
 
+  create_table "managed_content", force: :cascade do |t|
+    t.string "region", null: false
+    t.text "body", default: "", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["region"], name: "index_managed_content_on_region", unique: true
+  end
+
   create_table "materials", force: :cascade do |t|
     t.string "name", default: "", null: false
     t.text "body", default: "", null: false
@@ -230,6 +238,7 @@ ActiveRecord::Schema.define(version: 20171101023221) do
     t.string "slug"
     t.datetime "published_at"
     t.text "description"
+    t.string "icon"
     t.index ["slug"], name: "index_topics_on_slug", unique: true
   end
 
