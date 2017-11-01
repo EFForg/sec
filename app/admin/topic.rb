@@ -7,7 +7,7 @@ ActiveAdmin.register Topic do
     tag_ids: [],
     lessons_attributes: [
         :id, :_destroy, :level_id, :topic_id,
-        :instructors, :students,
+        :instructor_students_ratio,
         :objective, :body,
         duration: [:hours, :minutes],
         prereq_ids: [],

@@ -34,15 +34,11 @@
 <% end %>
 
 <div class="meta">
-  <% if @lesson.students? %>
+  <% if @lesson.instructor_students_ratio.present? %>
     <div class="ratio">
       <h3>Ratio</h3>
-      <span class="instructors">
-        <%= pluralize(@lesson.instructors || 1, "instructor") %>
-      </span>
-      :
-      <span class="students">
-        <%= pluralize(@lesson.students || 1, "student") %>
+      <span class="instructors-to-students">
+        <%= @lesson.instructor_students_ratio %>
       </span>
     </div>
   <% end %>

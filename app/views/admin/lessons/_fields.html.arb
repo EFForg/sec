@@ -10,8 +10,7 @@ f.fields_for :lessons, lesson do |l|
   end
 
   f.inputs "Teaching Ratio", class: "input ratio" do
-    l.input :instructors, as: :number
-    l.input :students, as: :number
+    l.input :instructor_students_ratio
   end
 
   l.input :body, as: :ckeditor
