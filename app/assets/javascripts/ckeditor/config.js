@@ -34,5 +34,7 @@ CKEDITOR.editorConfig = function( config )
 
   // The location of a script that handles file uploads.
   config.filebrowserUploadUrl = "/ckeditor/attachment_files";
+
+  config.extraPlugins = 'pasteFromGoogleDoc';
 };
 
