@@ -189,17 +189,16 @@
 }
 
 .collapse {
-  max-height: 0;
-  overflow: hidden;
+  display: none;
 
   &.uncollapse {
-    max-height: 1000rem;
-    transition: max-height 1000ms;
+    display: block;
   }
 }
 
 .meta > * {
   display: inline-block;
+  vertical-align: top;
   width: 33%;
 }
 

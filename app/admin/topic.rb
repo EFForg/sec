@@ -3,16 +3,17 @@ ActiveAdmin.register Topic do
 
   menu parent: "Content", priority: 1
 
-  permit_params :name, :description, :slug, :published, tag_ids: [],
-    lessons_attributes: [
-        :id, :_destroy, :level_id, :topic_id,
-        :instructors, :students,
-        :objective, :body,
-        duration: [:hours, :minutes],
-        prereq_ids: [],
-        material_ids: [],
-        advice_ids: [],
-      ]
+  permit_params :name, :description, :icon, :slug, :published,
+    tag_ids: [],
+    admin_lessons_attributes: [
+      :id, :level_id, :topic_id,
+      :instructor_students_ratio,
+      :objective, :notes, :body,
+      :prerequisites, :suggested_materials,
+      duration: [:hours, :minutes],
+      material_ids: [],
+      advice_ids: [],
+    ]
 
   filter :name
   filter :tags
@@ -30,6 +31,14 @@ ActiveAdmin.register Topic do
   end
 
   controller do
+    def new
+      super do |format|
+        Lesson::LEVELS.each_key do |level_id|
+          @topic.admin_lessons.build(level_id: level_id)
+        end
+      end
+    end
+
     def find_resource
       scoped_collection.friendly.find(params[:id])
     end
@@ -39,24 +48,24 @@ ActiveAdmin.register Topic do
     f.inputs do
       f.semantic_errors *f.object.errors.keys
       f.input :name
-      f.input :description
+      f.input :description, as: :ckeditor
       tabs do
-        topic.lessons.each do |lesson|
-          if lesson.persisted?
-            tab lesson.level do
-              render partial: "admin/lessons/fields", locals: { f: f, lesson: lesson }
-            end
-          end
-        end
-        if topic.lessons.unused_levels.any?
-          tab "+Add" do
+        topic.admin_lessons.each do |lesson|
+          tab lesson.level do
             render partial: "admin/lessons/fields",
-              locals: { f: f, topic: topic, lesson: topic.unsaved_or_new_lesson }
+                   locals: { f: f, lesson: lesson }
           end
         end
       end
     end
     f.actions
+  end
+
+
+  sidebar :last_updated, only: :edit do
+    content_tag(:div, class: "input") do
+      resource.updated_at.strftime("%b %e, %Y %l:%M%P")
+    end
   end
 
   sidebar :topic_extras, only: :edit do

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171030182600) do
+ActiveRecord::Schema.define(version: 20171102180438) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -96,6 +96,21 @@ ActiveRecord::Schema.define(version: 20171030182600) do
     t.index ["assetable_type", "type", "assetable_id"], name: "idx_ckeditor_assetable_type"
   end
 
+  create_table "delayed_jobs", force: :cascade do |t|
+    t.integer "priority", default: 0, null: false
+    t.integer "attempts", default: 0, null: false
+    t.text "handler", null: false
+    t.text "last_error"
+    t.datetime "run_at"
+    t.datetime "locked_at"
+    t.datetime "failed_at"
+    t.string "locked_by"
+    t.string "queue"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.index ["priority", "run_at"], name: "delayed_jobs_priority"
+  end
+
   create_table "featured_content", force: :cascade do |t|
     t.integer "homepage_id", null: false
     t.string "content_type", null: false
@@ -158,12 +173,23 @@ ActiveRecord::Schema.define(version: 20171030182600) do
     t.text "body"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "instructors"
-    t.integer "students"
     t.text "objective"
     t.integer "level_id", default: 0, null: false
     t.string "pdf"
+    t.string "instructor_students_ratio"
+    t.text "prerequisites"
+    t.text "notes"
+    t.text "suggested_materials"
+    t.datetime "published_at"
     t.index ["topic_id"], name: "index_lessons_on_topic_id"
+  end
+
+  create_table "managed_content", force: :cascade do |t|
+    t.string "region", null: false
+    t.text "body", default: "", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["region"], name: "index_managed_content_on_region", unique: true
   end
 
   create_table "materials", force: :cascade do |t|
@@ -215,6 +241,7 @@ ActiveRecord::Schema.define(version: 20171030182600) do
     t.string "slug"
     t.datetime "published_at"
     t.text "description"
+    t.string "icon"
     t.index ["slug"], name: "index_topics_on_slug", unique: true
   end
 

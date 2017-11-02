@@ -57,4 +57,4 @@ RSpec.configure do |config|
 end
 
 
-Lesson.skip_callback(:validation, :after, :update_pdf)
+Lesson.skip_callback(:save, :after, :enqueue_pdf_update)
