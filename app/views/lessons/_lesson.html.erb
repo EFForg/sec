@@ -39,12 +39,12 @@
     </div>
   <% end %>
 
-  <% if @lesson.required_materials? %>
-    <div class="required-materials">
-      <h3>Required Materials</h3>
+  <% if @lesson.suggested_materials? %>
+    <div class="suggested-materials">
+      <h3>Suggested Materials</h3>
 
       <div class="content">
-        <%= @lesson.required_materials.html_safe %>
+        <%= @lesson.suggested_materials.html_safe %>
       </div>
     </div>
   <% end %>

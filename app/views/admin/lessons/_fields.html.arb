@@ -18,7 +18,7 @@ f.fields_for :lessons, lesson do |l|
 
   f.inputs do
     unless lesson.persisted?
-      lesson.objective ||= "Students will: <ul><li></li></ul>"
+      lesson.objective ||= "Learners will: <ul><li></li></ul>"
     end
 
     l.input :objective, as: :ckeditor
@@ -34,10 +34,10 @@ f.fields_for :lessons, lesson do |l|
 
   f.inputs do
     unless lesson.persisted?
-      lesson.required_materials ||= "<ul><li></li></ul>"
+      lesson.suggested_materials ||= "<ul><li></li></ul>"
     end
 
-    l.input :required_materials, as: :ckeditor
+    l.input :suggested_materials, as: :ckeditor
   end
 
   f.inputs do
