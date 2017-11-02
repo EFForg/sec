@@ -18,7 +18,7 @@ f.fields_for :lessons, lesson do |l|
 
   f.inputs do
     unless lesson.persisted?
-      lesson.objective ||= "Students will: <ul><li></li></ul>"
+      lesson.objective ||= "Learners will: <ul><li></li></ul>"
     end
 
     l.input :objective, as: :ckeditor
