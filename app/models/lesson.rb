@@ -37,11 +37,6 @@ class Lesson < ApplicationRecord
     "#{topic.name}: #{level}"
   end
 
-  def self.unused_levels
-    used_levels = all.pluck(:level_id).uniq
-    LEVELS.select{ |key, value| used_levels.exclude?(key) }.invert
-  end
-
   def level
     LEVELS[level_id]
   end
