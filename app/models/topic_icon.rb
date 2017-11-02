@@ -1,0 +1,2 @@
+class TopicIcon < ApplicationRecord
+end

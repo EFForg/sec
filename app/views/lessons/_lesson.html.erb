@@ -19,42 +19,33 @@
 
 <%= render partial: "lessons/summary", locals: { lesson: @lesson } %>
 
-<% if @lesson.prereqs.any? %>
+<% if @lesson.prerequisites? %>
   <div class="prereqs">
     <h3>Prerequisites</h3>
-    <span>You have already done:</span>
 
-    <ul>
-      <% @lesson.prereqs.each do |prereq| %>
-        <li><%= link_to prereq.name, lesson_path(prereq.topic, prereq) %></li>
-      <% end %>
-    </ul>
-
+    <div class="content">
+      <%= @lesson.prerequisites.html_safe %>
+    </div>
   </div>
 <% end %>
 
 <div class="meta">
-  <% if @lesson.students? %>
+  <% if @lesson.instructor_students_ratio.present? %>
     <div class="ratio">
       <h3>Ratio</h3>
-      <span class="instructors">
-        <%= pluralize(@lesson.instructors || 1, "instructor") %>
-      </span>
-      :
-      <span class="students">
-        <%= pluralize(@lesson.students || 1, "student") %>
+      <span class="instructors-to-students">
+        <%= @lesson.instructor_students_ratio %>
       </span>
     </div>
   <% end %>
 
-  <% if @lesson.materials.any? %>
-    <div class="materials">
-      <h3>Graphics/Materials</h3>
-      <ul>
-        <% @lesson.materials.each do |material| %>
-          <li><%= link_to material.name %></li>
-        <% end %>
-      </ul>
+  <% if @lesson.required_materials? %>
+    <div class="required-materials">
+      <h3>Required Materials</h3>
+
+      <div class="content">
+        <%= @lesson.required_materials.html_safe %>
+      </div>
     </div>
   <% end %>
 
@@ -69,6 +60,12 @@
     </div>
   <% end %>
 </div>
+
+<% if @lesson.notes? %>
+  <div class="notes content">
+    <%= @lesson.notes.html_safe %>
+  </div>
+<% end %>
 
 <div class="content collapse <%= 'uncollapse' if params.include?('expand') %>">
   <%= @lesson.body.html_safe %>

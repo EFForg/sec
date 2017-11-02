@@ -1,5 +1,11 @@
 <%= semantic_form_for(topic, url: admin_topic_path(topic), remote: true) do |f| %>
   <%= f.inputs do %>
+    <% if f.object.icon.present? %>
+      <% f.input :icon, hint: image_tag(f.object.icon.url, style: "max-width: 75%") %>
+    <% else %>
+      <% f.input :icon %>
+    <% end %>
+
     <% f.input :slug, hint: "Leave blank to auto-generate" %>
 
     <% f.input :tags,

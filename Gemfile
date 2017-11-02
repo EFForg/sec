@@ -55,6 +55,9 @@ gem "wicked_pdf"
 # Feature flipping
 gem "flipper", github: "jnunemaker/flipper"
 
+# ActiveJob backend
+gem "delayed_job_active_record"
+
 # Content administration
 gem "active_material", github: "vigetlabs/active_material"
 gem "activeadmin"

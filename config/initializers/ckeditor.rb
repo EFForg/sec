@@ -39,7 +39,9 @@ Ckeditor.setup do |config|
 
   # Customize ckeditor assets path
   # By default: nil
-  # config.asset_path = "http://www.example.com/assets/ckeditor/"
+  if ENV["CKEDITOR_ASSET_PATH"].present?
+    config.asset_path = ENV["CKEDITOR_ASSET_PATH"]
+  end
 
   # To reduce the asset precompilation time, you can limit plugins and/or languages to those you need:
   # By default: nil (no limit)

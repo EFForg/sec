@@ -3,13 +3,14 @@ ActiveAdmin.register Topic do
 
   menu parent: "Content", priority: 1
 
-  permit_params :name, :description, :slug, :published, tag_ids: [],
+  permit_params :name, :description, :icon, :slug, :published,
+    tag_ids: [],
     lessons_attributes: [
         :id, :_destroy, :level_id, :topic_id,
-        :instructors, :students,
-        :objective, :body,
+        :instructor_students_ratio,
+        :objective, :notes, :body,
+        :prerequisites, :required_materials,
         duration: [:hours, :minutes],
-        prereq_ids: [],
         material_ids: [],
         advice_ids: [],
       ]
@@ -39,7 +40,7 @@ ActiveAdmin.register Topic do
     f.inputs do
       f.semantic_errors *f.object.errors.keys
       f.input :name
-      f.input :description
+      f.input :description, as: :ckeditor
       tabs do
         topic.lessons.each do |lesson|
           if lesson.persisted?
@@ -57,6 +58,13 @@ ActiveAdmin.register Topic do
       end
     end
     f.actions
+  end
+
+
+  sidebar :last_updated, only: :edit do
+    content_tag(:div, class: "input") do
+      resource.updated_at.strftime("%b %e, %Y %l:%M%P")
+    end
   end
 
   sidebar :topic_extras, only: :edit do
