@@ -78,6 +78,7 @@ ActiveRecord::Schema.define(version: 20171102230234) do
     t.string "slug"
     t.string "authorship"
     t.datetime "published_at"
+    t.boolean "published", default: false, null: false
     t.index ["slug"], name: "index_blog_posts_on_slug", unique: true
   end
 

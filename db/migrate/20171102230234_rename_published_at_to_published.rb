@@ -8,6 +8,11 @@ class RenamePublishedAtToPublished < ActiveRecord::Migration[5.1]
 
       remove_column table, :published_at
     end
+
+    add_column :blog_posts, :published, :boolean,
+      null: false, default: false
+
+    execute "UPDATE blog_posts SET published = 't'"
   end
 
   def down
@@ -18,6 +23,8 @@ class RenamePublishedAtToPublished < ActiveRecord::Migration[5.1]
 
       remove_column table, :published
     end
+
+    remove_column :blog_posts, :published
   end
 
   private
