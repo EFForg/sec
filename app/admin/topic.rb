@@ -5,15 +5,15 @@ ActiveAdmin.register Topic do
 
   permit_params :name, :description, :icon, :slug, :published,
     tag_ids: [],
-    lessons_attributes: [
-        :id, :level_id, :topic_id,
-        :instructor_students_ratio,
-        :objective, :notes, :body,
-        :prerequisites, :suggested_materials,
-        duration: [:hours, :minutes],
-        material_ids: [],
-        advice_ids: [],
-      ]
+    admin_lessons_attributes: [
+      :id, :level_id, :topic_id,
+      :instructor_students_ratio,
+      :objective, :notes, :body,
+      :prerequisites, :suggested_materials,
+      duration: [:hours, :minutes],
+      material_ids: [],
+      advice_ids: [],
+    ]
 
   filter :name
   filter :tags
@@ -34,7 +34,7 @@ ActiveAdmin.register Topic do
     def new
       super do |format|
         Lesson::LEVELS.each_key do |level_id|
-          @topic.lessons.build(level_id: level_id)
+          @topic.admin_lessons.build(level_id: level_id)
         end
       end
     end
@@ -50,7 +50,7 @@ ActiveAdmin.register Topic do
       f.input :name
       f.input :description, as: :ckeditor
       tabs do
-        topic.lessons.each do |lesson|
+        topic.admin_lessons.each do |lesson|
           tab lesson.level do
             render partial: "admin/lessons/fields",
                    locals: { f: f, lesson: lesson }

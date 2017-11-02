@@ -1,6 +1,8 @@
 class Topic < ApplicationRecord
-  has_many :lessons
-  accepts_nested_attributes_for :lessons
+  has_many :lessons, ->{ merge(Lesson.published) }
+  has_many :admin_lessons, class_name: "Lesson"
+
+  accepts_nested_attributes_for :admin_lessons
 
   acts_as_taggable
 

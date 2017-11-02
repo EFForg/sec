@@ -2,7 +2,7 @@ module Publishing
   extend ActiveSupport::Concern
 
   included do
-    scope :published, ->{ where("published_at IS NOT NULL") }
+    scope :published, ->{ where.not(published_at: nil) }
   end
 
   def published?

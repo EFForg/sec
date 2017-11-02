@@ -1,4 +1,4 @@
-f.fields_for :lessons, lesson do |l|
+f.fields_for :admin_lessons, lesson do |l|
   f.inputs{ l.input :level_id, as: :hidden }
 
   f.inputs "Duration", class: 'input duration' do
