@@ -6,7 +6,7 @@ ActiveAdmin.register Topic do
   permit_params :name, :description, :icon, :slug, :published,
     tag_ids: [],
     lessons_attributes: [
-        :id, :_destroy, :level_id, :topic_id,
+        :id, :level_id, :topic_id,
         :instructor_students_ratio,
         :objective, :notes, :body,
         :prerequisites, :suggested_materials,
@@ -31,6 +31,14 @@ ActiveAdmin.register Topic do
   end
 
   controller do
+    def new
+      super do |format|
+        Lesson::LEVELS.each_key do |level_id|
+          @topic.lessons.build(level_id: level_id)
+        end
+      end
+    end
+
     def find_resource
       scoped_collection.friendly.find(params[:id])
     end
@@ -43,16 +51,9 @@ ActiveAdmin.register Topic do
       f.input :description, as: :ckeditor
       tabs do
         topic.lessons.each do |lesson|
-          if lesson.persisted?
-            tab lesson.level do
-              render partial: "admin/lessons/fields", locals: { f: f, lesson: lesson }
-            end
-          end
-        end
-        if topic.lessons.unused_levels.any?
-          tab "+Add" do
+          tab lesson.level do
             render partial: "admin/lessons/fields",
-              locals: { f: f, topic: topic, lesson: topic.unsaved_or_new_lesson }
+                   locals: { f: f, lesson: lesson }
           end
         end
       end

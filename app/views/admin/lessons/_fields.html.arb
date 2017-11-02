@@ -1,9 +1,5 @@
 f.fields_for :lessons, lesson do |l|
-  if lesson.new_record?
-    f.inputs do
-      l.input :level_id, as: :select, required: true, collection: topic.lessons.unused_levels
-    end
-  end
+  f.inputs{ l.input :level_id, as: :hidden }
 
   f.inputs "Duration", class: 'input duration' do
     l.fields_for :duration, l.object.duration do |d|
@@ -48,6 +44,4 @@ f.fields_for :lessons, lesson do |l|
 
   l.input :advice,
           input_html: { class: "select2", style: "width: 100%" }
-
-  l.input :_destroy, as: :boolean, label: "Delete this level" if lesson.persisted?
 end

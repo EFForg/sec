@@ -27,11 +27,11 @@ class Lesson < ApplicationRecord
 
   serialize :duration, Duration
 
-  delegate :published?, :unpublished, to: :topic
-  scope :published, ->{ joins(:topic).merge(Topic.published) }
+  include Publishing
+  after_validation :decide_published
 
   mount_uploader :pdf, PdfUploader
-  after_validation :enqueue_pdf_update
+  after_save :enqueue_pdf_update, if: :published?
 
   def name
     "#{topic.name}: #{level}"
@@ -52,5 +52,9 @@ class Lesson < ApplicationRecord
 
   def enqueue_pdf_update
     UpdateLessonPdf.perform_later(id) unless changes.keys == ["pdf"]
+  end
+
+  def decide_published
+    self.published = body.try(:strip).present?
   end
 end
