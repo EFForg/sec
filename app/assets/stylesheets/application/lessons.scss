@@ -28,17 +28,11 @@
 }
 
 
-.tags-list {
-  a {
-    color: $darkest-teal;
-    border: 1px solid $darkest-teal;
-    margin-right: 2rem;
-    padding: 0.5rem;
-    text-decoration: none;
-  }
-}
 
 .section-topics, .section-lessons {
+  #main-content h1 {
+    margin-bottom: 0;
+  }
   .lesson-back {
     a {
       color: $darkest-teal;
@@ -50,7 +44,8 @@
   }
 
   .last-modified {
-    margin-bottom: 1rem;
+    clear: left;
+    margin-bottom: 2rem;
     text-transform: uppercase;
   }
 
@@ -104,9 +99,8 @@
     }
   }
 
-
-
   .tabs {
+    clear: both;
     margin-top: 3rem;
     position: relative;
   }
@@ -150,9 +144,9 @@
 
   .tab.active {
     border: 1px solid $darkest-teal;
-    border-bottom: 1px solid white;
+    border-bottom: 4px solid white;
     top: 1px;
-    z-index: 1000;
+    z-index: 1;
     a {
       color: $darkest-teal;
     }

@@ -24,6 +24,7 @@
   .description-text {
     @include breakpoint(medium) {
       clear: both;
+      margin-bottom: 1rem;
     }
   }
 

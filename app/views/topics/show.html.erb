@@ -6,13 +6,15 @@
 
 <%= render partial: "shared/admin_links", locals: { resource: @topic } %>
 
-<% if Flipper.enabled?(:lesson_plans) %>
-  <%= link_to "View Lesson Planner", current_lesson_plan_path,
+<div class="view-lesson-planner">
+  <% if Flipper.enabled?(:lesson_plans) %>
+    <%= link_to "View Lesson Planner", current_lesson_plan_path,
       class: "lesson-planner-link" %>
-  <span class="lesson-arrow"></span>
-<% end %>
+      <span class="lesson-arrow"></span>
+      <% end %>
+</div>
 
-<div class="tags-list">
+<div class="tags">
 <%= tags(@topic, :topics_path) %>
 </div>
 
