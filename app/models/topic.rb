@@ -1,6 +1,6 @@
 class Topic < ApplicationRecord
   has_many :lessons, ->{ merge(Lesson.published) }
-  has_many :admin_lessons, class_name: "Lesson"
+  has_many :admin_lessons, class_name: "Lesson", dependent: :destroy
 
   accepts_nested_attributes_for :admin_lessons
 
