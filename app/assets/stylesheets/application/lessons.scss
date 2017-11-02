@@ -109,20 +109,33 @@
     border: 1px solid $teal;
     border-bottom: none;
     display: inline-block;
-    margin-right: 1rem;
-    padding: 0.5rem 3rem 0.5rem 1rem;
+    font-size: 0.7rem;
+    line-height: 1.4rem;
+    margin-right: 0;
+    padding: 0rem 1.3rem 0rem 0.5rem;
     position: relative;
+    @include breakpoint(medium) {
+      font-size: 1.1rem;
+      margin-right: 1rem;
+      padding: 0.5rem 3rem 0.5rem 1rem;
+    }
     a {
       text-decoration: none;
       text-transform: uppercase;
       &:after {
-        content: "i";
+        content: " ";
         font-size: 0;
         position: absolute;
-        top: 1rem;
-        right: 1rem;
-        height: 1rem;
-        width: 1rem;
+        top: 0.5rem;
+        right: 0.5rem;
+        height: 0.5rem;
+        width: 0.5rem;
+        @include breakpoint(medium) {
+          top: 1rem;
+          right: 1rem;
+          height: 1rem;
+          width: 1rem;
+        }
       }
     }
     &:first-child {
@@ -145,7 +158,6 @@
   .tab.active {
     border: 1px solid $darkest-teal;
     border-bottom: 4px solid white;
-    top: 1px;
     z-index: 1;
     a {
       color: $darkest-teal;
@@ -154,12 +166,28 @@
 
   #tab-content {
     border: 1px solid $dark-teal;
-    margin-top: -1px;
-    padding: 2rem;
+    line-height: 1.4rem;
+    margin: -1px 0 2rem;
+    padding: 1rem 0.5rem 2rem;
     z-index: 0;
+    h3 {
+      font-size: 1.1rem;
+      line-height: 1.1rem;
+      margin: 1rem 0 0;
+    }
     .actions {
       input[type="submit"] {
         @include add-lesson;
+      }
+    }
+    @include breakpoint(medium) {
+      font-size: 16px;
+      line-height: 1.4rem;
+      padding: 2rem;
+      h3 {
+        font-size: 1.4rem;
+        line-height: 1.8rem;
+        margin: 1rem 0 0.7rem 0;
       }
     }
   }
@@ -184,16 +212,6 @@
     }
   }
 }
-
-// .section-topics.page-show, // .section-lessons.page-show {
-//   .lesson-planner-link {
-//     float: right;
-//   }
-//
-//   .pdf-link {
-//     float: right;
-//   }
-// }
 
 .collapse {
   display: none;
@@ -226,9 +244,16 @@
   h1 {
     float: left;
   }
+}
 
+.pdf-link {
+  float: right;
+  font-size: 0.9rem;
+  text-decoration: none;
+}
 
-  // h1 + p, .lesson-planner-link + * {
-  //  clear: left;
-  // }
+.view-full {
+  float: left;
+  font-size: 0.9rem;
+  text-decoration: none;
 }
