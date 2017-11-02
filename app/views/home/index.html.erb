@@ -1,9 +1,7 @@
 <% cache(cache_key_for_homepage) do %>
 <div class="homepage">
   <div class="intro row">
-    <div class="large-6 columns">
-    </div>
-    <div class="large-6 columns">
+    <div class="large-12 columns">
       <%= homepage.welcome.html_safe %>
       <div class="update">Update test blah blah blah</div>
     </div>
@@ -11,7 +9,7 @@
 
   <div class="row" >
     <h2><%= link_to "1st Time Trainer?", articles_path %></h2>
-    <p class="description-text"><%= homepage.articles_intro.html_safe %></p>
+    <div class="description-text"><%= homepage.articles_intro.html_safe %></div>
     <% @homepage.featured_articles.each_slice(4) do |row| %>
     <div class="row">
       <% row.each do |article| %>
@@ -21,7 +19,7 @@
       <% end %>
     </div>
     <% end %>
-    <div class="see-all right">
+    <div class="see-all float-right">
       <%= link_to "See All Articles", topics_path %>
     </div>
   </div>
@@ -41,22 +39,22 @@
       <% end %>
     </div>
     <% end %>
-    <div class="see-all right">
+    <div class="see-all float-right">
       <%= link_to "See All Lessons", topics_path %>
     </div>
   </div>
 
   <div class="row">
     <h2><%= link_to "Teaching Materials", materials_path %></h2>
-    <p class="description-text">
+    <div class="description-text">
       <%= homepage.materials_intro.html_safe %>
-    </p>
+    </div>
     <div class="row">
       <% @homepage.featured_materials.each do |material| %>
       <%= render material %>
       <% end %>
     </div>
-    <div class="see-all right">
+    <div class="see-all float-right">
       <%= link_to "See All Teaching Materials", materials_path %>
     </div>
   </div>
@@ -64,17 +62,17 @@
 
   <div class="row">
     <h2><%= link_to "Security News", blog_path %></h2>
-    <p class="description-text">
+    <div class="description-text">
       <%= homepage.blog_intro.html_safe %>
-    </p>
+    </div>
     <div class="row">
       <% homepage.featured_blog_posts.each do |blog_post| %>
-      <div class="large-6 columns">
+      <div class="large-12 columns">
         <%= render blog_post %>
       </div>
       <% end %>
     </div>
-    <div class="see-all right">
+    <div class="see-all float-right">
       <%= link_to "Read More Security News", blog_path %>
     </div>
   </div>

@@ -23,8 +23,8 @@
   }
   .description-text {
     @include breakpoint(medium) {
-      clear: both;
-      margin-bottom: 1rem;
+      margin-bottom: 1.2rem;
+      width: 66%;
     }
   }
 
