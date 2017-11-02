@@ -9,7 +9,7 @@ class MaterialsController < ApplicationController
   def show
     @material = Material.find(params[:id])
     @topics = Topic.joins(:lessons).
-      where("lessons.required_materials LIKE ?",
+      where("lessons.suggested_materials LIKE ?",
             "%#{ material_path(@material) }%")
   end
 end

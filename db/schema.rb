@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171101173655) do
+ActiveRecord::Schema.define(version: 20171102002047) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -179,7 +179,7 @@ ActiveRecord::Schema.define(version: 20171101173655) do
     t.string "instructor_students_ratio"
     t.text "prerequisites"
     t.text "notes"
-    t.text "required_materials"
+    t.text "suggested_materials"
     t.index ["topic_id"], name: "index_lessons_on_topic_id"
   end
 
