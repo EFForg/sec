@@ -10,7 +10,7 @@ CKEDITOR.editorConfig = function( config )
     { name: 'paragraph', groups: [ 'list', 'blocks', 'align', 'bidi', 'identation' ], items: [ 'NumberedList', 'BulletedList', '-', 'Blockquote', '-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock', '-', 'Indent', 'Outdent' ] },
     { name: 'basicstyles', groups: [ 'basicstyles', 'cleanup' ], items: [ 'Bold', 'Italic', 'Underline', 'Strike', 'Subscript', 'Superscript', '-', 'RemoveFormat' ] },
     { name: 'links', items: [ 'Link', 'Unlink', 'Anchor' ] },
-    { name: 'insert', items: [ 'Image', 'HorizontalRule' ] }
+    { name: 'insert', items: [ 'Image', 'HorizontalRule', 'Table' ] }
   ];
 
   /* Filebrowser routes */
@@ -34,5 +34,7 @@ CKEDITOR.editorConfig = function( config )
 
   // The location of a script that handles file uploads.
   config.filebrowserUploadUrl = "/ckeditor/attachment_files";
+
+  config.extraPlugins = 'pasteFromGoogleDoc';
 };
 

@@ -16,3 +16,6 @@ Rails.application.config.assets.paths << Rails.root.join('app/assets/fonts')
 
 # Include javascript packages managed by Yarn.
 Rails.application.config.assets.paths << Rails.root.join('node_modules')
+
+# Include ckeditor plugins.
+Rails.application.config.assets.precompile += %w( ckeditor/plugins/*)
