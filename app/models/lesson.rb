@@ -51,7 +51,7 @@ class Lesson < ApplicationRecord
   end
 
   def enqueue_pdf_update
-    UpdateLessonPdf.perform_later(id) unless changes.keys == ["pdf"]
+    # UpdateLessonPdf.perform_later(id)
   end
 
   def decide_published
