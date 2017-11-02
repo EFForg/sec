@@ -1,9 +1,5 @@
-f.fields_for :lessons, lesson do |l|
-  if lesson.new_record?
-    f.inputs do
-      l.input :level_id, as: :select, required: true, collection: topic.lessons.unused_levels
-    end
-  end
+f.fields_for :admin_lessons, lesson do |l|
+  f.inputs{ l.input :level_id, as: :hidden }
 
   f.inputs "Duration", class: 'input duration' do
     l.fields_for :duration, l.object.duration do |d|
@@ -18,7 +14,7 @@ f.fields_for :lessons, lesson do |l|
 
   f.inputs do
     unless lesson.persisted?
-      lesson.objective ||= "Students will: <ul><li></li></ul>"
+      lesson.objective ||= "Learners will: <ul><li></li></ul>"
     end
 
     l.input :objective, as: :ckeditor
@@ -34,10 +30,10 @@ f.fields_for :lessons, lesson do |l|
 
   f.inputs do
     unless lesson.persisted?
-      lesson.required_materials ||= "<ul><li></li></ul>"
+      lesson.suggested_materials ||= "<ul><li></li></ul>"
     end
 
-    l.input :required_materials, as: :ckeditor
+    l.input :suggested_materials, as: :ckeditor
   end
 
   f.inputs do
@@ -48,6 +44,4 @@ f.fields_for :lessons, lesson do |l|
 
   l.input :advice,
           input_html: { class: "select2", style: "width: 100%" }
-
-  l.input :_destroy, as: :boolean, label: "Delete this level" if lesson.persisted?
 end

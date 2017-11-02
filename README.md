@@ -1,4 +1,4 @@
-# Security Education Companion [![build Status](https://travis-ci.org/EFForg/sec.svg?branch=master)](https://travis-ci.org/EFForg/trainers-hub)
+# Security Education Companion [![build Status](https://travis-ci.org/EFForg/sec.svg?branch=master)](https://travis-ci.org/EFForg/sec)
 
 ## Development with Docker
 
