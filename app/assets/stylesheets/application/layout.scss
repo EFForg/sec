@@ -4,6 +4,12 @@
   @include breakpoint(medium) {
     margin: 2rem 5rem;
   }
+  h1 {
+    float: none;
+    @include breakpoint(medium) {
+      float: left;
+    }
+  }
   .intro,
   .intro p {
     color: black;
@@ -17,8 +23,7 @@
   }
   .description-text {
     @include breakpoint(medium) {
-      font-size: 1.4rem;
-      margin-bottom: 1.2rem;
+      clear: both;
     }
   }
 
