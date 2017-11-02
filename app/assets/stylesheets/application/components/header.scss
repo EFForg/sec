@@ -187,7 +187,12 @@ header {
   color: white;
   text-transform: uppercase;
   font-weight: 600;
-
+  clear: both;
+  margin-bottom: 3rem;
+  background: $darkest-teal;
+  .row {
+    margin-top: 0;
+  }
   a {
     color: white;
     font-size: 1.2rem;
@@ -198,24 +203,31 @@ header {
     }
   }
 
-  ul {
-    width: 90%;
-    margin: 0 auto;
-    max-width: 1660px;
-  }
-  li {
-    display: inline-block;
-    margin: 0;
+  ul {  // menu for small and large screens
+    li {
+      display: inline-block;
+      margin: 0;
+      border-left: 4px solid $light-teal;
+      padding: 0.2rem 4%;
+      width: auto;
+      a {
+        font-size: 1.2rem;
+      }
+      &:last-child {
+        border-right: 4px solid $light-teal;
+      }
+    }
   }
 
-  .menu-items {
+
+  .menu-items { // menu for medium screens
+    margin: 0;
     padding: 0 1%;
     div {
-      border-left: 4px solid $light-teal;
       text-align: center;
     }
-    &:last-child {
-      border-right: 4px solid $light-teal;
+    a {
+      font-size: 1rem;
     }
   }
 
@@ -250,20 +262,4 @@ header {
     }
   }
 
-  @include breakpoint(medium) {
-    clear: both;
-    margin-bottom: 3rem;
-    background: $darkest-teal;
-
-    li {
-      border-left: 4px solid $light-teal;
-      padding: 0.2rem 3%;
-      width: auto;
-
-      &:last-child {
-        border-right: 4px solid $light-teal;
-      }
-    }
-
-  }
 }
