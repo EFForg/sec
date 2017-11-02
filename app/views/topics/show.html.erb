@@ -1,32 +1,34 @@
-<div class="lesson-back"><a href="/topics">&lt; Back to Lesson Topics</a></div>
-<h1><%= @topic.name %></h1>
-<div class="last-modified">
+<div class="row">
+  <div class="lesson-back"><a href="/topics">&lt; Back to Lesson Topics</a></div>
+  <h1><%= @topic.name %></h1>
+  <div class="last-modified">
   Last modified <%= @topic.updated_at.strftime("%B %e, %Y") %>
-</div>
+  </div>
 
-<%= render partial: "shared/admin_links", locals: { resource: @topic } %>
+  <%= render partial: "shared/admin_links", locals: { resource: @topic } %>
 
-<div class="view-lesson-planner">
-  <% if Flipper.enabled?(:lesson_plans) %>
-    <%= link_to "View Lesson Planner", current_lesson_plan_path,
-      class: "lesson-planner-link" %>
-      <span class="lesson-arrow"></span>
-      <% end %>
-</div>
+  <div class="view-lesson-planner">
+    <% if Flipper.enabled?(:lesson_plans) %>
+      <%= link_to "View Lesson Planner",   current_lesson_plan_path,
+        class: "lesson-planner-link" %>
+        <span class="lesson-arrow"></span>
+        <% end %>
+  </div>
 
-<div class="tags">
-<%= tags(@topic, :topics_path) %>
-</div>
+  <div class="tags">
+    <%= tags(@topic, :topics_path) %>
+  </div>
 
-<div class="tabs">
-  <% @topic.lessons.each do |lesson| %>
-    <div class="tab <%= "active" if @lesson == lesson %>">
-      <%= link_to "#{lesson.level} lesson", lesson_path(@topic, lesson),
-                  remote: true, data: { history: true } %>
-    </div>
-  <% end %>
-</div>
+  <div class="tabs">
+    <% @topic.lessons.each do |lesson| %>
+      <div class="tab <%= "active" if @lesson ==   lesson %>">
+        <%= link_to "#{lesson.level} lesson",   lesson_path(@topic, lesson),
+                    remote: true, data: { history:   true } %>
+      </div>
+    <% end %>
+  </div>
 
-<div id="tab-content">
-  <%= render @lesson %>
+  <div id="tab-content">
+    <%= render @lesson %>
+  </div>
 </div>
