@@ -4,7 +4,7 @@ ActiveAdmin.register Material do
   menu parent: "Content", priority: 3
 
   permit_params :name, :description,
-    uploads_attributes: [ :id, :name, :description, :position, :file ]
+    uploads_attributes: [:id, :name, :description, :position, :file]
 
   index do
     selectable_column
