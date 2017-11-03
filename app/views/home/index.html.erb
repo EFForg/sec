@@ -14,7 +14,7 @@
     <div class="row">
       <% row.each do |article| %>
       <div class="large-4 columns end">
-        <%= render article %>
+        <%= render "article", article: article %>
       </div>
       <% end %>
     </div>

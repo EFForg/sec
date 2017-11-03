@@ -1,12 +1,19 @@
 <div class="article card">
-  <h3><%= link_to article.name, article %></h3>
-  <% if article.authorship.present? %>
+  <div class="top">
+    <h3><%= link_to article.name, article %></h3>
+    <% if article.authorship.present? %>
     <div class="byline">by <span class="author"><%= article.authorship %></span></div>
-  <% end %>
+    <% end %>
 
-  <div class="content">
-    <%= preview(article) %>
+    <div class="content">
+      <%= preview(article) %> <%= link_to "Read More", article %>
+    </div>
   </div>
 
-  <%= link_to "Read More", article %>
+  <%= link_to article, class: "bottom" do %>
+    <div class="flag <%= 'present' if article.flag? %>">
+      <%= article.flag || "&nbsp;".html_safe %>
+    </div>
+    <div class="fold"><div class="thing"></div></div>
+  <% end %>
 </div>
