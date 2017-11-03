@@ -3,7 +3,8 @@ ActiveAdmin.register Article do
 
   menu parent: "Content", priority: 3
 
-  permit_params :name, :authorship, :summary, :body, :slug, :published
+  permit_params :name, :authorship, :summary, :body,
+    :flag, :slug, :published
 
   controller do
     def find_resource
