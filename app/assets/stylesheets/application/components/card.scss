@@ -77,7 +77,11 @@
 
 
 .section-home.page-index {
-  .top > .flag {
+  .card .byline {
+    color: #000000;
+  }
+
+  .card .top > .flag {
     display: inline-block;
     position: relative;
     left: -2rem;
