@@ -4,7 +4,7 @@
       <%= link_to "Edit", [:edit, :admin, resource] %>
     </div>
 
-    <% if resource.unpublished? %>
+    <% if resource.try(:unpublished?) %>
       <div class="unpublished">Unpublished</div>
     <% end %>
   </div>

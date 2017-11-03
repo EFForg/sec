@@ -1,5 +1,7 @@
 <h1><%= @material.name %></h1>
 
+<%= render partial: "shared/admin_links", locals: { resource: @material } %>
+
 <div class="material-details">
   <div class="content">
     <%= @material.description.html_safe.presence %>
