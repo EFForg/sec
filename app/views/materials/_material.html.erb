@@ -1,5 +1,5 @@
+<%= render "content/teaser", content: material do %>
 
-<div class="material card">
     <div class="material-name small-6 medium-6 large-6 columns">
         <%= link_to material.name, material %>
     </div>
@@ -8,4 +8,5 @@
         <%= link_to file_preview(material.attachment), material  %>
       </div>
     </div>
-</div>
+
+<% end %>

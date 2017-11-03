@@ -2,6 +2,10 @@
   .material.card {
     min-height: 10rem;
     padding: 0;
+    .top {
+      margin: 0;
+      padding: 0;
+    }
     .material-name {
       padding-top: 1rem;
       a {
@@ -16,11 +20,13 @@
         min-height: 8.9rem;
       }
     }
-    &:before {
-      border: none;
-    }
-    &:after {
-      border: none;
+    .fold {
+      &:before {
+        border: none;
+      }
+      &:after {
+        border: none;
+      }
     }
   }
   .material-preview {
