@@ -11,7 +11,7 @@ module ContentHelper
     end
 
     html = truncate(sanitize(html, tags: allowed_tags_for_preview),
-                    length: 500, escape: false)
+                    length: 500, escape: false, separator: /\s/)
 
     Nokogiri::HTML.fragment(html).to_html.html_safe # rubocop:disable Rails/OutputSafety
   end
