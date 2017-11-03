@@ -1,10 +1,13 @@
-<div class="blog-post card">
-  <h3><%= link_to blog_post.name, blog_post_path(blog_post) %></h3>
-  <div class="byline-etc">
-    <% if blog_post.authorship.present? %>
-      <span class="byline">by <span class="author"><%= blog_post.authorship %></span></span> |
-      <% end %>
-      <span class="publised-at"><%= blog_post.published_at.strftime("%B %d, %Y") %></span>
+<%= render "content/teaser", content: blog_post do %>
+  <h3><%= link_to blog_post.name, blog_post %></h3>
+  <% if blog_post.authorship.present? %>
+    <div class="byline-etc">
+      <span class="byline">by <span class="author"><%= blog_post.authorship %></span></span>
+      | <span class="publised-at"><%= blog_post.published_at.strftime("%B %d, %Y") %></span>
+    </div>
+  <% end %>
+
+  <div class="content">
+    <%= preview(blog_post) %> <%= link_to "Read More" %>
   </div>
-  <div class="tags"><%= tags(blog_post, :blog_path) %></div>
-</div>
+<% end %>
