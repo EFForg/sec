@@ -24,7 +24,7 @@ ActiveAdmin.register Topic do
   index do
     selectable_column
     column :name
-    column :published_at
+    column :published
     actions do |resource|
       link_to "View", resource
     end

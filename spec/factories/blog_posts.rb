@@ -3,5 +3,6 @@ FactoryGirl.define do
     name "A blog post"
     body "Some text"
     published_at Time.now
+    published true
   end
 end

@@ -24,7 +24,8 @@ class UpdateBlog < ApplicationJob
           name: update.title,
           authorship: authors.presence,
           body: doc.to_html,
-          published_at: update.pubDate
+          published_at: update.pubDate,
+          published: true
         )
 
         new_blog_posts += 1

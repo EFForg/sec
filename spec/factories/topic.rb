@@ -7,7 +7,7 @@ FactoryGirl.define do
       topic.lessons.reload
     end
 
-    published_at Time.now
+    published true
   end
 
   factory :lesson do

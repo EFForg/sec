@@ -20,7 +20,8 @@ class UpdateBlogPost < ApplicationJob
       name: title,
       body: body,
       authorship: authors.presence,
-      published_at: published
+      published_at: published,
+      published: true
     )
   end
 end
