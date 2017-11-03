@@ -12,6 +12,14 @@
   </div>
 
   <%= render "tags/nav", tags: @tags %>
+
+  <div class="view-lesson-planner">
+    <% if Flipper.enabled?(:lesson_plans) %>
+      <%= link_to "View Lesson Planner", current_lesson_plan_path,
+        class: "lesson-planner-link" %>
+        <span class="lesson-arrow"></span>
+        <% end %>
+  </div>
 </div>
 
 <% cache(cache_key_for_topics(@topics)) do %>

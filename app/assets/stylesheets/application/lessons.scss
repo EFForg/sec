@@ -28,17 +28,11 @@
 }
 
 
-.tags-list {
-  a {
-    color: $darkest-teal;
-    border: 1px solid $darkest-teal;
-    margin-right: 2rem;
-    padding: 0.5rem;
-    text-decoration: none;
-  }
-}
 
 .section-topics, .section-lessons {
+  #main-content h1 {
+    margin-bottom: 0;
+  }
   .lesson-back {
     a {
       color: $darkest-teal;
@@ -50,33 +44,47 @@
   }
 
   .last-modified {
-    margin-bottom: 1rem;
+    clear: left;
+    margin-bottom: 2rem;
     text-transform: uppercase;
   }
 
-  .lesson-planner-link {
-    background: $darkest-teal;
-    color: white;
-    display: inline-block;
-    height: 3rem;
-    margin-right: 2.95rem;
-    padding: 0.5rem 1rem;
+  .view-lesson-planner {
+    margin-top: 1rem;
     position: relative;
-    text-decoration: none;
-    text-transform: uppercase;
+    .lesson-planner-link {
+      background: $darkest-teal;
+      color: white;
+      display: inline-block;
+      height: 3rem;
+      font-size: 0.8rem;
+      line-height: 0.8rem;
+      padding: 0.3rem 2.7rem 0 1rem;
+      position: absolute;
+      right: 0;
+      text-decoration: none;
+      text-transform: uppercase;
+      width: 143px;
+      @include breakpoint(medium) {
+        font-size: 1rem;
+        line-height: 1rem;
+        margin-right: 2.95rem;
+        padding: 0.9rem 1rem;
+        width: auto;
+      }
+    }
+    .lesson-arrow {
+      background: white;
+      width: 0;
+      height: 0;
+      border-left: 1.5rem solid $darkest-teal;
+      border-right: 1.5rem solid transparent;
+      border-bottom: 1.5rem solid transparent;
+      border-top: 1.5rem solid transparent;
+      position: absolute;
+      right: 0;
+    }
   }
-  .lesson-arrow {
-    background: white;
-    width: 0;
-    height: 0;
-    border-left: 1.5rem solid $darkest-teal;
-    border-right: 1.5rem solid transparent;
-    border-bottom: 1.5rem solid transparent;
-    border-top: 1.5rem solid transparent;
-    position: absolute;
-    right: 0;
-  }
-
   .topics-cards {
     padding-left: 0;
   }
@@ -91,9 +99,14 @@
     }
   }
 
-
+  .tags {
+    float: left;
+    margin: 0 1rem 0 0;
+    width: 60%;
+  }
 
   .tabs {
+    clear: both;
     margin-top: 3rem;
     position: relative;
   }
@@ -102,20 +115,33 @@
     border: 1px solid $teal;
     border-bottom: none;
     display: inline-block;
-    margin-right: 1rem;
-    padding: 0.5rem 3rem 0.5rem 1rem;
+    font-size: 0.7rem;
+    line-height: 1.4rem;
+    margin-right: 0;
+    padding: 0rem 1.3rem 0rem 0.5rem;
     position: relative;
+    @include breakpoint(medium) {
+      font-size: 1.1rem;
+      margin-right: 1rem;
+      padding: 0.5rem 3rem 0.5rem 1rem;
+    }
     a {
       text-decoration: none;
       text-transform: uppercase;
       &:after {
-        content: "i";
+        content: " ";
         font-size: 0;
         position: absolute;
-        top: 1rem;
-        right: 1rem;
-        height: 1rem;
-        width: 1rem;
+        top: 0.5rem;
+        right: 0.5rem;
+        height: 0.5rem;
+        width: 0.5rem;
+        @include breakpoint(medium) {
+          top: 1rem;
+          right: 1rem;
+          height: 1rem;
+          width: 1rem;
+        }
       }
     }
     &:first-child {
@@ -137,9 +163,8 @@
 
   .tab.active {
     border: 1px solid $darkest-teal;
-    border-bottom: 1px solid white;
-    top: 1px;
-    z-index: 1000;
+    border-bottom: 4px solid white;
+    z-index: 1;
     a {
       color: $darkest-teal;
     }
@@ -147,12 +172,28 @@
 
   #tab-content {
     border: 1px solid $dark-teal;
-    margin-top: -1px;
-    padding: 2rem;
+    line-height: 1.4rem;
+    margin: -1px 0 2rem;
+    padding: 1rem 0.5rem 2rem;
     z-index: 0;
+    h3 {
+      font-size: 1.1rem;
+      line-height: 1.1rem;
+      margin: 1rem 0 0;
+    }
     .actions {
       input[type="submit"] {
         @include add-lesson;
+      }
+    }
+    @include breakpoint(medium) {
+      font-size: 16px;
+      line-height: 1.4rem;
+      padding: 2rem;
+      h3 {
+        font-size: 1.4rem;
+        line-height: 1.8rem;
+        margin: 1rem 0 0.7rem 0;
       }
     }
   }
@@ -175,16 +216,6 @@
     .disabled + .notice, .disabled + input + .notice {
       display: initial;
     }
-  }
-}
-
-.section-topics.page-show, .section-lessons.page-show {
-  .lesson-planner-link {
-    float: right;
-  }
-
-  .pdf-link {
-    float: right;
   }
 }
 
@@ -215,16 +246,14 @@
   }
 }
 
-.section-topics.page-index {
-  h1 {
-    float: left;
-  }
+.pdf-link {
+  float: right;
+  font-size: 0.9rem;
+  text-decoration: none;
+}
 
-  .lesson-planner-link {
-    float: right;
-  }
-
-  h1 + p, .lesson-planner-link + * {
-    clear: left;
-  }
+.view-full {
+  float: left;
+  font-size: 0.9rem;
+  text-decoration: none;
 }

@@ -71,6 +71,6 @@
   <%= @lesson.body.html_safe %>
 </div>
 
-<%= link_to "Printable Version (PDF)", topic_lesson_path(@lesson.topic, @lesson, format: "pdf"), class: "pdf-link" %>
+<%= link_to "View full session", topic_lesson_path(@lesson.topic, @lesson, format: "pdf"), class: "view-full expand-collapsed" %>
 
-<%= link_to "View full session", topic_lesson_path(@lesson.topic, @lesson, format: "pdf"), class: "expand-collapsed" %>
+<%= link_to "Printable Version (PDF)", topic_lesson_path(@lesson.topic, @lesson, format: "pdf"), class: "pdf-link" %>
