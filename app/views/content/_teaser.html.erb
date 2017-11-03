@@ -1,0 +1,15 @@
+<% nolink = defined?(nolink) && nolink %>
+<div class="<%= content.class.name.underscore.gsub('_', '-') %> card">
+  <div class="top">
+    <% if content.flag? %>
+      <div class="flag"><%= content.flag %></div>
+    <% end %>
+
+    <%= yield %>
+  </div>
+
+  <% message = nolink ? [:content_tag, :div] : [:link_to, content] %>
+  <%= send(*message, class: "bottom") do %>
+    <div class="fold"></div>
+  <% end %>
+</div>
