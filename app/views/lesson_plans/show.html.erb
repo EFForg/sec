@@ -9,7 +9,7 @@
 
     Share this lesson plan: <input type="text" value="<%= lesson_plan_url @lesson_plan %>">
   </div>
-  <div class="float-left">
+  <div class="your-lessons">
     <h3>Your lessons (<span id="lesson-count"><%= @lesson_plan.lessons.count %></span>)</h3>
 
     <div class="export-formats">
@@ -17,7 +17,7 @@
     </div>
   </div>
   <% if @lesson_plan.duration %>
-  <span class="total-duration float-right">Total time: <%= @lesson_plan.duration.in_words %></span>
+  <span class="total-duration">Total time: <%= @lesson_plan.duration.in_words %></span>
   <% end %>
 
   <div id="planned-lessons">
