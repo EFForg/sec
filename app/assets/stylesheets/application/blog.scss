@@ -2,3 +2,22 @@
   text-transform: uppercase;
   margin-bottom: 2rem;
 }
+
+.blog-image {
+  display: none;
+}
+
+@include breakpoint(30rem) {
+  .blog-image {
+    display: block;
+
+    float: left;
+    margin-right: 1.4rem;
+
+    img {
+      object-fit: cover;
+      height: 11rem;
+      width: 11rem;
+    }
+  }
+}
