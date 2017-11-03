@@ -195,10 +195,9 @@ ActiveRecord::Schema.define(version: 20171102230234) do
 
   create_table "materials", force: :cascade do |t|
     t.string "name", default: "", null: false
-    t.text "body", default: "", null: false
+    t.text "description", default: "", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "attachment"
   end
 
   create_table "pg_search_documents", force: :cascade do |t|
@@ -244,6 +243,17 @@ ActiveRecord::Schema.define(version: 20171102230234) do
     t.string "icon"
     t.boolean "published", default: false, null: false
     t.index ["slug"], name: "index_topics_on_slug", unique: true
+  end
+
+  create_table "uploads", force: :cascade do |t|
+    t.string "name"
+    t.text "description"
+    t.string "file"
+    t.bigint "material_id"
+    t.integer "position", default: 0, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["material_id"], name: "index_uploads_on_material_id"
   end
 
 end
