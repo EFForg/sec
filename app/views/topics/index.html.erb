@@ -1,7 +1,15 @@
 <div class="row">
   <h1>Lesson Topics</h1>
 
-  <div class="description-text">Some intro text here.</div>
+  <% if Flipper.enabled?(:lesson_plans) %>
+    <%= link_to "View Lesson Planner", current_lesson_plan_path,
+        class: "lesson-planner-link" %>
+  <% end %>
+
+
+  <div class="content description-text">
+    <%= managed_content("topics-intro") %>
+  </div>
 
   <%= render "tags/nav", tags: @tags %>
 

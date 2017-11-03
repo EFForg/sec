@@ -296,5 +296,9 @@ ActiveAdmin.setup do |config|
     admin.build_menu do |menu|
       menu.add label: "Content", priority: 3
     end
+
+    admin.build_menu do |menu|
+      menu.add label: "Pages", priority: 2
+    end
   end
 end

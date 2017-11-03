@@ -1,9 +1,10 @@
 ActiveAdmin.register Article do
   include ViewingInApp
 
-  menu parent: "Content", priority: 3
+  menu parent: "Content", priority: 1
 
-  permit_params :name, :authorship, :body, :slug, :published
+  permit_params :name, :authorship, :summary, :body,
+    :flag, :slug, :published
 
   controller do
     def find_resource
@@ -21,7 +22,7 @@ ActiveAdmin.register Article do
   index do
     selectable_column
     column :name
-    column :published_at
+    column :published
     actions do |resource|
       link_to "View", resource
     end
@@ -31,6 +32,8 @@ ActiveAdmin.register Article do
     inputs do
       f.input :name
       f.input :authorship, label: "Authors"
+      f.input :summary, as: :ckeditor,
+              hint: "If left blank, the first ~500 characters the article body will be used."
       f.input :body, as: :ckeditor
     end
 

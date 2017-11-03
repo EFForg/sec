@@ -1,5 +1,5 @@
 ActiveAdmin.register Homepage do
-  menu label: "Homepage", priority: 1
+  menu label: "Homepage", parent: "Pages", priority: 1
   actions :all, except: [:create, :destroy]
 
   permit_params :welcome,

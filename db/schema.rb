@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171102180438) do
+ActiveRecord::Schema.define(version: 20171103163856) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -64,8 +64,10 @@ ActiveRecord::Schema.define(version: 20171102180438) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "slug"
-    t.datetime "published_at"
     t.string "authorship"
+    t.boolean "published", default: false, null: false
+    t.text "summary"
+    t.string "flag"
     t.index ["slug"], name: "index_articles_on_slug", unique: true
   end
 
@@ -75,9 +77,11 @@ ActiveRecord::Schema.define(version: 20171102180438) do
     t.datetime "updated_at", null: false
     t.text "body", null: false
     t.string "original_url"
-    t.datetime "published_at"
     t.string "slug"
     t.string "authorship"
+    t.datetime "published_at"
+    t.boolean "published", default: false, null: false
+    t.string "flag"
     t.index ["slug"], name: "index_blog_posts_on_slug", unique: true
   end
 
@@ -180,7 +184,7 @@ ActiveRecord::Schema.define(version: 20171102180438) do
     t.text "prerequisites"
     t.text "notes"
     t.text "suggested_materials"
-    t.datetime "published_at"
+    t.boolean "published", default: false, null: false
     t.index ["topic_id"], name: "index_lessons_on_topic_id"
   end
 
@@ -198,6 +202,7 @@ ActiveRecord::Schema.define(version: 20171102180438) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "attachment"
+    t.string "flag"
   end
 
   create_table "pg_search_documents", force: :cascade do |t|
@@ -239,9 +244,10 @@ ActiveRecord::Schema.define(version: 20171102180438) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "slug"
-    t.datetime "published_at"
     t.text "description"
     t.string "icon"
+    t.boolean "published", default: false, null: false
+    t.string "flag"
     t.index ["slug"], name: "index_topics_on_slug", unique: true
   end
 

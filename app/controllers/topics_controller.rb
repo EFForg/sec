@@ -6,7 +6,7 @@ class TopicsController < ApplicationController
 
   def index
     @topics = topics_scope.preload(:lessons, :tags).
-              published.order(published_at: :desc).
+              published.order(created_at: :desc).
               page(params[:page])
     @tags = ActsAsTaggableOn::Tag.joins(:taggings).
             where(taggings: { taggable_type: "Topic" }).

@@ -1,5 +1,5 @@
 ActiveAdmin.register Material do
-  menu parent: "Content", priority: 2
+  menu parent: "Content", priority: 3
 
   permit_params :name, :body, :attachment
 

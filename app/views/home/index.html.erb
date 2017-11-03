@@ -14,13 +14,15 @@
     <div class="row">
       <% row.each do |article| %>
       <div class="large-4 columns end">
-        <%= render article %>
+        <a href="<%= article_path(article) %>">
+          <%= render article, nolink: true %>
+        </a>
       </div>
       <% end %>
     </div>
     <% end %>
     <div class="see-all float-right">
-      <%= link_to "See All Articles", topics_path %>
+      <%= link_to "See All Articles", articles_path %>
     </div>
   </div>
 
@@ -34,7 +36,7 @@
     <div class="row">
       <% row.each do |topic| %>
       <div class="large-6 columns end">
-        <%= render "topic", topic: topic %>
+        <%= render topic %>
       </div>
       <% end %>
     </div>
@@ -51,7 +53,7 @@
     </div>
     <div class="row">
       <% @homepage.featured_materials.each do |material| %>
-      <%= render material %>
+        <%= render material %>
       <% end %>
     </div>
     <div class="see-all float-right">

@@ -1,7 +1,7 @@
 ActiveAdmin.register Topic do
   include ViewingInApp
 
-  menu parent: "Content", priority: 1
+  menu parent: "Content", priority: 2
 
   permit_params :name, :description, :icon, :slug, :published,
     tag_ids: [],
@@ -24,7 +24,7 @@ ActiveAdmin.register Topic do
   index do
     selectable_column
     column :name
-    column :published_at
+    column :published
     actions do |resource|
       link_to "View", resource
     end

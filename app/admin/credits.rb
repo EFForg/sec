@@ -1,5 +1,5 @@
 ActiveAdmin.register_page "Credits" do
-  menu priority: 3
+  menu parent: "Pages", priority: 10000
 
   page_action :update, method: :patch do
     @credits = ManagedContent.find_by!(region: "credits")
