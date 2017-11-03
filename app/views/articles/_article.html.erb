@@ -1,19 +1,13 @@
-<div class="article card">
-  <div class="top">
-    <h3><%= link_to article.name, article %></h3>
-    <% if article.authorship.present? %>
-    <div class="byline">by <span class="author"><%= article.authorship %></span></div>
-    <% end %>
-
-    <div class="content">
-      <%= preview(article) %> <%= link_to "Read More", article %>
+<% nolink = defined?(nolink) && nolink %>
+<%= render "content/teaser", content: article, nolink: nolink do %>
+  <h3><%= nolink ? article.name : link_to(article.name, article) %></h3>
+  <% if article.authorship.present? %>
+    <div class="byline-etc">
+      <span class="byline">by <span class="author"><%= article.authorship %></span></span>
     </div>
-  </div>
-
-  <%= link_to article, class: "bottom" do %>
-    <div class="flag <%= 'present' if article.flag? %>">
-      <%= article.flag || "&nbsp;".html_safe %>
-    </div>
-    <div class="fold"></div>
   <% end %>
-</div>
+
+  <div class="content">
+    <%= preview(article) %> <%= link_to "Read More", article unless nolink %>
+  </div>
+<% end %>

@@ -1,6 +1,6 @@
 module ContentHelper
   def allowed_tags_for_preview
-    %w(a b strong i em u s strike del p)
+    %w(b strong i em u s strike del p)
   end
 
   def preview(object)
