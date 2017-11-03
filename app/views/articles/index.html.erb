@@ -1,6 +1,10 @@
 <div class="row">
+  <div class="content description-text">
+    <%= managed_content("articles-intro") %>
+  </div>
+
   <% cache(cache_key_for_articles(@articles)) do %>
-  <%= render @articles %>
+    <%= render @articles %>
   <% end %>
 
   <%= paginate @articles %>

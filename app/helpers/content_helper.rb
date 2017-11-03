@@ -17,4 +17,9 @@ module ContentHelper
     end
     safe_join(links)
   end
+
+  def managed_content(region)
+    content = ManagedContent.find_by!(region: region)
+    content.body.html_safe
+  end
 end
