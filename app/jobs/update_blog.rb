@@ -23,6 +23,7 @@ class UpdateBlog < ApplicationJob
           original_url: update.link,
           name: update.title,
           authorship: authors.presence,
+          image_url: update.enclosure.try(:url),
           body: doc.to_html,
           published_at: update.pubDate,
           published: true

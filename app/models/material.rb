@@ -1,11 +1,11 @@
 class Material < ApplicationRecord
-  mount_uploader :attachment, MaterialsAttachmentUploader
+  has_many :uploads
+  accepts_nested_attributes_for :uploads
 
-  before_validation :name_after_attachment, if: ->(m){ m.name.blank? }
+  validates_presence_of :name
 
-  def name_after_attachment
-    if attachment.present?
-      self.name = File.basename(attachment.path)
-    end
+  def first_file
+    return if uploads.empty?
+    uploads.first.file
   end
 end
