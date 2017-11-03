@@ -1,7 +1,7 @@
 .tags {
-  float: left;
-  margin: 0 1rem 0;
-  width: 60%;
+  float: none;
+  margin: 0 1rem 0 0;
+  width: auto;
   @include breakpoint(medium) {
     margin: 1rem 0;
   }
@@ -11,14 +11,14 @@
     color: $darkest-teal;
     display: inline-block;
     font-size: 0.8rem;
-    line-height: 2rem;
+    line-height: 1rem;
     margin: 0 1rem 0.5rem 0;
     padding: 0.2rem 0.5rem;
     text-decoration: none;
     white-space: nowrap;
     @include breakpoint(medium) {
       font-size: 1rem;
-      margin: 0 2rem 1rem 0;
+      margin: 0 1rem 1rem 0;
     }
     &:hover {
       color: white;
