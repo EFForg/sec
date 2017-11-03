@@ -23,4 +23,22 @@
       border: none;
     }
   }
+  .material-preview {
+    width: 210px;
+    .material-download {
+      background: $teal;
+      text-align: center;
+      width: 100%;
+      a {
+        color: white;
+        text-decoration: none;
+        text-transform: uppercase;
+      }
+    }
+  }
+  .material.card .material-preview {
+    //@include breakpoint(small) {
+      width: 100%;
+    //}
+  }
 }

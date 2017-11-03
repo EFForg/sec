@@ -1,7 +1,10 @@
 <h1><%= @material.name %></h1>
 
 <div class="material-preview">
-  <%= file_preview(@material.attachment) %>
+  <%= link_to file_preview(@material.attachment), @material.attachment.url  %>
+  <div class="material-download">
+    <%= link_to "Download", @material.attachment.url %>
+  </div>
 </div>
 
 <div class="material-details">
@@ -11,8 +14,6 @@
     <%= @material.body.html_safe.presence || "<p>None</p>".html_safe %>
   </div>
 
-  <h2>Download</h2>
-  <%= link_to file_name(@material.attachment), @material.attachment.url %>
 
   <% if @topics.present? %>
     <h2>Accompanying Lessons</h2>
