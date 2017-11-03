@@ -1,6 +1,10 @@
 <div class="row">
   <h1>Security News</h1>
 
+  <div class="content description-text">
+    <%= managed_content("blog-intro") %>
+  </div>
+
   <%= render "tags/nav", tags: @tags %>
 
   <% cache(cache_key_for_blog_posts(@blog_posts)) do %>
