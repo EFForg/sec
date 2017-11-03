@@ -1,11 +1,17 @@
 module ContentHelper
   def allowed_tags_for_preview
-    %w(a b strong i em u s strike del p)
+    %w(b strong i em u s strike del p)
   end
 
-  def preview(html)
+  def preview(object)
+    if object.respond_to?(:summary?) && object.summary?
+      html = object.summary
+    else
+      html = object.body
+    end
+
     html = truncate(sanitize(html, tags: allowed_tags_for_preview),
-                    length: 500, escape: false)
+                    length: 500, escape: false, separator: /\s/)
 
     Nokogiri::HTML.fragment(html).to_html.html_safe # rubocop:disable Rails/OutputSafety
   end
@@ -16,5 +22,10 @@ module ContentHelper
       link_to tag.name, send(url_helper, tag: tag.name)
     end
     safe_join(links)
+  end
+
+  def managed_content(region)
+    content = ManagedContent.find_by!(region: region)
+    content.body.html_safe # rubocop:disable Rails/OutputSafety
   end
 end

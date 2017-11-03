@@ -6,7 +6,10 @@
         class: "lesson-planner-link" %>
   <% end %>
 
-  <p class="description-text">Some intro text here.</p>
+
+  <div class="content description-text">
+    <%= managed_content("topics-intro") %>
+  </div>
 
   <%= render "tags/nav", tags: @tags %>
 </div>

@@ -1,7 +1,7 @@
 ActiveAdmin.register Material do
   include ViewingInApp
 
-  menu parent: "Content", priority: 2
+  menu parent: "Content", priority: 3
 
   permit_params :name, :description,
     uploads_attributes: [ :id, :name, :description, :position, :file ]

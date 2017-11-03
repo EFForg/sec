@@ -1,6 +1,12 @@
 <div class="row">
+  <h1>Security Education 101</h1>
+
+  <div class="content description-text">
+    <%= managed_content("articles-intro") %>
+  </div>
+
   <% cache(cache_key_for_articles(@articles)) do %>
-  <%= render @articles %>
+    <%= render @articles %>
   <% end %>
 
   <%= paginate @articles %>
