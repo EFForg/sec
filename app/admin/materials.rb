@@ -1,4 +1,6 @@
 ActiveAdmin.register Material do
+  include ViewingInApp
+
   menu parent: "Content", priority: 2
 
   permit_params :name, :description,
@@ -7,7 +9,9 @@ ActiveAdmin.register Material do
   index do
     selectable_column
     column :name
-    actions
+    actions do |resource|
+      link_to "View", resource
+    end
   end
 
   form do |f|
