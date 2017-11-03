@@ -20,6 +20,6 @@ module ContentHelper
 
   def managed_content(region)
     content = ManagedContent.find_by!(region: region)
-    content.body.html_safe
+    content.body.html_safe # rubocop:disable Rails/OutputSafety
   end
 end
