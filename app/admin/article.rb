@@ -3,7 +3,7 @@ ActiveAdmin.register Article do
 
   menu parent: "Content", priority: 3
 
-  permit_params :name, :authorship, :body, :slug, :published
+  permit_params :name, :authorship, :summary, :body, :slug, :published
 
   controller do
     def find_resource
@@ -31,6 +31,8 @@ ActiveAdmin.register Article do
     inputs do
       f.input :name
       f.input :authorship, label: "Authors"
+      f.input :summary, as: :ckeditor,
+              hint: "If left blank, the first ~500 characters the article body will be used."
       f.input :body, as: :ckeditor
     end
 
