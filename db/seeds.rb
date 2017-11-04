@@ -30,3 +30,10 @@ articles_intro = %(<p>Whether you’re a computer scientist, a community organiz
 Homepage.create!(welcome: welcome, articles_intro: articles_intro)
 
 ManagedContent.create!(region: "credits")
+
+["articles", "blog", "materials", "topics"].each do |region|
+  content = ManagedContent.find_or_create_by!(region: "#{region}-intro")
+  content.update!(
+    body: %(Intro text to #{region}. Edit me <a href="/admin/#{region}_overview">here</a>.)
+  )
+end
