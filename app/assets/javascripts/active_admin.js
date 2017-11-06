@@ -14,14 +14,14 @@ $(window).on("load", function() {
     // Main input <li> must be directly followed by position input <li>
     list.find("li.input:not(.hidden)")
       .each(function() {
-        var pos = $(this).next("[id*=position]").find("input");
+        var pos = $(this).next("[id*=position]").find("input[name*=position]");
         $(this).data("position-input", pos);
       })
      .find("label")
      .after($("<span />", { "class": "handle fa fa-arrows" }))
 
     list.sortable({
-      handle: "label, .handle",
+      handle: "> label, > .handle",
       stop: function(e, ui) {
         list.find("li.input:not(.hidden)").each(function(i) {
           $(this).data("position-input").val(i);

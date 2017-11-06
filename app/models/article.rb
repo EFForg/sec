@@ -11,6 +11,8 @@ class Article < ApplicationRecord
   include PgSearch
   multisearchable against: %i(name body tag_list), if: :published?
 
+  belongs_to :article_section, optional: true
+
   def nillify_empty_slug
     self.slug = nil if slug.blank?
   end

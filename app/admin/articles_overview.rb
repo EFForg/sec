@@ -2,24 +2,54 @@ ActiveAdmin.register_page "Articles Overview" do
   menu parent: "Pages"
 
   page_action :update, method: :patch do
-    @content = ManagedContent.find_by!(region: "articles-intro")
+    intro = ManagedContent.find_by!(region: "articles-intro")
 
-    if @content.update(params[:managed_content].permit(:body))
-      flash[:success] = "Content has been successfully updated."
-      redirect_to admin_articles_overview_path
-    else
-      messages = @content.errors.full_messages.join
+    unless intro.update(body: params[:page][:intro])
+      messages = intro.errors.full_messages.join
       flash[:error] = "Error: " + messages
-      redirect_to admin_articles_overview_path
+      return redirect_to admin_articles_overview_path
     end
+
+    params[:article_sections].each_pair do |_, attrs|
+      section = ArticleSection.find(attrs[:id])
+
+      attrs = attrs.permit(
+        :id, :position,
+        articles_attributes: [
+          :id, :article_section_id, :article_section_position
+        ]
+      )
+
+      unless section.update(attrs)
+        messages = section.errors.full_messages.join
+        flash[:error] = "Error: " + messages
+        return redirect_to admin_articles_overview_path
+      end
+    end
+
+    flash[:success] = "Content has been successfully updated."
+    redirect_to admin_articles_overview_path
   end
 
   content do
-    semantic_form_for(ManagedContent.find_by(region: "articles-intro"),
-                      url: admin_articles_overview_update_path) do |f|
-      f.inputs{ f.input :body, as: :ckeditor, label: "Intro" } +
+    render "admin/pages/articles_overview", page: Page.new
+  end
 
-      f.actions{ f.submit "Update Content" }
+
+  class Page
+    extend ActiveModel::Naming
+    include ActiveModel::Conversion
+
+    def persisted?
+      true
+    end
+
+    def intro
+      ManagedContent.find_by(region: "articles-intro").try(:body)
+    end
+
+    def sections
+      @sections ||= ArticleSection.order(:position)
     end
   end
 end

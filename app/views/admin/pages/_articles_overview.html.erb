@@ -1,0 +1,47 @@
+<%= form_for(page, url: admin_articles_overview_update_path) do |f| %>
+  <fieldset class="inputs">
+    <ol>
+      <li class="ckeditor input">
+        <%= f.label :intro %>
+        <%= f.cktext_area :intro %>
+      </li>
+    </ol>
+  </fieldset>
+
+  <fieldset class="inputs reorderable">
+    <legend>Sections</legend>
+
+    <ol>
+      <% page.sections.each_with_index do |section, i| %>
+        <li class="input">
+          <span class="handle fa fa-arrows"></span>
+          <strong><%= section.name %></strong>
+          <fieldset class="reorderable">
+            <ol>
+              <% section.articles.each_with_index do |article, j| %>
+                <li class="input">
+                  <span class="handle fa fa-arrows"></span>
+                  <%= article.name %>
+                </li>
+                <li class="hidden" id="article_sections_<%= i %>_articles_attributes_<%= j %>_position_input">
+                  <%= hidden_field_tag :"article_sections[#{i}][articles_attributes][#{j}][id]", article.id %>
+                  <%= hidden_field_tag :"article_sections[#{i}][articles_attributes][#{j}][article_section_position]", article.article_section_position %>
+                </li>
+              <% end %>
+            </ol>
+          </fieldset>
+        </li>
+        <li class="hidden" id="article_sections_<%= i %>_position_input">
+          <%= hidden_field_tag :"article_sections[#{i}][id]", section.id %>
+          <%= hidden_field_tag :"article_sections[#{i}][position]", section.position %>
+        </li>
+      <% end %>
+    </ol>
+  </fieldset>
+
+  <fieldset class="actions">
+    <ol>
+      <li><%= f.submit %></li>
+    </ol>
+  </fieldset>
+<% end %>
