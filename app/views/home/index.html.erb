@@ -3,6 +3,10 @@
   <div class="intro row">
     <div class="large-12 columns">
       <%= homepage.welcome.html_safe %>
+
+      <% if homepage.update_notes? %>
+        <div class="update"><%= homepage.update_notes.html_safe %></div>
+      <% end %>
     </div>
   </div>
 

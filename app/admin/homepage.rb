@@ -2,7 +2,7 @@ ActiveAdmin.register Homepage do
   menu label: "Homepage", parent: "Pages", priority: 1
   actions :all, except: [:create, :destroy]
 
-  permit_params :welcome,
+  permit_params :welcome, :update_notes,
     :articles_intro,
     :lessons_intro,
     :materials_intro,
@@ -31,7 +31,12 @@ ActiveAdmin.register Homepage do
   end
 
   form do |f|
-    inputs{ input :welcome, as: :ckeditor }
+    inputs do
+      semantic_errors *f.object.errors.keys
+
+      input :welcome, as: :ckeditor
+      input :update_notes, as: :ckeditor
+    end
 
     inputs "Articles" do
       input :articles_intro, as: :ckeditor
