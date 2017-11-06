@@ -1,4 +1,4 @@
-<% if lesson.duration? %>
+<% if lesson.duration.length > 0 %>
   <div class="duration">
     Duration: <%= lesson.duration.in_words %>
   </div>
