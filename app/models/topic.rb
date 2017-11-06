@@ -23,8 +23,8 @@ class Topic < ApplicationRecord
     self.slug = nil if slug.blank?
   end
 
-  def duration
-    lessons.first.duration
+  def total_duration
+    Duration.new(lessons.sum :duration)
   end
 
   private
