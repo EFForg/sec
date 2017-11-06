@@ -17,10 +17,11 @@ $(window).on("load", function() {
         var pos = $(this).next("[id*=position]").find("input");
         $(this).data("position-input", pos);
       })
-      .append($("<span />", { "class": "handle" }).text("Move"));
+     .find("label")
+     .after($("<span />", { "class": "handle fa fa-arrows" }))
 
     list.sortable({
-      handle: ".handle",
+      handle: "label, .handle",
       stop: function(e, ui) {
         list.find("li.input:not(.hidden)").each(function(i) {
           $(this).data("position-input").val(i);
