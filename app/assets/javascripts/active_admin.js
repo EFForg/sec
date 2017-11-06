@@ -7,6 +7,28 @@
 $(window).on("load", function() {
   $("select.select2").select2();
 
+  $("fieldset.reorderable").each(function() {
+    var list = $(this).children("ol");
+
+    // Append a handle to each child
+    // Main input <li> must be directly followed by position input <li>
+    list.find("li.input:not(.hidden)")
+      .each(function() {
+        var pos = $(this).next("[id*=position]").find("input");
+        $(this).data("position-input", pos);
+      })
+      .append($("<span />", { "class": "handle" }).text("Move"));
+
+    list.sortable({
+      handle: ".handle",
+      stop: function(e, ui) {
+        list.find("li.input:not(.hidden)").each(function(i) {
+          $(this).data("position-input").val(i);
+        });
+      }
+    });
+  });
+
   // Confirm form submission with nested delete
   $("#edit_topic").on("submit", function(e) {
     e.preventDefault();

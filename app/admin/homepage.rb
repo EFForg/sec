@@ -41,9 +41,10 @@ ActiveAdmin.register Homepage do
     inputs "Articles" do
       input :articles_intro, as: :ckeditor
 
-      f.inputs "Featured Articles" do
+      li do
         articles = Article.order(created_at: :desc)
-        f.fields_for :featured_article_content do |sf|
+        reorderable_inputs "Featured Articles",
+                           :featured_article_content, f: f do |sf|
           sf.input :content, collection: articles,
                    input_html: { class: "select2" }
         end
@@ -53,9 +54,10 @@ ActiveAdmin.register Homepage do
     inputs "Lessons" do
       input :lessons_intro, as: :ckeditor
 
-      f.inputs "Featured Topics" do
+      li do
         topics = Topic.order(created_at: :desc)
-        f.fields_for :featured_topic_content do |sf|
+        reorderable_inputs "Featured Topics",
+                           :featured_topic_content, f: f do |sf|
           sf.input :content, collection: topics,
                    input_html: { class: "select2" }
         end
@@ -65,9 +67,10 @@ ActiveAdmin.register Homepage do
     inputs "Training Materials" do
       input :materials_intro, as: :ckeditor
 
-      f.inputs "Featured Materials" do
+      li do
         materials = Material.order(created_at: :desc)
-        f.fields_for :featured_material_content do |sf|
+        reorderable_inputs "Featured Materials",
+                           :featured_material_content, f: f do |sf|
           sf.input :content, collection: materials,
                    input_html: { class: "select2" }
         end
@@ -77,9 +80,10 @@ ActiveAdmin.register Homepage do
     inputs "Blog" do
       input :blog_intro, as: :ckeditor
 
-      f.inputs "Featured Blog Posts" do
+      li do
         blog_posts = BlogPost.order(published_at: :desc)
-        f.fields_for :featured_blog_post_content do |sf|
+        reorderable_inputs "Featured Blog Posts",
+                           :featured_blog_post_content, f: f do |sf|
           sf.input :content, collection: blog_posts,
                    input_html: { class: "select2" }
         end

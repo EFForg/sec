@@ -2,19 +2,19 @@ class Homepage < ApplicationRecord
   has_many :featured_content
 
   has_many :featured_topic_content,
-           ->{ where(content_type: "Topic") },
+           ->{ where(content_type: "Topic").order(:position) },
            class_name: "FeaturedContent"
 
   has_many :featured_article_content,
-           ->{ where(content_type: "Article") },
+           ->{ where(content_type: "Article").order(:position) },
            class_name: "FeaturedContent"
 
   has_many :featured_material_content,
-           ->{ where(content_type: "Material") },
+           ->{ where(content_type: "Material").order(:position) },
            class_name: "FeaturedContent"
 
   has_many :featured_blog_post_content,
-          ->{ where(content_type: "BlogPost") },
+          ->{ where(content_type: "BlogPost").order(:position) },
           class_name: "FeaturedContent"
 
   has_many :featured_topics, through: :featured_topic_content,
