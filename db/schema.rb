@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171104000712) do
+ActiveRecord::Schema.define(version: 20171106171452) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -77,9 +77,9 @@ ActiveRecord::Schema.define(version: 20171104000712) do
     t.datetime "updated_at", null: false
     t.text "body", null: false
     t.string "original_url"
+    t.datetime "published_at"
     t.string "slug"
     t.string "authorship"
-    t.datetime "published_at"
     t.boolean "published", default: false, null: false
     t.string "flag"
     t.string "image_url"
@@ -118,8 +118,8 @@ ActiveRecord::Schema.define(version: 20171104000712) do
 
   create_table "featured_content", force: :cascade do |t|
     t.integer "homepage_id", null: false
-    t.string "content_type", null: false
-    t.bigint "content_id", null: false
+    t.string "content_type"
+    t.bigint "content_id"
     t.integer "position", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
