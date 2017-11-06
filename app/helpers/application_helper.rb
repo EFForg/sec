@@ -1,11 +1,11 @@
 module ApplicationHelper
   def page_title
     if @page_title.present?
-      "#{@page_title} | TrainersHub"
+      "#{@page_title} | Security Education Companion"
     elsif breadcrumbs.present?
-      "#{breadcrumb_names.last} | TrainersHub"
+      "#{breadcrumb_names.last} | Security Education Companion"
     else
-      "TrainersHub"
+      "Security Education Companion"
     end
   end
 
