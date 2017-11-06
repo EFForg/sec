@@ -33,8 +33,8 @@ class Homepage < ApplicationRecord
            source: :content, source_type: "BlogPost",
            class_name: "BlogPost"
 
-  accepts_nested_attributes_for :featured_topic_content, allow_destroy: true
-  accepts_nested_attributes_for :featured_article_content, allow_destroy: true
-  accepts_nested_attributes_for :featured_material_content, allow_destroy: true
-  accepts_nested_attributes_for :featured_blog_post_content, allow_destroy: true
+  accepts_nested_attributes_for :featured_topic_content
+  accepts_nested_attributes_for :featured_article_content
+  accepts_nested_attributes_for :featured_material_content
+  accepts_nested_attributes_for :featured_blog_post_content
 end
