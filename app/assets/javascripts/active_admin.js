@@ -14,11 +14,15 @@ $(window).on("load", function() {
     var list = $(this).children("ol");
 
     // Append a handle to each child
-    // Main input <li> must be directly followed by position input <li>
+    // Main input <li> can either have a child input for position
+    // or be directly followed be a <li> with one
     list.find("li.input:not(.hidden)")
       .each(function() {
-        var pos = $(this).next("[id*=position]").find("input[name*=position]");
-        $(this).data("position-input", pos);
+        var pos = $(this).find("input[name*=position]");
+        if (!pos.length) {
+          pos = $(this).next("[id*=position]").find("input[name*=position]");
+          $(this).append(pos);
+        }
       })
      .find("label")
      .after($("<span />", { "class": "handle fa fa-arrows" }))
