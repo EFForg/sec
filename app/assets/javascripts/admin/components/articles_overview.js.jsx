@@ -175,7 +175,7 @@ var ArticleSection = createReactClass({
                       name={ "article_sections[" + i + "][articles_attributes][" + j + "][id]" }
                       value={ article.id } />
                <input type="hidden"
-                      name={ "article_sections[" + i + "][articles_attributes][" + j + "][article_section_position]" }
+                      name={ "article_sections[" + i + "][articles_attributes][" + j + "][section_position]" }
                       value={ j } />
 
                <span className="handle fa fa-arrows" />

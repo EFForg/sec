@@ -75,8 +75,8 @@ ActiveRecord::Schema.define(version: 20171106211206) do
     t.boolean "published", default: false, null: false
     t.text "summary"
     t.string "flag"
-    t.bigint "article_section_id"
-    t.integer "article_section_position", default: 0, null: false
+    t.bigint "section_id"
+    t.integer "section_position", default: 0, null: false
     t.index ["slug"], name: "index_articles_on_slug", unique: true
   end
 

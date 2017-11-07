@@ -5,10 +5,10 @@ class ArticlesController < ApplicationController
 
   def index
     @sections = Article.published.
-      includes(:article_section).
+      includes(:section).
       references(:article_sections).
-      order("article_sections.position, articles.article_section_position").
-      group_by(&:article_section)
+      order("article_sections.position, articles.section_position").
+      group_by(&:section)
   end
 
   def show

@@ -7,7 +7,7 @@ class CreateArticleSections < ActiveRecord::Migration[5.1]
       t.timestamps
     end
 
-    add_column :articles, :article_section_id, :bigint
-    add_column :articles, :article_section_position, :integer, null: false, default: 0
+    add_column :articles, :section_id, :bigint
+    add_column :articles, :section_position, :integer, null: false, default: 0
   end
 end

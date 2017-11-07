@@ -22,7 +22,7 @@ ActiveAdmin.register_page "Articles Overview" do
       attrs = attrs.permit(
         :id, :position,
         articles_attributes: [
-          :id, :article_section_id, :article_section_position
+          :id, :section_id, :section_position
         ]
       )
 
@@ -36,7 +36,7 @@ ActiveAdmin.register_page "Articles Overview" do
           ids << a["id"]
         end
 
-        Article.where(id: ids).update_all article_section_id: section.id
+        Article.where(id: ids).update_all section_id: section.id
       end
       unless section.update(attrs)
         messages = section.errors.full_messages.join
