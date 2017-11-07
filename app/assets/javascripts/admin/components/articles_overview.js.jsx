@@ -10,6 +10,7 @@ var ArticlesOverview = createReactClass({
   componentDidMount: function() {
     $(this.refs.list).sortable({
       handle: "> .handle",
+      items: "li.section",
       stop: this.updateSectionPositions
     });
 
@@ -90,10 +91,11 @@ var ArticlesOverview = createReactClass({
     return <ol ref="list">
              { state.sections.map(sectionNode) }
 
-             <li>
+             <li className="input string">
                <span className="fa fa-plus btn"
                      onClick={ this.createNewSection } />
                <input ref="input" type="text"
+                      placeholder="New Section"
                       value={ this.state.newSectionName }
                       onChange={ this.updateNewSectionName } />
 
@@ -112,11 +114,17 @@ var ArticleSection = createReactClass({
   },
 
   componentDidMount: function() {
-    $(this.refs.options).select2();
-    // onchange addArticle
+    var self = this;
+
+    $(this.refs.options).select2()
+      .on("select2:select", function() {
+        self.addArticle();
+        $(this).select2("open");
+      });
 
     $(this.refs.list).sortable({
       handle: "> .handle",
+      items: "li.article",
       stop: this.updateArticlePositions
     });
   },
@@ -198,7 +206,7 @@ var ArticleSection = createReactClass({
 
              <input type="hidden"
                name={ "article_sections[" + props.position + "][name]" }
-               value={ props.name } />;
+               value={ props.name } />
 
              <span className="handle fa fa-arrows" />
              <span className="handle">
