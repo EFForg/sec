@@ -95,7 +95,7 @@ var ArticlesOverview = createReactClass({
                <span className="fa fa-plus btn"
                      onClick={ this.createNewSection } />
                <input ref="input" type="text"
-                      placeholder="New Section"
+                      placeholder="Create a New Section"
                       value={ this.state.newSectionName }
                       onChange={ this.updateNewSectionName } />
 
@@ -222,7 +222,7 @@ var ArticleSection = createReactClass({
                  <span className="fa fa-plus btn"
                        onClick={ this.addArticle } />
                  <select ref="options">
-                   <option value="" />
+                   <option value="">Select an article</option>
                    { props.articleOptions.map(articleOption) }
                  </select>
                </li>
