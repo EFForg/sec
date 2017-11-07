@@ -11,7 +11,11 @@ ActiveAdmin.register_page "Articles Overview" do
     end
 
     params[:article_sections].each_pair do |_, attrs|
-      section = ArticleSection.find(attrs[:id])
+      if attrs[:id]
+        section = ArticleSection.find(attrs[:id])
+      else
+        section = ArticleSection.create!(name: attrs[:name])
+      end
 
       attrs = attrs.permit(
         :id, :position,
@@ -20,6 +24,18 @@ ActiveAdmin.register_page "Articles Overview" do
         ]
       )
 
+      attrs[:articles_attributes].reject! do |k, article|
+        article["id"].to_i.zero?
+      end
+
+      if attrs[:articles_attributes].present?
+        ids = []
+        attrs[:articles_attributes].each_pair do |_, a|
+          ids << a["id"]
+        end
+
+        Article.where(id: ids).update_all article_section_id: section.id
+      end
       unless section.update(attrs)
         messages = section.errors.full_messages.join
         flash[:error] = "Error: " + messages

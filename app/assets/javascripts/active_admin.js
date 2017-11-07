@@ -2,6 +2,9 @@
 //= require ckeditor/init
 //= active_material
 //= require select2
+//= require react
+//= require react_ujs
+//= require_tree ./admin/components
 //= require rails-ujs
 
 $(window).on("load", function() {
@@ -24,7 +27,7 @@ $(window).on("load", function() {
       handle: "> label, > .handle",
       stop: function(e, ui) {
         list.find("li.input:not(.hidden)").each(function(i) {
-          $(this).data("position-input").val(i);
+          $(this).find("input[name*=position]").val(i);
         });
       }
     });
@@ -59,6 +62,8 @@ $(window).on("load", function() {
     }
     reader.readAsDataURL(image);
   });
+
+  ReactRailsUJS.mountComponents();
 });
 
 preview_file = function(file, field) {
