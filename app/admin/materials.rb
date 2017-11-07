@@ -4,7 +4,7 @@ ActiveAdmin.register Material do
   menu parent: "Content", priority: 3
 
   permit_params :name, :description,
-    uploads_attributes: [:id, :name, :description, :position, :file]
+    uploads_attributes: [:id, :_destroy, :name, :description, :position, :file]
 
   index do
     selectable_column
@@ -19,7 +19,7 @@ ActiveAdmin.register Material do
       f.input :name
       f.input :description, as: :ckeditor
       f.has_many :uploads, sortable: :position,
-                           allow_destory: true do |u|
+                           allow_destroy: true do |u|
         u.input :name
         u.input :description
         u.input :file, as: :file, hint: file_preview(u.object.file)
