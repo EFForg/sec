@@ -3,10 +3,10 @@
     <% f.input :slug, hint: "Leave blank to auto-generate" %>
 
     <% f.input :tags,
-             as: :select,
-             multiple: true,
-             collection: ActsAsTaggableOn::Tag.order(:name).select(:id, :name).all,
-             input_html: { class: "select2" } %>
+         as: :select,
+         multiple: true,
+         collection: tags_collection,
+         input_html: { class: "select2" } %>
   <% end %>
 
   <%= f.inputs class: 'inputs inline-choice' do %>

@@ -11,7 +11,7 @@
     <% f.input :tags,
              as: :select,
              multiple: true,
-             collection: ActsAsTaggableOn::Tag.order(:name).select(:id, :name).all,
+             collection: tags_collection,
              input_html: { class: "select2" } %>
   <% end %>
 
