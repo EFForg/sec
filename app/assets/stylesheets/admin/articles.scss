@@ -1,0 +1,17 @@
+
+[data-react-class=ArticlesOverview] {
+  ol {
+    list-style-type: none;
+  }
+
+  .fa-trash-o {
+    cursor: pointer;
+    margin-left: 0.7rem;
+    color: #f00;
+  }
+
+  input[type=text] {
+    display: inline;
+    width: 30rem;
+  }
+}

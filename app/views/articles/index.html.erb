@@ -5,9 +5,10 @@
     <%= managed_content("articles-intro") %>
   </div>
 
-  <% cache(cache_key_for_articles(@articles)) do %>
-    <%= render @articles %>
+  <% cache(cache_key_for_articles(@sections)) do %>
+    <% @sections.each do |section, articles| %>
+      <h2><%= section.try(:name) || "Other Articles" %></h2>
+      <%= render articles %>
+    <% end %>
   <% end %>
-
-  <%= paginate @articles %>
 </div>

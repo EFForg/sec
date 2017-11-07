@@ -58,6 +58,13 @@ ActiveRecord::Schema.define(version: 20171106223732) do
     t.index ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
   end
 
+  create_table "article_sections", force: :cascade do |t|
+    t.string "name", null: false
+    t.integer "position", default: 0, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "articles", force: :cascade do |t|
     t.string "name", null: false
     t.text "body", null: false
@@ -68,6 +75,8 @@ ActiveRecord::Schema.define(version: 20171106223732) do
     t.boolean "published", default: false, null: false
     t.text "summary"
     t.string "flag"
+    t.bigint "section_id"
+    t.integer "section_position", default: 0, null: false
     t.index ["slug"], name: "index_articles_on_slug", unique: true
   end
 

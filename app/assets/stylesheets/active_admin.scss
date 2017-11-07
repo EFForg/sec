@@ -41,16 +41,14 @@
   padding-top: 8px;
 }
 
-.handle {
+.handle.fa, .btn.fa {
   font-size: 1.4rem;
   vertical-align: middle;
   margin-right: 0.6rem;
 }
 
-.inputs.reorderable {
-  label, .handle {
-    cursor: pointer;
-  }
+.inputs.reorderable label, .handle, .btn.fa {
+  cursor: pointer;
 }
 
 .has_many_container {
