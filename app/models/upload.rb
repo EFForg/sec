@@ -4,6 +4,7 @@ class Upload < ApplicationRecord
 
   default_scope { order(position: :asc) }
 
+  validates :file, presence: true
   before_validation :name_after_file, if: ->(m){ m.name.blank? }
 
   def name_after_file
