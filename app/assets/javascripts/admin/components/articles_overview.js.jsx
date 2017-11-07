@@ -2,6 +2,7 @@ var ArticlesOverview = createReactClass({
   getInitialState: function() {
     return {
       sections: this.props.sections,
+      deletedSections: [],
       newSectionName: ""
     };
   },
@@ -50,10 +51,17 @@ var ArticlesOverview = createReactClass({
   },
 
   removeSection: function(i) {
-    var name = this.state.sections[i].name;
-    if (confirm('Remove the section "' + name + '"?')) {
+    var section = this.state.sections[i];
+    if (confirm('Remove the section "' + section.name + '"?')) {
       this.state.sections.splice(i, 1)
-      this.setState({ sections: this.state.sections });
+
+      if (section.id)
+        this.state.deletedSections.push(section.id);
+
+      this.setState({
+        sections: this.state.sections,
+        deletedSections: this.state.deletedSections
+      });
     }
   },
 
@@ -72,6 +80,13 @@ var ArticlesOverview = createReactClass({
                              articleOptions={ props.articles } />;
     };
 
+    var deletedSectionNode = function(id) {
+      return <input key={ "deleted/" + id }
+                    type="hidden"
+                    name="deleted_section_ids[]"
+                    value={ id } />
+    };
+
     return <ol ref="list">
              { state.sections.map(sectionNode) }
 
@@ -81,6 +96,8 @@ var ArticlesOverview = createReactClass({
                <input ref="input" type="text"
                       value={ this.state.newSectionName }
                       onChange={ this.updateNewSectionName } />
+
+               { state.deletedSections.map(deletedSectionNode) }
              </li>
            </ol>;
   }

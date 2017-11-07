@@ -10,6 +10,8 @@ ActiveAdmin.register_page "Articles Overview" do
       return redirect_to admin_articles_overview_path
     end
 
+    ArticleSection.where(id: params[:deleted_section_ids]).destroy_all
+
     params[:article_sections].each_pair do |_, attrs|
       if attrs[:id]
         section = ArticleSection.find(attrs[:id])
