@@ -49,6 +49,14 @@ var ArticlesOverview = createReactClass({
     this.setState({ sections: newOrder });
   },
 
+  removeSection: function(i) {
+    var name = this.state.sections[i].name;
+    if (confirm('Remove the section "' + name + '"?')) {
+      this.state.sections.splice(i, 1)
+      this.setState({ sections: this.state.sections });
+    }
+  },
+
   render: function() {
     var self = this;
     var props = this.props;
@@ -119,6 +127,14 @@ var ArticleSection = createReactClass({
     }
   },
 
+  removeArticle: function(i) {
+    var name = this.state.articles[i].name;
+    if (confirm('Remove "' + name + '" from this section?')) {
+      this.state.articles.splice(i, 1)
+      this.setState({ articles: this.state.articles });
+    }
+  },
+
   render: function() {
     var self = this;
     var state = this.state;
@@ -140,6 +156,9 @@ var ArticleSection = createReactClass({
                <span className="handle fa fa-arrows" />
 
                <span className="handle">{ article.name }</span>
+
+               <span className="fa fa-trash-o"
+                     onClick={ self.removeArticle.bind(self, j) } />
              </li>;
     };
 
@@ -168,6 +187,9 @@ var ArticleSection = createReactClass({
              <span className="handle">
                <strong>{ props.name }</strong>
              </span>
+
+             <span className="fa fa-trash-o"
+                   onClick={ props.overview.removeSection.bind(props.overview, props.position) } />
 
              <ol ref="list">
                { state.articles.map(articleNode) }
