@@ -128,6 +128,11 @@
     a {
       text-decoration: none;
       text-transform: uppercase;
+      &:hover,
+      &:focus,
+      &:visited {
+        color: $darkest-teal;
+      }
       &:after {
         content: " ";
         font-size: 0;
