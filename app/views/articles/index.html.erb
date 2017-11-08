@@ -6,8 +6,27 @@
   </div>
 
   <% cache(cache_key_for_articles(@sections)) do %>
+    <ul class="toc">
+      <% @sections.each do |section, articles| %>
+        <li>
+          <strong><%= link_to section_name(section), "##{section_id(section)}" %></strong>
+
+          <% unless section.nil? %>
+            <ul>
+              <% articles.each do |article| %>
+                <li><%= link_to article.name, article %></li>
+              <% end %>
+            </ul>
+          <% end %>
+        </li>
+      <% end %>
+    </ul>
+
     <% @sections.each do |section, articles| %>
-      <h2><%= section.try(:name) || "Other Articles" %></h2>
+      <h2 id="<%= section_id(section) %>">
+        <%= section.try(:name) || "Other Articles" %>
+      </h2>
+
       <%= render articles %>
     <% end %>
   <% end %>
