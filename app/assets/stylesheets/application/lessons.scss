@@ -18,13 +18,13 @@
 }
 // level colors
 .difficulty-tag.b {
-  background-color: #B79D30;
+  background-color: $beginner;
 }
 .difficulty-tag.i {
-  background-color: #477729;
+  background-color: $intermediate;
 }
 .difficulty-tag.a {
-  background-color: #A34B4A;
+  background-color: $advanced;
 }
 
 
