@@ -33,7 +33,7 @@ class Lesson < ApplicationRecord
 
   mount_uploader :pdf, PdfUploader
   after_save :enqueue_pdf_update,
-    if: ->{ published? && !saved_changes.key?(:body) }
+    if: ->{ published? && !saved_changes.key?(:pdf) }
 
   def name
     "#{topic.name}: #{level}"
