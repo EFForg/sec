@@ -50,23 +50,19 @@ h6 {
 }
 
 h1 {
-  font-size: 1.6rem;
-  line-height: 2rem;
+  font-size: 2rem;
   margin-bottom: 1rem;
   @include breakpoint(medium) {
-    font-size: 2rem;
     line-height: 2.3rem;
     margin-bottom: 1.6rem;
   }
 }
 
 h2 {
-  font-size: 1.7rem;
-  line-height: 1.9rem;
+  font-size: 1.5rem;
   margin-bottom: 1.3rem;
   margin-top: 3rem;
   @include breakpoint(medium) {
-    font-size: 1.5rem;
     line-height: 1.7rem;
     margin-bottom: 1.6rem;
   }
@@ -74,20 +70,21 @@ h2 {
 
 
 h3 {
-  font-size: 1.4rem;
+  font-size: 1.2rem;
   line-height: 1.8rem;
   margin-bottom: 0.7rem;
 }
 
 h4 {
   font-size: 1.2rem;
-  line-height: 1.4rem;
+  line-height: 1.8rem;
   margin-bottom: 0.5rem;
+  font-style: italic;
   text-align: left;
 }
 
 h5 {
-  font-size: 1.2rem;
+  font-size: 1rem;
   line-height: 1.4rem;
   margin-bottom: 0.5rem;
   margin-left: 2rem;
@@ -95,8 +92,8 @@ h5 {
 }
 
 h6 {
-  font-size: 1.2rem;
-  font-weight: 400;
+  font-size: 1rem;
+  font-style: italic;
   line-height: 1.6rem;
   margin: 0 1rem 1.7rem 1rem;
   text-align: left;
