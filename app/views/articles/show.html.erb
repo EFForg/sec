@@ -1,11 +1,13 @@
 <div class="row">
-  <h1><%= @article.name %></h1>
-  <% if @article.authorship.present? %>
-    <div class="byline-etc">by <span class="author"><%= @article.authorship %></span></div>
-  <% end %>
-  <%= render partial: "shared/admin_links", locals: { resource: @article } %>
+  <div class="large-8 large-centered columns">
+    <h1><%= @article.name %></h1>
+    <% if @article.authorship.present? %>
+      <div class="byline-etc">by <span class="author"><%= @article.authorship %></span></div>
+    <% end %>
+    <%= render partial: "shared/admin_links", locals: { resource: @article } %>
 
-  <div class="content">
-    <%= @article.body.html_safe %>
+    <div class="content">
+      <%= @article.body.html_safe %>
+    </div>
   </div>
 </div>
