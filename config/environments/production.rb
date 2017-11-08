@@ -63,7 +63,10 @@ Rails.application.configure do
   config.active_job.queue_adapter     = :delayed_job
   config.action_mailer.perform_caching = false
 
-  config.action_mailer.default_url_options = { host: ENV["SERVER_HOST"] }
+  config.action_mailer.default_url_options = {
+    host: ENV["SERVER_HOST"],
+    protocol: ENV["SERVER_PROTOCOL"]
+  }
   config.action_mailer.smtp_settings = {
     address: ENV["SMTP_ADDRESS"],
     port: ENV.fetch("SMTP_PORT"){ 587 },
