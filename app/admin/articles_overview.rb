@@ -50,11 +50,11 @@ ActiveAdmin.register_page "Articles Overview" do
   end
 
   content do
-    render "admin/pages/articles_overview", page: Page.new
+    render "admin/pages/articles_overview", page: ArticlesPage.new
   end
 
 
-  class Page
+  class ArticlesPage
     extend ActiveModel::Naming
     include ActiveModel::Conversion
 
