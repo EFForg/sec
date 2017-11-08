@@ -32,7 +32,8 @@ class Lesson < ApplicationRecord
   after_validation :decide_published
 
   mount_uploader :pdf, PdfUploader
-  after_save :enqueue_pdf_update, if: :published?
+  after_save :enqueue_pdf_update,
+    if: ->{ published? && !saved_changes.key?(:body) }
 
   def name
     "#{topic.name}: #{level}"
@@ -47,7 +48,7 @@ class Lesson < ApplicationRecord
   end
 
   def enqueue_pdf_update
-    # UpdateLessonPdf.perform_later(id)
+    UpdateLessonPdf.perform_later(id)
   end
 
   def decide_published
