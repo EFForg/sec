@@ -1,9 +1,13 @@
 footer {
-  display: none; //small screens
   background-color: $light-teal ;
   color: $darkest-teal;
   margin: 0;
-  padding: 2rem 0;
+  padding: 3rem 0 5rem;
+
+  @include breakpoint(medium) {
+    padding-bottom: 2rem;
+  }
+
   a,
   a:focus,
   a:active,
@@ -11,6 +15,7 @@ footer {
     color: $darkest-teal;
     text-decoration: underline;
   }
+
   h1 {
     color: $darkest-teal;
     font-size: 1.8rem;
@@ -20,29 +25,80 @@ footer {
       font-size: 2.5rem;
     }
   }
+
   img {
-    display: block;
-    margin: 0 auto 1rem;
+    margin-top: 1rem;
     max-width: 200px;
+
     @include breakpoint(medium) {
-      margin: 0 auto;
+      margin: 0.7rem 2rem;
+      width: 350px;
       max-width: 100%;
     }
   }
+
+  .logos {
+    text-align: center;
+  }
+
   .footer-links {
-    margin-top: 5rem;
+    margin-top: 4rem;
+    text-align: center;
+
     ul {
+      display: inline-block;
+      vertical-align: top;
+      text-align: left;
       list-style: none;
+
+      margin-left: 4rem;
+      margin-right: 4rem;
+
+      max-width: 280px;
+
       li {
-        text-transform: uppercase;
         font-size: 1.3rem;
         font-weight: 600;
         margin-bottom: 1rem;
       }
-    }
-  }
 
-  @include breakpoint(medium) {
-    display: block;
+      &:not(.feedback) li {
+        text-transform: uppercase;
+      }
+    }
+
+    .feedback {
+      max-width: none;
+      li strong {
+        text-transform: none;
+        &:after {
+          content: ":";
+        }
+      }
+
+      @include breakpoint(large) {
+        li strong {
+          text-transform: uppercase;
+          display: block;
+        }
+      }
+    }
+
+    @include breakpoint(small only) {
+      margin-top: 2rem;
+
+      .navigation {
+        display: none;
+      }
+
+      .about {
+        columns: 2;
+      }
+
+      li {
+        margin-left: 0.5rem;
+        margin-right: 0.5rem;
+      }
+    }
   }
 }
