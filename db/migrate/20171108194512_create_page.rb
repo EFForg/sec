@@ -9,7 +9,7 @@ class CreatePage < ActiveRecord::Migration[5.1]
       t.timestamps
     end
 
-    add_reference :managed_content, :page, index: true
+    add_reference :managed_content, :page, foreign_key: true
 
     reversible do |dir|
       dir.up do

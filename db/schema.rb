@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171108194512) do
+ActiveRecord::Schema.define(version: 20171109164721) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -219,7 +219,7 @@ ActiveRecord::Schema.define(version: 20171108194512) do
 
   create_table "pages", force: :cascade do |t|
     t.string "name", null: false
-    t.text "body"
+    t.text "body", default: "", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["name"], name: "index_pages_on_name", unique: true
@@ -282,4 +282,5 @@ ActiveRecord::Schema.define(version: 20171108194512) do
     t.index ["material_id"], name: "index_uploads_on_material_id"
   end
 
+  add_foreign_key "managed_content", "pages"
 end
