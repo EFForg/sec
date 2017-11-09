@@ -21,6 +21,7 @@
     <%= managed_content("articles-intro") %>
   </div>
 
+  <div class="large-8 large-centered columns">
   <% cache(cache_key_for_articles(@sections)) do %>
     <% @sections.each do |section, articles| %>
       <h2 id="<%= section_id(section) %>">
@@ -30,4 +31,5 @@
       <%= render articles %>
     <% end %>
   <% end %>
+</div>
 </div>
