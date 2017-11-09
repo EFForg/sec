@@ -10,7 +10,14 @@ class LessonsController < ApplicationController
     respond_to do |format|
       format.html { render "topics/show" }
       format.js
-      format.pdf { redirect_to @lesson.pdf.url }
+      format.pdf do
+        if Rails.env.development?
+          UpdateLessonPdf.perform_now(@lesson.id)
+          send_file(@lesson.reload.pdf.path, disposition: "inline")
+        else
+          redirect_to @lesson.pdf.url
+        end
+      end
     end
   end
 end
