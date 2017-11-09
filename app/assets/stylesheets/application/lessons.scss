@@ -36,10 +36,18 @@
   .lesson-back {
     a {
       color: $darkest-teal;
+      font-size: 0.8rem;
       font-weight: 600;
       margin-bottom: 1rem;
       text-decoration: none;
       text-transform: uppercase;
+      width: 7rem;
+      display: inline-block;
+      line-height: 1rem;
+      @include breakpoint(medium) {
+        font-size: 1rem;
+        width: auto;
+      }
     }
   }
 
@@ -56,8 +64,8 @@
       background: $darkest-teal;
       color: white;
       display: inline-block;
-      height: 3rem;
-      font-size: 0.8rem;
+      height: 2rem;
+      font-size: 0.7rem;
       line-height: 0.8rem;
       padding: 0.3rem 2.7rem 0 1rem;
       position: absolute;
@@ -67,6 +75,7 @@
       width: 143px;
       @include breakpoint(medium) {
         font-size: 1rem;
+        height: 3rem;
         line-height: 1rem;
         margin-right: 2.95rem;
         padding: 0.9rem 1rem;
@@ -77,12 +86,18 @@
       background: white;
       width: 0;
       height: 0;
-      border-left: 1.5rem solid $darkest-teal;
-      border-right: 1.5rem solid transparent;
-      border-bottom: 1.5rem solid transparent;
-      border-top: 1.5rem solid transparent;
+      border-left: 1rem solid $darkest-teal;
+      border-right: 1rem solid transparent;
+      border-bottom: 1rem solid transparent;
+      border-top: 1rem solid transparent;
       position: absolute;
       right: 0;
+      @include breakpoint(medium) {
+        border-left: 1.5rem solid $darkest-teal;
+        border-right: 1.5rem solid transparent;
+        border-bottom: 1.5rem solid transparent;
+        border-top: 1.5rem solid transparent;
+      }
     }
   }
   .topics-cards {

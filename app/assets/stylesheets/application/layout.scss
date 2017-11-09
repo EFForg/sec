@@ -16,6 +16,15 @@
       margin-bottom: 1.8rem;
     }
   }
+
+  .intro {
+    width: 100%;
+    @include breakpoint(medium) {
+      margin-left: 0;
+      margin-right: auto;
+      width: 66%;
+    }
+  }
   .update {
     border: 2px solid $light-teal;
     padding: 1rem;
