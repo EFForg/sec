@@ -1,4 +1,4 @@
-$( function() {
+$(document).ready(function(){
     $(".tab").click(function() {
       if( $( this ).hasClass( 'active' ) ) {
          return;
