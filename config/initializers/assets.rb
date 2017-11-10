@@ -19,3 +19,6 @@ Rails.application.config.assets.paths << Rails.root.join('node_modules')
 
 # Include ckeditor plugins.
 Rails.application.config.assets.precompile += %w( ckeditor/plugins/*)
+
+# Include alternate stylesheets
+Rails.application.config.assets.precompile += %w(pdf.scss.css)
