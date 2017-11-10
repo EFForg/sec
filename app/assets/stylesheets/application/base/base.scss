@@ -147,3 +147,14 @@ table {
 ul, ol {
   margin-left: 3rem;
 }
+
+.pull-quote {
+  display: block;
+  float: left;
+  font-size: 2rem;
+  line-height: 2.7rem;
+  font-weight: 300;
+  color: $dark-gray;
+  width: 22rem;
+  margin: 2rem 2rem 2rem -4rem;
+}
