@@ -16,6 +16,13 @@ module ContentHelper
     Nokogiri::HTML.fragment(html).to_html.html_safe # rubocop:disable Rails/OutputSafety
   end
 
+  def html(html)
+    if html
+      doc = Nokogiri::HTML.fragment(html)
+      doc.to_html.html_safe # rubocop:disable Rails/OutputSafety
+    end
+  end
+
   def tags(object, url_helper)
     url_base = breadcrumbs[-2]
     links = object.tags.map do |tag|
@@ -26,6 +33,6 @@ module ContentHelper
 
   def managed_content(region)
     content = ManagedContent.find_by!(region: region)
-    content.body.html_safe # rubocop:disable Rails/OutputSafety
+    html(content.body)
   end
 end
