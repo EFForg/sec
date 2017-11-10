@@ -24,7 +24,7 @@
     <h3>Prerequisites</h3>
 
     <div class="content">
-      <%= html(@lesson.prerequisites) %>
+      <%= html(@lesson.prerequisites, new_tab_for_all_links: true) %>
     </div>
   </div>
 <% end %>
@@ -44,7 +44,7 @@
       <h3>Suggested Materials</h3>
 
       <div class="content">
-        <%= html(@lesson.suggested_materials) %>
+        <%= html(@lesson.suggested_materials, new_tab_for_all_links: true) %>
       </div>
     </div>
   <% end %>
@@ -63,12 +63,12 @@
 
 <% if @lesson.notes? %>
   <div class="notes content">
-    <%= html(@lesson.notes) %>
+    <%= html(@lesson.notes, new_tab_for_all_links: true) %>
   </div>
 <% end %>
 
 <div class="content collapse <%= "uncollapse" if params.include?("expand") %>">
-  <%= html(@lesson.body) %>
+  <%= html(@lesson.body, new_tab_for_all_links: true) %>
 </div>
 
 <%= link_to "View full session",

@@ -16,9 +16,16 @@ module ContentHelper
     Nokogiri::HTML.fragment(html).to_html.html_safe # rubocop:disable Rails/OutputSafety
   end
 
-  def html(html)
+  def html(html, new_tab_for_all_links: false)
     if html
       doc = Nokogiri::HTML.fragment(html)
+
+      doc.css("a[href]").each do |link|
+        if new_tab_for_all_links
+          link["target"] ||= "_blank"
+        end
+      end
+
       doc.to_html.html_safe # rubocop:disable Rails/OutputSafety
     end
   end
@@ -31,8 +38,8 @@ module ContentHelper
     safe_join(links)
   end
 
-  def managed_content(region)
+  def managed_content(region, **html_options)
     content = ManagedContent.find_by!(region: region)
-    html(content.body)
+    html(content.body, **html_options)
   end
 end

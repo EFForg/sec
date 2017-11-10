@@ -7,7 +7,7 @@
     <%= render partial: "shared/admin_links", locals: { resource: @article } %>
 
     <div class="content">
-      <%= html(@article.body) %>
+      <%= html(@article.body, new_tab_for_all_links: true) %>
     </div>
   </div>
 </div>
