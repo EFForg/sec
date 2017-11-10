@@ -36,10 +36,10 @@
       <%= homepage.lessons_intro.html_safe %>
     </div>
 
-    <% homepage.featured_topics.each_slice(2) do |row| %>
+    <% homepage.featured_topics.each_slice(3) do |row| %>
     <div class="row">
       <% row.each do |topic| %>
-      <div class="large-6 columns end">
+      <div class="large-4 columns end">
         <%= render topic %>
       </div>
       <% end %>
