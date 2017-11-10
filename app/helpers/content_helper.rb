@@ -16,11 +16,19 @@ module ContentHelper
     Nokogiri::HTML.fragment(html).to_html.html_safe # rubocop:disable Rails/OutputSafety
   end
 
-  def html(html, new_tab_for_all_links: false)
+  def html(html, new_tab_for_all_links: true)
     if html
       doc = Nokogiri::HTML.fragment(html)
 
       doc.css("a[href]").each do |link|
+        uri = URI(link["href"])
+        is_external = uri.host && uri.host != request.host
+
+        if is_external
+          link["target"] ||= "_blank"
+          link["class"] = %(#{link["class"]} external)
+        end
+
         if new_tab_for_all_links
           link["target"] ||= "_blank"
         end
