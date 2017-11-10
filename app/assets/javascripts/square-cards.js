@@ -7,7 +7,9 @@ $(document).ready(function(){
   }
   function cardResize() {
     var cardWidth= $cardSquare.width();
-    $cardSquare.css("height", cardWidth);
+    if (cardWidth > 285) {
+      $cardSquare.css("height", cardWidth);
+    }
   }
   cardResize();
   $( window ).resize(function() {
