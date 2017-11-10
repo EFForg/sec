@@ -18,6 +18,8 @@
   width: 34%;
   align-items: stretch;
   line-height: 1.3rem;
+  font-weight: 400;
+
   @include breakpoint(medium) {
     width: 150px;
   }
