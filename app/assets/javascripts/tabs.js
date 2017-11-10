@@ -1,10 +1,13 @@
-$( function() {
+$(document).ready(function(){
+  if (($('body').hasClass('section-lessons')) ||
+  ($('body').hasClass('section-topics')))
+  {
     $(".tab").click(function() {
-      if( $( this ).hasClass( 'active' ) ) {
-         return;
+      if( !$( this ).hasClass( 'active' ) ) {
+        $(".tab").removeClass( 'active' );
+        $( this ).addClass( 'active' );
       }
 
-      $(".tab").removeClass( 'active' );
-      $( this ).addClass( 'active' );
-  });
+    });
+  }
 });
