@@ -31,64 +31,6 @@ ActiveAdmin.register Homepage do
   end
 
   form do |f|
-    inputs do
-      semantic_errors *f.object.errors.keys
-
-      input :welcome, as: :ckeditor
-      input :update_notes, as: :ckeditor
-    end
-
-    inputs "Articles" do
-      input :articles_intro, as: :ckeditor
-
-      li do
-        articles = Article.order(created_at: :desc)
-        reorderable_inputs "Featured Articles",
-                           :featured_article_content, f: f do |sf|
-          sf.input :content, collection: articles,
-                   input_html: { class: "select2" }
-        end
-      end
-    end
-
-    inputs "Lessons" do
-      input :lessons_intro, as: :ckeditor
-
-      li do
-        topics = Topic.order(created_at: :desc)
-        reorderable_inputs "Featured Topics",
-                           :featured_topic_content, f: f do |sf|
-          sf.input :content, collection: topics,
-                   input_html: { class: "select2" }
-        end
-      end
-    end
-
-    inputs "Training Materials" do
-      input :materials_intro, as: :ckeditor
-
-      li do
-        materials = Material.order(created_at: :desc)
-        reorderable_inputs "Featured Materials",
-                           :featured_material_content, f: f do |sf|
-          sf.input :content, collection: materials,
-                   input_html: { class: "select2" }
-        end
-      end
-    end
-
-    inputs "Blog" do
-      input :blog_intro, as: :ckeditor
-
-      li do
-        blog_posts = BlogPost.order(published_at: :desc)
-        reorderable_inputs "Featured Blog Posts",
-                           :featured_blog_post_content, f: f do |sf|
-          sf.input :content, collection: blog_posts,
-                   input_html: { class: "select2" }
-        end
-      end
-    end
 
     f.actions
   end

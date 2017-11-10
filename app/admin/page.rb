@@ -13,11 +13,12 @@ ActiveAdmin.register Page do
   end
 
   form do |f|
-    f.inputs do
-      f.semantic_errors *f.object.errors.keys
-      f.input :body, label: f.object.body_alias
-      f.actions
+    if f.object.name == "homepage"
+      f.template.render partial: 'pages/homepage'
     end
+    f.semantic_errors *f.object.errors.keys
+    f.input :body, label: f.object.body_alias
+    f.actions
   end
 end
 
