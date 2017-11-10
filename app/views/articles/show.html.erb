@@ -7,7 +7,7 @@
     <%= render partial: "shared/admin_links", locals: { resource: @article } %>
 
     <div class="content">
-      <%= @article.body.html_safe %>
+      <%= html(@article.body) %>
     </div>
   </div>
 </div>
