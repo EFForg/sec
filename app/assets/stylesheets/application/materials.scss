@@ -17,7 +17,7 @@
     }
   }
   .material-preview {
-    //width: 210px;
+    width: 210px;
     .material-download {
       background: $teal;
       text-align: center;
@@ -31,5 +31,18 @@
   }
   .material.card .material-preview {
     width: 100%;
+  }
+
+  .upload-description {
+    font-weight: 400;
+  }
+  .material-img {
+    padding: 1rem 1rem 1rem 0;
+    img {
+      border: 1px solid black;
+    }
+  }
+  .material-link {
+    float: left;
   }
 }

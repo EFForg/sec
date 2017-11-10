@@ -20,8 +20,12 @@
           <div class="upload-description"><%= upload.description %></div>
           <% end %>
 
-          <%= file_preview(upload.file) %>
-          <%= link_to file_name(upload.file), upload.file.url %>
+          <div class="material-img">
+            <%= file_preview(upload.file) %>
+          </div>
+          <div class="material-link">
+            <%= link_to file_name(upload.file), upload.file.url %>
+          </div>
         </div>
       <% end %>
     </div>
