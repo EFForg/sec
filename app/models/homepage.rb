@@ -37,4 +37,11 @@ class Homepage < ApplicationRecord
   accepts_nested_attributes_for :featured_article_content
   accepts_nested_attributes_for :featured_material_content
   accepts_nested_attributes_for :featured_blog_post_content
+
+  after_validation :update_update_notes_updated_at,
+                   if: ->{ changes.include?(:update_notes) }
+
+  def update_update_notes_updated_at
+    self.update_notes_updated_at = Time.now
+  end
 end

@@ -6,7 +6,13 @@
         <%= html(homepage.welcome) %>
 
         <% if homepage.update_notes? %>
-          <div class="update"><%= html(homepage.update_notes) %></div>
+          <div class="update">
+            <div class="updated-at">
+              <%= homepage.update_notes_updated_at.strftime("%B %d, %Y") %>
+            </div>
+
+            <%= html(homepage.update_notes) %>
+          </div>
         <% end %>
     </div>
   </div>
