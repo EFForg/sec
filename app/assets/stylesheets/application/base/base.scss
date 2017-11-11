@@ -155,7 +155,7 @@ ul, ol {
   line-height: 2rem;
   font-weight: 300;
   color: $dark-gray;
-  width: 22rem;
+  max-width: 22rem;
   margin: 2rem 2rem 2rem 0rem;
   @include breakpoint(medium){
     font-size: 2rem;
