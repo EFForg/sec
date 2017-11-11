@@ -21,8 +21,9 @@
   .top {
     min-height: 8rem;
     padding: 1.5rem 1.5rem 0 1rem;
-    margin-bottom: 2.3rem;
-
+  //  margin-bottom: 2.3rem;
+    position: absolute;
+    margin-bottom: 0;
     .flag {
       display: inline-block;
       position: relative;
@@ -64,6 +65,11 @@
       border-bottom: 2.2rem solid $light-teal;
       border-left: 2.2rem solid transparent;
     }
+  }
+  &:after {
+    content: "";
+    display: block;
+    padding-bottom: 100%;
   }
 }
 
