@@ -12,6 +12,7 @@
     <div class="last-modified">
       Last modified <%= @topic.updated_at.strftime("%B %e, %Y") %>
     </div>
+    <div class="print-button"><a href="#">Print</a></div>
 
     <%= render partial: "shared/admin_links", locals: { resource: @topic } %>
 
