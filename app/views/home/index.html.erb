@@ -61,11 +61,17 @@
     <div class="description-text">
       <%= html(homepage.materials_intro) %>
     </div>
+
+    <% homepage.featured_materials.each_slice(3) do |row| %>
     <div class="row">
-      <% @homepage.featured_materials.each do |material| %>
+      <% row.each do |material| %>
+      <div class="large-4 columns end">
         <%= render material %>
+      </div>
       <% end %>
     </div>
+    <% end %>
+
     <div class="see-all float-right">
       <%= link_to "See All Teaching Materials", materials_path %>
     </div>
