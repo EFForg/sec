@@ -3,17 +3,23 @@
   <div class="row">
     <div class="intro">
 
-        <%= homepage.welcome.html_safe %>
+        <%= html(homepage.welcome) %>
 
         <% if homepage.update_notes? %>
-          <div class="update"><%=   homepage.update_notes.html_safe %></div>
+          <div class="update">
+            <div class="updated-at">
+              <%= homepage.update_notes_updated_at.strftime("%B %d, %Y") %>
+            </div>
+
+            <%= html(homepage.update_notes) %>
+          </div>
         <% end %>
     </div>
   </div>
 
   <div class="row" >
     <h2><%= link_to "1st Time Trainer?", articles_path %></h2>
-    <div class="description-text"><%= homepage.articles_intro.html_safe %></div>
+    <div class="description-text"><%= html(homepage.articles_intro) %></div>
     <% @homepage.featured_articles.each_slice(4) do |row| %>
     <div class="row">
       <% row.each do |article| %>
@@ -33,7 +39,7 @@
   <div class="row">
     <h2><%= link_to "Lessons", topics_path %></h2>
     <div class="description-text">
-      <%= homepage.lessons_intro.html_safe %>
+      <%= html(homepage.lessons_intro) %>
     </div>
 
     <% homepage.featured_topics.each_slice(3) do |row| %>
@@ -53,7 +59,7 @@
   <div class="row">
     <h2><%= link_to "Teaching Materials", materials_path %></h2>
     <div class="description-text">
-      <%= homepage.materials_intro.html_safe %>
+      <%= html(homepage.materials_intro) %>
     </div>
     <div class="row">
       <% @homepage.featured_materials.each do |material| %>
@@ -69,7 +75,7 @@
   <div class="row">
     <h2><%= link_to "Security News", blog_path %></h2>
     <div class="description-text">
-      <%= homepage.blog_intro.html_safe %>
+      <%= html(homepage.blog_intro) %>
     </div>
     <div class="row">
       <% homepage.featured_blog_posts.each do |blog_post| %>

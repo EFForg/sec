@@ -23,7 +23,7 @@ module ActiveAdmin::AdminHelper
         }
       ),
 
-      "articles" => Article.all.as_json(only: [:id, :name])
+      "articles" => Article.published.as_json(only: [:id, :name])
     }
   end
 end

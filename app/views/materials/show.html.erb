@@ -6,7 +6,7 @@
 
       <div class="material-details">
         <div class="content">
-          <%= @material.description.html_safe.presence %>
+          <%= html(@material.description) %>
         </div>
 
       <h2>Downloads</h2>

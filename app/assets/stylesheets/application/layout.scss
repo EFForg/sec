@@ -26,8 +26,15 @@
     }
   }
   .update {
+    font-size: 0.8rem;
+    line-height: 1.2rem;
     border: 2px solid $light-teal;
     padding: 1rem;
+    p {
+      font-size: 0.9rem;
+      line-height: 1.5rem;
+      margin-bottom: 0;
+    }
   }
   .description-text {
     @include breakpoint(medium) {
