@@ -16,7 +16,8 @@
   padding-left: 0.8rem;
   padding-right: 0.8rem;
 }
-// level colors
+
+/* level colors */
 .difficulty-tag.b {
   background-color: $beginner;
 }
@@ -247,10 +248,8 @@
   }
 }
 
-.meta > * {
-  display: inline-block;
-  vertical-align: top;
-  width: 33%;
+.meta {
+  display: flex;
 }
 
 .topics-grid {
