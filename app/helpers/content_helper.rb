@@ -32,7 +32,7 @@ module ContentHelper
         if new_tab_for_all_links
           link["target"] ||= "_blank"
         end
-      end
+      end if request
 
       doc.to_html.html_safe # rubocop:disable Rails/OutputSafety
     end
