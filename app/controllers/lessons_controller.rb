@@ -1,5 +1,6 @@
 class LessonsController < ApplicationController
   include ContentPermissioning
+  include Pdfing
 
   def show
     @topic = Topic.friendly.find(params[:topic_id])
