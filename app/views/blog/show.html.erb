@@ -8,7 +8,7 @@
       <span class="publised-at"><%= @blog_post.published_at.strftime("%B %d, %Y") %></span>
     </div>
     <%= render partial: "shared/admin_links", locals: { resource: @blog_post } %>
-    <div class="tags-list">
+    <div class="tags">
       <%= tags(@blog_post, :blog_path) %>
     </div>
 
