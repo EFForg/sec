@@ -41,7 +41,7 @@
       <h3>Relevant Articles</h3>
       <ul>
         <% @lesson.advice.each do |advice| %>
-          <li><%= link_to advice.name %></li>
+          <li><%= link_to advice.name, advice %></li>
         <% end %>
       </ul>
     </div>
