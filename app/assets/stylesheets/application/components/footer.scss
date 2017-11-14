@@ -58,7 +58,7 @@ footer {
       text-align: center;
       text-transform: uppercase;
       width: 100%;
-      @include breakpoint(medium){
+      @include breakpoint(medium) {
         width: 23.5rem;
       }
     }
