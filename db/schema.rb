@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171103163856) do
+ActiveRecord::Schema.define(version: 20171114001514) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -58,6 +58,13 @@ ActiveRecord::Schema.define(version: 20171103163856) do
     t.index ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
   end
 
+  create_table "article_sections", force: :cascade do |t|
+    t.string "name", null: false
+    t.integer "position", default: 0, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "articles", force: :cascade do |t|
     t.string "name", null: false
     t.text "body", null: false
@@ -68,6 +75,8 @@ ActiveRecord::Schema.define(version: 20171103163856) do
     t.boolean "published", default: false, null: false
     t.text "summary"
     t.string "flag"
+    t.bigint "section_id"
+    t.integer "section_position", default: 0, null: false
     t.index ["slug"], name: "index_articles_on_slug", unique: true
   end
 
@@ -77,11 +86,12 @@ ActiveRecord::Schema.define(version: 20171103163856) do
     t.datetime "updated_at", null: false
     t.text "body", null: false
     t.string "original_url"
+    t.datetime "published_at"
     t.string "slug"
     t.string "authorship"
-    t.datetime "published_at"
     t.boolean "published", default: false, null: false
     t.string "flag"
+    t.string "image_url"
     t.index ["slug"], name: "index_blog_posts_on_slug", unique: true
   end
 
@@ -117,8 +127,8 @@ ActiveRecord::Schema.define(version: 20171103163856) do
 
   create_table "featured_content", force: :cascade do |t|
     t.integer "homepage_id", null: false
-    t.string "content_type", null: false
-    t.bigint "content_id", null: false
+    t.string "content_type"
+    t.bigint "content_id"
     t.integer "position", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -145,6 +155,8 @@ ActiveRecord::Schema.define(version: 20171103163856) do
     t.text "lessons_intro", default: "", null: false
     t.text "blog_intro", default: "", null: false
     t.text "materials_intro", default: "", null: false
+    t.text "update_notes"
+    t.datetime "update_notes_updated_at"
   end
 
   create_table "lesson_plan_lessons", force: :cascade do |t|
@@ -173,7 +185,7 @@ ActiveRecord::Schema.define(version: 20171103163856) do
 
   create_table "lessons", force: :cascade do |t|
     t.bigint "topic_id"
-    t.integer "duration"
+    t.integer "duration", default: 0, null: false
     t.text "body"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -185,6 +197,8 @@ ActiveRecord::Schema.define(version: 20171103163856) do
     t.text "notes"
     t.text "suggested_materials"
     t.boolean "published", default: false, null: false
+    t.text "recommended_reading"
+    t.text "relevant_articles"
     t.index ["topic_id"], name: "index_lessons_on_topic_id"
   end
 

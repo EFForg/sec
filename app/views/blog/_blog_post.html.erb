@@ -7,7 +7,11 @@
     </div>
   <% end %>
 
+  <div class="blog-image">
+    <%= image_tag blog_post.image_url if blog_post.image_url? %>
+  </div>
+
   <div class="content">
-    <%= preview(blog_post) %> <%= link_to "Read More" %>
+    <%= preview(blog_post) %> <%= link_to "Read More", blog_post %>
   </div>
 <% end %>

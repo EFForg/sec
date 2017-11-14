@@ -2,22 +2,22 @@ ActiveAdmin.register Homepage do
   menu label: "Homepage", parent: "Pages", priority: 1
   actions :all, except: [:create, :destroy]
 
-  permit_params :welcome,
+  permit_params :welcome, :update_notes,
     :articles_intro,
     :lessons_intro,
     :materials_intro,
     :blog_intro,
     featured_topic_content_attributes: [
-      :id, :_destroy, :content_type, :content_id_string, :position
+      :id, :content_id, :position
     ],
     featured_article_content_attributes: [
-      :id, :_destroy, :content_type, :content_id_string, :position
+      :id, :content_id, :position
     ],
     featured_material_content_attributes: [
-      :id, :_destroy, :content_type, :content_id_string, :position
+      :id, :content_id, :position
     ],
     featured_blog_post_content_attributes: [
-      :id, :_destroy, :content_type, :content_id_string, :position
+      :id, :content_id, :position
     ]
 
   controller do
@@ -31,22 +31,22 @@ ActiveAdmin.register Homepage do
   end
 
   form do |f|
-    inputs{ input :welcome, as: :ckeditor }
+    inputs do
+      semantic_errors *f.object.errors.keys
+
+      input :welcome, as: :ckeditor
+      input :update_notes, as: :ckeditor
+    end
 
     inputs "Articles" do
       input :articles_intro, as: :ckeditor
 
-      f.inputs "Featured Articles" do
-        article_options = Article.all.map{ |t| "#{t.name} (##{t.id})" }
-        f.has_many :featured_article_content,
-                   heading: nil,
-                   new_record: "Add New Featured Article",
-                   allow_destroy: true,
-                   sortable: :position do |t|
-          t.input :content_type, as: :hidden,
-                  input_html: { value: "Article" }
-          t.input :content_id_string, as: :datalist,
-                  label: "Article", collection: article_options
+      li do
+        articles = Article.order(created_at: :desc)
+        reorderable_inputs "Featured Articles",
+                           :featured_article_content, f: f do |sf|
+          sf.input :content, collection: articles,
+                   input_html: { class: "select2" }
         end
       end
     end
@@ -54,17 +54,12 @@ ActiveAdmin.register Homepage do
     inputs "Lessons" do
       input :lessons_intro, as: :ckeditor
 
-      f.inputs "Featured Topics" do
-        topic_options = Topic.all.map{ |t| "#{t.name} (##{t.id})" }
-        f.has_many :featured_topic_content,
-                   heading: nil,
-                   new_record: "Add New Featured Topic",
-                   allow_destroy: true,
-                   sortable: :position do |t|
-          t.input :content_type, as: :hidden,
-                  input_html: { value: "Topic" }
-          t.input :content_id_string, as: :datalist,
-                  label: "Topic", collection: topic_options
+      li do
+        topics = Topic.order(created_at: :desc)
+        reorderable_inputs "Featured Topics",
+                           :featured_topic_content, f: f do |sf|
+          sf.input :content, collection: topics,
+                   input_html: { class: "select2" }
         end
       end
     end
@@ -72,17 +67,12 @@ ActiveAdmin.register Homepage do
     inputs "Training Materials" do
       input :materials_intro, as: :ckeditor
 
-      f.inputs "Featured Materials" do
-        material_options = Material.all.map{ |t| "#{t.name} (##{t.id})" }
-        f.has_many :featured_material_content,
-                   heading: nil,
-                   new_record: "Add New Featured Material",
-                   allow_destroy: true,
-                   sortable: :position do |t|
-          t.input :content_type, as: :hidden,
-                  input_html: { value: "Material" }
-          t.input :content_id_string, as: :datalist,
-                  label: "Material", collection: material_options
+      li do
+        materials = Material.order(created_at: :desc)
+        reorderable_inputs "Featured Materials",
+                           :featured_material_content, f: f do |sf|
+          sf.input :content, collection: materials,
+                   input_html: { class: "select2" }
         end
       end
     end
@@ -90,17 +80,12 @@ ActiveAdmin.register Homepage do
     inputs "Blog" do
       input :blog_intro, as: :ckeditor
 
-      f.inputs "Featured Blog Posts" do
-        blog_post_options = BlogPost.all.map{ |t| "#{t.name} (##{t.id})" }
-        f.has_many :featured_blog_post_content,
-                   heading: nil,
-                   new_record: "Add New Featured Blog Post",
-                   allow_destroy: true,
-                   sortable: :position do |t|
-          t.input :content_type, as: :hidden,
-                  input_html: { value: "BlogPost" }
-          t.input :content_id_string, as: :datalist,
-                  label: "Blog Post", collection: blog_post_options
+      li do
+        blog_posts = BlogPost.order(published_at: :desc)
+        reorderable_inputs "Featured Blog Posts",
+                           :featured_blog_post_content, f: f do |sf|
+          sf.input :content, collection: blog_posts,
+                   input_html: { class: "select2" }
         end
       end
     end

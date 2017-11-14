@@ -63,7 +63,10 @@ Rails.application.configure do
   config.active_job.queue_adapter     = :delayed_job
   config.action_mailer.perform_caching = false
 
-  config.action_mailer.default_url_options = { host: ENV["SERVER_HOST"] }
+  config.action_mailer.default_url_options = {
+    host: ENV["SERVER_HOST"],
+    protocol: ENV["SERVER_PROTOCOL"]
+  }
   config.action_mailer.smtp_settings = {
     address: ENV["SMTP_ADDRESS"],
     port: ENV.fetch("SMTP_PORT"){ 587 },
@@ -103,4 +106,6 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
+
+  config.action_controller.forgery_protection_origin_check = false
 end

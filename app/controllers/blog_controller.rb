@@ -22,7 +22,7 @@ class BlogController < ApplicationController
 
   def blog_post_scope
     if params[:tag]
-      BlogPost.tagged_with(params[:tag])
+      BlogPost.tagged_with(params[:tag]).distinct
     else
       BlogPost.all
     end

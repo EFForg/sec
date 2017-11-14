@@ -1,30 +1,38 @@
-<footer>
+<footer class="no-print">
   <div class="row">
     <h1>Security Education Companion</h1>
-    <div class="large-6 columns">
-      <%= image_tag("ssd-logo.png", :alt => "SEC logo") %>
-    </div>
-    <div class="large-6 columns">
-      <%= image_tag("eff-logo.png", :alt => "SEC logo") %>
+
+    <div class="logos">
+      <%= link_to image_tag("ssd-logo.png", alt: "SEC logo"),
+            "https://ssd.eff.org/" %>
+
+      <%= link_to image_tag("eff-logo.png", alt: "EFF logo"),
+            "https://www.eff.org/" %>
     </div>
   </div>
-  <div class="footer-links row">
-    <div class="large-3 columns">
-      <ul>
-        <li><%= link_to "Security Education 101", articles_path %></li>
-        <li><%= link_to "Lesson Topics", topics_path %></li>
-        <li><%= link_to "Security News", blog_path %></li>
-        <li><%= link_to "Teaching Materials", materials_path %></li>
-      </ul>
-    </div>
-    <div class="large-3 columns">
-      col2
-    </div>
-    <div class="large-3 columns">
-      col3
-    </div>
-    <div class="large-3 columns">
-      col4
-    </div>
+
+  <div class="row footer-links">
+    <ul class="navigation">
+      <li><%= link_to "Security Education 101", articles_path %></li>
+      <li><%= link_to "Lessons", topics_path %></li>
+      <li><%= link_to "Security News", blog_path %></li>
+      <li><%= link_to "Teaching Materials", materials_path %></li>
+    </ul>
+
+    <ul class="about">
+      <li><%= link_to "Contact", "mailto:sec-feedback@eff.org" %></li>
+      <li><%= link_to "Credits", "/credits" %></li>
+      <li><%= link_to "Privacy", "https://www.eff.org/policy" %></li>
+      <li><%= link_to "License", "https://www.eff.org/copyright" %></li>
+    </ul>
+
+    <ul class="feedback">
+      <li>
+        <%= link_to "/feedback" do %>
+          <strong>Provide Feedback</strong>
+          Tell us what you think about SEC.
+        <% end %>
+      </li>
+    </ul>
   </div>
 </footer>

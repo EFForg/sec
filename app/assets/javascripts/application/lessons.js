@@ -3,6 +3,7 @@ $(document).on('click', '.expand-collapsed', function(e) {
   e.preventDefault();
 
   $('.collapse').addClass('uncollapse');
+  $('.expand-collapsed').hide();
   if (window.history && history.replaceState) {
     var url = window.location.href;
     if (url.indexOf('expand') == -1) {

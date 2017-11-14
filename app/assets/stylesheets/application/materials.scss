@@ -1,24 +1,48 @@
 .section-materials {
   .material.card {
-    padding: 0;
-    .material-name {
-      padding-top: 1rem;
-      a {
-        text-decoration: none;
-      }
-    }
-    .material-image {
+    min-height: 10rem;
+    padding: 1rem;
+    .top {
+      margin: 0;
       padding: 0;
-      img {
-        width: 100%;
-        height: 100%;
+    }
+
+    .fold {
+      &:before {
+        border: none;
+      }
+      &:after {
+        border: none;
       }
     }
-    &:before {
-      border: none;
+  }
+  .material-preview {
+    width: 210px;
+    .material-download {
+      background: $teal;
+      text-align: center;
+      width: 100%;
+      a {
+        color: white;
+        text-decoration: none;
+        text-transform: uppercase;
+      }
     }
-    &:after {
-      border: none;
+  }
+  .material.card .material-preview {
+    width: 100%;
+  }
+
+  .upload-description {
+    font-weight: 400;
+  }
+  .material-img {
+    padding: 1rem 1rem 1rem 0;
+    img {
+      border: 1px solid black;
     }
+  }
+  .material-link {
+    float: left;
   }
 }

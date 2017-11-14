@@ -3,20 +3,41 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 // lesson planner
 .section-lesson_plans {
-  #planned-lessons {
-    h3 {
-      margin-bottom: 0;
-      text-transform: capitalize;
-      a {
-        color: black;
-      }
+  h3 {
+    margin-bottom: 0;
+    text-transform: capitalize;
+    a {
+      color: black;
     }
+  }
+  .your-lessons {
+    float: none;
+    @include breakpoint(medium) {
+      float: left;
+    }
+  }
+  .export-formats {
+    margin: 0 0 1rem;
+  }
+
+  .total-duration {
+    float: none;
+    @include breakpoint(medium) {
+      float: right;
+    }
+  }
+
+  #planned-lessons {
+    clear: both;
     .lesson {
       border: 2px solid $dark-teal;
       margin: 2rem auto;
-      padding: 2rem;
+      padding: 0.5rem;
       input[type="submit"] {
         @include add-lesson;
+      }
+      @include breakpoint(medium) {
+        padding: 2rem;
       }
     }
     .objective {

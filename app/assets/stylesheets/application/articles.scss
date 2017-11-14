@@ -1,0 +1,15 @@
+
+.section-articles {
+  .toc {
+    float: right;
+    list-style-type: none;
+
+    > li {
+      margin-bottom: 0.7rem;
+    }
+  }
+
+  h2 {
+    clear: both;
+  }
+}

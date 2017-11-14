@@ -1,6 +1,7 @@
 /*
  *= require select2
  *= require select2-bootstrap
+ *= require font-awesome
 */
 
 // SASS variable overrides must be declared before loading up Active Admin's styles.
@@ -40,7 +41,13 @@
   padding-top: 8px;
 }
 
-.handle {
+.handle.fa, .btn.fa {
+  font-size: 1.4rem;
+  vertical-align: middle;
+  margin-right: 0.6rem;
+}
+
+.inputs.reorderable label, .handle, .btn.fa {
   cursor: pointer;
 }
 

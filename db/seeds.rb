@@ -27,6 +27,18 @@ security education needs.</p>
 EOF
 
 articles_intro = %(<p>Whether you’re a computer scientist, a community organizer or just a curious person, Security Education’s collection of resources has something for you.</p>)
-Homepage.create!(welcome: welcome, articles_intro: articles_intro)
+h = Homepage.create!(welcome: welcome, articles_intro: articles_intro)
+
+4.times{ h.featured_article_content.create! }
+4.times{ h.featured_topic_content.create! }
+3.times{ h.featured_material_content.create! }
+3.times{ h.featured_blog_post_content.create! }
 
 ManagedContent.create!(region: "credits")
+
+["articles", "blog", "materials", "topics"].each do |region|
+  content = ManagedContent.find_or_create_by!(region: "#{region}-intro")
+  content.update!(
+    body: %(Intro text to #{region}. Edit me <a href="/admin/#{region}_overview">here</a>.)
+  )
+end

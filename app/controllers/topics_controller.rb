@@ -29,7 +29,7 @@ class TopicsController < ApplicationController
 
   def topics_scope
     if params[:tag]
-      Topic.tagged_with(params[:tag])
+      Topic.tagged_with(params[:tag]).distinct
     else
       Topic.all
     end

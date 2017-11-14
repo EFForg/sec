@@ -4,9 +4,11 @@ class ArticlesController < ApplicationController
               "Articles" => routes.articles_path
 
   def index
-    @articles = Article.published.
-                order(created_at: :desc).
-                page(params[:page])
+    @sections = Article.published.
+      includes(:section).
+      references(:article_sections).
+      order("article_sections.position, articles.section_position").
+      group_by(&:section)
   end
 
   def show

@@ -1,13 +1,35 @@
 <div class="row">
   <h1>Security Education 101</h1>
 
+  <ul class="toc">
+    <% @sections.each do |section, articles| %>
+      <li>
+        <strong><%= link_to section_name(section), "##{section_id(section)}" %></strong>
+
+        <% unless section.nil? %>
+          <ul>
+            <% articles.each do |article| %>
+              <li><%= link_to article.name, article %></li>
+            <% end %>
+          </ul>
+        <% end %>
+      </li>
+    <% end %>
+  </ul>
+
   <div class="content description-text">
     <%= managed_content("articles-intro") %>
   </div>
 
-  <% cache(cache_key_for_articles(@articles)) do %>
-    <%= render @articles %>
-  <% end %>
+  <div class="large-8 large-centered columns">
+  <% cache(cache_key_for_articles(@sections)) do %>
+    <% @sections.each do |section, articles| %>
+      <h2 id="<%= section_id(section) %>">
+        <%= section.try(:name) || "Other Articles" %>
+      </h2>
 
-  <%= paginate @articles %>
+      <%= render articles %>
+    <% end %>
+  <% end %>
+</div>
 </div>

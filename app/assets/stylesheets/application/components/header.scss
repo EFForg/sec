@@ -18,6 +18,8 @@
   width: 34%;
   align-items: stretch;
   line-height: 1.3rem;
+  font-weight: 400;
+
   @include breakpoint(medium) {
     width: 150px;
   }
@@ -33,16 +35,17 @@
   }
 
   .back-text {
-    display: table;
+    display: inherit;
     line-height: 1rem;
-    padding: 0.5rem 0 0 0;
+    padding: 0.5rem 0 0 2rem;
     max-width: 100px;
     a {
       text-decoration: none;
     }
     @include breakpoint(medium) {
+      display: table;
       line-height: 1rem;
-      padding: 0.5rem 0 0 0.3rem;
+      padding: 0.3rem 0 0 0.3rem;
       max-width: none;
     }
   }
@@ -206,37 +209,57 @@ header {
     }
   }
 
-  ul {  // menu for small and large screens
+  ul {
+    display: flex;
+    list-style-type: none;
+    background-color: $light-teal;
+
     li {
-      display: inline-block;
-      margin: 0;
-      border-left: 4px solid $light-teal;
-      padding: 0.2rem 4%;
-      width: auto;
+      flex: 1;
+      margin: 0 2px;
+      background-color: $darkest-teal;
       a {
+        display: inline-block;
+        vertical-align: top;
+        height: 100%;
+        width: 100%;
+        padding: 0.2rem 4%;
         font-size: 1.2rem;
       }
+
+      &:first-child {
+        margin-left: 4px;
+      }
+
       &:last-child {
-        border-right: 4px solid $light-teal;
+        margin-right: 4px;
       }
     }
-  }
 
+    @include breakpoint(medium only) {
+      li {
+        margin: 0;
 
-  .menu-items { // menu for medium screens
-    margin: 0;
-    padding: 0 1%;
-    div {
-      text-align: center;
-    }
-    a {
-      font-size: 1rem;
+        &:first-child {
+          margin-left: 0;
+        }
+
+        &:last-child {
+          margin-right: 0;
+        }
+
+        a {
+          font-size: 1rem;
+          padding: 0 1%;
+        }
+      }
     }
   }
 
   @include breakpoint(small only) {
     position: fixed;
     bottom: 0;
+    margin-bottom: 0;
     width: 100%;
     z-index: 1000;
     ul {
@@ -247,12 +270,13 @@ header {
       padding: 0;
       li {
         min-height: 4rem;
-        padding: 0.6rem 0.1rem 0;
+        padding: 0 0.1rem;
         font-size: 0.8rem;
         line-height: 0.8rem;
         a {
           font-size: 0.8rem;
           line-height: 0.8rem;
+          padding-top: 0.4rem;
         }
       }
     }

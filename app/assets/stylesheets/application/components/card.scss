@@ -7,8 +7,6 @@
   width: 100%;
 
   h3 {
-    font-size: 1.6rem;
-    line-height: 1.6rem;
     text-transform: capitalize;
     a {
       display: block;
@@ -79,7 +77,22 @@ a .card .byline {
   }
 }
 
+.section-home div.topic.card,
+.section-home div.material.card,
+.section-materials .card {
+  .top {
+    position: absolute;
+    margin-bottom: 0;
+  }
+  &:after {
+    content: "";
+    display: block;
+    padding-bottom: 100%;
+  }
+}
+
 .duration {
   color: $darkest-teal;
+  line-height: 1.1rem;
   text-transform: uppercase;
 }

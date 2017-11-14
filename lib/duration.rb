@@ -23,14 +23,6 @@ class Duration
     result.join(" and ")
   end
 
-  # Passing empty duration params should set the column to nil, not 0
-  def self.empty_duration_hash?(obj)
-    return false unless obj.is_a?(Hash)
-    obj.all? do |key, value|
-      value == ""
-    end
-  end
-
   # Used for ActiveRecord serialize method
   def self.load(duration)
     return nil if duration.nil?
@@ -38,7 +30,6 @@ class Duration
   end
 
   def self.dump(obj)
-    return nil if obj.nil? || empty_duration_hash?(obj)
     if obj.is_a? Hash
       self.new(obj).length
     else

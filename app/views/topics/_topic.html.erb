@@ -5,10 +5,7 @@
 
   <h3><%= link_to topic.name, topic %></h3>
 
-  <div class="duration">Duration: <%= topic.duration.in_words %></div>
+  <div class="duration">Duration: <%= duration_range(topic) %></div>
   <div class="levels"><%= difficulty_tag(topic.lessons.map(&:level_id)) %></div>
-
-  <div class="content description"><%= topic.description.try(:html_safe) %></div>
-
   <div class="tags"><%= tags(topic, :topics_path) %></div>
 <% end %>

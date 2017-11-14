@@ -1,0 +1,30 @@
+<%= form_for(page, url: admin_articles_overview_update_path) do |f| %>
+  <fieldset class="inputs">
+    <ol>
+      <li class="ckeditor input">
+        <%= f.label :intro %>
+        <%= f.cktext_area :intro %>
+      </li>
+    </ol>
+  </fieldset>
+
+  <fieldset class="inputs">
+    <legend>Sections</legend>
+
+    <ol>
+      <li class="input">
+        <p>Note: Each article can appear in only one section.</p>
+      </li>
+    </ol>
+
+    <%= react_component "ArticlesOverview",
+          articles_overview_react_props(page) %>
+
+  </fieldset>
+
+  <fieldset class="actions">
+    <ol>
+      <li><%= f.submit %></li>
+    </ol>
+  </fieldset>
+<% end %>

@@ -1,15 +1,17 @@
 <div class="row">
-  <h1>Security News</h1>
+  <div class="large-8 large-centered columns">
+    <h1>Security News</h1>
 
-  <div class="content description-text">
-    <%= managed_content("blog-intro") %>
+    <div class="content description-text">
+      <%= managed_content("blog-intro") %>
+    </div>
+
+    <%= render "tags/nav", tags: @tags %>
+
+    <% cache(cache_key_for_blog_posts(@blog_posts)) do %>
+    <%= render @blog_posts %>
+    <% end %>
+
+    <%= paginate @blog_posts %>
   </div>
-
-  <%= render "tags/nav", tags: @tags %>
-
-  <% cache(cache_key_for_blog_posts(@blog_posts)) do %>
-  <%= render @blog_posts %>
-  <% end %>
-
-  <%= paginate @blog_posts %>
 </div>
