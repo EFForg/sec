@@ -54,6 +54,9 @@ services:
 # Cron service for production
 #   cron:
 #     build: .
+#     depends_on:
+#       db:
+#         condition: service_healthy
 #     user: root
 #     restart: always
 #     command: /bin/bash -c 'env >> /etc/environment && cron -f'
