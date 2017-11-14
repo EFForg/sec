@@ -18,6 +18,9 @@
   }
   .material-preview {
     width: 210px;
+    img {
+      border: 1px solid black;
+    }
     .material-download {
       background: $teal;
       text-align: center;
