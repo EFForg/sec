@@ -1,9 +1,19 @@
 <div class="tags">
   <%= link_to "All tags", url_for, class: params[:tag].present? ? "" : "active" %>
 
-  <% @tags.each do |tag| %>
+  <% @tags[0, 7].each do |tag| %>
     <%= link_to tag.name, url_for(tag: tag.name),
           class: tag.name == params[:tag] ? "active" : "" %>
   <% end %>
-</div>
 
+  <% if @tags.size > 7 %>
+    <a class="expand-collapsed">...</a>
+
+    <span class="collapse">
+      <% @tags[7..-1].each do |tag| %>
+        <%= link_to tag.name, url_for(tag: tag.name),
+            class: tag.name == params[:tag] ? "active" : "" %>
+      <% end %>
+    </span>
+  <% end %>
+</div>
