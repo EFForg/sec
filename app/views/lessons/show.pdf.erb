@@ -36,14 +36,11 @@
     </div>
   <% end %>
 
-  <% if @lesson.advice.any? %>
+
+  <% if @lesson.relevant_articles? %>
     <div class="articles">
       <h3>Relevant Articles</h3>
-      <ul>
-        <% @lesson.advice.each do |advice| %>
-          <li><%= link_to advice.name, article_url(advice) %></li>
-        <% end %>
-      </ul>
+      <%= html(@lesson.relevant_articles) %>
     </div>
   <% end %>
 </div>
@@ -55,5 +52,12 @@
 <% end %>
 
 <div class="content">
+  <% if @lesson.recommended_reading? %>
+    <div class="recommended-reading content">
+      <h3>Recommended Reading</h3>
+      <%= html(@lesson.recommended_reading) %>
+    </div>
+  <% end %>
+
   <%= html(@lesson.body) %>
 </div>
