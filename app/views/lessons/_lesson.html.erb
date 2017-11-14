@@ -64,14 +64,14 @@
 <% end %>
 
 <div class="content collapse <%= "uncollapse" if params.include?("expand") %>">
-  <h2>Lesson Content</h2>
-
   <% if @lesson.recommended_reading? %>
     <div class="recommended-reading content">
       <h3>Recommended Reading</h3>
       <%= html(@lesson.recommended_reading) %>
     </div>
   <% end %>
+
+  <h2>Lesson Content</h2>
 
   <%= html(@lesson.body) %>
 </div>
