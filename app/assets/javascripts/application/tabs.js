@@ -1,13 +1,6 @@
-$(document).ready(function(){
-  if (($('body').hasClass('section-lessons')) ||
-  ($('body').hasClass('section-topics')))
-  {
-    $(".tab").click(function() {
-      if( !$( this ).hasClass( 'active' ) ) {
-        $(".tab").removeClass( 'active' );
-        $( this ).addClass( 'active' );
-      }
-
-    });
-  }
+$(document).on("turbolinks:load", function() {
+  $(".tab a").click(function() {
+    $(".tab").removeClass( 'active' );
+    $( this ).parents(".tab").addClass( 'active' );
+  });
 });
