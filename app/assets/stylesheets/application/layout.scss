@@ -55,3 +55,29 @@
   height: 0;
   overflow: hidden;
 }
+
+
+.pull-quote {
+  display: block;
+  float: left;
+  font-size: 1.5rem;
+  line-height: 2rem;
+  font-weight: 300;
+  color: $dark-gray;
+  max-width: 22rem;
+  margin: 2rem 2rem 2rem 0rem;
+  @include breakpoint(medium) {
+    font-size: 2rem;
+    line-height: 2.7rem;
+  }
+}
+
+.levels {
+  margin: 0.5rem 0 1.5rem;
+}
+
+@include breakpoint(small only) {
+  .large-8.large-centered.columns {
+    padding: 0;
+  }
+}

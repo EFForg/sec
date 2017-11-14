@@ -150,28 +150,3 @@ table {
 ul, ol {
   margin-left: 3rem;
 }
-
-.pull-quote {
-  display: block;
-  float: left;
-  font-size: 1.5rem;
-  line-height: 2rem;
-  font-weight: 300;
-  color: $dark-gray;
-  max-width: 22rem;
-  margin: 2rem 2rem 2rem 0rem;
-  @include breakpoint(medium) {
-    font-size: 2rem;
-    line-height: 2.7rem;
-  }
-}
-
-.levels {
-  margin: 1rem 0 0;
-}
-
-@include breakpoint(small only) {
-  .large-8.large-centered.columns {
-    padding: 0;
-  }
-}
