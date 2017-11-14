@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171113235546) do
+ActiveRecord::Schema.define(version: 20171114001514) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -198,6 +198,7 @@ ActiveRecord::Schema.define(version: 20171113235546) do
     t.text "suggested_materials"
     t.boolean "published", default: false, null: false
     t.text "recommended_reading"
+    t.text "relevant_articles"
     t.index ["topic_id"], name: "index_lessons_on_topic_id"
   end
 
