@@ -9,6 +9,7 @@ class BlogController < ApplicationController
                   page(params[:page])
     @tags = ActsAsTaggableOn::Tag.joins(:taggings).
             where(taggings: { taggable_type: "BlogPost" }).
+            order(taggings_count: :desc).
             distinct
   end
 

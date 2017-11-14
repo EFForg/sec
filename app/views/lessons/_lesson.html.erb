@@ -71,11 +71,13 @@
     </div>
   <% end %>
 
+  <h2>Lesson Content</h2>
+
   <%= html(@lesson.body) %>
 </div>
 
 <%= link_to "View full session",
-            topic_lesson_path(@lesson.topic, @lesson, format: "pdf"),
+            topic_lesson_path(@lesson.topic, @lesson, expand: 1),
             class: "view-full expand-collapsed" unless params.include?("expand") %>
 
 <%= link_to "Printable Version (PDF)", topic_lesson_path(@lesson.topic, @lesson, format: "pdf"), class: "pdf-link" %>

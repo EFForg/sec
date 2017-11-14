@@ -51,6 +51,18 @@ services:
       - ./nginx/sec.conf:/etc/nginx/sites-enabled/sec.conf
       - ./public:/var/www/html
 
+# Cron service for production
+#   cron:
+#     build: .
+#     depends_on:
+#       db:
+#         condition: service_healthy
+#     user: root
+#     restart: always
+#     command: /bin/bash -c 'env >> /etc/environment && cron -f'
+#     entrypoint: ""
+#     env_file: .env
+
 # DelayedJob worker for production
 #   worker:
 #     build: .
