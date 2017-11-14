@@ -10,3 +10,13 @@
     content: normal;
   }
 }
+
+.print-button {
+  background-image: url("printer_icon.svg");
+  background-repeat: no-repeat;
+  background-position-x: right;
+  color: $darkest-teal;
+  float: right;
+  text-decoration: underline;
+  width: 5rem;
+}
