@@ -15,7 +15,7 @@
 //= require turbolinks
 //= require react
 //= require react_ujs
-//= require_tree .
+//= require_tree ./application
 //= require foundation
 
 $(function(){ $(document).foundation(); });
