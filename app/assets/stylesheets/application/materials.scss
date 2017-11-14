@@ -49,3 +49,27 @@
     float: left;
   }
 }
+
+.file-preview-fallback {
+  width: 210px;
+  height: 210px;
+  background-color: $light-teal;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  color: $darkest-teal;
+  font-size: 3rem;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+a.file-preview {
+  text-decoration: none;
+  color: inherit;
+
+  &:hover {
+    color: inherit;
+  }
+}
