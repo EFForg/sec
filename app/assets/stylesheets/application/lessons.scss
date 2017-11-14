@@ -115,7 +115,10 @@
   .tags {
     float: left;
     margin: 0 1rem 0 0;
-    width: 60%;
+    width: auto;
+    @include breakpoint(medium) {
+      width: 60%;
+    }
   }
 
   .tabs {
