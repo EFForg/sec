@@ -18,6 +18,7 @@ RUN apt-get update && \
     ghostscript \
     xvfb \
     wkhtmltopdf \
+    cron \
   # xvfb-run "needs" xauth but not really.
   && ln -s /bin/true /bin/xauth \
   # Install node.
@@ -33,7 +34,11 @@ RUN apt-get update && \
   && curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - \
     && echo "deb https://dl.yarnpkg.com/debian/ stable main" \
     | tee /etc/apt/sources.list.d/yarn.list \
-    && apt-get update && apt-get install -y --no-install-recommends yarn
+    && apt-get update && apt-get install -y --no-install-recommends yarn \
+  # Set up crontab.
+  && echo "*/15 * * * * root su -s/bin/bash www-data -c \
+    'cd /opt/trainers-hub && bundle exec rake blog:update' >>/proc/1/fd/1 2>&1" >>/etc/crontab
+
 
 COPY Gemfile* ./
 RUN bundle install
