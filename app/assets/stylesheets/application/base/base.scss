@@ -60,11 +60,11 @@ h1 {
 
 h2 {
   font-size: 1.5rem;
-  margin-bottom: 1.3rem;
+  margin-bottom: 1rem;
   margin-top: 3rem;
   @include breakpoint(medium) {
     line-height: 1.7rem;
-    margin-bottom: 1.6rem;
+    margin-bottom: 1rem;
   }
 }
 
@@ -123,11 +123,13 @@ code {
 blockquote {
   border-left: 0.7rem solid $light-teal;
   color: $dark-gray;
-  padding-right: 3rem;
-  padding-left: 2rem;
+  margin-top: 0;
+  padding: 0 3rem 0 2rem;
   margin-bottom: 2.3rem; /* match <p> */
   p {
     color: $dark-gray;
+    margin: 0;
+    padding-top: 0;
   }
 }
 
@@ -149,19 +151,4 @@ table {
 
 ul, ol {
   margin-left: 3rem;
-}
-
-.pull-quote {
-  display: block;
-  float: left;
-  font-size: 1.5rem;
-  line-height: 2rem;
-  font-weight: 300;
-  color: $dark-gray;
-  max-width: 22rem;
-  margin: 2rem 2rem 2rem 0rem;
-  @include breakpoint(medium) {
-    font-size: 2rem;
-    line-height: 2.7rem;
-  }
 }

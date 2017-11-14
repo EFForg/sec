@@ -13,6 +13,7 @@ footer {
   a:active,
   a:visited {
     color: $darkest-teal;
+    font-weight: 400;
     text-decoration: underline;
   }
 
@@ -34,13 +35,36 @@ footer {
 
     @include breakpoint(medium) {
       margin: 0.7rem 2rem;
-      width: 280px;
+      width: 17.5rem;
       max-width: 100%;
     }
   }
 
   .logos {
     text-align: center;
+    a {
+      display: table;
+      margin: 0 auto 2rem;
+      @include breakpoint(medium) {
+        display: inline-block;
+        margin: 0;
+      }
+    }
+    .ssd-logo,
+    .eff-logo {
+      display: inline-block;
+      font-weight: 400;
+      line-height: 0rem;
+      text-align: center;
+      text-transform: uppercase;
+      width: 100%;
+      @include breakpoint(medium) {
+        width: 23.5rem;
+      }
+    }
+    .eff-logo a img {
+      width: 13.125rem;
+    }
   }
 
   .footer-links {
