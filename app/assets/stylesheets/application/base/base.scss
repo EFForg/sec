@@ -165,3 +165,13 @@ ul, ol {
     line-height: 2.7rem;
   }
 }
+
+.levels {
+  margin: 1rem 0 0;
+}
+
+@include breakpoint(small only) {
+  .large-8.large-centered.columns {
+    padding: 0;
+  }
+}

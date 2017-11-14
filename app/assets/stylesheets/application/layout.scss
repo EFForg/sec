@@ -37,8 +37,10 @@
     }
   }
   .description-text {
+    width: 100%;
     @include breakpoint(medium) {
       margin-bottom: 1.2rem;
+      width: 66%;
     }
   }
 }
