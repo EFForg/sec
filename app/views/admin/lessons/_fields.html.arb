@@ -38,6 +38,12 @@ f.fields_for :admin_lessons, lesson do |l|
 
   f.inputs do
     l.input :notes, as: :ckeditor, label: "Other Notes"
+
+    unless lesson.persisted?
+      lesson.recommended_reading ||= "<ul><li></li></ul>"
+    end
+
+    l.input :recommended_reading, as: :ckeditor
   end
 
   l.input :body, as: :ckeditor

@@ -9,6 +9,7 @@ ActiveAdmin.register Topic do
       :id, :level_id, :topic_id,
       :instructor_students_ratio,
       :objective, :notes, :body,
+      :recommended_reading,
       :prerequisites, :suggested_materials,
       duration: [:hours, :minutes],
       material_ids: [],

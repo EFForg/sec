@@ -55,5 +55,12 @@
 <% end %>
 
 <div class="content">
+  <% if @lesson.recommended_reading? %>
+    <div class="recommended-reading content">
+      <h3>Recommended Reading</h3>
+      <%= html(@lesson.recommended_reading) %>
+    </div>
+  <% end %>
+
   <%= html(@lesson.body) %>
 </div>
