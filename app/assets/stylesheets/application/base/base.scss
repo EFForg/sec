@@ -123,11 +123,13 @@ code {
 blockquote {
   border-left: 0.7rem solid $light-teal;
   color: $dark-gray;
-  padding-right: 3rem;
-  padding-left: 2rem;
+  margin-top: 0;
+  padding: 0 3rem 0 2rem;
   margin-bottom: 2.3rem; /* match <p> */
   p {
     color: $dark-gray;
+    margin: 0;
+    padding-top: 0;
   }
 }
 
