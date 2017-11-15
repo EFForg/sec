@@ -9,7 +9,7 @@
     position: absolute;
     overflow: hidden;
     @include breakpoint(inbetween) {
-      clip: rect(0, 14rem, 14rem, 0)
+      clip: rect(0, 14rem, 14rem, 0);
     }
   }
   h3 {
