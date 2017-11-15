@@ -18,20 +18,35 @@ class MaterialsUploader < CarrierWave::Uploader::Base
     end
   end
 
+  def convert_to_cropped_square(size)
+    manipulate! do |image|
+      if image[:width] < image[:height]
+        remove = ((image[:height] - image[:width])/2).round
+        image.shave("0x#{remove}")
+      elsif image[:width] > image[:height]
+        remove = ((image[:width] - image[:height])/2).round
+        image.shave("#{remove}x0")
+      end
+      image.resize("#{size}x#{size}")
+      image.format "png"
+    end
+  end
+
   version :full_preview, if: :is_previewable? do
     process resize_to_limit: [210, nil], if: :is_image?
     process convert_to_image: [210, 297], if: :is_pdf?
 
     def full_filename(filename = model.source.file)
-      "preview_#{filename.sub(/\.pdf\z/, ".jpg")}"
+      "preview_#{filename.sub(/\.pdf\z/, ".png")}"
     end
   end
 
-  version :thumbnail, from_version: :full_preview, if: :is_previewable? do
-    process resize_to_fill: [210, 210]
+  version :thumbnail, if: :is_previewable? do
+    process resize_to_fill: [210, 210], if: :is_image?
+    process convert_to_cropped_square: 210, if: :is_pdf?
 
     def full_filename(filename = model.source.file)
-      "thumb_#{filename.sub(/\.pdf\z/, ".jpg")}"
+      "thumb_#{filename.sub(/\.pdf\z/, ".png")}"
     end
   end
 
