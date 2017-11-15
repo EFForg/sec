@@ -12,6 +12,12 @@ module ActiveAdmin::AdminHelper
     ActsAsTaggableOn::Tag.order(:name).select(:id, :name)
   end
 
+  def icons_collection
+    Icon.all.map do |icon|
+      [file_name(icon.file), icon.id, { :"data-url" => icon.url }]
+    end
+  end
+
   def articles_overview_react_props(page)
     {
       "sections" => page.sections.as_json(

@@ -67,6 +67,19 @@ $(window).on("load", function() {
     reader.readAsDataURL(image);
   });
 
+
+  var formatImageOption = function(data) {
+    if (data.element && data.element.value) {
+      return $("<span>").append($("<img>", { src: data.element.dataset.url })).append(data.text);
+    }
+  };
+
+  $(".select2.icon-gallery").select2({
+    templateResult: formatImageOption,
+    templateSelection: formatImageOption,
+  });
+
+
   ReactRailsUJS.mountComponents();
 });
 
