@@ -25,15 +25,18 @@
     position: relative;
     .flag {
       display: inline-block;
-      position: relative;
-      left: -2rem;
-      top: -2.5rem;
+      position: absolute;
+      left: 0;
+      top: -1rem;
       padding-left: 0.5rem;
       padding-right: 0.5rem;
       background-color: $dark-teal;
       color: white;
       text-transform: uppercase;
       font-weight: bold;
+      @include breakpoint(inbetween) {
+        left: -2rem;
+      }
     }
   }
 
