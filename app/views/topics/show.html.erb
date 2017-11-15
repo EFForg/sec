@@ -41,7 +41,7 @@
 
     <% if @topic.next_topic.present? %>
       <div class="next-topic">
-        <%= link_to "Proceed to the next level in this lesson >",
+        <%= link_to "Go to the next suggested lesson topic >",
                     topic_path(@topic.next_topic) %>
       </div>
     <% end %>

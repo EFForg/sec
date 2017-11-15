@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171115014617) do
+ActiveRecord::Schema.define(version: 20171115185251) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -160,6 +160,12 @@ ActiveRecord::Schema.define(version: 20171115014617) do
     t.datetime "update_notes_updated_at"
   end
 
+  create_table "icons", force: :cascade do |t|
+    t.string "file", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "lesson_plan_lessons", force: :cascade do |t|
     t.integer "lesson_plan_id", null: false
     t.integer "lesson_id", null: false
@@ -261,10 +267,10 @@ ActiveRecord::Schema.define(version: 20171115014617) do
     t.datetime "updated_at", null: false
     t.string "slug"
     t.text "description"
-    t.string "icon"
     t.boolean "published", default: false, null: false
     t.string "flag"
     t.bigint "next_topic_id"
+    t.bigint "icon_id"
     t.index ["slug"], name: "index_topics_on_slug", unique: true
   end
 

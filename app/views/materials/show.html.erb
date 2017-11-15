@@ -1,6 +1,9 @@
 <div class="row">
     <div class="large-8 large-centered columns">
       <h1><%= @material.name %></h1>
+      <div class="last-modified">
+        Last modified <%= @material.updated_at.strftime("%B %e, %Y") %>
+      </div>
 
       <%= render partial: "shared/admin_links", locals: { resource: @material } %>
 
@@ -21,7 +24,7 @@
           <% end %>
 
           <div class="material-img">
-            <%= file_preview(upload.file) %>
+            <%= full_preview(upload.file) %>
           </div>
           <div class="material-link">
             <%= link_to file_name(upload.file), upload.file.url %>
