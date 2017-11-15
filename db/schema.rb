@@ -77,6 +77,7 @@ ActiveRecord::Schema.define(version: 20171115011022) do
     t.string "flag"
     t.bigint "section_id"
     t.integer "section_position", default: 0, null: false
+    t.bigint "next_article_id"
     t.index ["slug"], name: "index_articles_on_slug", unique: true
   end
 

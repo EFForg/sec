@@ -10,5 +10,12 @@
     <div class="content">
       <%= html(@article.body) %>
     </div>
+
+    <% if @article.next_article.present? %>
+      <div class="next-article">
+        <h2>Continue Reading</h2>
+        <%= render @article.next_article %>
+      </div>
+    <% end %>
   </div>
 </div>
