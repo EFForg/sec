@@ -80,14 +80,16 @@ a .card .byline {
 .section-home div.topic.card,
 .section-home div.material.card,
 .section-materials .card {
-  .top {
-    position: absolute;
-    margin-bottom: 0;
-  }
-  &:after {
-    content: "";
-    display: block;
-    padding-bottom: 100%;
+  @include breakpoint(large) {
+    .top {
+      position: absolute;
+      margin-bottom: 0;
+    }
+    &:after {
+      content: "";
+      display: block;
+      padding-bottom: 100%;
+    }
   }
 }
 

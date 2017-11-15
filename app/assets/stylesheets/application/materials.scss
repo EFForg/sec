@@ -1,12 +1,14 @@
+.material.card {
+  .top {
+    padding: 0.5rem;
+  }
+  .material-preview img {
+    border: 1px solid black;
+    max-height: 12rem;
+  }
+}
 .section-materials {
   .material.card {
-    min-height: 10rem;
-    padding: 1rem;
-    .top {
-      margin: 0;
-      padding: 0;
-    }
-
     .fold {
       &:before {
         border: none;
@@ -36,6 +38,11 @@
     width: 100%;
   }
 
+  .upload {
+    clear: both;
+    margin-top: 2rem;
+  }
+
   .upload-description {
     font-weight: 400;
   }
@@ -47,6 +54,7 @@
   }
   .material-link {
     float: left;
+    margin: 0 0 3rem;
   }
 }
 
