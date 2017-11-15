@@ -34,7 +34,7 @@
       color: white;
       text-transform: uppercase;
       font-weight: bold;
-      @include breakpoint(inbetween){
+      @include breakpoint(inbetween) {
         left: -2rem;
       }
     }
