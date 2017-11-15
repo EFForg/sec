@@ -6,6 +6,8 @@
       <% f.input :icon %>
     <% end %>
 
+    <% f.input :next_topic, input_html: { class: "select2" } %>
+
     <% f.input :slug, hint: "Leave blank to auto-generate" %>
 
     <% f.input :tags,
