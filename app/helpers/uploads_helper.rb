@@ -1,5 +1,5 @@
 module UploadsHelper
-  def file_preview(file)
+  def file_preview(file, link: file.url)
     return if file.blank?
 
     if file.thumbnail.url
@@ -10,7 +10,7 @@ module UploadsHelper
       end
     end
 
-    link_to preview, file.url
+    link ? link_to(preview, link) : preview
   end
 
 
