@@ -8,7 +8,7 @@
     <% if homepage.update_notes? %>
       <div class="update">
         <div class="updated-at">
-          <%= homepage.update_notes_updated_at.strftime("%B%d, %Y") %>
+          <%= homepage.update_notes_updated_at.strftime("%B %e, %Y") %>
         </div>
 
         <%= html(homepage.update_notes) %>
