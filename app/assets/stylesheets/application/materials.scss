@@ -36,6 +36,11 @@
     width: 100%;
   }
 
+  .upload {
+    clear: both;
+    margin-top: 2rem;
+  }
+
   .upload-description {
     font-weight: 400;
   }
@@ -47,6 +52,7 @@
   }
   .material-link {
     float: left;
+    margin: 0 0 3rem;
   }
 }
 

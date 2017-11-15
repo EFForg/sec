@@ -25,4 +25,12 @@
       }
     }
   }
+  .material.card {
+    h2 {
+      margin: 0;
+    }
+    .material-preview img{
+      border: 1px solid black;
+    }
+  }
 }
