@@ -22,7 +22,7 @@
     min-height: 8rem;
     padding: 1.5rem 1.5rem 0 1rem;
     margin-bottom: 2.3rem;
-
+    position: relative;
     .flag {
       display: inline-block;
       position: relative;
@@ -80,7 +80,10 @@ a .card .byline {
 .section-home div.topic.card,
 .section-home div.material.card,
 .section-materials .card {
-  @include breakpoint(large) {
+  .top {
+    position: relative;
+  }
+  @include breakpoint(xlarge) {
     .top {
       position: absolute;
       margin-bottom: 0;

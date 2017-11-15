@@ -1,10 +1,10 @@
 .material.card {
-  .top {
-    padding: 0.5rem;
-  }
+  position: relative;
   .material-preview img {
-    border: 1px solid black;
-    max-height: 12rem;
+    width: 200px;
+    @include breakpoint(inbetween) {
+      width: 210px;
+    }
   }
 }
 .section-materials {
@@ -20,9 +20,6 @@
   }
   .material-preview {
     width: 210px;
-    img {
-      border: 1px solid black;
-    }
     .material-download {
       background: $teal;
       text-align: center;
