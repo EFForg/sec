@@ -25,9 +25,9 @@
     position: relative;
     .flag {
       display: inline-block;
-      position: relative;
+      position: absolute;
       left: -2rem;
-      top: -2.5rem;
+      top: -1rem;
       padding-left: 0.5rem;
       padding-right: 0.5rem;
       background-color: $dark-teal;
