@@ -3,8 +3,15 @@ ActiveAdmin.register Material do
 
   menu parent: "Content", priority: 3
 
-  permit_params :name, :description, :published,
+  permit_params :name, :description, :slug, :published,
     uploads_attributes: [:id, :_destroy, :name, :description, :position, :file]
+
+
+  controller do
+    def find_resource
+      scoped_collection.friendly.find(params[:id])
+    end
+  end
 
   index do
     selectable_column

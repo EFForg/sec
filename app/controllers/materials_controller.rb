@@ -7,7 +7,7 @@ class MaterialsController < ApplicationController
   end
 
   def show
-    @material = Material.published.find(params[:id])
+    @material = Material.published.friendly.find(params[:id])
     @topics = Topic.joins(:lessons).
       where("lessons.suggested_materials LIKE ?",
             "%#{ material_path(@material) }%")
