@@ -18,9 +18,17 @@ class MaterialsUploader < CarrierWave::Uploader::Base
     end
   end
 
-  version :thumbnail, if: :is_previewable? do
-    process resize_to_fit: [210, 297], if: :is_image?
+  version :full_preview, if: :is_previewable? do
+    process resize_to_limit: [210, nil], if: :is_image?
     process convert_to_image: [210, 297], if: :is_pdf?
+
+    def full_filename(filename = model.source.file)
+      "preview_#{filename.sub(/\.pdf\z/, ".jpg")}"
+    end
+  end
+
+  version :thumbnail, from_version: :full_preview, if: :is_previewable? do
+    process resize_to_fill: [210, 210]
 
     def full_filename(filename = model.source.file)
       "thumb_#{filename.sub(/\.pdf\z/, ".jpg")}"
