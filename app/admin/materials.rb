@@ -3,12 +3,13 @@ ActiveAdmin.register Material do
 
   menu parent: "Content", priority: 3
 
-  permit_params :name, :description,
+  permit_params :name, :description, :published,
     uploads_attributes: [:id, :_destroy, :name, :description, :position, :file]
 
   index do
     selectable_column
     column :name
+    column :published
     actions do |resource|
       link_to "View", resource
     end
@@ -27,5 +28,11 @@ ActiveAdmin.register Material do
     end
 
     f.actions
+  end
+
+
+  sidebar :material_extras, only: :edit do
+    render partial: "admin/materials/extra",
+      locals: { material: resource }
   end
 end
