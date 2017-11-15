@@ -56,6 +56,16 @@
     float: left;
     margin: 0 0 3rem;
   }
+
+
+  &.page-show h1 {
+    margin-bottom: 0;
+  }
+
+  .last-modified {
+    margin-bottom: 2rem;
+    text-transform: uppercase;
+  }
 }
 
 .file-preview-fallback {

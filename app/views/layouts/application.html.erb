@@ -3,6 +3,11 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <%= tag :meta, property: "og:title", content: "Security Education Companion" %>
+  <%= tag :meta, property: "og:type", content: "website" %>
+  <%= tag :meta, property: "og:url", content: "https://sec.eff.org" %>
+  <%= tag :meta, property: "og:image", content: image_url("sec-og-image.png") %>
+  <%= tag :meta, property: "og:description", content: "The Security Education Companion is a resource for people teaching digital security to their friends and neighbors." %>
 
   <title><%= page_title %></title>
   <%= csrf_meta_tags %>
