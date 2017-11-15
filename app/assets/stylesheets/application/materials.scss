@@ -1,20 +1,17 @@
 .material.card {
   position: relative;
   .material-preview img {
-    width: auto;
-    clip: rect(0, 11rem, 11rem, 0);
-    position: absolute;
-    overflow: hidden;
+    width: 200px;
     @include breakpoint(inbetween) {
-      clip: rect(0, 14rem, 14rem, 0);
+      width: 210px;
     }
   }
-  h3 {
-    margin-top: 11rem;
-    @include breakpoint(inbetween) {
-      margin-top: 15rem;
-    }
-  }
+  //h3 {
+  //  margin-top: 11rem;
+  //  @include breakpoint(inbetween) {
+  //    margin-top: 15rem;
+  //  }
+  //}
 }
 .section-materials {
   .material.card {
