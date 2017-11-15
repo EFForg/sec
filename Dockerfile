@@ -55,7 +55,7 @@ RUN if [ "$BUILD_ENV" = "production" ]; \
   SECRET_KEY_BASE=noop \
   DATABASE_URL=postgres://noop; fi
 
-RUN mkdir -p /var/www /opt/trainers-hub/files
+RUN mkdir -p /var/www /opt/trainers-hub/files \
   && touch /opt/trainers-hub/flipper.pstore \
   && chown -R www-data /opt/trainers-hub/public \
                        /opt/trainers-hub/files \
