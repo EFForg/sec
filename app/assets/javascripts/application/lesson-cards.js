@@ -1,4 +1,4 @@
-$(document).ready(function(){
+$(document).on('turbolinks:load', function(){
   if ($('body').hasClass('section-home')) {
       function cardResize() {
         var cardWidth= $('div.topic.card').width();
