@@ -30,7 +30,7 @@ ActiveAdmin.register Material do
                            allow_destroy: true do |u|
         u.input :name
         u.input :description
-        u.input :file, as: :file, hint: file_preview(u.object.file)
+        u.input :file, as: :file, hint: full_preview(u.object.file)
       end
     end
 
