@@ -17,21 +17,11 @@
       }
     }
 
-
     .see-all {
       font-size: 1rem;
       @include breakpoint(medium) {
         font-size: 1.1rem;
       }
-    }
-  }
-  .material.card {
-    .top {
-      padding: 0.5rem;
-    }
-    .material-preview img {
-      border: 1px solid black;
-      max-height: 12rem;
     }
   }
 }
