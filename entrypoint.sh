@@ -8,6 +8,8 @@ if [ "$DB_MIGRATE" = "true" ]; then
   bundle exec rake db:migrate
 fi
 
-cp -ru public/* nginx_static
+if [ "$ROLE" == "web" ]; then
+  cp -ru public/* nginx_static
+fi
 
 exec "$@"
