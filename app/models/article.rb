@@ -13,6 +13,8 @@ class Article < ApplicationRecord
 
   belongs_to :section, class_name: "ArticleSection", optional: true
 
+  belongs_to :next_article, class_name: "Article", optional: true
+
   def nillify_empty_slug
     self.slug = nil if slug.blank?
   end
