@@ -50,6 +50,7 @@ services:
     volumes:
       - ./nginx/sec.conf:/etc/nginx/sites-enabled/sec.conf
       - ./public:/var/www/html
+      - ./files:/var/www/files
 
 # Cron service for production
 #   cron:
