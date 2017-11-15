@@ -28,14 +28,14 @@
   .material.card {
     h2 {
       margin: 0;
-      @include breakpoint(small only){
+      @include breakpoint(small only) {
         font-size: 1.3rem;
         line-height: 1.5rem;
       }
     }
-    .material-preview img{
+    .material-preview img {
       border: 1px solid black;
-      @include breakpoint(small only){
+      @include breakpoint(small only) {
         max-height: 12rem;
       }
     }
