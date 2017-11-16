@@ -12,6 +12,8 @@
 }
 
 .print-button {
+  display: none;
+
   background-image: url("printer_icon.svg");
   background-repeat: no-repeat;
   background-position-x: right;
