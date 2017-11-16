@@ -18,6 +18,12 @@ class MaterialsUploader < CarrierWave::Uploader::Base
     end
   end
 
+  def make_png
+    manipulate! do |image|
+      image.format "png"
+    end
+  end
+
   def convert_to_cropped_square(size)
     manipulate! do |image|
       if image[:width] < image[:height]
@@ -28,7 +34,6 @@ class MaterialsUploader < CarrierWave::Uploader::Base
         image.shave("#{remove}x0")
       end
       image.resize("#{size}x#{size}")
-      image.format "png"
     end
   end
 
@@ -42,17 +47,22 @@ class MaterialsUploader < CarrierWave::Uploader::Base
   end
 
   version :thumbnail, if: :is_previewable? do
-    process resize_to_fill: [210, 210], if: :is_image?
-    process convert_to_cropped_square: 210, if: :is_pdf?
+    process convert_to_cropped_square: 210
+    process make_png: [], if: :is_gif?
+    process make_png: [], if: :is_pdf?
 
     def full_filename(filename = model.source.file)
-      "thumb_#{filename.sub(/\.pdf\z/, ".png")}"
+      "thumb_#{filename.sub(/\.pdf\z/, ".png").sub(/\.gif\z/, ".png")}"
     end
   end
 
   private
   def is_image?(file)
     content_type.include? "image"
+  end
+
+  def is_gif?(file)
+    content_type == "image/gif"
   end
 
   def is_pdf?(file)
