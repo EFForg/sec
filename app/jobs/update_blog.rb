@@ -17,6 +17,7 @@ class UpdateBlog < ApplicationJob
       authorship = update.dc_creators.map(&:content)
       authorship[-1].prepend("and ") if authorship.size > 2
       authors = authorship.join(authorship.size > 2 ? ", " : " and ")
+      authors = Nokogiri::HTML.fragment(authors).to_s
 
       blog_post = BlogPost.find_or_initialize_by(original_url: update.link)
       blog_post.update!(
