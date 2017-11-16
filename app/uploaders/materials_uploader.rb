@@ -11,21 +11,32 @@ class MaterialsUploader < CarrierWave::Uploader::Base
     "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
   end
 
-  def convert_to_image(height, width)
+  def make_preview
     manipulate! do |image|
-      image.resize "#{height}x#{width}"
-      image.format "png"
+      if image.mime_type == "image/gif"
+        image.collapse!
+      end
+
+      yield image
+
+      if image.mime_type == "image/pbm"
+        image.format "png"
+      end
+
+      image
     end
   end
 
-  def make_png
-    manipulate! do |image|
-      image.format "png"
+  def make_resized_preview(width)
+    make_preview do |image|
+      height = (width.to_f/image[:width])*image[:height]
+      height = height.round
+      image.resize "#{width}x#{height}"
     end
   end
 
-  def convert_to_cropped_square(size)
-    manipulate! do |image|
+  def make_square_preview(size)
+    make_preview do |image|
       if image[:width] < image[:height]
         remove = ((image[:height] - image[:width])/2).round
         image.shave("0x#{remove}")
@@ -38,8 +49,7 @@ class MaterialsUploader < CarrierWave::Uploader::Base
   end
 
   version :full_preview, if: :is_previewable? do
-    process resize_to_limit: [210, nil], if: :is_image?
-    process convert_to_image: [210, 297], if: :is_pdf?
+    process make_resized_preview: 210
 
     def full_filename(filename = model.source.file)
       "preview_#{filename.sub(/\.pdf\z/, ".png")}"
@@ -47,12 +57,10 @@ class MaterialsUploader < CarrierWave::Uploader::Base
   end
 
   version :thumbnail, if: :is_previewable? do
-    process convert_to_cropped_square: 210
-    process make_png: [], if: :is_gif?
-    process make_png: [], if: :is_pdf?
+    process make_square_preview: 210
 
     def full_filename(filename = model.source.file)
-      "thumb_#{filename.sub(/\.pdf\z/, ".png").sub(/\.gif\z/, ".png")}"
+      "thumb_#{filename.sub(/\.pdf\z/, ".png")}"
     end
   end
 
