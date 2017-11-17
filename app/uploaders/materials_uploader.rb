@@ -11,53 +11,52 @@ class MaterialsUploader < CarrierWave::Uploader::Base
     "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
   end
 
-  def make_preview
-    manipulate! do |image|
-      if image.mime_type == "image/gif"
-        image.collapse!
-      end
+  def gif_safe_transform!
+    MiniMagick::Tool::Convert.new do |image|
+      image << @file.path
+      image.coalesce
 
       yield image
 
-      if image.mime_type == "image/pbm"
-        image.format "png"
-      end
-
-      image
+      image.layers "Optimize"
+      image << @file.path
     end
   end
 
-  def make_resized_preview(width)
-    make_preview do |image|
-      height = (width.to_f/image[:width])*image[:height]
-      height = height.round
-      image.resize "#{width}x#{height}"
+  def crop_square(image, size, orig_width, orig_height)
+    if orig_width < orig_height
+      remove = ((orig_height - orig_width)/2).round
+      image.shave("0x#{remove}")
+    elsif orig_width > orig_height
+      remove = ((orig_width - orig_height)/2).round
+      image.shave("#{remove}x0")
+    end
+    image.resize("#{size}x#{size}")
+  end
+
+  def mogrify_crop_square(size)
+    manipulate! do |image|
+      crop_square(image, size, image.width, image.height)
     end
   end
 
-  def make_square_preview(size)
-    make_preview do |image|
-      if image[:width] < image[:height]
-        remove = ((image[:height] - image[:width])/2).round
-        image.shave("0x#{remove}")
-      elsif image[:width] > image[:height]
-        remove = ((image[:width] - image[:height])/2).round
-        image.shave("#{remove}x0")
-      end
-      image.resize("#{size}x#{size}")
+  def gif_crop_square(size)
+    original = MiniMagick::Image.new(@file.path)
+
+    gif_safe_transform! do |image|
+      crop_square(image, size, original.width, original.height)
     end
   end
 
   version :full_preview, if: :is_previewable? do
-    process make_resized_preview: 210
-
     def full_filename(filename = model.source.file)
       "preview_#{filename.sub(/\.pdf\z/, ".png")}"
     end
   end
 
   version :thumbnail, if: :is_previewable? do
-    process make_square_preview: 210
+    process gif_crop_square: 210, if: :is_gif?
+    process mogrify_crop_square: 210, if: :is_not_gif?
 
     def full_filename(filename = model.source.file)
       "thumb_#{filename.sub(/\.pdf\z/, ".png")}"
@@ -65,12 +64,16 @@ class MaterialsUploader < CarrierWave::Uploader::Base
   end
 
   private
-  def is_image?(file)
-    content_type.include? "image"
-  end
-
   def is_gif?(file)
     content_type == "image/gif"
+  end
+
+  def is_not_gif?(file)
+    !is_gif?(file)
+  end
+
+  def is_image?(file)
+    content_type.include? "image"
   end
 
   def is_pdf?(file)
