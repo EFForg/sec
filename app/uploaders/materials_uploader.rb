@@ -23,7 +23,7 @@ class MaterialsUploader < CarrierWave::Uploader::Base
     end
   end
 
-  def crop_square(image, size, orig_width, orig_height)
+  def imagemagick_do_crop(image, size, orig_width, orig_height)
     if orig_width < orig_height
       remove = ((orig_height - orig_width)/2).round
       image.shave("0x#{remove}")
@@ -34,17 +34,16 @@ class MaterialsUploader < CarrierWave::Uploader::Base
     image.resize("#{size}x#{size}")
   end
 
-  def mogrify_crop_square(size)
-    manipulate! do |image|
-      crop_square(image, size, image.width, image.height)
-    end
-  end
-
-  def gif_crop_square(size)
-    original = MiniMagick::Image.new(@file.path)
-
-    gif_safe_transform! do |image|
-      crop_square(image, size, original.width, original.height)
+  def crop_square(size)
+    if @file.content_type == "image/gif"
+      original = MiniMagick::Image.new(@file.path)
+      gif_safe_transform! do |image|
+        imagemagick_do_crop(image, size, original.width, original.height)
+      end
+    else
+      manipulate! do |image|
+        imagemagick_do_crop(image, size, image.width, image.height)
+      end
     end
   end
 
@@ -55,34 +54,20 @@ class MaterialsUploader < CarrierWave::Uploader::Base
   end
 
   version :thumbnail, if: :is_previewable? do
-    process gif_crop_square: 210, if: :is_gif?
-    process mogrify_crop_square: 210, if: :is_not_gif?
-    process convert: "png" # Only applied to files with .png extension
+    process crop_square: 210
+    process convert: "png", if: :is_pdf?
 
     def full_filename(filename = model.source.file)
-      # Give PDFs a .png extension so they get converted.
       "thumb_#{filename.sub(/\.pdf\z/, ".png")}"
     end
   end
 
   private
-  def is_gif?(file)
-    content_type == "image/gif"
-  end
-
-  def is_not_gif?(file)
-    !is_gif?(file)
-  end
-
-  def is_image?(file)
-    content_type.include? "image"
-  end
-
   def is_pdf?(file)
     content_type == "application/pdf"
   end
 
   def is_previewable?(file)
-    is_image?(file) || is_pdf?(file)
+    content_type.include?("image") || is_pdf?(file)
   end
 end
