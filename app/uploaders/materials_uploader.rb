@@ -57,8 +57,10 @@ class MaterialsUploader < CarrierWave::Uploader::Base
   version :thumbnail, if: :is_previewable? do
     process gif_crop_square: 210, if: :is_gif?
     process mogrify_crop_square: 210, if: :is_not_gif?
+    process convert: "png" # Only applied to files with .png extension
 
     def full_filename(filename = model.source.file)
+      # Give PDFs a .png extension so they get converted.
       "thumb_#{filename.sub(/\.pdf\z/, ".png")}"
     end
   end
