@@ -1,13 +1,17 @@
 <div class="header-wrapper no-print">
   <div class="top-bar">
     <div class="back-ssd top-bar-left">
-      <span class="back-arrow">&laquo;</span>
-      <span class="back-text show-for-small-only">
-        <%= link_to "Back to ssd.eff.org", "https://ssd.eff.org" %>
-      </span>
-      <span class="back-text show-for-medium">
-        <%= link_to "Back to Surveillance Self-Defense ssd.eff.org", "https://ssd.eff.org" %>
-      </span>
+      <%= link_to "https://ssd.eff.org" do %>
+        <span class="back-arrow fa fa-chevron-left"></span>
+
+        <span class="back-text hide-for-large">
+          Go to ssd.eff.org
+        </span>
+
+        <span class="back-text show-for-large">
+          Back to Surveillance Self-Defense ssd.eff.org
+        </span>
+      <% end %>
     </div>
 
     <div class="tagline top-bar-right show-for-medium">
