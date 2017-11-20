@@ -3,7 +3,7 @@ module UploadsHelper
     return if file.blank?
 
     if file.full_preview.url
-      preview = image_tag(file.full_preview.url)
+      preview = image_tag(file.full_preview.url, alt: "")
     else
       preview = fallback(file)
     end
@@ -15,7 +15,7 @@ module UploadsHelper
     return if file.blank?
 
     if file.thumbnail.url
-      preview = image_tag(file.thumbnail.url)
+      preview = image_tag(file.thumbnail.url, alt: file.model.alt_text)
     else
       preview = fallback(file)
     end

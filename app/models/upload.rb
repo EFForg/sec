@@ -12,4 +12,8 @@ class Upload < ApplicationRecord
       self.name = File.basename(file.path)
     end
   end
+
+  def alt_text
+    "#{name} - #{description}"
+  end
 end
