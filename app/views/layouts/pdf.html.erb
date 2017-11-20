@@ -6,7 +6,10 @@
 
   <title><%= page_title %></title>
 
-  <%= wicked_pdf_stylesheet_link_tag("pdf") %>
+  <style type="text/css">
+    <%= File.read(Rails.root.join("app/assets/stylesheets/pdf.css")).html_safe %>
+  </style>
+
 </head>
 
 <body class="section-<%= controller_name %> page-<%= action_name %>">
