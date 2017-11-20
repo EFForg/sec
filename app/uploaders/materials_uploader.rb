@@ -12,7 +12,7 @@ class MaterialsUploader < CarrierWave::Uploader::Base
   end
 
   version :full_preview, if: :is_previewable? do
-    process resize_to_fit: [350, nil], if: :is_pdf?
+    process resize_to_fit: [210, nil], if: :is_pdf?
     process :convert_to_png, if: :is_pdf?
 
     def full_filename(filename = model.source.file)
