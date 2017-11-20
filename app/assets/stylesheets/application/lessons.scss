@@ -207,7 +207,11 @@
     margin: -1px 0 2rem;
     padding: 1rem 0.5rem 2rem;
     z-index: 0;
-    word-wrap: break-word;
+
+    a {
+      word-wrap: break-word;
+    }
+
     h3 {
       font-size: 1.1rem;
       line-height: 1.1rem;
