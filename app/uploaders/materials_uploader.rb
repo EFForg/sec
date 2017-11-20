@@ -12,6 +12,9 @@ class MaterialsUploader < CarrierWave::Uploader::Base
   end
 
   version :full_preview, if: :is_previewable? do
+    process resize_to_fit: [350, nil], if: :is_pdf?
+    process :convert_to_png, if: :is_pdf?
+
     def full_filename(filename = model.source.file)
       "preview_#{filename.sub(/\.pdf\z/, ".png")}"
     end
@@ -19,7 +22,7 @@ class MaterialsUploader < CarrierWave::Uploader::Base
 
   version :thumbnail, if: :is_previewable? do
     process crop_square: 210
-    process convert: "png", if: :is_pdf?
+    process :convert_to_png, if: :is_pdf?
 
     def full_filename(filename = model.source.file)
       "thumb_#{filename.sub(/\.pdf\z/, ".png")}"
@@ -33,6 +36,12 @@ class MaterialsUploader < CarrierWave::Uploader::Base
 
   def is_previewable?(file)
     content_type.include?("image") || is_pdf?(file)
+  end
+
+  def convert_to_png
+    manipulate! do |image|
+      image.format "png"
+    end
   end
 
   def gif_safe_transform!
