@@ -9,7 +9,7 @@ module ShareLinkHelper
   end
 
   def twitter_share_url
-    status = "#{page_title}\n\n#{url_for_share}"
+    status = "#{page_title} #{url_for_share}"
     "https://twitter.com/intent/tweet?status=#{u(status)}"
   end
 
