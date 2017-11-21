@@ -1,11 +1,30 @@
 
 .share-links {
-  position: absolute;
-  margin-left: 2rem;
+  position: sticky;
+  top: 2rem;
+
+  @include breakpoint(medium) {
+    float: left;
+    margin-left: -80px;
+  }
+
+  @include breakpoint(large) {
+    margin-left: -100px;
+  }
 
   > a {
-    display: block;
-    margin-top: 1rem;
+    display: inline-block;
+    margin-right: 0.5rem;
+
+    @include breakpoint(medium) {
+      display: block;
+      margin-right: 0;
+    }
+
+    &:not(:first-child) {
+      margin-top: 1rem;
+    }
+
     width: 54px;
     height: 54px;
     background-color:black;

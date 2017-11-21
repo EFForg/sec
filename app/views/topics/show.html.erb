@@ -35,6 +35,8 @@
       <% end %>
     </div>
 
+    <%= render "shared/share", show_for: "medium" %>
+
     <div id="tab-content">
       <%= render @lesson %>
     </div>
@@ -45,5 +47,7 @@
                     topic_path(@topic.next_topic) %>
       </div>
     <% end %>
+
+    <%= render "shared/share", show_for: "small-only" %>
   </div>
 </div>
