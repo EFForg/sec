@@ -1,0 +1,26 @@
+
+.share-links {
+  position: absolute;
+  margin-left: 2rem;
+
+  > a {
+    display: block;
+    margin-top: 1rem;
+    width: 54px;
+    height: 54px;
+    background-color:black;
+    background-image: image-url("social-icons.png");
+
+    &.facebook {
+      background-position:70% 0 ;
+    }
+
+    &.twitter {
+      background-position: 50% 0;
+    }
+
+    &.google {
+      background-position: 20% 0;
+    }
+  }
+}
