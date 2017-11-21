@@ -13,6 +13,11 @@
   }
 
   > a {
+    width: 54px;
+    height: 54px;
+    background-color: black;
+    background-image: image-url("social-icons.png");
+
     display: inline-block;
     margin-right: 0.5rem;
 
@@ -25,13 +30,8 @@
       margin-top: 1rem;
     }
 
-    width: 54px;
-    height: 54px;
-    background-color:black;
-    background-image: image-url("social-icons.png");
-
     &.facebook {
-      background-position:70% 0 ;
+      background-position: 70% 0;
     }
 
     &.twitter {
