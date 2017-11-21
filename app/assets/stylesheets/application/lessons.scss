@@ -207,6 +207,11 @@
     margin: -1px 0 2rem;
     padding: 1rem 0.5rem 2rem;
     z-index: 0;
+
+    a {
+      word-wrap: break-word;
+    }
+
     h3 {
       font-size: 1.1rem;
       line-height: 1.1rem;
@@ -263,17 +268,20 @@
 }
 
 .meta {
-  display: flex;
+  display: inline-block;
+  @include breakpoint(medium) {
+    display: flex;
 
-  > * {
-    margin: 0 0.5rem;
+    > * {
+      margin: 0 0.5rem;
 
-    &:first-child {
-      margin-left: 0;
-    }
+      &:first-child {
+        margin-left: 0;
+      }
 
-    &:last-child {
-      margin-right: 0;
+      &:last-child {
+        margin-right: 0;
+      }
     }
   }
 }
