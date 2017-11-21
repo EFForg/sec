@@ -140,7 +140,6 @@
     position: relative;
     @include breakpoint(medium) {
       font-size: 1rem;
-      margin-right: .5rem;
     }
     a {
       display: inline-block;
@@ -151,7 +150,7 @@
 
       @include breakpoint(medium) {
         font-weight: 400;
-        padding: 0.5rem 3rem 0.5rem 1rem;
+        padding: 0.5rem 1.5rem 0.5rem 0.5rem;
       }
 
       text-decoration: none;
@@ -170,10 +169,10 @@
         height: 0.5rem;
         width: 0.5rem;
         @include breakpoint(medium) {
-          top: 0.75rem;
-          right: 1rem;
-          height: 1rem;
-          width: 1rem;
+          top: 0.8rem;
+          right: 0.5rem;
+          height: 0.75rem;
+          width: 0.75rem;
         }
       }
     }
