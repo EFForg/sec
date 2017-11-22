@@ -20,7 +20,8 @@
   <% if @lesson.instructor_students_ratio.present? %>
     <div class="ratio">
       <h3>Ratio</h3>
-      <span class="instructors-to-students">
+      <div class="instructors-to-learners">Instructor: Learners</div>
+      <span>
         <%= @lesson.instructor_students_ratio %>
       </span>
     </div>
