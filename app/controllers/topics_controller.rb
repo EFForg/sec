@@ -1,5 +1,6 @@
 class TopicsController < ApplicationController
   include ContentPermissioning
+  include Tagging
 
   breadcrumbs "Security Education" => routes.root_path,
               "Lessons" => routes.topics_path
@@ -8,9 +9,6 @@ class TopicsController < ApplicationController
     @topics = topics_scope.preload(:lessons, :tags).
               published.order(created_at: :desc).
               page(params[:page])
-    @tags = ActsAsTaggableOn::Tag.joins(:taggings).
-            where(taggings: { taggable_type: "Topic" }).
-            distinct
   end
 
   def show
@@ -26,6 +24,10 @@ class TopicsController < ApplicationController
   end
 
   private
+
+  def taggable_type
+    Topic
+  end
 
   def topics_scope
     if params[:tag]

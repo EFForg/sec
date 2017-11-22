@@ -1,5 +1,7 @@
 class BlogController < ApplicationController
   include ContentPermissioning
+  include Tagging
+
   breadcrumbs "Security Education" => routes.root_path,
               "Blog" => routes.blog_path
 
@@ -7,10 +9,6 @@ class BlogController < ApplicationController
     @blog_posts = blog_post_scope.preload(:tags).
                   published.order(published_at: :desc).
                   page(params[:page])
-    @tags = ActsAsTaggableOn::Tag.joins(:taggings).
-            where(taggings: { taggable_type: "BlogPost" }).
-            order(taggings_count: :desc).
-            distinct
   end
 
   def show
@@ -20,6 +18,10 @@ class BlogController < ApplicationController
   end
 
   private
+
+  def taggable_type
+    BlogPost
+  end
 
   def blog_post_scope
     if params[:tag]
