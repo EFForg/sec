@@ -1,6 +1,5 @@
 
 .share-links {
-  z-index: 10000;
   position: relative;
 
   a {
@@ -72,9 +71,14 @@
         display: inline-block;
       }
     }
+  }
 
-    &:hover,
-    &:focus {
+
+  @include breakpoint(medium) {
+    z-index: 10000;
+
+    a:hover,
+    a:focus {
       width: 20rem;
       transition: width 230ms;
     }
