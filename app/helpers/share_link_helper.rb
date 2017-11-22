@@ -2,7 +2,8 @@
 module ShareLinkHelper
   def share_link(type)
     link_to send("#{type}_share_url"), class: type.to_s, target: "_blank" do
-      content_tag(:span, class: "sr-only") {
+      content_tag(:i) +
+      content_tag(:span) {
         "Share on #{type.to_s.capitalize}"
       }
     end

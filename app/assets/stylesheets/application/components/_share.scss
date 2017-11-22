@@ -1,45 +1,82 @@
 
 .share-links {
-  position: sticky;
-  top: 2rem;
+  z-index: 10000;
+  position: relative;
 
-  @include breakpoint(medium) {
-    float: left;
-    margin-left: -80px;
-  }
-
-  @include breakpoint(large) {
-    margin-left: -100px;
-  }
-
-  > a {
-    width: 54px;
-    height: 54px;
-    background-color: black;
-    background-image: image-url("social-icons.png");
-
+  a {
     display: inline-block;
     margin-right: 0.5rem;
+    width: 54px;
+    overflow: hidden;
 
     @include breakpoint(medium) {
+      position: absolute;
       display: block;
       margin-right: 0;
     }
 
-    &:not(:first-child) {
-      margin-top: 1rem;
+    i {
+      display: inline-block;
+      width: 54px;
+      height: 54px;
+      background-color: black;
+      background-image: image-url("social-icons.png");
     }
 
-    &.facebook {
+    &.facebook i {
       background-position: 70% 0;
     }
 
+    &.facebook span {
+      background-color: #1e4389;
+    }
+
+
     &.twitter {
+      top: 4.2rem;
+    }
+
+    &.twitter i {
       background-position: 50% 0;
     }
 
+    &.twitter span {
+      background-color: #28aae1;
+    }
+
     &.google {
+      top: 8.4rem;
+    }
+
+    &.google i {
       background-position: 20% 0;
+    }
+
+    &.google span {
+      background-color: #d5492c;
+    }
+
+    span {
+      position: absolute;
+      left: 62px;
+      width: 12rem;
+      height: 54px;
+      line-height: 54px;
+      padding-left: 0.9rem;
+
+      color: #fff;
+
+      display: none;
+
+      @include breakpoint(medium) {
+        display: inline-block;
+      }
+    }
+
+    &:hover,
+    &:focus {
+      width: 20rem;
+      transition: width 170ms;
     }
   }
 }

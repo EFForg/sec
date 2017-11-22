@@ -61,6 +61,12 @@
     margin-bottom: 2rem;
     text-transform: uppercase;
   }
+
+  &.page-show {
+    .share-links-sidebar {
+      display: block;
+    }
+  }
 }
 
 .file-preview-fallback {

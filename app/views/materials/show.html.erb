@@ -7,8 +7,6 @@
 
       <%= render partial: "shared/admin_links", locals: { resource: @material } %>
 
-      <%= render "shared/share", show_for: "medium" %>
-
       <div class="material-details">
         <div class="content">
           <%= html(@material.description) %>

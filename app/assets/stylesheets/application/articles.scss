@@ -7,4 +7,10 @@
       margin-bottom: 0.7rem;
     }
   }
+
+  &.page-show {
+    .share-links-sidebar {
+      display: block;
+    }
+  }
 }

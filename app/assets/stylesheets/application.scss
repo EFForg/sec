@@ -9,13 +9,6 @@
   text-align: center;
 }
 
-.row {
-  margin-top: 0;
-  @include breakpoint(medium) {
-    margin-top: 2rem;
-  }
-}
-
 .row aside {
   display: inline-block;
   min-width: 10%;
