@@ -9,6 +9,7 @@ module Tagging
 
   def find_tags
     @tags = ActsAsTaggableOn::Tag.joins(:taggings).
+      order(taggings_count: :desc).
       where(taggings: { taggable_type: taggable_type.name }).
       distinct.to_a
 
