@@ -6,9 +6,9 @@ class TopicsController < ApplicationController
               "Lessons" => routes.topics_path
 
   def index
-    @topics = topics_scope.preload(:lessons, :tags).
-              published.order(created_at: :desc).
-              page(params[:page])
+    @topics = tagged_scope.preload(:lessons, :tags).
+      published.order(created_at: :desc).
+      page(params[:page])
   end
 
   def show
@@ -27,13 +27,5 @@ class TopicsController < ApplicationController
 
   def taggable_type
     Topic
-  end
-
-  def topics_scope
-    if params[:tag]
-      Topic.tagged_with(params[:tag]).distinct
-    else
-      Topic.all
-    end
   end
 end

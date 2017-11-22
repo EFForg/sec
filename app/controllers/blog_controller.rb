@@ -6,9 +6,9 @@ class BlogController < ApplicationController
               "Blog" => routes.blog_path
 
   def index
-    @blog_posts = blog_post_scope.preload(:tags).
-                  published.order(published_at: :desc).
-                  page(params[:page])
+    @blog_posts = tagged_scope.preload(:tags).
+      published.order(published_at: :desc).
+      page(params[:page])
   end
 
   def show
@@ -21,13 +21,5 @@ class BlogController < ApplicationController
 
   def taggable_type
     BlogPost
-  end
-
-  def blog_post_scope
-    if params[:tag]
-      BlogPost.tagged_with(params[:tag]).distinct
-    else
-      BlogPost.all
-    end
   end
 end
