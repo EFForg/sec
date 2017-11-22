@@ -83,15 +83,15 @@
 }
 
 
-  .show-for-xlarge-only {
-    display: none;
-    @include breakpoint(xlarge) {
-      display: inline-block;
-    }
-  }
-  .hide-for-xlarge-only {
+.show-for-xlarge-only {
+  display: none;
+  @include breakpoint(xlarge) {
     display: inline-block;
-    @include breakpoint(xlarge) {
-      display: none;
-    }
   }
+}
+.hide-for-xlarge-only {
+  display: inline-block;
+  @include breakpoint(xlarge) {
+    display: none;
+  }
+}
