@@ -81,3 +81,17 @@
     padding: 0;
   }
 }
+
+
+.show-for-xlarge-only {
+  display: none;
+  @include breakpoint(xlarge) {
+    display: inline-block;
+  }
+}
+.hide-for-xlarge-only {
+  display: inline-block;
+  @include breakpoint(xlarge) {
+    display: none;
+  }
+}

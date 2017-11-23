@@ -23,11 +23,11 @@
     <div class="tabs">
       <% @topic.lessons.each do |lesson| %>
         <div class="tab <%= "active" if @lesson == lesson %>">
-          <div class="show-for-small-only">
+          <div class="hide-for-xlarge-only">
             <%= link_to "#{lesson.level}",   lesson_path(@topic, lesson),
             remote: true, data: { history:   true } %>
           </div>
-          <div class="show-for-medium">
+          <div class="show-for-xlarge-only">
             <%= link_to "#{lesson.level} lesson",   lesson_path(@topic, lesson),
                         remote: true, data: { history:   true } %>
           </div>
