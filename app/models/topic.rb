@@ -2,6 +2,8 @@ class Topic < ApplicationRecord
   has_many :lessons, ->{ merge(Lesson.published) }
   has_many :admin_lessons, class_name: "Lesson", dependent: :destroy
 
+  belongs_to :next_topic, class_name: "Topic", optional: true
+
   accepts_nested_attributes_for :admin_lessons
 
   acts_as_taggable
@@ -10,7 +12,7 @@ class Topic < ApplicationRecord
   friendly_id :name, use: [:slugged, :history]
   before_validation :nillify_empty_slug, prepend: true
 
-  mount_uploader :icon, IconUploader
+  belongs_to :icon, optional: true
 
   include Publishing
   include Featuring

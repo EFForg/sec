@@ -3,7 +3,7 @@ ActiveAdmin.register Article do
 
   menu parent: "Content", priority: 1
 
-  permit_params :name, :authorship, :summary, :body,
+  permit_params :name, :authorship, :summary, :body, :next_article_id,
     :flag, :slug, :published
 
   controller do
@@ -35,6 +35,8 @@ ActiveAdmin.register Article do
       f.input :summary, as: :ckeditor,
               hint: "If left blank, the first ~500 characters the article body will be used."
       f.input :body, as: :ckeditor
+
+      f.input :next_article, input_html: { class: "select2" }
     end
 
     f.actions

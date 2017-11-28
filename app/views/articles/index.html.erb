@@ -1,26 +1,33 @@
 <div class="row">
   <h1>Security Education 101</h1>
 
-  <ul class="toc">
-    <% @sections.each do |section, articles| %>
-      <li>
-        <strong><%= link_to section_name(section), "##{section_id(section)}" %></strong>
+  <div class="row">
+    <div class="large-6 columns">
+      <div class="content">
+        <%= managed_content("articles-intro") %>
+      </div>
+    </div>
 
-        <% unless section.nil? %>
-          <ul>
-            <% articles.each do |article| %>
-              <li><%= link_to article.name, article %></li>
+    <div class="large-6 columns">
+      <ul class="toc">
+        <% @sections.each do |section, articles| %>
+          <li>
+            <strong><%= link_to section_name(section), "##{section_id(section)}" %></strong>
+
+            <% unless section.nil? %>
+              <ul>
+                <% articles.each do |article| %>
+                  <li><%= link_to article.name, article %></li>
+                <% end %>
+              </ul>
             <% end %>
-          </ul>
+          </li>
         <% end %>
-      </li>
-    <% end %>
-  </ul>
-
-  <div class="content description-text">
-    <%= managed_content("articles-intro") %>
+      </ul>
+    </div>
   </div>
 
+  <div class="large-8 large-centered columns">
   <% cache(cache_key_for_articles(@sections)) do %>
     <% @sections.each do |section, articles| %>
       <h2 id="<%= section_id(section) %>">
@@ -30,4 +37,5 @@
       <%= render articles %>
     <% end %>
   <% end %>
+</div>
 </div>

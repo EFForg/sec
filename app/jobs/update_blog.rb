@@ -11,28 +11,24 @@ class UpdateBlog < ApplicationJob
 
     new_blog_posts = 0
     feed.items.each do |update|
-      unless BlogPost.where(original_url: update.link).exists?
-        doc = Nokogiri::HTML.fragment(update.description)
-        rebase_blog_post(doc)
+      doc = Nokogiri::HTML.fragment(update.description)
+      rebase_blog_post(doc)
 
-        authorship = update.dc_creators.map(&:content)
-        authorship[-1].prepend("and ") if authorship.size > 2
-        authors = authorship.join(authorship.size > 2 ? ", " : " and ")
+      authorship = update.dc_creators.map(&:content)
+      authorship[-1].prepend("and ") if authorship.size > 2
+      authors = authorship.join(authorship.size > 2 ? ", " : " and ")
+      authors = Nokogiri::HTML.fragment(authors).to_s
 
-        BlogPost.create!(
-          original_url: update.link,
-          name: update.title,
-          authorship: authors.presence,
-          image_url: update.enclosure.try(:url),
-          body: doc.to_html,
-          published_at: update.pubDate,
-          published: true
-        )
-
-        new_blog_posts += 1
-      end
+      blog_post = BlogPost.find_or_initialize_by(original_url: update.link)
+      blog_post.update!(
+        original_url: update.link,
+        name: update.title,
+        authorship: authors.presence,
+        image_url: update.enclosure.try(:url),
+        body: doc.to_html,
+        published_at: update.pubDate,
+        published: blog_post.persisted? ? blog_post.published : true
+      )
     end
-
-    new_blog_posts
   end
 end

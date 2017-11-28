@@ -13,7 +13,16 @@ class UpdateLessonPdf < ApplicationJob
       layout: "layouts/pdf.html.erb"
     )
 
-    pdf = WickedPdf.new.pdf_from_string(doc, pdf: lesson.topic.name)
+    pdf = WickedPdf.new.pdf_from_string(
+      doc,
+      pdf: lesson.topic.name,
+      margin: {
+        top: "1in",
+        bottom: "1in",
+        left: "1in",
+        right: "1in"
+      }
+    )
 
     tmp = Tempfile.new(["lesson", ".pdf"])
     tmp.binmode

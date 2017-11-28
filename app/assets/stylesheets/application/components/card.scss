@@ -7,8 +7,6 @@
   width: 100%;
 
   h3 {
-    font-size: 1.6rem;
-    line-height: 1.6rem;
     text-transform: capitalize;
     a {
       display: block;
@@ -24,18 +22,21 @@
     min-height: 8rem;
     padding: 1.5rem 1.5rem 0 1rem;
     margin-bottom: 2.3rem;
-
+    position: relative;
     .flag {
       display: inline-block;
-      position: relative;
-      left: -2rem;
-      top: -0.7rem;
+      position: absolute;
+      left: 0;
+      top: -1rem;
       padding-left: 0.5rem;
       padding-right: 0.5rem;
       background-color: $dark-teal;
       color: white;
       text-transform: uppercase;
       font-weight: bold;
+      @include breakpoint(inbetween) {
+        left: -0.8rem;
+      }
     }
   }
 
@@ -76,6 +77,25 @@ a .card .byline {
 .section-home.page-index {
   .article.card .content {
     display: none;
+  }
+}
+
+.section-home div.topic.card,
+.section-home div.material.card,
+.section-materials .card {
+  .top {
+    position: relative;
+  }
+  @include breakpoint(xlarge) {
+    .top {
+      position: absolute;
+      margin-bottom: 0;
+    }
+    &:after {
+      content: "";
+      display: block;
+      padding-bottom: 100%;
+    }
   }
 }
 

@@ -4,11 +4,11 @@ class MaterialsController < ApplicationController
 
   def index
     @page = Page.find_by!(name: "materials-overview")
-    @materials = Material.all.page(params[:page])
+    @materials = Material.published.page(params[:page])
   end
 
   def show
-    @material = Material.find(params[:id])
+    @material = Material.published.friendly.find(params[:id])
     @topics = Topic.joins(:lessons).
       where("lessons.suggested_materials LIKE ?",
             "%#{ material_path(@material) }%")

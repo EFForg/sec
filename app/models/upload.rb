@@ -1,6 +1,6 @@
 class Upload < ApplicationRecord
   mount_uploader :file, MaterialsUploader
-  belongs_to :material
+  belongs_to :material, touch: true
 
   default_scope { order(position: :asc) }
 

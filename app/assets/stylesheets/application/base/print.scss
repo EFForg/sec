@@ -1,0 +1,31 @@
+.print-header {
+  display: none;
+}
+.print-button {
+  display: none;
+  background-image: url("printer_icon.svg");
+  background-repeat: no-repeat;
+  background-position-x: right;
+  color: $darkest-teal;
+  float: right;
+  text-decoration: underline;
+  width: 5rem;
+  cursor: pointer;
+}
+
+@media print {
+  .no-print, .no-print *  {
+    display: none !important;
+  }
+
+  .print-header {
+    display: inline-block;
+  }
+  .large-8 { //make narrow columns full width
+    width: 100%;
+  }
+  // remove URLS
+  a[href*="/"]:after, a[href*="/"]:visited:after {
+    content: normal;
+  }
+}

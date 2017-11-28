@@ -1,17 +1,25 @@
 footer {
-  display: none; //small screens
   background-color: $light-teal ;
   color: $darkest-teal;
   margin: 0;
-  padding: 2rem 0;
+  padding: 3rem 0 5rem;
+
+  @include breakpoint(medium) {
+    padding-bottom: 2rem;
+  }
+
   a,
   a:focus,
   a:active,
   a:visited {
     color: $darkest-teal;
+    font-weight: 400;
     text-decoration: underline;
   }
+
   h1 {
+    text-transform: uppercase;
+    padding: 0 2rem;
     color: $darkest-teal;
     font-size: 1.8rem;
     font-weight: 400;
@@ -20,29 +28,102 @@ footer {
       font-size: 2.5rem;
     }
   }
+
   img {
-    display: block;
-    margin: 0 auto 1rem;
+    margin-top: 1rem;
     max-width: 200px;
+
     @include breakpoint(medium) {
-      margin: 0 auto;
+      margin: 0.7rem 2rem;
+      width: 17.5rem;
       max-width: 100%;
     }
   }
-  .footer-links {
-    margin-top: 5rem;
-    ul {
-      list-style: none;
-      li {
-        text-transform: uppercase;
-        font-size: 1.3rem;
-        font-weight: 600;
-        margin-bottom: 1rem;
+
+  .logos {
+    text-align: center;
+    a {
+      display: table;
+      margin: 0 auto 2rem;
+      @include breakpoint(medium) {
+        display: inline-block;
+        margin: 0;
       }
+    }
+    .ssd-logo,
+    .eff-logo {
+      display: inline-block;
+      font-weight: 400;
+      line-height: 0rem;
+      text-align: center;
+      text-transform: uppercase;
+      width: 100%;
+      @include breakpoint(medium) {
+        width: 23.5rem;
+      }
+    }
+    .eff-logo a img {
+      width: 13.125rem;
     }
   }
 
-  @include breakpoint(medium) {
-    display: block;
+  .footer-links {
+    margin-top: 4rem;
+    text-align: center;
+
+    ul {
+      display: inline-block;
+      vertical-align: top;
+      text-align: left;
+      list-style: none;
+
+      margin-left: 4rem;
+      margin-right: 4rem;
+
+      max-width: 280px;
+
+      li {
+        margin-bottom: 1rem;
+      }
+
+      &:not(.feedback) li {
+        text-transform: uppercase;
+      }
+    }
+
+    .feedback {
+      max-width: none;
+      li strong {
+        text-transform: none;
+        &:after {
+          content: ":";
+        }
+      }
+
+      @include breakpoint(large) {
+        li strong {
+          text-transform: uppercase;
+          display: block;
+        }
+      }
+    }
+
+    @include breakpoint(small only) {
+      margin-top: 2rem;
+
+      .navigation {
+        display: none;
+      }
+
+      .about {
+        columns: 2;
+        margin: 0;
+      }
+
+      li {
+        margin-left: 0.5rem;
+        margin-right: 0.5rem;
+      }
+    }
   }
 }

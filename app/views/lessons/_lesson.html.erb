@@ -24,7 +24,7 @@
     <h3>Prerequisites</h3>
 
     <div class="content">
-      <%= @lesson.prerequisites.html_safe %>
+      <%= html(@lesson.prerequisites) %>
     </div>
   </div>
 <% end %>
@@ -33,7 +33,8 @@
   <% if @lesson.instructor_students_ratio.present? %>
     <div class="ratio">
       <h3>Ratio</h3>
-      <span class="instructors-to-students">
+      <div class="instructors-to-learners">Instructor: Learners</div>
+      <span>
         <%= @lesson.instructor_students_ratio %>
       </span>
     </div>
@@ -44,35 +45,40 @@
       <h3>Suggested Materials</h3>
 
       <div class="content">
-        <%= @lesson.suggested_materials.html_safe %>
+        <%= html(@lesson.suggested_materials) %>
       </div>
     </div>
   <% end %>
 
-  <% if @lesson.advice.any? %>
+  <% if @lesson.relevant_articles? %>
     <div class="articles">
       <h3>Relevant Articles</h3>
-      <ul>
-        <% @lesson.advice.each do |advice| %>
-          <li><%= link_to advice.name %></li>
-        <% end %>
-      </ul>
+      <%= html(@lesson.relevant_articles) %>
     </div>
   <% end %>
 </div>
 
 <% if @lesson.notes? %>
   <div class="notes content">
-    <%= @lesson.notes.html_safe %>
+    <%= html(@lesson.notes) %>
   </div>
 <% end %>
 
 <div class="content collapse <%= "uncollapse" if params.include?("expand") %>">
-  <%= @lesson.body.html_safe %>
+  <% if @lesson.recommended_reading? %>
+    <div class="recommended-reading content">
+      <h3>Recommended Reading</h3>
+      <%= html(@lesson.recommended_reading) %>
+    </div>
+  <% end %>
+
+  <h2>Lesson Content</h2>
+
+  <%= html(@lesson.body) %>
 </div>
 
 <%= link_to "View full session",
-            topic_lesson_path(@lesson.topic, @lesson, format: "pdf"),
+            topic_lesson_path(@lesson.topic, @lesson, expand: 1),
             class: "view-full expand-collapsed" unless params.include?("expand") %>
 
 <%= link_to "Printable Version (PDF)", topic_lesson_path(@lesson.topic, @lesson, format: "pdf"), class: "pdf-link" %>

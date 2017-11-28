@@ -16,17 +16,33 @@
       margin-bottom: 1.8rem;
     }
   }
+
+  .intro {
+    width: 100%;
+    @include breakpoint(medium) {
+      margin-left: 0;
+      margin-right: auto;
+      width: 66%;
+    }
+  }
   .update {
+    font-size: 0.8rem;
+    line-height: 1.2rem;
     border: 2px solid $light-teal;
     padding: 1rem;
+    p {
+      font-size: 0.9rem;
+      line-height: 1.5rem;
+      margin-bottom: 0;
+    }
   }
   .description-text {
+    width: 100%;
     @include breakpoint(medium) {
       margin-bottom: 1.2rem;
       width: 66%;
     }
   }
-
 }
 
 .admin-links {
@@ -38,4 +54,44 @@
 #anon-stats {
   height: 0;
   overflow: hidden;
+}
+
+
+.pull-quote {
+  display: block;
+  float: left;
+  font-size: 1.5rem;
+  line-height: 2rem;
+  font-weight: 300;
+  color: $dark-gray;
+  max-width: 22rem;
+  margin: 2rem 2rem 2rem 0rem;
+  @include breakpoint(medium) {
+    font-size: 2rem;
+    line-height: 2.7rem;
+  }
+}
+
+.levels {
+  margin: 0.5rem 0 1.5rem;
+}
+
+@include breakpoint(small only) {
+  .large-8.large-centered.columns {
+    padding: 0;
+  }
+}
+
+
+.show-for-xlarge-only {
+  display: none;
+  @include breakpoint(xlarge) {
+    display: inline-block;
+  }
+}
+.hide-for-xlarge-only {
+  display: inline-block;
+  @include breakpoint(xlarge) {
+    display: none;
+  }
 }

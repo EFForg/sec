@@ -8,6 +8,18 @@
         <div class="update"><%= @page.region("update-notes").html_safe %></div>
       <% end %>
     </div>
+    <div class="large-4 columns">
+    <% if homepage.update_notes? %>
+      <div class="update">
+        <div class="updated-at">
+          <%= homepage.update_notes_updated_at.strftime("%B %e, %Y") %>
+        </div>
+
+        <%= html(homepage.update_notes) %>
+      </div>
+    <% end %>
+  </div>
+
   </div>
 
   <div class="row" >
@@ -35,10 +47,10 @@
       <%= @page.region("lessons-intro").html_safe %>
     </div>
 
-    <% homepage.featured_topics.each_slice(2) do |row| %>
+    <% homepage.featured_topics.each_slice(3) do |row| %>
     <div class="row">
       <% row.each do |topic| %>
-      <div class="large-6 columns end">
+      <div class="large-4 columns end">
         <%= render topic %>
       </div>
       <% end %>
@@ -54,11 +66,17 @@
     <div class="description-text">
       <%= @page.region("materials-intro").html_safe %>
     </div>
+
+    <% homepage.featured_materials.each_slice(3) do |row| %>
     <div class="row">
-      <% @hpage.featured_materials.each do |material| %>
+      <% row.each do |material| %>
+      <div class="large-4 columns end">
         <%= render material %>
+      </div>
       <% end %>
     </div>
+    <% end %>
+
     <div class="see-all float-right">
       <%= link_to "See All Teaching Materials", materials_path %>
     </div>

@@ -3,12 +3,13 @@ ActiveAdmin.register Topic do
 
   menu parent: "Content", priority: 2
 
-  permit_params :name, :description, :icon, :slug, :published,
+  permit_params :name, :description, :icon_id, :slug, :published, :next_topic_id,
     tag_ids: [],
     admin_lessons_attributes: [
       :id, :level_id, :topic_id,
       :instructor_students_ratio,
       :objective, :notes, :body,
+      :relevant_articles, :recommended_reading,
       :prerequisites, :suggested_materials,
       duration: [:hours, :minutes],
       material_ids: [],

@@ -5,7 +5,6 @@
 //= require react
 //= require react_ujs
 //= require_tree ./admin/components
-//= require rails-ujs
 
 $(window).on("load", function() {
   $("select.select2").select2();
@@ -66,6 +65,19 @@ $(window).on("load", function() {
     }
     reader.readAsDataURL(image);
   });
+
+
+  var formatImageOption = function(data) {
+    if (data.element && data.element.value) {
+      return $("<span>").append($("<img>", { src: data.element.dataset.url })).append(data.text);
+    }
+  };
+
+  $(".select2.icon-gallery").select2({
+    templateResult: formatImageOption,
+    templateSelection: formatImageOption,
+  });
+
 
   ReactRailsUJS.mountComponents();
 });

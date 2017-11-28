@@ -1,22 +1,66 @@
-<h1><%= @topic.name %></h1>
+<h1><%= @topic.name %> (<%= @lesson.level %>)</h1>
 
-<div class="content">
-  <% if @lesson.objective? %>
-    <div class="objective">
-      <div class="label">Learners will:</div>
+<% if @lesson.objective? %>
+  <div class="objective content">
+    <%= html(@lesson.objective) %>
+  </div>
+<% end %>
+
+<% if @lesson.prerequisites? %>
+  <div class="prereqs">
+    <h3>Prerequisites</h3>
+
+    <div class="content">
+      <%= html(@lesson.prerequisites) %>
+    </div>
+  </div>
+<% end %>
+
+<div class="meta">
+  <% if @lesson.instructor_students_ratio.present? %>
+    <div class="ratio">
+      <h3>Ratio</h3>
+      <div class="instructors-to-learners">Instructor: Learners</div>
+      <span>
+        <%= @lesson.instructor_students_ratio %>
+      </span>
+    </div>
+  <% end %>
+
+  <% if @lesson.suggested_materials? %>
+    <div class="suggested-materials">
+      <h3>Suggested Materials</h3>
+
       <div class="content">
-        <%= @lesson.objective.html_safe %>
+        <%= html(@lesson.suggested_materials) %>
       </div>
     </div>
   <% end %>
 
-  <% if @lesson.notes? %>
-    <div class="notes content">
-      <%= @lesson.notes.html_safe %>
+
+  <% if @lesson.relevant_articles? %>
+    <div class="articles">
+      <h3>Relevant Articles</h3>
+      <%= html(@lesson.relevant_articles) %>
+    </div>
+  <% end %>
+</div>
+
+<% if @lesson.notes? %>
+  <div class="notes content">
+    <%= html(@lesson.notes) %>
+  </div>
+<% end %>
+
+<div class="content">
+  <% if @lesson.recommended_reading? %>
+    <div class="recommended-reading content">
+      <h3>Recommended Reading</h3>
+      <%= html(@lesson.recommended_reading) %>
     </div>
   <% end %>
 
-  <div class="content">
-    <%= @lesson.body.html_safe %>
-  </div>
+  <h2>Lesson Content</h2>
+
+  <%= html(@lesson.body) %>
 </div>

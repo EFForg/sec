@@ -18,11 +18,14 @@
     white-space: nowrap;
     @include breakpoint(medium) {
       font-size: 1rem;
-      margin: 0 1rem 1rem 0;
     }
-    &:hover {
+
+    &:hover,
+    &:focus {
       color: white;
       background-color: $darkest-teal;
+
+      transition: background-color 245ms, color 245ms;
     }
   }
   a.active {
