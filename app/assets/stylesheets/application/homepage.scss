@@ -1,6 +1,10 @@
 .homepage {
-  .intro {
+  .home-intro {
+    font-size: 1.2rem;
     font-weight: 400;
+    @include breakpoint(medium) {
+      font-size: 1.6rem;
+    }
   }
   .update .updated-at {
     text-transform: uppercase;

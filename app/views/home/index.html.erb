@@ -1,10 +1,10 @@
 <% cache(cache_key_for_homepage) do %>
 <div class="homepage">
   <div class="row">
-    <div class="intro large-8 columns">
+    <div class="home-intro large-4 columns">
       <%= html(homepage.welcome) %>
     </div>
-    <div class="large-4 columns">
+    <div class="large-8 columns">
     <% if homepage.update_notes? %>
       <div class="update">
         <div class="updated-at">
@@ -14,7 +14,7 @@
         <%= html(homepage.update_notes) %>
       </div>
     <% end %>
-  </div>
+    </div>
 
   </div>
 
