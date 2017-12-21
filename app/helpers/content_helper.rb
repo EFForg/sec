@@ -6,8 +6,10 @@ module ContentHelper
   def preview(object, allowed_tags: allowed_tags_for_preview)
     if object.respond_to?(:summary?) && object.summary?
       html = object.summary
-    else
+    elsif object.respond_to?(:body)
       html = object.body
+    else
+      html = object.description
     end
 
     html = truncate(sanitize(html, tags: allowed_tags),
