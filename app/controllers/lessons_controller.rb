@@ -8,6 +8,8 @@ class LessonsController < ApplicationController
     @lesson = @topic.lessons.with_level(params[:id]).take
     redirect_to @topic && return if @lesson.nil?
 
+    og_object @lesson, description: ""
+
     respond_to do |format|
       format.html { render "topics/show" }
       format.js

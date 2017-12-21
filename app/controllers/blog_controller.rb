@@ -15,6 +15,7 @@ class BlogController < ApplicationController
     @blog_post = BlogPost.friendly.find(params[:id])
     protect_unpublished! @blog_post
     breadcrumbs @blog_post.name
+    og_object @blog_post
   end
 
   private

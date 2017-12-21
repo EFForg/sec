@@ -14,8 +14,10 @@ class TopicsController < ApplicationController
   def show
     @topic = Topic.friendly.find(params[:id])
     protect_unpublished! @topic
+
     @lesson = @topic.lessons.take!
     breadcrumbs @topic.name
+    og_object @lesson, description: ""
 
     respond_to do |format|
       format.html
