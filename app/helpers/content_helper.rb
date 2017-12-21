@@ -3,14 +3,14 @@ module ContentHelper
     %w(b strong i em u s strike del p)
   end
 
-  def preview(object)
+  def preview(object, allowed_tags: allowed_tags_for_preview)
     if object.respond_to?(:summary?) && object.summary?
       html = object.summary
     else
       html = object.body
     end
 
-    html = truncate(sanitize(html, tags: allowed_tags_for_preview),
+    html = truncate(sanitize(html, tags: allowed_tags),
                     length: 500, escape: false, separator: /\s/)
 
     Nokogiri::HTML.fragment(html).to_html.html_safe # rubocop:disable Rails/OutputSafety
