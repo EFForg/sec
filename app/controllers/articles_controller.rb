@@ -15,5 +15,10 @@ class ArticlesController < ApplicationController
     @article = Article.friendly.find(params[:id])
     protect_unpublished! @article
     breadcrumbs @article.name
+
+    respond_to do |format|
+      format.html
+      format.md
+    end
   end
 end

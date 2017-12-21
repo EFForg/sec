@@ -4,6 +4,10 @@
       <%= link_to "Edit", [:edit, :admin, resource] %>
     </div>
 
+    <div class="view-as-markdown">
+      <%= link_to "Markdown", url_for(format: "md") %>
+    </div>
+
     <% if resource.try(:unpublished?) %>
       <div class="unpublished">Unpublished</div>
     <% end %>

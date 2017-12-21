@@ -67,6 +67,7 @@ gem "devise"
 gem "devise_invitable"
 gem "font-awesome-rails"
 gem "react-rails"
+gem "reverse_markdown"
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

@@ -19,6 +19,7 @@ class TopicsController < ApplicationController
 
     respond_to do |format|
       format.html
+      format.md { render "lessons/show" }
       format.js { render "lessons/show" }
     end
   end

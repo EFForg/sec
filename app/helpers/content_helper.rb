@@ -20,6 +20,14 @@ module ContentHelper
     if html
       doc = Nokogiri::HTML.fragment(html)
 
+      doc.traverse do |node|
+        node.remove if node.text? && node.text !~ /[^\r\n\t]/
+      end
+
+      doc.css("li > p").each do |p|
+        p.replace(p.children[0]) if p.children.size == 1
+      end
+
       doc.css("a[href]").each do |link|
         uri = URI(link["href"])
         is_external = uri.host && uri.host != request.host
@@ -36,6 +44,10 @@ module ContentHelper
 
       doc.to_html.html_safe # rubocop:disable Rails/OutputSafety
     end
+  end
+
+  def markdown(html)
+    ReverseMarkdown.convert(self.html(html), unknown_tags: :bypass)
   end
 
   def tags(object, url_helper)
