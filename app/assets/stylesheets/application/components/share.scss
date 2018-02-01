@@ -18,41 +18,30 @@
       display: inline-block;
       width: 54px;
       height: 54px;
-      background-color: black;
-      background-image: image-url("social-icons.png");
     }
 
-    &.facebook i {
-      background-position: 70% 0;
-    }
+    &.facebook {
+      top: 0;
 
-    &.facebook span {
-      background-color: #1e4389;
+      i {
+        background-image: image-url('share-facebook.png');
+      }
     }
-
 
     &.twitter {
       top: 4.2rem;
-    }
 
-    &.twitter i {
-      background-position: 50% 0;
-    }
-
-    &.twitter span {
-      background-color: #28aae1;
+      i {
+        background-image: image-url('share-twitter.png');
+      }
     }
 
     &.google {
       top: 8.4rem;
-    }
 
-    &.google i {
-      background-position: 20% 0;
-    }
-
-    &.google span {
-      background-color: #d5492c;
+      i {
+        background-image: image-url('share-google.png');
+      }
     }
 
     span {
@@ -63,7 +52,8 @@
       line-height: 54px;
       padding-left: 0.9rem;
 
-      color: #fff;
+      color: #215c61;
+      background-color: #c7dddb;
 
       display: none;
 
