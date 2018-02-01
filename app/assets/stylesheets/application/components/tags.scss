@@ -19,9 +19,13 @@
     @include breakpoint(medium) {
       font-size: 1rem;
     }
-    &:hover {
+
+    &:hover,
+    &:focus {
       color: white;
       background-color: $darkest-teal;
+
+      transition: background-color 245ms, color 245ms;
     }
   }
   a.active {

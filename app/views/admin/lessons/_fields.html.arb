@@ -9,7 +9,7 @@ f.fields_for :admin_lessons, lesson do |l|
   end
 
   f.inputs "Teaching Ratio", class: "input ratio" do
-    l.input :instructor_students_ratio
+    l.input :instructor_students_ratio, hint: "E.g. 1:8"
   end
 
   f.inputs do

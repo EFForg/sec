@@ -3,11 +3,11 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <%= tag :meta, property: "og:title", content: page_title %>
+  <%= tag :meta, property: "og:title", content: og_title.try(:strip) %>
   <%= tag :meta, property: "og:type", content: "website" %>
   <%= tag :meta, property: "og:url", content: url_for_share %>
-  <%= tag :meta, property: "og:image", content: image_url("sec-og-image.png") %>
-  <%= tag :meta, property: "og:description", content: "The Security Education Companion is a resource for people teaching digital security to their friends and neighbors." %>
+  <%= tag :meta, property: "og:image", content: og_image %>
+  <%= tag :meta, property: "og:description", content: og_description.try(:strip) %>
 
   <title><%= page_title %></title>
   <%= csrf_meta_tags %>

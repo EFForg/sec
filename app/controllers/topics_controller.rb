@@ -1,23 +1,23 @@
 class TopicsController < ApplicationController
   include ContentPermissioning
+  include Tagging
 
   breadcrumbs "Security Education" => routes.root_path,
               "Lessons" => routes.topics_path
 
   def index
-    @topics = topics_scope.preload(:lessons, :tags).
-              published.order(created_at: :desc).
-              page(params[:page])
-    @tags = ActsAsTaggableOn::Tag.joins(:taggings).
-            where(taggings: { taggable_type: "Topic" }).
-            distinct
+    @topics = tagged_scope.preload(:lessons, :tags).
+      published.order(created_at: :desc).
+      page(params[:page])
   end
 
   def show
     @topic = Topic.friendly.find(params[:id])
     protect_unpublished! @topic
+
     @lesson = @topic.lessons.take!
     breadcrumbs @topic.name
+    og_object @lesson, description: ""
 
     respond_to do |format|
       format.html
@@ -27,11 +27,7 @@ class TopicsController < ApplicationController
 
   private
 
-  def topics_scope
-    if params[:tag]
-      Topic.tagged_with(params[:tag]).distinct
-    else
-      Topic.all
-    end
+  def taggable_type
+    Topic
   end
 end
