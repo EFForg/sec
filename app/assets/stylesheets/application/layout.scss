@@ -1,13 +1,34 @@
+#page {
+  display: flex;
+
+  .share-links-sidebar {
+    flex: 0 0;
+
+    .share-links {
+      position: sticky;
+      top: 2rem;
+      margin-bottom: 2rem;
+    }
+  }
+
+  > #main-content {
+    flex: 1 1;
+  }
+}
+
+.share-links-sidebar {
+  display: none;
+}
+
 #main-content {
   position: relative;
   margin: 1rem 1rem 6rem;
   @include breakpoint(medium) {
-    margin: 2rem 5rem;
+    margin: 0 5rem 2rem 5rem;
   }
 
   .intro,
   .intro p {
-    clear: both;
     color: black;
     margin-bottom: 1rem;
     @include breakpoint(medium) {

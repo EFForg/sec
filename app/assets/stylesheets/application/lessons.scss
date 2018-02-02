@@ -276,6 +276,13 @@
   .next-topic {
     text-align: right;
   }
+
+
+  &.page-show {
+    .share-links-sidebar {
+      display: block;
+    }
+  }
 }
 
 .collapse {

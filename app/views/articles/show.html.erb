@@ -2,6 +2,7 @@
   <div class="large-8 large-centered columns">
     <div class="print-button">Print</div>
     <h1><%= @article.name %></h1>
+
     <% if @article.authorship.present? %>
       <div class="byline-etc">by <span class="author"><%= @article.authorship %></span></div>
     <% end %>
@@ -10,6 +11,8 @@
     <div class="content">
       <%= html(@article.body) %>
     </div>
+
+    <%= render "shared/share", show_for: "small-only" %>
 
     <% if @article.next_article.present? %>
       <div class="next-article">
