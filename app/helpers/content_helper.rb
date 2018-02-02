@@ -15,7 +15,10 @@ module ContentHelper
     html = truncate(sanitize(html, tags: allowed_tags),
                     length: 500, escape: false, separator: /\s/)
 
-    Nokogiri::HTML.fragment(html).to_html.html_safe # rubocop:disable Rails/OutputSafety
+    doc = Nokogiri::HTML.fragment(html)
+    doc.css('.pull-quote').each(&:remove)
+
+    doc.to_html.html_safe # rubocop:disable Rails/OutputSafety
   end
 
   def html(html, new_tab_for_all_links: true)
