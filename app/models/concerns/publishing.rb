@@ -10,10 +10,10 @@ module Publishing
   end
 
   def publish
-    update_attribute(published: true)
+    update_attribute(:published, true)
   end
 
   def unpublish
-    update_attribute(published: false)
+    update_attribute(:published, false)
   end
 end
