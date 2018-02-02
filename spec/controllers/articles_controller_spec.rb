@@ -17,8 +17,9 @@ RSpec.describe ArticlesController, type: :controller do
     end
 
     it "should protect unpublished content" do
-      expect(controller).to receive(:protect_unpublished!)
-      get :show, params: { id: article.slug }
+      article.unpublish
+      expect{ get :show, params: { id: article.slug } }.
+        to raise_error(ActiveRecord::RecordNotFound)
     end
   end
 
