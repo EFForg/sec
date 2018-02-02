@@ -15,6 +15,11 @@ RSpec.describe BlogController, type: :controller do
       get :show, params: { id: blog_post.slug }
       expect(response).to have_http_status(:success)
     end
+
+    it "should protect unpublished content" do
+      expect(controller).to receive(:protect_unpublished!)
+      get :show, params: { id: blog_post.slug }
+    end
   end
 
 end

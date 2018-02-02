@@ -20,6 +20,11 @@ RSpec.describe MaterialsController, type: :controller do
       get :show, params: { id: material.to_param }
       expect(response).to have_http_status(:success)
     end
+
+    it "should protect unpublished content" do
+      expect(controller).to receive(:protect_unpublished!)
+      get :show, params: { id: material.slug }
+    end
   end
 
 end
