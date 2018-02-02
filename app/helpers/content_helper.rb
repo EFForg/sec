@@ -13,7 +13,7 @@ module ContentHelper
     end
 
     doc = Nokogiri::HTML.fragment(html)
-    doc.css('.pull-quote').each(&:remove)
+    doc.css(".pull-quote").each(&:remove)
     html = doc.to_html
 
     html = truncate(sanitize(html, tags: allowed_tags),
