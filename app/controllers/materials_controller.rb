@@ -1,4 +1,6 @@
 class MaterialsController < ApplicationController
+  include ContentPermissioning
+
   breadcrumbs "Security Education" => routes.root_path,
               "Training Materials" => routes.materials_path
 
@@ -7,7 +9,8 @@ class MaterialsController < ApplicationController
   end
 
   def show
-    @material = Material.published.friendly.find(params[:id])
+    @material = Material.friendly.find(params[:id])
+    protect_unpublished! @material
     og_object @material
 
     @topics = Topic.joins(:lessons).
