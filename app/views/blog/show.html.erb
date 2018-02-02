@@ -1,3 +1,7 @@
+<% content_for(:head) do %>
+  <link rel="canonical" href="<%= @blog_post.original_url %>" />
+<% end if @blog_post.original_url? %>
+
 <div class="row">
   <div class="print-button">Print</div>
   <div class="large-8 large-centered columns">
