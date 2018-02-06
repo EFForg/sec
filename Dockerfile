@@ -1,42 +1,36 @@
-FROM ruby:2.3-slim
+FROM ruby:2.5-alpine
 
-RUN mkdir /opt/trainers-hub
+RUN mkdir -p /opt/trainers-hub
 WORKDIR /opt/trainers-hub
 
 ARG BUILD_ENV=production
 
-RUN if [ "$BUILD_ENV" = "development" ]; then usermod -u 1000 www-data; fi
+RUN if [ "$BUILD_ENV" = "development" ]; then \
+      adduser -D -u 1000 www-data; \
+    else \
+      adduser -D -u 33 www-data; \
+    fi
 
-RUN apt-get update && \
-  apt-get install -y --no-install-recommends \
-    build-essential \
-    curl \
+RUN echo "@edge http://nl.alpinelinux.org/alpine/edge/main" >>/etc/apk/repositories \
+  && echo "@edgetesting http://nl.alpinelinux.org/alpine/edge/testing" >>/etc/apk/repositories \
+  && apk update \
+  && apk add \
+    build-base \
     git \
-    libpq-dev \
+    postgresql-dev \
     postgresql-client \
     imagemagick \
     ghostscript \
     xvfb \
-    wkhtmltopdf \
-    cron \
+    wkhtmltopdf@edgetesting \
+    nodejs \
+    yarn \
+
   # xvfb-run "needs" xauth but not really.
   && ln -s /bin/true /bin/xauth \
-  # Install node.
-  && set -x; \
-    curl -sL https://deb.nodesource.com/setup_6.x -o nodesource_setup.sh \
-    && chmod +x nodesource_setup.sh \
-    && ./nodesource_setup.sh \
-    && apt-get install -y --no-install-recommends \
-      nodejs \
-    && apt-get clean \
-    && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* \
-  # Install yarn.
-  && curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - \
-    && echo "deb https://dl.yarnpkg.com/debian/ stable main" \
-    | tee /etc/apt/sources.list.d/yarn.list \
-    && apt-get update && apt-get install -y --no-install-recommends yarn \
+
   # Set up crontab.
-  && echo "*/15 * * * * root su -s/bin/bash www-data -c \
+  && echo "*/15 * * * * root su -s/bin/sh www-data -c \
     'cd /opt/trainers-hub && bundle exec rake blog:update' >>/proc/1/fd/1 2>&1" >>/etc/crontab
 
 
