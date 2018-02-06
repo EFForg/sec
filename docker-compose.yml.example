@@ -60,7 +60,7 @@ services:
 #         condition: service_healthy
 #     user: root
 #     restart: always
-#     command: /bin/bash -c 'env >> /etc/environment && cron -f'
+#     command: /bin/sh -c 'env >> /etc/environment && crond -f'
 #     entrypoint: ""
 #     env_file: .env
 
