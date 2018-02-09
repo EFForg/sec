@@ -6,9 +6,9 @@ WORKDIR /opt/trainers-hub
 ARG BUILD_ENV=production
 
 RUN if [ "$BUILD_ENV" = "development" ]; then \
-      adduser -D -u 1000 www-data; \
+      adduser -Du 1000 -h /opt/trainers-hub www-data; \
     else \
-      adduser -D -u 33 www-data; \
+      adduser -DS -h /opt/trainers-hub www-data; \
     fi
 
 RUN echo "@edge http://nl.alpinelinux.org/alpine/edge/main" >>/etc/apk/repositories \
