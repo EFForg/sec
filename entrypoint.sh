@@ -12,4 +12,7 @@ if [ "$ROLE" = "web" ]; then
   cp -ru public/* nginx_static
 fi
 
+
+/usr/bin/Xvfb $DISPLAY -ac &
+
 exec "$@"

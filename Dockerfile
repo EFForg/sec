@@ -13,7 +13,7 @@ RUN if [ "$BUILD_ENV" = "development" ]; then \
 
 RUN echo "@edge http://nl.alpinelinux.org/alpine/edge/main" >>/etc/apk/repositories \
   && echo "@edgetesting http://nl.alpinelinux.org/alpine/edge/testing" >>/etc/apk/repositories \
-  && apk update \
+  && apk upgrade --update-cache \
   && apk add \
     build-base \
     git \
@@ -26,13 +26,14 @@ RUN echo "@edge http://nl.alpinelinux.org/alpine/edge/main" >>/etc/apk/repositor
     nodejs \
     yarn \
 
-  # xvfb-run "needs" xauth but not really.
-  && ln -s /bin/true /bin/xauth \
+    # Needed for wkhtmltopdf
+    dbus \
 
   # Set up crontab.
   && echo "*/15 * * * * root su -s/bin/sh www-data -c \
     'cd /opt/trainers-hub && bundle exec rake blog:update' >>/proc/1/fd/1 2>&1" >>/etc/crontab
 
+ENV DISPLAY=:99
 
 COPY Gemfile* ./
 RUN bundle install
