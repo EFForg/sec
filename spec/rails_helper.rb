@@ -26,6 +26,9 @@ require 'rspec/rails'
 # If you are not using ActiveRecord, you can remove this line.
 ActiveRecord::Migration.maintain_test_schema!
 
+require "capybara/rspec"
+Capybara.javascript_driver = :webkit
+
 RSpec.configure do |config|
   # Load authentication helpers
   config.include Devise::Test::ControllerHelpers, type: :controller
