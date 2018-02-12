@@ -13,7 +13,7 @@
 
 # Ignore user uploads
 /public/uploads/*
-files
+./files
 
 # Ignore all logfiles and tempfiles.
 /log/*
