@@ -21,22 +21,34 @@
     </div>
 
     <div class="tabs">
+      <% if @topic.description? %>
+        <div class="tab intro <%= "active" if @lesson.nil? %>">
+          <%= link_to "Intro", topic_path(@topic),
+                remote: true, data: { history: true } %>
+        </div>
+      <% end %>
+
       <% @topic.lessons.each do |lesson| %>
-        <div class="tab <%= "active" if @lesson == lesson %>">
+        <div class="tab <%= difficulty_class(lesson.level_id) %> <%= "active" if @lesson == lesson %>">
           <div class="hide-for-xlarge-only">
-            <%= link_to "#{lesson.level}",   lesson_path(@topic, lesson),
-            remote: true, data: { history:   true } %>
+            <%= link_to "#{lesson.level}", lesson_path(@topic, lesson),
+                  remote: true, data: { history: true } %>
           </div>
+
           <div class="show-for-xlarge-only">
-            <%= link_to "#{lesson.level} lesson",   lesson_path(@topic, lesson),
-                        remote: true, data: { history:   true } %>
+            <%= link_to "#{lesson.level} lesson", lesson_path(@topic, lesson),
+                  remote: true, data: { history: true } %>
           </div>
         </div>
       <% end %>
     </div>
 
     <div id="tab-content">
-      <%= render @lesson %>
+      <% if @lesson %>
+        <%= render @lesson %>
+      <% else %>
+        <%= html(@topic.description) %>
+      <% end %>
     </div>
 
     <% if @topic.next_topic.present? %>

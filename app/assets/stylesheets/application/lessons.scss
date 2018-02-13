@@ -174,29 +174,36 @@
         }
       }
     }
-    &:first-child {
+
+    &.intro {
+      border-top: 2px solid $teal;
+    }
+    &.b {
       border-top: 2px solid $beginner;
     }
-    &:nth-child(2) {
+    &.i {
       border-top: 2px solid $intermediate;
     }
-    &:nth-child(3) {
+    &.a {
       border-top: 2px solid $advanced;
     }
     @include breakpoint(medium) {
-      &:first-child {
+      &.intro {
+        border-top: 1px solid $teal;
+      }
+      &.b {
         border-top: 1px solid $teal;
         a::after {
           background: $beginner;
         }
       }
-      &:nth-child(2) {
+      &.i {
         border-top: 1px solid $teal;
         a::after {
           background: $intermediate;
         }
       }
-      &:nth-child(3) {
+      &.a {
         border-top: 1px solid $teal;
         a::after {
           background: $advanced;
