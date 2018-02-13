@@ -1,16 +1,16 @@
 <div class="row">
-    <div class="large-8 large-centered columns">
-      <h1><%= @material.name %></h1>
-      <div class="last-modified">
-        Last modified <%= @material.updated_at.strftime("%B %e, %Y") %>
+  <div class="large-8 large-centered columns">
+    <h1><%= @material.name %></h1>
+    <div class="last-modified">
+      Last modified <%= @material.updated_at.strftime("%B %e, %Y") %>
+    </div>
+
+    <%= render partial: "shared/admin_links", locals: { resource: @material } %>
+
+    <div class="material-details">
+      <div class="content">
+        <%= html(@material.description) %>
       </div>
-
-      <%= render partial: "shared/admin_links", locals: { resource: @material } %>
-
-      <div class="material-details">
-        <div class="content">
-          <%= html(@material.description) %>
-        </div>
 
       <h2>Downloads</h2>
       <% @material.uploads.each do |upload| %>
@@ -33,5 +33,6 @@
       <% end %>
     </div>
   </div>
-    <%= render "shared/share", show_for: "small-only" %>
+
+  <%= render "shared/share", show_for: "small-only" %>
 </div>
