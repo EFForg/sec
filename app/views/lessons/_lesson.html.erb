@@ -64,7 +64,7 @@
   </div>
 <% end %>
 
-<div class="content collapse <%= "uncollapse" if params.include?("expand") %>">
+<div class="content">
   <% if @lesson.recommended_reading? %>
     <div class="recommended-reading content">
       <h3>Recommended Reading</h3>
@@ -76,9 +76,5 @@
 
   <%= html(@lesson.body) %>
 </div>
-
-<%= link_to "View full session",
-            topic_lesson_path(@lesson.topic, @lesson, expand: 1),
-            class: "view-full expand-collapsed" unless params.include?("expand") %>
 
 <%= link_to "Printable Version (PDF)", topic_lesson_path(@lesson.topic, @lesson, format: "pdf"), class: "pdf-link" %>
