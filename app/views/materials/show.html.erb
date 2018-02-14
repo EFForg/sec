@@ -8,6 +8,13 @@
     <%= render partial: "shared/admin_links", locals: { resource: @material } %>
 
     <div class="material-details">
+      <% if @topics.present? %>
+        <div class="accompanying-lessons">
+          <h3>Accompanying <%= 'Lesson'.pluralize(@topics.size) %>:</h3>
+          <p><%= safe_join(@topics.map{ |topic| link_to topic.name, topic }, ", ") %></p>
+        </div>
+      <% end %>
+
       <div class="content">
         <%= html(@material.description) %>
       </div>
