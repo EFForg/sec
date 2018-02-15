@@ -18,6 +18,8 @@ Rails.application.routes.draw do
 
   resources :materials, only: [:index, :show]
 
+  resources :glossary, only: [:index, :show]
+
   get "/credits", as: :credits, to: "credits#index"
   get "/search", as: :search, to: "search#index"
 
