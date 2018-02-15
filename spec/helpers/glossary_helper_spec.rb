@@ -62,5 +62,17 @@ RSpec.describe GlossaryHelper do
       expect(sanitize(doc).to_html).
         to eq('<p><a href="/glossary/dictionary" class="glossary-term">glossary</a> helper spec</p>')
     end
+
+    it 'should link to the most precisely matching term' do
+      html = '<p>password manager xyz</p>'
+      doc = Nokogiri::HTML.fragment(html)
+
+      GlossaryTerm.create!(name: "password")
+      GlossaryTerm.create!(name: "password manager")
+
+      helper.link_glossary_terms(doc)
+      expect(sanitize(doc).to_html).
+        to eq('<p><a href="/glossary/password-manager" class="glossary-term">password manager</a> xyz</p>')
+    end
   end
 end

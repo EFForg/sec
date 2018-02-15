@@ -2,19 +2,35 @@ module GlossaryHelper
   DEFAULT_OPTIONS = {once: true}.freeze
 
   def link_glossary_terms(doc, options=DEFAULT_OPTIONS)
-    @_glossary ||= GlossaryTerm.all.to_a
+    @_glossary_pattern ||=
+      begin
+        @_glossary = {}
 
-    @_glossary.dup.each do |term|
-      doc.traverse do |child|
-        if child.name == 'text' && glossary_context?(child)
-
-          es = replace_glossary_term(doc, child.content, term)
-          if es
-            child.swap(Nokogiri::XML::NodeSet.new(doc.document, es))
-            @_glossary.delete(term) if options[:once]
-            break
+        names = []
+        GlossaryTerm.all.each do |term|
+          term.names.map(&:downcase).each do |name|
+            @_glossary[name] = term
           end
+
+          names.concat(term.names)
         end
+
+        names.sort.reverse.map do |name|
+          Regexp.escape(name.downcase)
+        end.join('|')
+      end
+
+    doc.traverse do |child|
+      next unless child.name == 'text' && glossary_context?(child)
+
+      found, es = replace_glossary_terms(
+        doc, child.content,
+        @_glossary.dup, @_glossary_pattern
+      )
+      child.swap(Nokogiri::XML::NodeSet.new(doc.document, es))
+
+      if options[:once]
+        @_glossary.delete_if{ |_, term| found.include?(term) }
       end
     end
   end
@@ -32,23 +48,38 @@ module GlossaryHelper
     end.any?
   end
 
-  def replace_glossary_term(doc, text, term)
-    pattern = [term.name, *term.synonyms].join("|")
-    if match = text.match(/\b(#{pattern})\b/i)
-      link = Nokogiri::XML::Element.new("a", doc)
-      link["href"] = glossary_path(term)
-      link["class"] = "glossary-term"
-      link.content = match[0]
 
-      img = Nokogiri::XML::Element.new("img", doc)
-      img["src"] = "https://ssd.eff.org/sites/all/themes/ssd/img/info.png"
-      link.add_child(img)
+  def replace_glossary_terms(doc, text, map, pattern)
+    found, elements = [], []
+    sample = text
 
-      [
-        Nokogiri::XML::Text.new(match.pre_match, doc),
-        link,
-        Nokogiri::XML::Text.new(match.post_match, doc)
-      ]
+    while match = sample.match(/\b(#{pattern})\b/i)
+      break if match[0].empty?
+
+      term = map.delete(match[0].downcase)
+
+      if term
+        found << term
+
+        link = Nokogiri::XML::Element.new("a", doc)
+        link["href"] = glossary_path(term)
+        link["class"] = "glossary-term"
+        link.content = match[0]
+
+        img = Nokogiri::XML::Element.new("img", doc)
+        img["src"] = "https://ssd.eff.org/sites/all/themes/ssd/img/info.png"
+        link.add_child(img)
+
+        elements << Nokogiri::XML::Text.new(match.pre_match, doc)
+        elements << link
+      else
+        elements << Nokogiri::XML::Text.new(match.pre_match + match[0], doc)
+      end
+      sample = match.post_match
     end
+
+    elements << Nokogiri::XML::Text.new(sample, doc)
+
+    [found, elements]
   end
 end
