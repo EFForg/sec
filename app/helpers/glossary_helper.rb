@@ -67,7 +67,7 @@ module GlossaryHelper
         link.content = match[0]
 
         img = Nokogiri::XML::Element.new("img", doc)
-        img["src"] = "https://ssd.eff.org/sites/all/themes/ssd/img/info.png"
+        img["src"] = image_path("info.png")
         link.add_child(img)
 
         elements << Nokogiri::XML::Text.new(match.pre_match, doc)
