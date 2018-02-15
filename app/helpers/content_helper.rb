@@ -23,7 +23,7 @@ module ContentHelper
     doc.to_html.html_safe # rubocop:disable Rails/OutputSafety
   end
 
-  def html(html, new_tab_for_all_links: true)
+  def html(html, new_tab_for_all_links: true, glossary: {once: true})
     if html
       doc = Nokogiri::HTML.fragment(html)
 
@@ -41,7 +41,9 @@ module ContentHelper
         end
       end if request
 
-      doc.to_html.html_safe # rubocop:disable Rails/OutputSafety
+      link_glossary_terms(doc, glossary) if glossary
+
+      html = doc.to_html.html_safe # rubocop:disable Rails/OutputSafety
     end
   end
 
