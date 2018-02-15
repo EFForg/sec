@@ -36,6 +36,9 @@ RUN echo "@edge http://nl.alpinelinux.org/alpine/edge/main" >>/etc/apk/repositor
   && echo "*/15 * * * * root su -s/bin/sh www-data -c \
     'cd /opt/trainers-hub && bundle exec rake blog:update' >>/proc/1/fd/1 2>&1" >>/etc/crontab
 
+  && echo "*/15 * * * * root su -s/bin/sh www-data -c \
+    'cd /opt/trainers-hub && bundle exec rake glossary:update' >>/proc/1/fd/1 2>&1" >>/etc/crontab
+
 ENV DISPLAY=:99
 
 COPY Gemfile* ./
