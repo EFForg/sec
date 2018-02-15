@@ -1,5 +1,7 @@
 module GlossaryHelper
-  def link_glossary_terms(doc, options={once: true})
+  DEFAULT_OPTIONS = {once: true}.freeze
+
+  def link_glossary_terms(doc, options=DEFAULT_OPTIONS)
     @_glossary ||= GlossaryTerm.all.to_a
 
     @_glossary.dup.each do |term|

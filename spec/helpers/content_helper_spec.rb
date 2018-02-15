@@ -12,12 +12,12 @@ RSpec.describe ContentHelper do
   end
 
   describe '#html' do
-    it 'should call #link_glossary_terms by default' do
+    it 'should call #link_glossary_terms if glossary option is given' do
       expect(helper).to receive(:link_glossary_terms)
-      helper.html(article.body)
+      helper.html(article.body, glossary: true)
 
       expect(helper).not_to receive(:link_glossary_terms)
-      helper.html(article.body, glossary: false)
+      helper.html(article.body)
     end
   end
 end

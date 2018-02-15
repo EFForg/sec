@@ -2,7 +2,7 @@
 
 <% if @lesson.objective? %>
   <div class="objective content">
-    <%= html(@lesson.objective, glossary: false) %>
+    <%= html(@lesson.objective) %>
   </div>
 <% end %>
 
@@ -11,7 +11,7 @@
     <h3>Prerequisites</h3>
 
     <div class="content">
-      <%= html(@lesson.prerequisites, glossary: false) %>
+      <%= html(@lesson.prerequisites) %>
     </div>
   </div>
 <% end %>
@@ -32,7 +32,7 @@
       <h3>Suggested Materials</h3>
 
       <div class="content">
-        <%= html(@lesson.suggested_materials, glossary: false) %>
+        <%= html(@lesson.suggested_materials) %>
       </div>
     </div>
   <% end %>
@@ -41,14 +41,14 @@
   <% if @lesson.relevant_articles? %>
     <div class="articles">
       <h3>Relevant Articles</h3>
-      <%= html(@lesson.relevant_articles, glossary: false) %>
+      <%= html(@lesson.relevant_articles) %>
     </div>
   <% end %>
 </div>
 
 <% if @lesson.notes? %>
   <div class="notes content">
-    <%= html(@lesson.notes, glossary: false) %>
+    <%= html(@lesson.notes) %>
   </div>
 <% end %>
 
@@ -56,11 +56,11 @@
   <% if @lesson.recommended_reading? %>
     <div class="recommended-reading content">
       <h3>Recommended Reading</h3>
-      <%= html(@lesson.recommended_reading, glossary: false) %>
+      <%= html(@lesson.recommended_reading) %>
     </div>
   <% end %>
 
   <h2>Lesson Content</h2>
 
-  <%= html(@lesson.body, glossary: false) %>
+  <%= html(@lesson.body) %>
 </div>

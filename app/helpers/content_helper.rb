@@ -23,7 +23,7 @@ module ContentHelper
     doc.to_html.html_safe # rubocop:disable Rails/OutputSafety
   end
 
-  def html(html, new_tab_for_all_links: true, glossary: {once: true})
+  def html(html, new_tab_for_all_links: true, glossary: nil)
     if html
       doc = Nokogiri::HTML.fragment(html)
 
@@ -40,6 +40,10 @@ module ContentHelper
           link["target"] ||= "_blank"
         end
       end if request
+
+      if glossary == true
+        glossary = GlossaryHelper::DEFAULT_OPTIONS
+      end
 
       link_glossary_terms(doc, glossary) if glossary
 
