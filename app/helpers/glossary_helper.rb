@@ -1,7 +1,7 @@
 module GlossaryHelper
   DEFAULT_OPTIONS = {once: true}.freeze
 
-  def link_glossary_terms(doc, options=DEFAULT_OPTIONS)
+  def link_glossary_terms(doc, options = DEFAULT_OPTIONS)
     @_glossary_pattern ||=
       begin
         @_glossary = {}
@@ -17,11 +17,11 @@ module GlossaryHelper
 
         names.sort.reverse.map do |name|
           Regexp.escape(name.downcase)
-        end.join('|')
+        end.join("|")
       end
 
     doc.traverse do |child|
-      next unless child.name == 'text' && glossary_context?(child)
+      next unless child.name == "text" && glossary_context?(child)
 
       found, es = replace_glossary_terms(
         doc, child.content,
@@ -38,8 +38,8 @@ module GlossaryHelper
   private
 
   def glossary_context?(context)
-    required_context = ['p', 'li']
-    excluded_contexts = ['a']
+    required_context = ["p", "li"]
+    excluded_contexts = ["a"]
 
     context.ancestors.map do |node|
       return false if excluded_contexts.include?(node.name)
