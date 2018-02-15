@@ -3,7 +3,7 @@
     <h1><%= @term.name %></h1>
 
     <div class="content">
-      <%= html(@term.body) %>
+      <%= html(@term.body, glossary: true) %>
     </div>
 
     <% if @term.synonyms? %>
