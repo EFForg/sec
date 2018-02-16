@@ -1,5 +1,5 @@
 ActiveAdmin.register Icon do
-  menu priority: 4
+  menu priority: 5
 
   permit_params :file
 end
