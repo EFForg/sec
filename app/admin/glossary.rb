@@ -2,7 +2,7 @@ ActiveAdmin.register GlossaryTerm do
   menu label: "Glossary", priority: 4
 
   filter :name
-  config.sort_order = 'name_asc'
+  config.sort_order = "name_asc"
 
   index do
     selectable_column
