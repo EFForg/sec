@@ -18,8 +18,13 @@ class UpdateGlossary < ApplicationJob
 
       body = body.lines.map{ |p| "<p>#{p.strip}</p>" }.join
 
-      term = GlossaryTerm.find_or_create_by!(name: name)
-      term.update(body: body, synonyms: synonyms)
+      unless GlossaryTerm.find_by(name: name)
+        GlossaryTerm.create!(
+          name: name,
+          body: body,
+          synonyms: synonyms
+        )
+      end
     end
   end
 end
