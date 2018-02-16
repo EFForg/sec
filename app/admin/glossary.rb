@@ -20,7 +20,7 @@ ActiveAdmin.register GlossaryTerm do
     end
   end
 
-  permit_params :name, :body
+  permit_params :name, :body, :synonyms_list
 
   form do |f|
     input_html = f.object.new_record? ? {} : { disabled: true }
@@ -28,8 +28,8 @@ ActiveAdmin.register GlossaryTerm do
     f.inputs do
       f.semantic_errors *f.object.errors.keys
       f.input :name, input_html: input_html
-      f.input :body, as: :ckeditor, input_html: input_html
-      f.input :synonyms, input_html: { disabled: true }
+      f.input :body, as: :ckeditor
+      f.input :synonyms_list
     end
 
     f.actions
