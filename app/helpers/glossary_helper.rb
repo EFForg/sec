@@ -49,31 +49,19 @@ module GlossaryHelper
   end
 
 
-  def replace_glossary_terms(doc, text, map, pattern)
+  def replace_glossary_terms(doc, sample, map, pattern)
     found, elements = [], []
-    sample = text
 
     while match = sample.match(/\b(#{pattern})\b/i)
-      break if match[0].empty?
+      item = match[0]
+      break if item.empty?
 
-      term = map.delete(match[0].downcase)
-
-      if term
+      if term = map.delete(item.downcase)
         found << term
-
-        link = Nokogiri::XML::Element.new("a", doc)
-        link["href"] = glossary_path(term)
-        link["class"] = "glossary-term"
-        link.content = match[0]
-
-        img = Nokogiri::XML::Element.new("img", doc)
-        img["src"] = image_path("info.png")
-        link.add_child(img)
-
         elements << Nokogiri::XML::Text.new(match.pre_match, doc)
-        elements << link
+        elements << create_glossary_link(doc, term, item)
       else
-        elements << Nokogiri::XML::Text.new(match.pre_match + match[0], doc)
+        elements << Nokogiri::XML::Text.new(match.pre_match + item, doc)
       end
       sample = match.post_match
     end
@@ -81,5 +69,17 @@ module GlossaryHelper
     elements << Nokogiri::XML::Text.new(sample, doc)
 
     [found, elements]
+  end
+
+  def create_glossary_link(doc, term, content)
+    Nokogiri::XML::Element.new("a", doc).tap do |link|
+      link["href"] = glossary_path(term)
+      link["class"] = "glossary-term"
+      link.content = content
+
+      img = Nokogiri::XML::Element.new("img", doc)
+      img["src"] = image_path("info.png")
+      link.add_child(img)
+    end
   end
 end
