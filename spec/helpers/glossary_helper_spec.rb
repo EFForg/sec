@@ -6,8 +6,9 @@ RSpec.describe GlossaryHelper do
   end
 
   describe '#link_glossary_terms' do
+    let(:html){ '<p>glossary helper spec</p>' }
+    let(:html_with_repeated_term){ '<p>glossary helper spec with glossary term</p>' }
     it 'should do nothing when the document contains no terms' do
-      html = '<p>glossary helper spec</p>'
       doc = Nokogiri::HTML.fragment(html)
 
       helper.link_glossary_terms(doc)
@@ -15,7 +16,6 @@ RSpec.describe GlossaryHelper do
     end
 
     it 'should replace glossary terms in the document with links' do
-      html = '<p>glossary helper spec</p>'
       doc = Nokogiri::HTML.fragment(html)
 
       GlossaryTerm.create!(name: 'glossary')
@@ -28,8 +28,9 @@ RSpec.describe GlossaryHelper do
     end
 
     it 'should not replace content in inappropriate contexts' do
-      html = '<pre>glossary helper spec</pre>' <<
-             '<p>the <a>glossary</a> helper spec</p>'
+      html.gsub!('<p>', '<pre>').gsub!('</p>', '</pre>')
+      html << '<p>the <a>glossary</a> helper spec</p>'
+
       doc = Nokogiri::HTML.fragment(html)
 
       GlossaryTerm.create!(name: 'glossary')
@@ -39,21 +40,19 @@ RSpec.describe GlossaryHelper do
     end
 
     it 'should not link a term more than once' do
-      html = '<p>glossary helper spec with glossary term</p>'
-      doc = Nokogiri::HTML.fragment(html)
+      doc = Nokogiri::HTML.fragment(html_with_repeated_term)
 
       GlossaryTerm.create!(name: 'glossary')
 
       helper.link_glossary_terms(doc)
       expect(sanitize(doc).css('a.glossary-term').size).to eq(1)
 
-      doc = Nokogiri::HTML.fragment(html)
+      doc = Nokogiri::HTML.fragment(html_with_repeated_term)
       helper.link_glossary_terms(doc)
       expect(sanitize(doc).css('a.glossary-term')).to be_empty
     end
 
     it 'should link synonyms' do
-      html = '<p>glossary helper spec</p>'
       doc = Nokogiri::HTML.fragment(html)
 
       GlossaryTerm.create!(name: "dictionary", synonyms: ["glossary"])
@@ -64,15 +63,14 @@ RSpec.describe GlossaryHelper do
     end
 
     it 'should link to the most precisely matching term' do
-      html = '<p>password manager xyz</p>'
       doc = Nokogiri::HTML.fragment(html)
 
-      GlossaryTerm.create!(name: "password")
-      GlossaryTerm.create!(name: "password manager")
+      GlossaryTerm.create!(name: "glossary")
+      GlossaryTerm.create!(name: "glossary helper")
 
       helper.link_glossary_terms(doc)
       expect(sanitize(doc).to_html).
-        to eq('<p><a href="/glossary/password-manager" class="glossary-term">password manager</a> xyz</p>')
+        to eq('<p><a href="/glossary/glossary-helper" class="glossary-term">glossary helper</a> spec</p>')
     end
   end
 end
