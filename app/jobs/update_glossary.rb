@@ -18,7 +18,7 @@ class UpdateGlossary < ApplicationJob
 
       body = body.lines.map{ |p| "<p>#{p.strip}</p>" }.join
 
-      unless GlossaryTerm.find_by(name: name)
+      unless term_already_exists?(name)
         GlossaryTerm.create!(
           name: name,
           body: body,
@@ -26,5 +26,10 @@ class UpdateGlossary < ApplicationJob
         )
       end
     end
+  end
+
+  def term_already_exists?(name)
+    @glossary ||= GlossaryTerm.pluck(:name)
+    @glossary.include?(name)
   end
 end
