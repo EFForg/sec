@@ -19,7 +19,11 @@
   line-height: 1.3rem;
   font-weight: 400;
 
+  display: none;
+
   @include breakpoint(medium) {
+    display: flex;
+
     width: 150px;
     align-items: stretch;
   }
@@ -99,10 +103,11 @@ header {
   font-size: 1.3rem;
   font-weight: 400;
   line-height: 1.7rem;
-  padding: 0.5rem 0;
+  padding: 0.5rem 0.5rem 0.5rem 1rem;
   text-transform: uppercase;
-  width: 70%;
+
   @include breakpoint(medium) {
+    width: 70%;
     display: block;
     padding: 0.5rem;
     width: auto;
@@ -110,13 +115,11 @@ header {
   .logo {
     float: none;
     display: inline-block;
-    position: absolute;
     top: 2px;
     left: 40%;
     @include breakpoint(medium) {
       float: left;
       left: inherit;
-      position: relative;
     }
     img {
       height: auto;
@@ -128,23 +131,24 @@ header {
   }
 
   .site-name {
-    display: none;
+    margin-left: 0.5rem;
+
+    @include breakpoint(small only) {
+      min-height: 64px;
+      line-height: 64px;
+
+      a {
+        display: inline-block;
+        line-height: normal;
+        vertical-align: middle;
+      }
+    }
+
     @include breakpoint(medium) {
       display: inline-block;
       padding-top: 6px;
       padding-left: 85px;
       max-width: 340px;
-    }
-  }
-
-  .site-name-mobile {
-    display: inline-block;
-    font-size: 2rem;
-    position: absolute;
-    left: 70%;
-    top: 1.35rem;
-    @include breakpoint(medium) {
-      display: none;
     }
   }
 
