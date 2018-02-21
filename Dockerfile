@@ -47,6 +47,8 @@ RUN yarn install
 
 COPY . .
 
+RUN cp ./app/assets/fonts/* /usr/share/fonts
+
 RUN if [ "$BUILD_ENV" = "production" ]; \
   then bundle exec rake assets:precompile \
   RAILS_ENV=production \
