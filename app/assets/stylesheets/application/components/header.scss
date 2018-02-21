@@ -99,28 +99,25 @@
 }
 
 header {
-  display: inherit;
-  font-size: 1.3rem;
-  font-weight: 400;
-  line-height: 1.7rem;
+  display: flex;
   padding: 0.5rem 0.5rem 0.5rem 1rem;
-  text-transform: uppercase;
 
   @include breakpoint(medium) {
-    width: 70%;
-    display: block;
     padding: 0.5rem;
-    width: auto;
+    max-width: 800px;
+    margin: 0 auto;
   }
+
   .logo {
-    float: none;
     display: inline-block;
     top: 2px;
     left: 40%;
+
     @include breakpoint(medium) {
-      float: left;
       left: inherit;
+      margin-right: 1rem;
     }
+
     img {
       height: auto;
       max-width: 64px;
@@ -132,6 +129,19 @@ header {
 
   .site-name {
     margin-left: 0.5rem;
+
+    a {
+      font-size: 1.3rem;
+      line-height: 1.7rem;
+      font-weight: 400;
+      text-transform: uppercase;
+
+      @include breakpoint(medium) {
+        font-size: 2.3rem;
+        line-height: 2.5rem;
+        font-weight: 300;
+      }
+    }
 
     @include breakpoint(small only) {
       min-height: 64px;
@@ -148,7 +158,6 @@ header {
       display: inline-block;
       padding-top: 6px;
       padding-left: 85px;
-      max-width: 340px;
     }
   }
 
@@ -158,15 +167,10 @@ header {
 
   @include breakpoint(medium) {
     min-height: 170px;
-    text-align: center;
-    font-size: 2.3rem;
-    line-height: 2.5rem;
-    font-weight: 300;
     padding: 2rem;
 
     .logo {
       display: inline-block;
-      float: none;
     }
 
     .logo img {
@@ -174,19 +178,14 @@ header {
     }
 
     .site-name {
-      max-width: none;
       padding: 20px 0 0 1rem;
       display: inline-block;
     }
   }
 }
 
-.section-home header {
+header {
   @include breakpoint(medium) {
-    .logo {
-      display: block;
-    }
-
     .logo img {
       max-width: 150px;
     }
