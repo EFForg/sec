@@ -74,6 +74,31 @@
   .eff-tagline {
     font-size: 0.8rem;
   }
+
+  .search {
+    display: flex;
+    align-items: center;
+    background-color: #000;
+
+    form {
+      display: flex;
+      margin-right: 2.5rem;
+    }
+
+    input {
+      font-weight: 300;
+      font-size: 0.8rem;
+      line-height: 1.7;
+      margin-right: 0.3rem;
+
+      &[type=submit] {
+        border: 0;
+        background-color: #000;
+        color: #c7dddb;
+        cursor: pointer;
+      }
+    }
+  }
 }
 
 header {

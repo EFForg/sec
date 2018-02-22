@@ -24,6 +24,13 @@
         <%= link_to "Electronic Frontier Foundation", "https://eff.org" %>
       </div>
     </div>
+
+    <div class="search">
+      <%= form_tag "/search", method: :get do %>
+        <%= search_field_tag :q %>
+        <%= submit_tag "SEARCH", name: nil %>
+      <% end %>
+    </div>
   </div>
 
   <header>
