@@ -68,6 +68,13 @@
       border-left: 2.2rem solid transparent;
     }
   }
+
+  .content-type {
+    font-size: 0.8rem;
+    font-weight: bold;
+    color: $dark-teal;
+    text-transform: uppercase;
+  }
 }
 
 a .card .byline {
