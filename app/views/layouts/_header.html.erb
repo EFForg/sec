@@ -46,6 +46,16 @@
         A free resource for digital security educators
       </div>
     </div>
+
+    <div class="search">
+      <%= form_tag "/search", method: :get do %>
+        <div class="flex-field">
+          <%= search_field_tag :q, params[:q], placeholder: "Search...", autocomplete: "off" %>
+        </div>
+
+        <%= button_tag type: "submit" do %><% end %>
+      <% end %>
+    </div>
   </header>
 </div>
 

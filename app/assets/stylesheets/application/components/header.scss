@@ -106,7 +106,7 @@ header {
   padding: 0.5rem 0.5rem 0.5rem 1rem;
 
   @include breakpoint(medium) {
-    padding: 0.5rem;
+    padding: 2rem;
     max-width: 800px;
     margin: 0 auto;
   }
@@ -130,6 +130,8 @@ header {
   }
 
   .site-name {
+    flex: 1;
+
     a {
       font-size: 1.3rem;
       line-height: 1.31;
@@ -161,8 +163,52 @@ header {
     }
   }
 
+  .search {
+    display: none;
+    width: 100%;
+    flex: 0;
 
-  @include breakpoint(medium) {
-    padding: 2rem;
+    @include breakpoint(small only) {
+      display: flex;
+    }
+
+    form {
+      display: flex;
+      width: 100%;
+    }
+
+    .flex-field {
+      display: none;
+      flex: 1;
+    }
+
+    input[type=search] {
+      width: 100%;
+      font-size: 35px;
+      line-height: 58px;
+    }
+
+    button[type=submit] {
+      background: url(image_path("search-icon-black.svg")) no-repeat;
+
+      height: 64px;
+      width: 64px;
+
+      cursor: pointer;
+    }
+  }
+
+  &.search-expanded {
+    .logo, .site-name {
+      display: none;
+    }
+
+    .search {
+      flex: 1;
+    }
+
+    .flex-field {
+      display: inline-block;
+    }
   }
 }
