@@ -6,14 +6,18 @@
 <% end %>
 
 <% cache(cache_key_for_search(@results)) do %>
-  <% @results.each do |result| %>
-    <div class="card">
-      <h3><%= link_to result.searchable.name, result.searchable %></h3>
-      <div class="content">
-        <%= preview(result.searchable.body) %>
+  <div class="search-results">
+    <% @results.each do |result| %>
+      <div class="card">
+        <h3>
+          <%= link_to result.searchable.name, result.searchable %>
+        </h3>
+        <div class="content">
+          <%= preview(result.searchable) %>
+        </div>
       </div>
-    </div>
-  <% end %>
+    <% end %>
+  </div>
 <% end %>
 
 <%= paginate @results %>
