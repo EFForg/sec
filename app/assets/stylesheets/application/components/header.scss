@@ -65,8 +65,7 @@
 
   .tagline-bevel {
     /* to create left-pointing arrow out of tagline on tobpar */
-    background: linear-gradient(135deg,  $dark-teal 1.2rem, transparent 1rem),
-                linear-gradient(45deg,  $dark-teal 1.2rem, transparent 1rem);
+    background: linear-gradient(135deg,  $dark-teal 1.2rem, transparent 1rem), linear-gradient(45deg,  $dark-teal 1.2rem, transparent 1rem);
     width: 44px;
     height: 100%;
   }
