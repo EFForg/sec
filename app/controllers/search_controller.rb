@@ -1,5 +1,5 @@
 class SearchController < ApplicationController
-  def index
+  def results
     @results = PgSearch.multisearch(params[:q]).page(params[:page])
     respond_to do |format|
       format.html

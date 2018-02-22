@@ -19,7 +19,7 @@ Rails.application.routes.draw do
   resources :materials, only: [:index, :show]
 
   get "/credits", as: :credits, to: "credits#index"
-  get "/search", as: :search, to: "search#index"
+  get "/search", as: :search, to: "search#results"
 
   get "/404", to: "errors#not_found"
   get "/422", to: "errors#unacceptable"
