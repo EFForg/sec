@@ -9,7 +9,7 @@
     <%= render partial: "shared/admin_links", locals: { resource: @article } %>
 
     <div class="content">
-      <%= html(@article.body) %>
+      <%= html(@article.body, glossary: true) %>
     </div>
 
     <%= render "shared/share", show_for: "small-only" %>

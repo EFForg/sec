@@ -23,24 +23,11 @@ module ContentHelper
     doc.to_html.html_safe # rubocop:disable Rails/OutputSafety
   end
 
-  def html(html, new_tab_for_all_links: true)
+  def html(html, new_tab_for_all_links: true, glossary: nil)
     if html
       doc = Nokogiri::HTML.fragment(html)
-
-      doc.css("a[href]").each do |link|
-        uri = URI(link["href"])
-        is_external = uri.host && uri.host != request.host
-
-        if is_external
-          link["target"] ||= "_blank"
-          link["class"] = %(#{link["class"]} external)
-        end
-
-        if new_tab_for_all_links
-          link["target"] ||= "_blank"
-        end
-      end if request
-
+      process_links(doc, new_tab_for_all_links)
+      link_glossary(doc, glossary) if glossary
       doc.to_html.html_safe # rubocop:disable Rails/OutputSafety
     end
   end
@@ -67,5 +54,31 @@ module ContentHelper
     else
       content.class.name.titleize
     end
+  end
+
+  private
+
+  def process_links(doc, new_tab_for_all_links)
+    doc.css("a[href]").each do |link|
+      uri = URI(link["href"])
+      is_external = uri.host && uri.host != request.host
+
+      if is_external
+        link["target"] ||= "_blank"
+        link["class"] = %(#{link["class"]} external)
+      end
+
+      if new_tab_for_all_links
+        link["target"] ||= "_blank"
+      end
+    end if request
+  end
+
+  def link_glossary(doc, options)
+    if options == true
+      options = GlossaryHelper::DEFAULT_OPTIONS
+    end
+
+    link_glossary_terms(doc, options)
   end
 end
