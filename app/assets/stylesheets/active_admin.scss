@@ -99,3 +99,17 @@
     display: block;
   }
 }
+
+.show_responses {
+  h2 {
+    margin-bottom: 1.2rem;
+  }
+
+  table thead {
+    text-align: left;
+  }
+
+  table td {
+    padding-right: 2rem;
+  }
+}

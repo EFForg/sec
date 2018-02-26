@@ -1,0 +1,27 @@
+<div class="panel input">
+  <h2><strong><%= survey_prompt(@survey_question) %></strong></h2>
+
+  <% if @survey_question.options.present? %>
+    <table>
+      <thead><tr><th>Option</th><th>Responses</th></thead>
+
+      <% @survey_question.options.each do |option| %>
+        <tr>
+          <td><%= option.value %></td>
+          <td><%= @survey_question.responses.where(value: option.value).count %></td>
+        </tr>
+      <% end %>
+    </table>
+  <% else %>
+     <% @survey_question.responses.each do |response| %>
+       <% next unless response.value? %>
+
+       <blockquote>
+         <%= response.value %>
+         <br />
+
+         &mdash; Feedback from <%= link_to response.feedback.created_at.strftime('%b %d, %Y'), "/admin/feedback/#{response.feedback.id}" %>
+       </blockquote>
+     <% end %>
+  <% end %>
+</div>
