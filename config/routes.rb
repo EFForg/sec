@@ -22,7 +22,7 @@ Rails.application.routes.draw do
 
   scope "/feedback", as: :feedback, controller: "feedback" do
     root action: :new
-    post :create
+    post "/", action: :create, as: :create
     get :thanks
   end
 

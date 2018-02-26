@@ -10,10 +10,12 @@ class FeedbackController < ApplicationController
   end
 
   def create
-    if @feedback = Feedback.create(feedback_params)
-      redirect_to :feedback_thanks
-    else
+    @feedback = Feedback.create(feedback_params)
+
+    if @feedback.errors.any?
       render "new"
+    else
+      redirect_to :feedback_thanks
     end
   end
 

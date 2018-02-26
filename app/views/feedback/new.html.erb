@@ -17,7 +17,7 @@
     <%= f.fields_for(:survey_responses) do |sf| %>
       <%= sf.hidden_field :survey_question_id %>
 
-      <div class="survey-question">
+      <div class="survey-question <%= "with-errors" if sf.object.errors.any? %>">
         <p>
           <%= sf.options[:child_index] + 1 %>)
           <%= survey_prompt(sf.object.survey_question) %>
@@ -26,7 +26,7 @@
         <div class="survey-response">
           <% sf.object.survey_question.options.each do |option| %>
             <div class="survey-option">
-              <%= sf.radio_button :value, option.value %>
+              <%= sf.radio_button :value, option.value, required: sf.object.survey_question.required? %>
               <%= sf.label :value, option.value, value: option.value %>
             </div>
           <% end %>
