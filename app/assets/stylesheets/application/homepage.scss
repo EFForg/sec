@@ -1,7 +1,37 @@
 .homepage {
-  .intro {
-    font-weight: 400;
+
+  .intro,
+  .intro p {
+    color: black;
+    margin-bottom: 1rem;
+    @include breakpoint(medium) {
+      font-size: 1.2rem;
+      line-height: 1.8rem;
+      margin-bottom: 1.8rem;
+    }
   }
+
+  .intro {
+    width: 100%;
+    font-weight: 400;
+    @include breakpoint(medium) {
+      margin-left: 0;
+      margin-right: auto;
+      width: 66%;
+    }
+  }
+  .update {
+    font-size: 0.8rem;
+    line-height: 1.2rem;
+    border: 2px solid $light-teal;
+    padding: 1rem;
+    p {
+      font-size: 0.9rem;
+      line-height: 1.5rem;
+      margin-bottom: 0;
+    }
+  }
+
   .update .updated-at {
     text-transform: uppercase;
   }

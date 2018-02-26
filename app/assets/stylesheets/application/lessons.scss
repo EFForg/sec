@@ -151,57 +151,34 @@
       @include breakpoint(medium) {
         border-bottom: none;
         font-weight: 400;
-        padding: 0.5rem 1.5rem 0.5rem 0.5rem;
+        padding: 0.5rem 1rem 0.5rem 0.5rem;
       }
 
       text-decoration: none;
-      text-transform: uppercase;
+      text-transform: capitalize;
       &:hover,
       &:focus,
       &:visited {
         color: $darkest-teal;
       }
-      &:after {
-        @include breakpoint(medium) {
-          content: " ";
-          display: inline-block;
-          font-size: 0;
-          position: absolute;
-          top: 0.8rem;
-          right: 0.5rem;
-          height: 0.75rem;
-          width: 0.75rem;
-        }
-      }
     }
-    &:first-child {
+
+
+    &.intro {
+      border-top: 2px solid $teal;
+    }
+    &.b {
       border-top: 2px solid $beginner;
     }
-    &:nth-child(2) {
+    &.i {
       border-top: 2px solid $intermediate;
     }
-    &:nth-child(3) {
+    &.a {
       border-top: 2px solid $advanced;
     }
+
     @include breakpoint(medium) {
-      &:first-child {
-        border-top: 1px solid $teal;
-        a::after {
-          background: $beginner;
-        }
-      }
-      &:nth-child(2) {
-        border-top: 1px solid $teal;
-        a::after {
-          background: $intermediate;
-        }
-      }
-      &:nth-child(3) {
-        border-top: 1px solid $teal;
-        a::after {
-          background: $advanced;
-        }
-      }
+      border-top-width: 3px !important;
     }
   }
 
@@ -214,9 +191,6 @@
     z-index: 1;
     a {
       color: $darkest-teal;
-    }
-    @include breakpoint(medium) {
-      border-top: 1px solid $darkest-teal;
     }
   }
 
@@ -275,6 +249,7 @@
 
   .next-topic {
     text-align: right;
+    margin-bottom: 1rem;
   }
 
 

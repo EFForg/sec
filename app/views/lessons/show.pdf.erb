@@ -1,7 +1,11 @@
 <h1><%= @topic.name %> (<%= @lesson.level %>)</h1>
 
+<%= html(@lesson.topic.description) %>
+
 <% if @lesson.objective? %>
   <div class="objective content">
+    <h3>Learning Objectives</h3>
+
     <%= html(@lesson.objective) %>
   </div>
 <% end %>

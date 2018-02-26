@@ -49,7 +49,21 @@ ActiveAdmin.register Topic do
     f.inputs do
       f.semantic_errors *f.object.errors.keys
       f.input :name
-      f.input :description, as: :ckeditor
+
+      unless f.object.persisted?
+        f.object.description ||= <<-EOF
+          <h3>Learning Objectives</h3>
+          <ul><li>&nbsp;</li></ul>
+
+          <h3>Suggested Materials</h3>
+          <ul><li>&nbsp;</li></ul>
+
+          <h3>Gotchas and Problems You Might Hit</h3>
+          <ul><li>&nbsp;</li></ul>
+        EOF
+      end
+
+      f.input :description, as: :ckeditor, label: "Intro"
       tabs do
         topic.admin_lessons.each do |lesson|
           tab lesson.level do

@@ -2,11 +2,16 @@ class LessonsController < ApplicationController
   include ContentPermissioning
   include Pdfing
 
+  breadcrumbs "Security Education" => routes.root_path,
+              "Lessons" => routes.topics_path
+
   def show
     @topic = Topic.friendly.find(params[:topic_id])
     protect_unpublished! @topic
     @lesson = @topic.lessons.with_level(params[:id]).take
     redirect_to @topic && return if @lesson.nil?
+
+    breadcrumbs @topic.name
 
     og_object @lesson, description: ""
 
