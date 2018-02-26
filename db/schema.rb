@@ -259,7 +259,7 @@ ActiveRecord::Schema.define(version: 20180226193508) do
   create_table "survey_responses", force: :cascade do |t|
     t.integer "feedback_id", null: false
     t.integer "survey_question_id", null: false
-    t.text "value", null: false
+    t.text "value"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
