@@ -12,6 +12,8 @@
   <p>* Indicates required field</p>
 
   <%= form_for(@feedback, url: feedback_create_path) do |f| %>
+    <%= invisible_captcha %>
+
     <%= f.fields_for(:survey_responses) do |sf| %>
       <%= sf.hidden_field :survey_question_id %>
 

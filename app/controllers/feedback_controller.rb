@@ -1,4 +1,6 @@
 class FeedbackController < ApplicationController
+  invisible_captcha only: :create
+
   def new
     @feedback = Feedback.new
 
