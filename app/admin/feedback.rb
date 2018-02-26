@@ -3,6 +3,8 @@ ActiveAdmin.register Feedback do
 
   actions :all, except: [:edit]
 
+  filter :created_at
+
   member_action :show do
     @feedback = resource
     render layout: "active_admin"
