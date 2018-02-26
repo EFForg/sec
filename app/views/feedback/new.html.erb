@@ -1,0 +1,41 @@
+<div class="row">
+  <h1>SEC Website Satisfaction Survey</h1>
+
+  <p>
+    Please tell us what you think about SEC. Your thoughts will help us help you make your teaching experience impactful. Thank you!
+  </p>
+
+  <h2>Survey questions</h2>
+
+  <p>Please rate your level of satisfaction with the following aspects of our site:</p>
+
+  <p>* Indicates required field</p>
+
+  <%= form_for(@feedback, url: feedback_create_path) do |f| %>
+    <%= f.fields_for(:survey_responses) do |sf| %>
+      <%= sf.hidden_field :survey_question_id %>
+
+      <div class="survey-question">
+        <p>
+          <%= sf.options[:child_index] + 1 %>)
+          <%= survey_prompt(sf.object.survey_question) %>
+        </p>
+
+        <div class="survey-response">
+          <% sf.object.survey_question.options.each do |option| %>
+            <div class="survey-option">
+              <%= sf.radio_button :value, option.value %>
+              <%= sf.label :value, option.value, value: option.value %>
+            </div>
+          <% end %>
+
+          <% unless sf.object.survey_question.options.present? %>
+            <%= sf.text_area :value %>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+
+    <%= f.submit "Submit", data: { disable_with: false } %>
+  <% end %>
+</div>
