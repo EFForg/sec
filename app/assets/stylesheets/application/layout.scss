@@ -49,7 +49,7 @@
     display: inline-block;
     background-color: $light-teal;
     text-transform: uppercase;
-    color: $dark-teal;
+    color: $darkest-teal;
     transform: rotate(-90deg);
     transform-origin: right;
     border-top-left-radius: 0.8rem;
@@ -70,7 +70,7 @@
     font-size: 0.8rem;
 
     .survey-question p {
-      color: $dark-teal;
+      color: $darkest-teal;
       font-weight: bold;
     }
 
