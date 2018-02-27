@@ -32,11 +32,11 @@
     display: flex;
 
     &.closed .drawer {
-      margin-right: -20rem;
+      margin-right: -18rem;
     }
 
     .drawer {
-      width: 20rem;
+      width: 18rem;
       margin-right: 0;
       transition: margin-right 200ms;
     }
@@ -83,10 +83,7 @@
       flex: 1;
       max-height: 24px;
       margin-bottom: 1.7rem;
-
-      &:not(:first-child) {
-        text-align: center;
-      }
+      text-align: center;
     }
 
     .survey-option label {
