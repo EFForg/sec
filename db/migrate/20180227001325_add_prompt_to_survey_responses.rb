@@ -1,6 +1,6 @@
 class AddPromptToSurveyResponses < ActiveRecord::Migration[5.1]
   def change
-    add_column :survey_responses, :prompt, :string, null: false
+    add_column :survey_responses, :prompt, :string, null: false, default: ""
 
     reversible do |dir|
       dir.up do
