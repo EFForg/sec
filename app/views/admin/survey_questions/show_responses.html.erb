@@ -20,7 +20,8 @@
          <%= response.value %>
          <br />
 
-         &mdash; Feedback from <%= link_to response.feedback.created_at.strftime('%b %d, %Y'), "/admin/feedback/#{response.feedback.id}" %>
+         &mdash; <%= link_to response.feedback.created_at.strftime('%b %d, %Y'), "/admin/feedback/#{response.feedback.id}" %>
+         from <%= link_to response.feedback.source_url, response.feedback.source_url %>
        </blockquote>
      <% end %>
   <% end %>

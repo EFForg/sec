@@ -1,9 +1,11 @@
 <div class="panel input">
   <h2>
     <strong>
-      Feedback from <%= @feedback.created_at.strftime('%b %d, %Y') %>
+      Feedback on <%= @feedback.created_at.strftime('%b %d, %Y') %>
     </strong>
   </h2>
+
+  <p>From <%= link_to @feedback.source_url, @feedback.source_url %></p>
 
   <% @feedback.survey_responses.each_with_index do |response, i| %>
     <div class="survey-response">
