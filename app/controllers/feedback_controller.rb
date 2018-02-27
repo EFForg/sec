@@ -15,7 +15,10 @@ class FeedbackController < ApplicationController
     if @feedback.errors.any?
       render "feedback/new"
     else
-      redirect_to :feedback_thanks
+      respond_to do |format|
+        format.html{ redirect_to :feedback_thanks }
+        format.js
+      end
     end
   end
 

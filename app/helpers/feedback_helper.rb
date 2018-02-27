@@ -5,4 +5,17 @@ module FeedbackHelper
       prompt << "*" if question.required?
     end
   end
+
+  def quick_feedback
+    Feedback.new.tap do |feedback|
+      questions = SurveyQuestion.
+        where(survey: "quick").
+        order(:position).
+        preload(:options)
+
+      questions.each do |question|
+        feedback.survey_responses.build(survey_question: question)
+      end
+    end
+  end
 end
