@@ -263,7 +263,7 @@ ActiveRecord::Schema.define(version: 20180227191704) do
     t.text "value"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "prompt", null: false, default: ""
+    t.string "prompt"
   end
 
   create_table "taggings", id: :serial, force: :cascade do |t|
