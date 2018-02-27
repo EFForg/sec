@@ -7,7 +7,7 @@
 
   <% @feedback.survey_responses.each_with_index do |response, i| %>
     <div class="survey-response">
-      <p><%= i + 1 %>) <%= response.survey_question.prompt %></p>
+      <p><%= i + 1 %>) <%= response.prompt %></p>
 
       <blockquote><%= response.value %></blockquote>
     </div>
