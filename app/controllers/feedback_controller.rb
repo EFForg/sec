@@ -4,7 +4,7 @@ class FeedbackController < ApplicationController
   def new
     @feedback = Feedback.new
 
-    SurveyQuestion.order(:position).preload(:options).each do |question|
+    survey_questions.each do |question|
       @feedback.survey_responses.build(survey_question: question)
     end
   end
@@ -27,5 +27,12 @@ class FeedbackController < ApplicationController
   def feedback_params
     params.require(:feedback).
       permit(survey_responses_attributes: [:survey_question_id, :value])
+  end
+
+  def survey_questions
+    SurveyQuestion.
+      where(survey: "/feedback").
+      order(:position).
+      preload(:options)
   end
 end

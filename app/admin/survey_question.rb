@@ -1,10 +1,12 @@
 ActiveAdmin.register SurveyQuestion do
-  menu priority: 6
+  menu(false)
 
   config.sort_order = "position_desc"
 
-  permit_params :prompt, :required,
+  permit_params :prompt, :required, :survey,
                 options_attributes: [:id, :position, :value]
+
+  filter :survey
 
   index do
     id_column
@@ -27,6 +29,9 @@ ActiveAdmin.register SurveyQuestion do
 
       f.input :required
     end
+
+    survey_question.survey = "/feedback" if survey_question.new_record?
+    f.input :survey, as: :hidden
 
     f.actions
   end
