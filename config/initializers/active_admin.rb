@@ -310,6 +310,10 @@ ActiveAdmin.setup do |config|
         surveys.add label: "Website Satisfaction",
           url: "/admin/survey_questions?q%5Bsurvey_equals%5D=/feedback",
           priority: 2
+
+        surveys.add label: "Browse Feedback",
+          url: "/admin/feedback", priority: 3,
+          html_options: { style: "border-top: 1px dashed gray; margin-top: 4px; padding-top: 8px;" }
       end
     end
   end

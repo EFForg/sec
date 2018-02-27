@@ -1,5 +1,5 @@
 ActiveAdmin.register Feedback do
-  menu priority: 7
+  menu(false)
 
   actions :all, except: [:edit]
 
