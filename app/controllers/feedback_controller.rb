@@ -13,7 +13,7 @@ class FeedbackController < ApplicationController
     @feedback = Feedback.create(feedback_params)
 
     if @feedback.errors.any?
-      render "new"
+      render "feedback/new"
     else
       redirect_to :feedback_thanks
     end
