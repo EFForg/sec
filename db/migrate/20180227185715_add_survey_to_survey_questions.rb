@@ -4,7 +4,7 @@ class AddSurveyToSurveyQuestions < ActiveRecord::Migration[5.1]
 
     reversible do |dir|
       dir.up do
-        SurveyQuestion.update_all(survey: "/feedback")
+        SurveyQuestion.update_all(survey: Feedback::LONG_SURVEY)
       end
     end
   end

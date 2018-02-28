@@ -1,7 +1,7 @@
 class CreateQuickSurvey < ActiveRecord::Migration[5.1]
   def up
     q = SurveyQuestion.create(
-      survey: "quick",
+      survey: Feedback::QUICK_SURVEY,
       prompt: "Did you find what you were looking for?"
     )
 
@@ -10,7 +10,7 @@ class CreateQuickSurvey < ActiveRecord::Migration[5.1]
     q.options << SurveyOption.new(value: "No")
 
     SurveyQuestion.create(
-      survey: "quick",
+      survey: Feedback::QUICK_SURVEY,
       prompt: "Share what you like best or what could we do to improve Security Education"
     )
   end

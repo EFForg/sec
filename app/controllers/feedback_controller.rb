@@ -35,7 +35,7 @@ class FeedbackController < ApplicationController
 
   def survey_questions
     SurveyQuestion.
-      where(survey: "/feedback").
+      where(survey: Feedback::LONG_SURVEY).
       order(:position).
       preload(:options)
   end

@@ -30,7 +30,10 @@ ActiveAdmin.register SurveyQuestion do
       f.input :required
     end
 
-    survey_question.survey = "/feedback" if survey_question.new_record?
+    if survey_question.new_record?
+      survey_question.survey = Feedback::LONG_SURVEY
+    end
+
     f.input :survey, as: :hidden
 
     f.actions

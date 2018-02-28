@@ -9,7 +9,7 @@ module FeedbackHelper
   def quick_feedback
     Feedback.new.tap do |feedback|
       questions = SurveyQuestion.
-        where(survey: "quick").
+        where(survey: Feedback::QUICK_SURVEY).
         order(:position).
         preload(:options)
 
