@@ -1,0 +1,11 @@
+<table class="histogram">
+  <% survey_response_histogram(survey_question).each do |option, data| %>
+    <tr class="<%= "frequent" if data.frequent? %>">
+      <td><%= option %></td>
+      <td>
+        <div class="bar" style="flex-basis: <%= data.percentage %>%"></div>
+        <div class="count"><%= data.count %></div>
+      </td>
+    </tr>
+  <% end %>
+</table>

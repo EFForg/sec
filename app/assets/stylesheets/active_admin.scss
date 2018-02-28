@@ -102,14 +102,29 @@
 
 .show_responses {
   h2 {
-    margin-bottom: 1.2rem;
+    margin-bottom: 0.5rem;
+  }
+}
+
+table.histogram {
+  .frequent {
+    font-weight: bold;
   }
 
-  table thead {
-    text-align: left;
-  }
-
-  table td {
+  td {
     padding-right: 2rem;
+
+    &:last-child {
+      min-width: 240px;
+      display: flex;
+    }
+  }
+
+  .bar {
+    display: inline-block;
+    background-color: #386165;
+    margin-right: 0.3rem;
+    height: 1rem;
+    vertical-align: middle;
   }
 }

@@ -1,0 +1,12 @@
+<div class="blank_slate">
+  <% @surveys.each do |name, questions| %>
+    <h2><%= name %> Survey</h2>
+
+    <% questions.each do |question| %>
+      <%= render "admin/survey_questions/survey_question",
+                 survey_question: question %>
+    <% end %>
+
+    <hr />
+  <% end %>
+</div>

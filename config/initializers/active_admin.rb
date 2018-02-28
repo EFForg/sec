@@ -302,7 +302,7 @@ ActiveAdmin.setup do |config|
     end
 
     admin.build_menu do |menu|
-      menu.add label: "Surveys", priority: 6 do |surveys|
+      menu.add label: "Surveys", priority: 6, url: "/admin/surveys" do |surveys|
         surveys.add label: "Quick Survey",
           url: "/admin/survey_questions?q%5Bsurvey_equals%5D=quick",
           priority: 1

@@ -6,6 +6,22 @@ module FeedbackHelper
     end
   end
 
+  def survey_response_histogram(question)
+    table = question.options.order(:position).map do |option|
+      [option.value, question.responses.where(value: option.value).count]
+    end.to_h
+
+    total = table.values.sum
+    table.map do |option, count|
+      data = OpenStruct.new(
+        count: count,
+        percentage: 100.0 * count / total,
+        frequent?: table.values.all?{ |v| v <= count }
+      )
+      [option, data]
+    end.to_h
+  end
+
   def quick_feedback_responses
     questions = SurveyQuestion.
       where(survey: Feedback::QUICK_SURVEY).
