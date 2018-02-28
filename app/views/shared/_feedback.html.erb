@@ -4,30 +4,32 @@
   </div>
 
   <div class="drawer">
-    <%= form_for(quick_feedback, remote: true, url: feedback_create_path) do |f| %>
+    <%= form_for(Feedback.new, remote: true, url: feedback_create_path) do |f| %>
       <%= invisible_captcha %>
 
-      <%= f.fields_for(:survey_responses) do |sf| %>
-        <%= sf.hidden_field :survey_question_id %>
+      <%= cache(cache_key_for_quick_survey) do %>
+        <%= f.fields_for(:survey_responses, quick_feedback_responses) do |sf| %>
+          <%= sf.hidden_field :survey_question_id %>
 
-        <div class="survey-question <%= "with-errors" if sf.object.errors.any? %>">
-          <% if sf.object.survey_question.options.present? %>
-            <p><%= survey_prompt(sf.object.survey_question) %></p>
-          <% end %>
-
-          <div class="survey-response">
-            <% sf.object.survey_question.options.each do |option| %>
-              <div class="survey-option">
-                <%= sf.radio_button :value, option.value, required: sf.object.survey_question.required? %>
-                <%= sf.label :value, option.value, value: option.value %>
-              </div>
+          <div class="survey-question <%= "with-errors" if sf.object.errors.any? %>">
+            <% if sf.object.survey_question.options.present? %>
+              <p><%= survey_prompt(sf.object.survey_question) %></p>
             <% end %>
 
-            <% unless sf.object.survey_question.options.present? %>
-              <%= sf.text_area :value, placeholder: sf.object.survey_question.prompt %>
-            <% end %>
+            <div class="survey-response">
+              <% sf.object.survey_question.options.each do |option| %>
+                <div class="survey-option">
+                  <%= sf.radio_button :value, option.value, required: sf.object.survey_question.required? %>
+                  <%= sf.label :value, option.value, value: option.value %>
+                </div>
+              <% end %>
+
+              <% unless sf.object.survey_question.options.present? %>
+                <%= sf.text_area :value, placeholder: sf.object.survey_question.prompt %>
+              <% end %>
+            </div>
           </div>
-        </div>
+        <% end %>
       <% end %>
 
       <%= f.submit "Send feedback", data: { disable_with: false } %>

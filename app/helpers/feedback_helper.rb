@@ -6,16 +6,21 @@ module FeedbackHelper
     end
   end
 
-  def quick_feedback
-    Feedback.new.tap do |feedback|
-      questions = SurveyQuestion.
-        where(survey: Feedback::QUICK_SURVEY).
-        order(:position).
-        preload(:options)
+  def quick_feedback_responses
+    questions = SurveyQuestion.
+      where(survey: Feedback::QUICK_SURVEY).
+      order(:position).
+      preload(:options)
 
-      questions.each do |question|
-        feedback.survey_responses.build(survey_question: question)
-      end
+    questions.map do |question|
+      SurveyResponse.new(survey_question: question)
     end
+  end
+
+  def cache_key_for_quick_survey
+    # SurveyQuestion.where(survey: Feedback::QUICK_SURVEY).cache_key
+
+    # Let's just clear the cache whenever it changes...
+    "quick-survey"
   end
 end
