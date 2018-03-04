@@ -35,6 +35,10 @@ module GlossaryHelper
     end
   end
 
+  def cache_key_for_glossary
+    @cache_key_for_glossary ||= GlossaryTerm.all.cache_key
+  end
+
   private
 
   def glossary_context?(context)
