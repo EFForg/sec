@@ -76,10 +76,9 @@ module GlossaryHelper
   end
 
   def create_glossary_link(doc, term, content)
-    toggle = "dropdown-#{doc.search("//a[class='glossary-term']").count}"
+    toggle = "dropdown-#{SecureRandom.hex(8)}"
 
-    Nokogiri::XML::Element.new("a", doc).tap do |link|
-      link["href"] = glossary_path(term)
+    Nokogiri::XML::Element.new("span", doc).tap do |link|
       link["class"] = "glossary-term"
       link["data-toggle"] = toggle
       link.content = content
@@ -89,9 +88,8 @@ module GlossaryHelper
       link.add_child(img)
 
       pane = Nokogiri::XML.fragment(
-        File.open(Rails.root.join("app/views/glossary/_tooltip.html.erb")).read
+        capture{ render("glossary/tooltip", term: term, id: toggle) }
       )
-      pane.children.first["id"] = toggle
       link.add_child(pane)
     end
   end

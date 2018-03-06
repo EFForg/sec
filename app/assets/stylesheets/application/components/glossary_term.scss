@@ -1,8 +1,11 @@
 
-a.glossary-term {
-  text-decoration: none;
+.glossary-term {
   position: relative;
+  cursor: pointer;
 
+  a {
+    text-decoration: none;
+  }
   img {
     vertical-align: text-top;
     margin-left: 2px;
@@ -18,7 +21,14 @@ a.glossary-term {
   color: $white;
   background-color: $gray;
   position: absolute;
-  right: -24%;
+  right: -40%;
   bottom: 109%;
+  width: 30rem;
   padding: 10px 15px;
+  z-index: 1;
+
+  a {
+    color: $teal;
+    padding: 5px;
+  }
 }

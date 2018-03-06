@@ -15,17 +15,16 @@ RSpec.describe GlossaryHelper do
       expect(sanitize(doc).to_html).to eq(html)
     end
 
-    it 'should replace glossary terms in the document with links' do
-      GlossaryTerm.create!(name: 'glossary')
-      GlossaryTerm.create!(name: 'Spec')
+    it 'should create popover definitions for glossary terms' do
+      GlossaryTerm.create!(name: 'glossary', body: 'definition')
+      GlossaryTerm.create!(name: 'Spec', body: 'another')
 
       helper.link_glossary_terms(doc)
 
-      links = sanitize(doc).css('a')
-      expect(links.map { |el| el[:href] }).to match_array(
-        GlossaryTerm.all.map { |term| "/glossary/#{term.name.downcase}" }
-      )
-      expect(links.map { |el| el[:class] }.uniq).to eq(["glossary-term"])
+      expect(sanitize(doc).css('.glossary-term').count).to eq(GlossaryTerm.count)
+
+      expect(sanitize(doc).css('.glossary-definition').map { |el| el.content.strip })
+        .to match_array(GlossaryTerm.pluck(:body))
     end
 
     it 'should not replace content in inappropriate contexts' do
@@ -44,35 +43,43 @@ RSpec.describe GlossaryHelper do
       GlossaryTerm.create!(name: 'glossary')
 
       helper.link_glossary_terms(doc)
-      expect(sanitize(doc).css('a.glossary-term').size).to eq(1)
+      expect(sanitize(doc).css('.glossary-term').size).to eq(1)
 
       doc = Nokogiri::HTML.fragment(html_with_repeated_term)
       helper.link_glossary_terms(doc)
-      expect(sanitize(doc).css('a.glossary-term')).to be_empty
+      expect(sanitize(doc).css('.glossary-term')).to be_empty
     end
 
-    it 'should link synonyms' do
-      term = GlossaryTerm.create!(name: "dictionary", synonyms: ["glossary"])
+
+    it 'should include definition from the most precisely matching term' do
+      GlossaryTerm.create!(name: "glossary", body: "just ok")
+      best_match = GlossaryTerm.create!(name: "glossary helper", body: "better")
 
       helper.link_glossary_terms(doc)
-      links = sanitize(doc).css('a')
 
-      expect(links.select do |el|
-        el.content.include?(term.synonyms.first) &&
-          el[:href] == "/glossary/#{term.name}"
-      end).to be_present
+      expect(sanitize(doc).css('.glossary-definition').map { |el| el.content.strip })
+        .to match_array(best_match.body)
     end
 
-    it 'should link to the most precisely matching term' do
-      GlossaryTerm.create!(name: "glossary")
-      best_match = GlossaryTerm.create!(name: "glossary helper")
+    context 'when definition is too long' do
+      let!(:term) { GlossaryTerm.create!(name: "glossary", body: 'cats' * 200) }
 
-      helper.link_glossary_terms(doc)
-      links = sanitize(doc).css('a')
+      it 'links to the glossary when definition is too long' do
+        helper.link_glossary_terms(doc)
 
-      expect(links.map { |el| el[:href] }).to eq(
-        ["/glossary/#{best_match.name.parameterize}"]
-      )
+        links = sanitize(doc).css('a')
+        expect(links.map { |el| el[:href] }).to eq(["/glossary/#{term.slug}"])
+      end
+
+      it 'should link synonyms' do
+        term.update(synonyms: ["glossary"])
+
+        helper.link_glossary_terms(doc)
+        el = sanitize(doc).css('.glossary-term').first
+
+        expect(el.content.split("\n").first).to eq(term.synonyms.first)
+        expect(el.css('a').first[:href]).to eq("/glossary/#{term.name}")
+      end
     end
   end
 end
