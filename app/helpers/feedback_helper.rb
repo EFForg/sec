@@ -1,8 +1,9 @@
 module FeedbackHelper
   def survey_prompt(question)
-    question.prompt.strip.tap do |prompt|
-      prompt << ":" unless prompt =~ /[.?!:]$/
-      prompt << "*" if question.required?
+    content_tag(:span, class: question.required? ? "required" : "") do
+      question.prompt.strip.tap do |prompt|
+        prompt << ":" unless prompt =~ /[.?!:]$/
+      end
     end
   end
 
