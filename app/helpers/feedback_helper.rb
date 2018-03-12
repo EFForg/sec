@@ -23,14 +23,8 @@ module FeedbackHelper
   end
 
   def quick_feedback_responses
-    questions = SurveyQuestion.
-      where(survey: Feedback::QUICK_SURVEY).
-      order(:position).
-      preload(:options)
-
-    questions.map do |question|
-      SurveyResponse.new(survey_question: question)
-    end
+    SurveyQuestion.by_survey(Feedback::QUICK_SURVEY)
+      .map{ |q| q.responses.build }
   end
 
   def cache_key_for_quick_survey

@@ -34,9 +34,6 @@ class FeedbackController < ApplicationController
   end
 
   def survey_questions
-    SurveyQuestion.
-      where(survey: Feedback::LONG_SURVEY).
-      order(:position).
-      preload(:options)
+    SurveyQuestion.by_survey(Feedback::LONG_SURVEY)
   end
 end
