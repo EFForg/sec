@@ -43,4 +43,18 @@ ActiveAdmin.register SurveyQuestion do
     @survey_question = resource
     render layout: "active_admin"
   end
+
+  controller do
+    def update
+      update! do
+        admin_survey_questions_path("q[survey_equals]" => resource.survey)
+      end
+    end
+
+    def create
+      create! do
+        admin_survey_questions_path("q[survey_equals]" => resource.survey)
+      end
+    end
+  end
 end
