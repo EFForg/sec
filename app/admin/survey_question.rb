@@ -23,7 +23,7 @@ ActiveAdmin.register SurveyQuestion do
     f.inputs do
       f.input :prompt
 
-      f.has_many :options, heading: "Options", sortable: :position, allow_destroy: true do |o|
+      f.has_many :options, heading: "Options (leave empty for textfield)", sortable: :position, allow_destroy: true do |o|
         o.input :value
       end
 
