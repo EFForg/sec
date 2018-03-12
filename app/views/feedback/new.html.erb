@@ -20,7 +20,8 @@
       <div class="survey-question <%= "with-errors" if sf.object.errors.any? %>">
         <p>
           <%= sf.options[:child_index] + 1 %>)
-          <%= survey_prompt(sf.object.survey_question) %>
+          <%= sf.label :value, survey_prompt(sf.object.survey_question),
+                class: sf.object.survey_question.required? ? "required" : "" %>
         </p>
 
         <div class="survey-response">

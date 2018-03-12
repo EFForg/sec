@@ -12,9 +12,10 @@
           <%= sf.hidden_field :survey_question_id %>
 
           <div class="survey-question <%= "with-errors" if sf.object.errors.any? %>">
-            <% if sf.object.survey_question.options.present? %>
-              <p><%= survey_prompt(sf.object.survey_question) %></p>
-            <% end %>
+            <p class="<%= "show-for-sr" unless sf.object.survey_question.options.present? %>">
+              <%= sf.label :value, survey_prompt(sf.object.survey_question),
+                    class: sf.object.survey_question.required? ? "required" : "" %>
+            </p>
 
             <div class="survey-response">
               <% sf.object.survey_question.options.each do |option| %>
