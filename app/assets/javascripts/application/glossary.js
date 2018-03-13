@@ -1,25 +1,26 @@
 $(document).on('mouseover', '.glossary-term', showDefinition);
-$(document).on('click', '.glossary-term', toggleDefinition);
+$(document).on("click", ".glossary-term", toggleDefinition);
 $(document).click(function(e) {
-  if (!$(e.target).closest('.glossary-term').length) {
+  if (!$(e.target).closest(".glossary-term").length) {
     hideDefinitions();
   };
 });
 
 function hideDefinitions() {
-  $('.glossary-definition').hide('fast');
+  $(".glossary-definition").hide("fast");
 }
 
 function toggleDefinition(e) {
   if(e.target == e.currentTarget) {
-    $("#"+getDropdownId(e)).toggle('fast');
+    $("#"+getDropdownId(e)).toggle("fast");
   }
 };
 
 function showDefinition(e) {
-  $("#"+getDropdownId(e)).show('fast');
+  hideDefinitions();
+  $("#"+getDropdownId(e)).show("fast");
 };
 
 function getDropdownId(e) {
-  return $(e.target).data()['toggle'];
+  return $(e.target).data()["toggle"];
 }
