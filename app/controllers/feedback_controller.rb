@@ -29,7 +29,10 @@ class FeedbackController < ApplicationController
 
   def feedback_params
     params.require(:feedback).
-      permit(survey_responses_attributes: [:survey_question_id, :value]).
+      permit(
+        :mobile,
+        survey_responses_attributes: [:survey_question_id, :value]
+      ).
       merge(source_url: request.referrer)
   end
 

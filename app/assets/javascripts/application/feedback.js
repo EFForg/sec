@@ -9,3 +9,13 @@ $(document).on('click', function(e) {
     $('.quick-feedback').addClass('closed');
   }
 });
+
+$(document).on('submit ajax:before', 'form.new_feedback', function(e) {
+  $(e.target).append(
+    $('<input>').attr({
+      type: 'hidden',
+      name: 'feedback[mobile]',
+      value: $('#desktop-canary').is(':not(:visible)')
+    })
+  );
+});
