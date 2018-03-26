@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180214003707) do
+ActiveRecord::Schema.define(version: 20180323225102) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -136,6 +136,13 @@ ActiveRecord::Schema.define(version: 20180214003707) do
     t.index ["content_type", "content_id"], name: "index_featured_content_on_content_type_and_content_id"
   end
 
+  create_table "feedback", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "source_url"
+    t.boolean "mobile", default: false, null: false
+  end
+
   create_table "friendly_id_slugs", force: :cascade do |t|
     t.string "slug", null: false
     t.integer "sluggable_id", null: false
@@ -233,6 +240,32 @@ ActiveRecord::Schema.define(version: 20180214003707) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["searchable_type", "searchable_id"], name: "index_pg_search_documents_on_searchable_type_and_searchable_id"
+  end
+
+  create_table "survey_options", force: :cascade do |t|
+    t.integer "survey_question_id", null: false
+    t.integer "position", default: 0, null: false
+    t.string "value", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "survey_questions", force: :cascade do |t|
+    t.integer "position", default: 0, null: false
+    t.string "prompt", null: false
+    t.boolean "required", default: false, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "survey", default: "", null: false
+  end
+
+  create_table "survey_responses", force: :cascade do |t|
+    t.integer "feedback_id", null: false
+    t.integer "survey_question_id", null: false
+    t.text "value"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "prompt"
   end
 
   create_table "taggings", id: :serial, force: :cascade do |t|

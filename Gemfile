@@ -58,6 +58,9 @@ gem "flipper", github: "jnunemaker/flipper"
 # ActiveJob backend
 gem "delayed_job_active_record"
 
+# Prevent form submissions by bots
+gem "invisible_captcha"
+
 # Content administration
 gem "active_material", github: "vigetlabs/active_material"
 gem "activeadmin"

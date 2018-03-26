@@ -1,0 +1,19 @@
+<div class="panel input">
+  <h2>
+    <strong>
+      Feedback on <%= @feedback.created_at.strftime('%b %d, %Y') %>
+    </strong>
+  </h2>
+
+  <p>From <%= link_to @feedback.source_url, @feedback.source_url %></p>
+
+  <p>Mobile: <%= @feedback.mobile ? 'Yes' : 'No' %></p>
+
+  <% @feedback.survey_responses.each_with_index do |response, i| %>
+    <div class="survey-response">
+      <p><%= i + 1 %>) <%= response.prompt %></p>
+
+      <blockquote><%= response.value %></blockquote>
+    </div>
+  <% end %>
+</div>

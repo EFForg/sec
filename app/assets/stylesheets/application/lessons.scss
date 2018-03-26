@@ -130,7 +130,7 @@
     position: relative;
   }
 
-  .tab {
+  .tabs .tab {
     border-right: 1px solid $teal;
     border-left: 1px solid $teal;
     border-bottom: none;
@@ -182,7 +182,7 @@
     }
   }
 
-  .tab.active {
+  .tabs .tab.active {
     border-bottom: 1px solid white;
 
     @-moz-document url-prefix() { //firefox only
