@@ -27,7 +27,7 @@
     </div>
 
     <div class="side-feedback show-for-medium">
-      <%= render "shared/feedback" %>
+      <%= render "shared/feedback" if current_admin_user %>
     </div>
 
     <div id="main-content">
