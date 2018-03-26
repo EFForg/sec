@@ -34,7 +34,7 @@ RSpec.feature "GiveFeedback", type: :feature, js: true do
     )
   end
 
-  scenario "user fills in the quick feedback form" do
+  pending "user fills in the quick feedback form" do
     visit article_path(article)
     source_url = current_url
 
