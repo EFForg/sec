@@ -19,7 +19,7 @@
   -moz-box-shadow: 0px 4px 15px 0px rgba(0, 0, 0, 0.3);
   box-shadow: 0px 4px 15px 0px rgba(0, 0, 0, 0.3);
   color: $white;
-  background-color: $gray;
+  background-color: black;
   position: absolute;
   right: -40%;
   bottom: 109%;
@@ -30,5 +30,6 @@
   a {
     color: $teal;
     padding: 5px;
+    font-weight: bold;
   }
 }
