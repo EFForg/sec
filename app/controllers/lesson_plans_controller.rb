@@ -11,6 +11,15 @@ class LessonPlansController < ApplicationController
 
     respond_to do |format|
       format.html
+      format.pdf do
+        if Rails.env.development?
+          @lesson_plan.recreate_pdf_file
+          send_file(@lesson_plan.pdf.path, disposition: "inline")
+        else
+          redirect_to @lesson_plan.pdf.url
+        end
+      end
+
       format.zip do
         files = @lesson_plan_lessons.map(&:lesson).map(&:pdf)
 
