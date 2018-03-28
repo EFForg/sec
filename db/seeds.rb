@@ -34,11 +34,11 @@ h = Homepage.create!(welcome: welcome, articles_intro: articles_intro)
 3.times{ h.featured_material_content.create! }
 3.times{ h.featured_blog_post_content.create! }
 
-ManagedContent.create!(region: "credits")
+Page.find_or_create_by!(name: "credits")
 
 ["articles", "blog", "materials", "topics"].each do |region|
-  content = ManagedContent.find_or_create_by!(region: "#{region}-intro")
-  content.update!(
-    body: %(Intro text to #{region}. Edit me <a href="/admin/#{region}_overview">here</a>.)
+  page = Page.find_or_create_by!(name: "#{region}-overview")
+  page.update!(
+    body: %(Intro text to #{region}. Edit me <a href="/admin/pages">here</a>.)
   )
 end
