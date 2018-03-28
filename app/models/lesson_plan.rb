@@ -50,7 +50,6 @@ class LessonPlan < ApplicationRecord
     tmp.rewind
 
     update!(pdf_file: tmp, pdf_file_updated_at: Time.now)
-    reload
   end
 
   def pdf_file_filename
