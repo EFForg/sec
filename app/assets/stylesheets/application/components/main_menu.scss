@@ -1,0 +1,102 @@
+
+#main-menu {
+  text-align: center;
+  color: white;
+  text-transform: uppercase;
+  font-weight: 600;
+  clear: both;
+  margin-bottom: 3rem;
+  background: $darkest-teal;
+  .row {
+    margin-top: 0;
+  }
+  a {
+    color: white;
+    font-size: 1.2rem;
+    text-decoration: none;
+    &:hover,
+    &:active {
+      text-decoration: underline;
+    }
+  }
+
+  ul {
+    display: flex;
+    list-style-type: none;
+    background-color: $light-teal;
+
+    li {
+      flex: 1;
+      margin: 0 2px;
+      background-color: $darkest-teal;
+      a {
+        display: inline-block;
+        vertical-align: top;
+        height: 100%;
+        width: 100%;
+        padding: 0.2rem 4%;
+        font-size: 1.2rem;
+      }
+
+      &:first-child {
+        margin-left: 4px;
+      }
+
+      &:last-child {
+        margin-right: 4px;
+      }
+    }
+
+    @include breakpoint(medium only) {
+      li {
+        margin: 0;
+
+        &:first-child {
+          margin-left: 0;
+        }
+
+        &:last-child {
+          margin-right: 0;
+        }
+
+        a {
+          font-size: 1rem;
+          padding: 0 1%;
+        }
+      }
+    }
+  }
+
+  @include breakpoint(small only) {
+    position: fixed;
+    bottom: 0;
+    margin-bottom: 0;
+    width: 100%;
+    z-index: 1000;
+    ul {
+      margin: 0;
+      width: 100%;
+      display: flex;
+      justify-content: space-evenly;
+      padding: 0;
+      li {
+        min-height: 4rem;
+        padding: 0 0rem;
+        font-size: 0.8rem;
+        line-height: 0.8rem;
+        a {
+          font-size: 0.75rem;
+          line-height: 0.8rem;
+          padding-top: 0.4rem;
+        }
+      }
+    }
+
+    li {
+      background: $darkest-teal;
+      padding: 13px 17px;
+      flex-grow: 1;
+      margin: 0 2px;
+    }
+  }
+}
