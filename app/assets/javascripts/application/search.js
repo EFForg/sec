@@ -2,7 +2,7 @@ $(document).on('submit', 'header .search form', function(e) {
   if (!$('header').hasClass('search-expanded')) {
     e.preventDefault();
     $('header').addClass('search-expanded');
-    $('header .search form input[type=search]').select();
+    $('header .search form input[type=text]').select();
   }
 });
 
