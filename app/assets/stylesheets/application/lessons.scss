@@ -18,13 +18,13 @@
 }
 
 /* level colors */
-.difficulty-tag.b {
+.difficulty-tag.beginning {
   background-color: $beginner;
 }
-.difficulty-tag.i {
+.difficulty-tag.intermediate {
   background-color: $intermediate;
 }
-.difficulty-tag.a {
+.difficulty-tag.advanced {
   background-color: $advanced;
 }
 
@@ -167,13 +167,13 @@
     &.intro {
       border-top: 2px solid $teal;
     }
-    &.b {
+    &.beginning {
       border-top: 2px solid $beginner;
     }
-    &.i {
+    &.intermediate {
       border-top: 2px solid $intermediate;
     }
-    &.a {
+    &.advanced {
       border-top: 2px solid $advanced;
     }
 

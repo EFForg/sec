@@ -4,7 +4,7 @@ module LessonsHelper
   end
 
   def difficulty_class(level_id)
-    (Lesson::LEVELS[level_id] || "?")[0]
+    Lesson::LEVELS[level_id] || "?"
   end
 
   def difficulty_tag(level_id)
