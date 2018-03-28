@@ -1,0 +1,2 @@
+class SurveyOption < ApplicationRecord
+end

@@ -1,6 +1,6 @@
 $(document).on("turbolinks:load", function() {
-  $(".tab a").click(function() {
-    $(".tab").removeClass( 'active' );
+  $(".tabs .tab a").click(function() {
+    $(".tabs .tab").removeClass( 'active' );
     $( this ).parents(".tab").addClass( 'active' );
   });
 });

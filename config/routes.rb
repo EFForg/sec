@@ -20,6 +20,12 @@ Rails.application.routes.draw do
 
   resources :glossary, only: [:index, :show]
 
+  scope "/feedback", as: :feedback, controller: "feedback" do
+    root action: :new
+    post "/", action: :create, as: :create
+    get :thanks
+  end
+
   get "/credits", as: :credits, to: "credits#index"
   get "/search", as: :search, to: "search#results"
 

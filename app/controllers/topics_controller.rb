@@ -15,13 +15,14 @@ class TopicsController < ApplicationController
     @topic = Topic.friendly.find(params[:id])
     protect_unpublished! @topic
 
-    @lesson = @topic.lessons.take!
+    @lesson = @topic.lessons.take unless @topic.description?
+
     breadcrumbs @topic.name
-    og_object @lesson, description: ""
+    og_object @topic, description: ""
 
     respond_to do |format|
       format.html
-      format.js { render "lessons/show" }
+      format.js
     end
   end
 
