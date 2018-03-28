@@ -25,36 +25,6 @@
 
   background-color: $light-teal;
 
-  .back-ssd {
-    max-width: 22rem;
-    background-color: $dark-teal;
-    padding: 0.5rem;
-    flex: 1;
-    padding-right: 1rem;
-
-    a {
-      display: block;
-      text-decoration: none;
-    }
-
-    .back-arrow {
-      display: table-cell;
-      vertical-align: middle;
-      font-size: 2rem;
-      padding-right: 0.5rem;
-    }
-
-    .back-text {
-      display: table-cell;
-      vertical-align: middle;
-      margin-left: 0.5rem;
-
-      font-size: 0.8125rem;
-      line-height: 1.23;
-      max-width: none;
-    }
-  }
-
   .tagline {
     color: $light-teal;
     background-color: #000;
@@ -209,5 +179,51 @@ header {
     .flex-field {
       display: inline-block;
     }
+  }
+}
+
+body.section-home.page-index {
+  .back-ssd {
+    max-width: 22rem;
+    background-color: $dark-teal;
+    padding: 0.5rem;
+    flex: 1;
+    padding-right: 1rem;
+
+    a {
+      display: block;
+      text-decoration: none;
+    }
+
+    .back-arrow {
+      display: table-cell;
+      vertical-align: middle;
+      font-size: 2rem;
+      padding-right: 0.5rem;
+    }
+
+    .back-text {
+      display: table-cell;
+      vertical-align: middle;
+      margin-left: 0.5rem;
+
+      font-size: 0.8125rem;
+      line-height: 1.23;
+      max-width: none;
+    }
+  }
+}
+
+body:not(.section-home) {
+  .back-ssd {
+    display: none;
+  }
+
+  .tagline-bevel {
+    display: none;
+  }
+
+  .eff-tagline {
+    padding: 1rem;
   }
 }
