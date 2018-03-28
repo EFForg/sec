@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171109164721) do
+ActiveRecord::Schema.define(version: 20180323225102) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -77,6 +77,7 @@ ActiveRecord::Schema.define(version: 20171109164721) do
     t.string "flag"
     t.bigint "section_id"
     t.integer "section_position", default: 0, null: false
+    t.bigint "next_article_id"
     t.index ["slug"], name: "index_articles_on_slug", unique: true
   end
 
@@ -135,6 +136,13 @@ ActiveRecord::Schema.define(version: 20171109164721) do
     t.index ["content_type", "content_id"], name: "index_featured_content_on_content_type_and_content_id"
   end
 
+  create_table "feedback", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "source_url"
+    t.boolean "mobile", default: false, null: false
+  end
+
   create_table "friendly_id_slugs", force: :cascade do |t|
     t.string "slug", null: false
     t.integer "sluggable_id", null: false
@@ -147,6 +155,15 @@ ActiveRecord::Schema.define(version: 20171109164721) do
     t.index ["sluggable_type"], name: "index_friendly_id_slugs_on_sluggable_type"
   end
 
+  create_table "glossary_terms", force: :cascade do |t|
+    t.string "name", null: false
+    t.text "body", default: "", null: false
+    t.string "slug"
+    t.text "synonyms", default: [], array: true
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "homepages", force: :cascade do |t|
     t.text "welcome", default: "", null: false
     t.text "articles_intro", default: "", null: false
@@ -156,6 +173,13 @@ ActiveRecord::Schema.define(version: 20171109164721) do
     t.text "blog_intro", default: "", null: false
     t.text "materials_intro", default: "", null: false
     t.text "update_notes"
+    t.datetime "update_notes_updated_at"
+  end
+
+  create_table "icons", force: :cascade do |t|
+    t.string "file", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "lesson_plan_lessons", force: :cascade do |t|
@@ -172,16 +196,6 @@ ActiveRecord::Schema.define(version: 20171109164721) do
     t.string "key"
   end
 
-  create_table "lesson_resources", force: :cascade do |t|
-    t.integer "lesson_id", null: false
-    t.string "resource_type", null: false
-    t.bigint "resource_id", null: false
-    t.integer "position", default: 0, null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["resource_type", "resource_id"], name: "index_lesson_resources_on_resource_type_and_resource_id"
-  end
-
   create_table "lessons", force: :cascade do |t|
     t.bigint "topic_id"
     t.integer "duration", default: 0, null: false
@@ -196,6 +210,8 @@ ActiveRecord::Schema.define(version: 20171109164721) do
     t.text "notes"
     t.text "suggested_materials"
     t.boolean "published", default: false, null: false
+    t.text "recommended_reading"
+    t.text "relevant_articles"
     t.index ["topic_id"], name: "index_lessons_on_topic_id"
   end
 
@@ -215,6 +231,8 @@ ActiveRecord::Schema.define(version: 20171109164721) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "flag"
+    t.boolean "published", default: false, null: false
+    t.string "slug"
   end
 
   create_table "pages", force: :cascade do |t|
@@ -232,6 +250,32 @@ ActiveRecord::Schema.define(version: 20171109164721) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["searchable_type", "searchable_id"], name: "index_pg_search_documents_on_searchable_type_and_searchable_id"
+  end
+
+  create_table "survey_options", force: :cascade do |t|
+    t.integer "survey_question_id", null: false
+    t.integer "position", default: 0, null: false
+    t.string "value", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "survey_questions", force: :cascade do |t|
+    t.integer "position", default: 0, null: false
+    t.string "prompt", null: false
+    t.boolean "required", default: false, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "survey", default: "", null: false
+  end
+
+  create_table "survey_responses", force: :cascade do |t|
+    t.integer "feedback_id", null: false
+    t.integer "survey_question_id", null: false
+    t.text "value"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "prompt"
   end
 
   create_table "taggings", id: :serial, force: :cascade do |t|
@@ -265,9 +309,10 @@ ActiveRecord::Schema.define(version: 20171109164721) do
     t.datetime "updated_at", null: false
     t.string "slug"
     t.text "description"
-    t.string "icon"
     t.boolean "published", default: false, null: false
     t.string "flag"
+    t.bigint "next_topic_id"
+    t.bigint "icon_id"
     t.index ["slug"], name: "index_topics_on_slug", unique: true
   end
 

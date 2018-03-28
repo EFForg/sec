@@ -1,39 +1,45 @@
-FROM ruby:2.3-slim
+FROM ruby:2.5-alpine
 
-RUN mkdir /opt/trainers-hub
+RUN mkdir -p /opt/trainers-hub
 WORKDIR /opt/trainers-hub
 
 ARG BUILD_ENV=production
 
-RUN if [ "$BUILD_ENV" = "development" ]; then usermod -u 1000 www-data; fi
+RUN if [ "$BUILD_ENV" = "development" ]; then \
+      adduser -Du 1000 -h /opt/trainers-hub www-data; \
+    else \
+      adduser -DS -h /opt/trainers-hub www-data; \
+    fi
 
-RUN apt-get update && \
-  apt-get install -y --no-install-recommends \
-    build-essential \
-    curl \
+RUN echo "@edge http://nl.alpinelinux.org/alpine/edge/main" >>/etc/apk/repositories \
+  && echo "@edgetesting http://nl.alpinelinux.org/alpine/edge/testing" >>/etc/apk/repositories \
+  && apk upgrade --update-cache \
+  && apk add \
+    build-base \
     git \
-    libpq-dev \
+    postgresql-dev \
     postgresql-client \
     imagemagick \
     ghostscript \
     xvfb \
-    wkhtmltopdf \
-  # xvfb-run "needs" xauth but not really.
-  && ln -s /bin/true /bin/xauth \
-  # Install node.
-  && set -x; \
-    curl -sL https://deb.nodesource.com/setup_6.x -o nodesource_setup.sh \
-    && chmod +x nodesource_setup.sh \
-    && ./nodesource_setup.sh \
-    && apt-get install -y --no-install-recommends \
-      nodejs \
-    && apt-get clean \
-    && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* \
-  # Install yarn.
-  && curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - \
-    && echo "deb https://dl.yarnpkg.com/debian/ stable main" \
-    | tee /etc/apt/sources.list.d/yarn.list \
-    && apt-get update && apt-get install -y --no-install-recommends yarn
+    wkhtmltopdf@edgetesting \
+    nodejs \
+    yarn \
+
+    # Needed for wkhtmltopdf
+    dbus \
+
+    # Needed for capybara-webkit
+    qt-dev@edge \
+
+  # Set up crontab.
+  && echo "*/15 * * * * su -s/bin/sh www-data -c \
+    'cd /opt/trainers-hub && bundle exec rake blog:update' >>/proc/1/fd/1 2>&1" >>/etc/crontabs/root \
+
+  && echo "*/15 * * * * root su -s/bin/sh www-data -c \
+    'cd /opt/trainers-hub && bundle exec rake glossary:update' >>/proc/1/fd/1 2>&1" >>/etc/crontab
+
+ENV DISPLAY=:99
 
 COPY Gemfile* ./
 RUN bundle install
@@ -44,17 +50,22 @@ RUN yarn install
 
 COPY . .
 
+RUN cp ./app/assets/fonts/* /usr/share/fonts
+
 RUN if [ "$BUILD_ENV" = "production" ]; \
   then bundle exec rake assets:precompile \
   RAILS_ENV=production \
   SECRET_KEY_BASE=noop \
   DATABASE_URL=postgres://noop; fi
 
-RUN mkdir -p /var/www && chown -R www-data /opt/trainers-hub/public \
-                                           /opt/trainers-hub/tmp \
-                                           /opt/trainers-hub/flipper.pstore \
-                                           /var/www \
-                                           /usr/local/bundle
+RUN mkdir -p /var/www /opt/trainers-hub/files \
+  && touch /opt/trainers-hub/flipper.pstore \
+  && chown -R www-data /opt/trainers-hub/public \
+                       /opt/trainers-hub/files \
+                       /opt/trainers-hub/tmp \
+                       /opt/trainers-hub/flipper.pstore \
+                       /var/www \
+                       /usr/local/bundle
 USER www-data
 
 CMD ["rails", "s", "-b", "0.0.0.0"]

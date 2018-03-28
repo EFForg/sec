@@ -4,9 +4,13 @@ cache:
   directories:
     - node_modules
 rvm:
-  - 2.4
+  - 2.5
 services:
   - postgresql
+addons:
+  apt:
+    packages:
+      - wkhtmltopdf
 before_install:
   - gem install bundler
 install:
@@ -14,6 +18,9 @@ install:
   - npm install
 before_script:
   - psql -c 'create database "trainers-hub_test";' -U postgres
+  - "export DISPLAY=:99.0"
+  - "sh -e /etc/init.d/xvfb start"
+  - sleep 3 # give xvfb some time to start
 script:
   - bundle exec rubocop
   - $(npm bin)/sass-lint -vq

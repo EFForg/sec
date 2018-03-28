@@ -300,5 +300,21 @@ ActiveAdmin.setup do |config|
     admin.build_menu do |menu|
       menu.add label: "Pages", priority: 2
     end
+
+    admin.build_menu do |menu|
+      menu.add label: "Surveys", priority: 6, url: "/admin/surveys" do |surveys|
+        surveys.add label: "Quick Survey",
+          url: "/admin/survey_questions?q%5Bsurvey_equals%5D=quick",
+          priority: 1
+
+        surveys.add label: "Website Satisfaction",
+          url: "/admin/survey_questions?q%5Bsurvey_equals%5D=/feedback",
+          priority: 2
+
+        surveys.add label: "Browse Feedback",
+          url: "/admin/feedback", priority: 3,
+          html_options: { style: "border-top: 1px dashed gray; margin-top: 4px; padding-top: 8px;" }
+      end
+    end
   end
 end

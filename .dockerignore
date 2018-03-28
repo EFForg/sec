@@ -16,6 +16,7 @@ node_modules/
 # Ignore data
 pgdata/
 public/uploads
+files
 
 # Ignore secondary containers
 nginx/

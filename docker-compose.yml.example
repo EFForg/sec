@@ -50,6 +50,19 @@ services:
     volumes:
       - ./nginx/sec.conf:/etc/nginx/sites-enabled/sec.conf
       - ./public:/var/www/html
+      - ./files:/var/www/files
+
+# Cron service for production
+#   cron:
+#     build: .
+#     depends_on:
+#       db:
+#         condition: service_healthy
+#     user: root
+#     restart: always
+#     command: /bin/sh -c 'env >> /etc/environment && crond -f'
+#     entrypoint: ""
+#     env_file: .env
 
 # DelayedJob worker for production
 #   worker:

@@ -1,13 +1,20 @@
-<div class="header-wrapper">
+<div class="print-header">
+  <img src="/assets/print-header.png">
+</div>
+<div class="header-wrapper no-print">
   <div class="top-bar">
     <div class="back-ssd top-bar-left">
-      <span class="back-arrow">&laquo;</span>
-      <span class="back-text show-for-small-only">
-        <%= link_to "Back to ssd.eff.org", "https://ssd.eff.org" %>
-      </span>
-      <span class="back-text show-for-medium">
-        <%= link_to "Back to Surveillance Self-Defense ssd.eff.org", "https://ssd.eff.org" %>
-      </span>
+      <%= link_to "https://ssd.eff.org" do %>
+        <span class="back-arrow fa fa-chevron-left"></span>
+
+        <span class="back-text hide-for-large">
+          Go to ssd.eff.org
+        </span>
+
+        <span class="back-text show-for-large">
+          Back to Surveillance Self-Defense ssd.eff.org
+        </span>
+      <% end %>
     </div>
 
     <div class="tagline top-bar-right show-for-medium">
@@ -34,18 +41,12 @@
   </header>
 </div>
 
-<nav id="main-menu" aria-labelledby="main-menu-label">
+<nav class="no-print" id="main-menu" aria-labelledby="main-menu-label">
   <h2 id="main-menu-label" class="show-for-sr">Main Menu</h2>
-  <ul class="row hide-for-medium-only">
+  <ul class="row">
     <li><%= link_with_aria_current "Security Education 101", articles_path %></li>
     <li><%= link_with_aria_current "Lessons", topics_path %></li>
     <li><%= link_with_aria_current "Teaching Materials", materials_path %></li>
     <li><%= link_with_aria_current "Security News", blog_path %></li>
   </ul>
-  <div class="row menu-items show-for-medium-only">
-    <div class="medium-3 large-3 columns"><%= link_with_aria_current "Security Education 101", articles_path %></div>
-    <div class="medium-3 large-3 columns"><%= link_with_aria_current "Lessons", topics_path %></div>
-    <div class="medium-3 large-3 columns"><%= link_with_aria_current "Teaching Materials", materials_path %></div>
-    <div class="medium-3 large-3 columns"><%= link_with_aria_current "Security News", blog_path %></div>
-  </div>
 </nav>

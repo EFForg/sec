@@ -18,13 +18,21 @@ Rails.application.routes.draw do
 
   resources :materials, only: [:index, :show]
 
-  get "/credits", as: :credits, to: "credits#index"
+  resources :glossary, only: [:index, :show]
 
+  scope "/feedback", as: :feedback, controller: "feedback" do
+    root action: :new
+    post "/", action: :create, as: :create
+    get :thanks
+  end
+
+  get "/credits", as: :credits, to: "credits#index"
   get "/search", as: :search, to: "search#index"
 
   get "/404", to: "errors#not_found"
   get "/422", to: "errors#unacceptable"
   get "/500", to: "errors#internal_error"
+  get "/feed" => redirect("https://www.eff.org/deeplinks.xml?field_issue_tid=11461")
 
   devise_for :admin_users, ActiveAdmin::Devise.config.deep_merge(
                controllers: { :invitations => "user_invitations" }

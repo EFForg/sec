@@ -9,7 +9,7 @@ f.fields_for :admin_lessons, lesson do |l|
   end
 
   f.inputs "Teaching Ratio", class: "input ratio" do
-    l.input :instructor_students_ratio
+    l.input :instructor_students_ratio, hint: "E.g. 1:8"
   end
 
   f.inputs do
@@ -37,11 +37,22 @@ f.fields_for :admin_lessons, lesson do |l|
   end
 
   f.inputs do
+    unless lesson.persisted?
+      lesson.relevant_articles ||= "<ul><li></li></ul>"
+    end
+
+    l.input :relevant_articles, as: :ckeditor
+  end
+
+  f.inputs do
     l.input :notes, as: :ckeditor, label: "Other Notes"
+
+    unless lesson.persisted?
+      lesson.recommended_reading ||= "<ul><li></li></ul>"
+    end
+
+    l.input :recommended_reading, as: :ckeditor
   end
 
   l.input :body, as: :ckeditor
-
-  l.input :advice,
-          input_html: { class: "select2", style: "width: 100%" }
 end

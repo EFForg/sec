@@ -1,0 +1,35 @@
+.section-feedback {
+  .side-feedback {
+    display: none;
+  }
+
+  .survey-question {
+    margin-bottom: 1rem;
+
+    p {
+      margin-bottom: 0.5rem;
+    }
+
+    &.with-errors p {
+      color: #f00;
+    }
+
+    .field_with_errors {
+      display: inline;
+    }
+
+    .survey-option {
+      margin-left: 1rem;
+    }
+
+    textarea {
+      width: 100%;
+      max-width: 540px;
+      min-height: 120px;
+    }
+  }
+
+  .required::after {
+    content: "*";
+  }
+}

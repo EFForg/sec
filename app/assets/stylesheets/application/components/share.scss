@@ -1,0 +1,76 @@
+
+.share-links {
+  position: relative;
+
+  a {
+    display: inline-block;
+    margin-right: 0.5rem;
+    width: 54px;
+    overflow: hidden;
+
+    @include breakpoint(medium) {
+      position: absolute;
+      display: block;
+      margin-right: 0;
+    }
+
+    i {
+      display: inline-block;
+      width: 54px;
+      height: 54px;
+    }
+
+    &.facebook {
+      top: 0;
+
+      i {
+        background-image: image-url('share-facebook.png');
+      }
+    }
+
+    &.twitter {
+      top: 4.2rem;
+
+      i {
+        background-image: image-url('share-twitter.png');
+      }
+    }
+
+    &.google {
+      top: 8.4rem;
+
+      i {
+        background-image: image-url('share-google.png');
+      }
+    }
+
+    span {
+      position: absolute;
+      left: 62px;
+      width: 12rem;
+      height: 54px;
+      line-height: 54px;
+      padding-left: 0.9rem;
+
+      color: #215c61;
+      background-color: #c7dddb;
+
+      display: none;
+
+      @include breakpoint(medium) {
+        display: inline-block;
+      }
+    }
+  }
+
+
+  @include breakpoint(medium) {
+    z-index: 10000;
+
+    a:hover,
+    a:focus {
+      width: 20rem;
+      transition: width 230ms;
+    }
+  }
+}

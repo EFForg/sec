@@ -7,27 +7,31 @@
 }
 
 .difficulty-tag {
-  color: #fefefe;
+  color: black;
   display: inline-block;
-  border-radius: 0.6rem;
+  border-radius: 10px;
   font-size: 1rem;
   line-height: 1.5rem;
-  margin: 0 0.25rem 0 0;
+  margin: 0 0.25rem 0.5rem 0;
   padding-left: 0.8rem;
   padding-right: 0.8rem;
 }
-// level colors
-.difficulty-tag.b {
-  background-color: #B79D30;
+
+/* level colors */
+.difficulty-tag.beginning {
+  background-color: $beginner;
 }
-.difficulty-tag.i {
-  background-color: #477729;
+.difficulty-tag.intermediate {
+  background-color: $intermediate;
 }
-.difficulty-tag.a {
-  background-color: #A34B4A;
+.difficulty-tag.advanced {
+  background-color: $advanced;
 }
 
-
+.icon img {
+  height: 9rem;
+  margin-bottom: 1rem;
+}
 
 .section-topics, .section-lessons {
   #main-content h1 {
@@ -36,10 +40,18 @@
   .lesson-back {
     a {
       color: $darkest-teal;
+      font-size: 0.8rem;
       font-weight: 600;
       margin-bottom: 1rem;
       text-decoration: none;
       text-transform: uppercase;
+      width: 7rem;
+      display: inline-block;
+      height: 1rem;
+      @include breakpoint(medium) {
+        font-size: 1rem;
+        width: auto;
+      }
     }
   }
 
@@ -56,8 +68,8 @@
       background: $darkest-teal;
       color: white;
       display: inline-block;
-      height: 3rem;
-      font-size: 0.8rem;
+      height: 2rem;
+      font-size: 0.7rem;
       line-height: 0.8rem;
       padding: 0.3rem 2.7rem 0 1rem;
       position: absolute;
@@ -67,6 +79,7 @@
       width: 143px;
       @include breakpoint(medium) {
         font-size: 1rem;
+        height: 3rem;
         line-height: 1rem;
         margin-right: 2.95rem;
         padding: 0.9rem 1rem;
@@ -77,12 +90,18 @@
       background: white;
       width: 0;
       height: 0;
-      border-left: 1.5rem solid $darkest-teal;
-      border-right: 1.5rem solid transparent;
-      border-bottom: 1.5rem solid transparent;
-      border-top: 1.5rem solid transparent;
+      border-left: 1rem solid $darkest-teal;
+      border-right: 1rem solid transparent;
+      border-bottom: 1rem solid transparent;
+      border-top: 1rem solid transparent;
       position: absolute;
       right: 0;
+      @include breakpoint(medium) {
+        border-left: 1.5rem solid $darkest-teal;
+        border-right: 1.5rem solid transparent;
+        border-bottom: 1.5rem solid transparent;
+        border-top: 1.5rem solid transparent;
+      }
     }
   }
   .topics-cards {
@@ -94,15 +113,15 @@
       line-height: 1.7rem;
       margin-bottom: 2rem;
     }
-    .levels {
-      margin-bottom: 2rem;
-    }
   }
 
   .tags {
     float: left;
     margin: 0 1rem 0 0;
-    width: 60%;
+    width: auto;
+    @include breakpoint(medium) {
+      width: 60%;
+    }
   }
 
   .tabs {
@@ -111,59 +130,64 @@
     position: relative;
   }
 
-  .tab {
-    border: 1px solid $teal;
+  .tabs .tab {
+    border-right: 1px solid $teal;
+    border-left: 1px solid $teal;
     border-bottom: none;
     display: inline-block;
-    font-size: 0.7rem;
+    font-size: 0.81rem;
     line-height: 1.4rem;
     margin-right: 0;
-    padding: 0rem 1.3rem 0rem 0.5rem;
     position: relative;
     @include breakpoint(medium) {
-      font-size: 1.1rem;
-      margin-right: 1rem;
-      padding: 0.5rem 3rem 0.5rem 1rem;
+      font-size: 1rem;
     }
     a {
+      display: inline-block;
+      font-weight: 600;
+      width: 100%;
+      height: 100%;
+      padding: 0 0.2rem 0 0.2rem;
+      @include breakpoint(medium) {
+        border-bottom: none;
+        font-weight: 400;
+        padding: 0.5rem 1rem 0.5rem 0.5rem;
+      }
+
       text-decoration: none;
-      text-transform: uppercase;
-      &:after {
-        content: " ";
-        font-size: 0;
-        position: absolute;
-        top: 0.5rem;
-        right: 0.5rem;
-        height: 0.5rem;
-        width: 0.5rem;
-        @include breakpoint(medium) {
-          top: 1rem;
-          right: 1rem;
-          height: 1rem;
-          width: 1rem;
-        }
+      text-transform: capitalize;
+      &:hover,
+      &:focus,
+      &:visited {
+        color: $darkest-teal;
       }
     }
-    &:first-child {
-      a::after {
-        background: $beginner;
-      }
+
+
+    &.intro {
+      border-top: 2px solid $teal;
     }
-    &:nth-child(2) {
-      a::after {
-        background: $intermediate;
-      }
+    &.beginning {
+      border-top: 2px solid $beginner;
     }
-    &:nth-child(3) {
-      a::after {
-        background: $advanced;
-      }
+    &.intermediate {
+      border-top: 2px solid $intermediate;
+    }
+    &.advanced {
+      border-top: 2px solid $advanced;
+    }
+
+    @include breakpoint(medium) {
+      border-top-width: 3px !important;
     }
   }
 
-  .tab.active {
-    border: 1px solid $darkest-teal;
-    border-bottom: 4px solid white;
+  .tabs .tab.active {
+    border-bottom: 1px solid white;
+
+    @-moz-document url-prefix() { //firefox only
+      border-bottom: 0.13rem solid white;
+    }
     z-index: 1;
     a {
       color: $darkest-teal;
@@ -176,6 +200,11 @@
     margin: -1px 0 2rem;
     padding: 1rem 0.5rem 2rem;
     z-index: 0;
+
+    a {
+      word-break: break-word;
+    }
+
     h3 {
       font-size: 1.1rem;
       line-height: 1.1rem;
@@ -217,20 +246,53 @@
       display: initial;
     }
   }
+
+  .next-topic {
+    text-align: right;
+    margin-bottom: 1rem;
+  }
+
+
+  &.page-show {
+    .share-links-sidebar {
+      display: block;
+    }
+  }
 }
 
 .collapse {
   display: none;
 
   &.uncollapse {
-    display: block;
+    display: initial;
   }
 }
 
-.meta > * {
+.meta {
   display: inline-block;
-  vertical-align: top;
-  width: 33%;
+  @include breakpoint(medium) {
+    display: flex;
+
+    > * {
+      margin: 0 0.5rem;
+
+      &:first-child {
+        margin-left: 0;
+      }
+
+      &:last-child {
+        margin-right: 0;
+      }
+    }
+  }
+}
+
+.prereqs {
+  margin-bottom: 2rem;
+}
+.instructors-to-learners {
+  font-size: 0.8rem;
+  line-height: 0.8rem;
 }
 
 .topics-grid {

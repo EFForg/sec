@@ -8,7 +8,7 @@
   <div class="objective">
     <h3>Learning Objectives</h3>
     <div class="content">
-      <%= lesson.objective.html_safe %>
+      <%= html(lesson.objective, glossary: true) %>
     </div>
   </div>
 <% end %>

@@ -1,5 +1,12 @@
+.section-blog {
+  #main-content .description-text {
+    width: 100%;
+  }
+}
 .byline-etc {
   clear: left;
+  font-size: 0.9rem;
+  font-weight: 400;
   text-transform: uppercase;
   margin-bottom: 2rem;
 }

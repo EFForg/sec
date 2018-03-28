@@ -1,13 +1,13 @@
 class ErrorsController < ApplicationController
   def not_found
-    render status: 404 # rubocop:disable GitHub/RailsControllerRenderLiteral
+    render "errors/not_found.html.erb", status: 404
   end
 
   def unacceptable
-    render "errors/internal_error", status: 422
+    render "errors/internal_error.html.erb", status: 422
   end
 
   def internal_error
-    render status: 500 # rubocop:disable GitHub/RailsControllerRenderLiteral
+    render "errors/internal_error.html.erb", status: 500
   end
 end

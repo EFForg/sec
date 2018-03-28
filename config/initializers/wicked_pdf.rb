@@ -9,10 +9,6 @@
 # https://github.com/mileszs/wicked_pdf/blob/master/README.md
 
 WickedPdf.config = {
-  # Path to the wkhtmltopdf executable: This usually isn't needed if using
-  # one of the wkhtmltopdf-binary family of gems.
-  exe_path: "xvfb-run " + `which wkhtmltopdf`.strip,
-
   # Layout file to be used for all PDFs
   # (but can be overridden in `render :pdf` calls)
   layout: Rails.root.join("app/views/layouts/pdf.html.erb").to_s
@@ -27,7 +23,7 @@ class WickedPdf
   def initialize(wkhtmltopdf_binary_path = nil)
     @exe_path = wkhtmltopdf_binary_path || find_wkhtmltopdf_binary_path
     raise "Location of #{EXE_NAME} unknown" if @exe_path.empty?
-    raise "The executable provided doesn't seem to be #{EXE_NAME}" unless `#{@exe_path} --version`.try(:start_with?, EXE_NAME)
+    raise "The executable provided doesn't seem to be #{EXE_NAME}" unless `#{@exe_path} --version`.try(:include?, EXE_NAME)
     raise "#{EXE_NAME} isn't running correctly" unless $?.success?
 
     retrieve_binary_version

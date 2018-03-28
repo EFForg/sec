@@ -1,13 +1,16 @@
 module LessonsHelper
   def lesson_path(topic, lesson)
-    return [topic] if lesson.level_id == 0
     [topic, lesson]
+  end
+
+  def difficulty_class(level_id)
+    Lesson::LEVELS[level_id] || "?"
   end
 
   def difficulty_tag(level_id)
     levels = Array(level_id).map do |id|
-      c = (Lesson::LEVELS[id] || "?")
-      content_tag(:span, class: "difficulty-tag #{c[0]}"){ c.capitalize }
+      c = difficulty_class(id)
+      content_tag(:span, class: "difficulty-tag #{c}"){ c.capitalize }
     end
     safe_join(levels)
   end

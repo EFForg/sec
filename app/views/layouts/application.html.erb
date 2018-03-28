@@ -3,30 +3,49 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <%= tag :meta, property: "og:title", content: og_title.try(:strip) %>
+  <%= tag :meta, property: "og:type", content: "website" %>
+  <%= tag :meta, property: "og:url", content: url_for_share %>
+  <%= tag :meta, property: "og:image", content: og_image %>
+  <%= tag :meta, property: "og:description", content: og_description.try(:strip) %>
 
   <title><%= page_title %></title>
   <%= csrf_meta_tags %>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+  <%= content_for(:head) %>
 </head>
 
 <body class="section-<%= controller_name %> page-<%= action_name %>">
   <a href="#main-content" class="show-for-sr">Skip to main content</a>
   <%= render "layouts/header" %>
 
-  <div id="main-content">
-    <%= yield %>
+  <div id="page">
+    <div class="share-links-sidebar">
+      <%= render "shared/share", show_for: "medium" %>
+    </div>
+
+    <div class="side-feedback show-for-medium">
+      <%= render "shared/feedback" if current_admin_user %>
+    </div>
+
+    <div id="main-content">
+      <%= yield %>
+    </div>
   </div>
 
   <%= render "layouts/footer" %>
 
   <div id="anon-stats">
     <noscript>
-      <img src="https://anon-stats.eff.org/js/?idsite=7&amp;rec=1&amp;action_name=<%= escape_page_title -%>" style="border:0" alt="" />
+      <img src="https://anon-stats.eff.org/js/?idsite=28&amp;rec=1&amp;action_name=<%= escape_page_title -%>" style="border:0" alt="" />
     </noscript>
     <script type="text/javascript">
-      document.getElementById('anon-stats').innerHTML = '<img src="https://anon-stats.eff.org/js/?idsite=7&amp;rec=1&amp;urlref='+encodeURIComponent(document.referrer)+'&amp;action_name=<%= escape_page_title -%>" style="border:0" alt="" />';
+      document.getElementById('anon-stats').innerHTML = '<img src="https://anon-stats.eff.org/js/?idsite=28&amp;rec=1&amp;urlref='+encodeURIComponent(document.referrer)+'&amp;action_name=<%= escape_page_title -%>" style="border:0" alt="" />';
     </script>
   </div>
+
+  <span id="desktop-canary" class="show-for-medium"></span>
 </body>
 </html>

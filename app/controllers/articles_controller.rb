@@ -14,6 +14,7 @@ class ArticlesController < ApplicationController
   def show
     @article = Article.friendly.find(params[:id])
     protect_unpublished! @article
+    og_object @article
     breadcrumbs @article.name
   end
 end

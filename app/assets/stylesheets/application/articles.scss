@@ -1,7 +1,6 @@
 
 .section-articles {
   .toc {
-    float: right;
     list-style-type: none;
 
     > li {
@@ -9,7 +8,9 @@
     }
   }
 
-  h2 {
-    clear: both;
+  &.page-show {
+    .share-links-sidebar {
+      display: block;
+    }
   }
 }

@@ -1,32 +1,141 @@
+#page {
+  display: flex;
+
+  .share-links-sidebar {
+    flex: 0 0;
+
+    .share-links {
+      position: sticky;
+      top: 2rem;
+      margin-bottom: 2rem;
+    }
+  }
+
+  > #main-content {
+    flex: 1 1;
+  }
+}
+
+.share-links-sidebar {
+  display: none;
+}
+
+.side-feedback {
+  display: block;
+
+  .quick-feedback {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    z-index: 1000;
+
+    display: flex;
+
+    &.closed .drawer {
+      margin-right: -18rem;
+    }
+
+    .drawer {
+      width: 18rem;
+      margin-right: 0;
+      transition: margin-right 200ms;
+    }
+  }
+
+  .tab a {
+    position: relative;
+    top: -1rem;
+
+    display: inline-block;
+    background-color: $light-teal;
+    text-transform: uppercase;
+    color: $darkest-teal;
+    transform: rotate(-90deg);
+    transform-origin: right;
+    border-top-left-radius: 0.8rem;
+    border-top-right-radius: 0.8rem;
+    border-top: 1.5px solid #fff;
+    border-left: 1.5px solid #fff;
+    border-right: 1.5px solid #fff;
+    font-weight: bold;
+    margin-right: 1.05rem;
+    padding: 0.3rem 1.2rem;
+
+    text-decoration: none;
+  }
+
+  form {
+    border: 1px solid $light-teal;
+    padding: 0.5rem;
+    background-color: #fff;
+    min-height: 12.5rem;
+
+    font-size: 0.8rem;
+
+    .survey-question p {
+      color: $darkest-teal;
+      font-weight: bold;
+    }
+
+    .survey-response {
+      display: flex;
+      align-items: flex-end;
+    }
+
+    .survey-option {
+      flex: 1;
+      max-height: 24px;
+      margin-bottom: 1.7rem;
+      text-align: center;
+    }
+
+    .survey-option label {
+      border: 2px solid #000;
+      padding: 0.25rem 1.3rem;
+      cursor: pointer;
+    }
+
+    input[type=radio] {
+      width: 1px;
+      height: 1px;
+      clip: rect(1px, 1px, 1px, 1px);
+      position: absolute;
+      overflow: hidden;
+    }
+
+    input[type=radio]:checked + label {
+      background-color: $dark-teal;
+      color: #fff;
+    }
+
+    textarea {
+      width: 100%;
+      min-height: 130px;
+      margin-bottom: 1rem;
+      padding: 0.4rem;
+    }
+  }
+
+  h1 {
+    font-size: 1.2rem;
+    line-height: 1.618;
+    margin-bottom: 0.7rem;
+  }
+}
+
 #main-content {
   position: relative;
   margin: 1rem 1rem 6rem;
   @include breakpoint(medium) {
-    margin: 2rem 5rem;
-  }
-
-  .intro,
-  .intro p {
-    clear: both;
-    color: black;
-    margin-bottom: 1rem;
-    @include breakpoint(medium) {
-      font-size: 1.2rem;
-      line-height: 1.8rem;
-      margin-bottom: 1.8rem;
-    }
-  }
-  .update {
-    border: 2px solid $light-teal;
-    padding: 1rem;
+    margin: 0 5rem 2rem 5rem;
   }
   .description-text {
+    width: 100%;
     @include breakpoint(medium) {
       margin-bottom: 1.2rem;
       width: 66%;
     }
   }
-
 }
 
 .admin-links {
@@ -38,4 +147,44 @@
 #anon-stats {
   height: 0;
   overflow: hidden;
+}
+
+
+.pull-quote {
+  display: block;
+  float: left;
+  font-size: 1.5rem;
+  line-height: 2rem;
+  font-weight: 300;
+  color: $dark-gray;
+  max-width: 22rem;
+  margin: 2rem 2rem 2rem 0rem;
+  @include breakpoint(medium) {
+    font-size: 2rem;
+    line-height: 2.7rem;
+  }
+}
+
+.levels {
+  margin: 0.5rem 0 1.5rem;
+}
+
+@include breakpoint(small only) {
+  .large-8.large-centered.columns {
+    padding: 0;
+  }
+}
+
+
+.show-for-xlarge-only {
+  display: none;
+  @include breakpoint(xlarge) {
+    display: inline-block;
+  }
+}
+.hide-for-xlarge-only {
+  display: inline-block;
+  @include breakpoint(xlarge) {
+    display: none;
+  }
 }

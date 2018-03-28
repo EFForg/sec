@@ -16,34 +16,39 @@
 .top-bar {
   background-color: $light-teal;
   width: 34%;
-  align-items: stretch;
   line-height: 1.3rem;
+  font-weight: 400;
+
   @include breakpoint(medium) {
     width: 150px;
+    align-items: stretch;
   }
+
   .back-arrow {
-    float: left;
-    font-size: 5.5rem;
+    display: table-cell;
+    vertical-align: middle;
     font-weight: 100;
+    font-size: 2.5rem;
+    padding-right: 0.8rem;
   }
 
   .back-ssd {
     font-size: 13px;
-    padding: 0.4rem 0.5rem 0 0;
+    a {
+      display: block;
+      text-decoration: none;
+    }
   }
 
   .back-text {
-    display: inherit;
+    display: table-cell;
+    vertical-align: middle;
     line-height: 1rem;
-    padding: 0.5rem 0 0 2rem;
     max-width: 100px;
-    a {
-      text-decoration: none;
-    }
+    margin-left: 0.5rem;
+
     @include breakpoint(medium) {
-      display: table;
       line-height: 1rem;
-      padding: 0.3rem 0 0 0.3rem;
       max-width: none;
     }
   }
@@ -55,15 +60,21 @@
     text-transform: uppercase;
 
     .back-ssd {
+      max-width: 22rem;
       background-color: $dark-teal;
       padding: 0.5rem;
-      max-width: 300px;
+      flex: 1;
+      padding-right: 1rem;
+    }
+
+    .back-arrow {
+      font-size: 2rem;
+      padding-right: 0.5rem;
     }
 
     .tagline {
       color: $light-teal;
       background-color: black;
-      flex-basis: 0;
       flex-grow: 1;
       display: flex;
       align-items: center;
@@ -79,8 +90,6 @@
 
     .eff-tagline {
       font-size: 0.8rem;
-      margin: 0 auto;
-      text-align: left;
     }
   }
 }
@@ -149,7 +158,7 @@ header {
     font-size: 2.3rem;
     line-height: 2.5rem;
     font-weight: 300;
-    padding: 33px 0 33px 0;
+    padding: 2rem;
 
     .logo {
       display: inline-block;
@@ -207,31 +216,50 @@ header {
     }
   }
 
-  ul {  // menu for small and large screens
+  ul {
+    display: flex;
+    list-style-type: none;
+    background-color: $light-teal;
+
     li {
-      display: inline-block;
-      margin: 0;
-      border-left: 4px solid $light-teal;
-      padding: 0.2rem 4%;
-      width: auto;
+      flex: 1;
+      margin: 0 2px;
+      background-color: $darkest-teal;
       a {
+        display: inline-block;
+        vertical-align: top;
+        height: 100%;
+        width: 100%;
+        padding: 0.2rem 4%;
         font-size: 1.2rem;
       }
+
+      &:first-child {
+        margin-left: 4px;
+      }
+
       &:last-child {
-        border-right: 4px solid $light-teal;
+        margin-right: 4px;
       }
     }
-  }
 
+    @include breakpoint(medium only) {
+      li {
+        margin: 0;
 
-  .menu-items { // menu for medium screens
-    margin: 0;
-    padding: 0 1%;
-    div {
-      text-align: center;
-    }
-    a {
-      font-size: 1rem;
+        &:first-child {
+          margin-left: 0;
+        }
+
+        &:last-child {
+          margin-right: 0;
+        }
+
+        a {
+          font-size: 1rem;
+          padding: 0 1%;
+        }
+      }
     }
   }
 
@@ -249,12 +277,13 @@ header {
       padding: 0;
       li {
         min-height: 4rem;
-        padding: 0.6rem 0.1rem 0;
+        padding: 0 0rem;
         font-size: 0.8rem;
         line-height: 0.8rem;
         a {
-          font-size: 0.8rem;
+          font-size: 0.75rem;
           line-height: 0.8rem;
+          padding-top: 0.4rem;
         }
       }
     }
@@ -266,5 +295,4 @@ header {
       margin: 0 2px;
     }
   }
-
 }

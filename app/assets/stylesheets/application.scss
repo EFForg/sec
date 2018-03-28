@@ -1,18 +1,12 @@
 @import "foundation_and_overrides";
+@import "font-awesome";
 @import "application/variables/**/*";
 @import "application/base/**/*";
 @import "application/components/**/*";
-@import "application/**/*";
+@import "application/*";
 
 .center {
   text-align: center;
-}
-
-.row {
-  margin-top: 0;
-  @include breakpoint(medium) {
-    margin-top: 2rem;
-  }
 }
 
 .row aside {

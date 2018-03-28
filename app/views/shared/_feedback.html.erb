@@ -1,0 +1,39 @@
+<div class="quick-feedback closed">
+  <div class="tab">
+    <%= link_to "Feedback", feedback_root_path %>
+  </div>
+
+  <div class="drawer">
+    <%= form_for(Feedback.new, remote: true, url: feedback_create_path) do |f| %>
+      <%= invisible_captcha %>
+
+      <%= cache(cache_key_for_quick_survey) do %>
+        <%= f.fields_for(:survey_responses, quick_feedback_responses) do |sf| %>
+          <%= sf.hidden_field :survey_question_id %>
+
+          <div class="survey-question <%= "with-errors" if sf.object.errors.any? %>">
+            <p class="<%= "show-for-sr" unless sf.object.survey_question.options.present? %>">
+              <%= sf.label :value, survey_prompt(sf.object.survey_question),
+                    class: sf.object.survey_question.required? ? "required" : "" %>
+            </p>
+
+            <div class="survey-response">
+              <% sf.object.survey_question.options.each do |option| %>
+                <div class="survey-option">
+                  <%= sf.radio_button :value, option.value, required: sf.object.survey_question.required? %>
+                  <%= sf.label :value, option.value, value: option.value %>
+                </div>
+              <% end %>
+
+              <% unless sf.object.survey_question.options.present? %>
+                <%= sf.text_area :value, placeholder: sf.object.survey_question.prompt %>
+              <% end %>
+            </div>
+          </div>
+        <% end %>
+      <% end %>
+
+      <%= f.submit "Send feedback", data: { disable_with: false } %>
+    <% end %>
+  </div>
+</div>

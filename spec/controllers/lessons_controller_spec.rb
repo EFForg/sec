@@ -9,6 +9,14 @@ RSpec.describe LessonsController, type: :controller do
                            id: topic.lessons.first.level }
       expect(response).to have_http_status(:success)
     end
+
+    it "should protect unpublished content" do
+      topic.unpublish
+      expect {
+        get :show, params: { topic_id: topic.slug,
+                             id: topic.lessons.first.level }
+      }.to raise_error(ActiveRecord::RecordNotFound)
+    end
   end
 
 end
