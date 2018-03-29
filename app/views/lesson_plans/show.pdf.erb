@@ -1,0 +1,13 @@
+<h1>Lesson Plan:</h1>
+
+<% @lesson_plan.lessons.each_with_index do |lesson, ilesson| %>
+  <%= ilesson + 1 %>. <%= lesson.name %> (<%= lesson.duration.in_words %>)<br />
+<% end %>
+
+<p>Total duration: <%= @lesson_plan.duration.in_words %></p>
+
+<% @lesson_plan.lessons.each do |lesson| %>
+  <%= page_break %>
+  <% @topic, @lesson = lesson.topic, lesson %>
+  <%= render template: "lessons/show" %>
+<% end %>
