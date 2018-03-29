@@ -2,8 +2,7 @@ require_dependency "duration"
 
 class LessonPlan < ApplicationRecord
   has_many :lesson_plan_lessons,
-           after_add: ->(plan, _){ plan.update(pdf_file_updated_at: nil) },
-           after_remove: ->(plan, _){ plan.update(pdf_file_updated_at: nil) }
+           after_remove: ->(plan, _){ plan.update_column(:pdf_file_updated_at, nil) }
 
   has_many :lessons, through: :lesson_plan_lessons
 
