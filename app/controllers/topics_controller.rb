@@ -6,6 +6,7 @@ class TopicsController < ApplicationController
               "Lessons" => routes.topics_path
 
   def index
+    @page = Page.find_by!(name: "topics-overview")
     @topics = tagged_scope.preload(:lessons, :tags).
       published.order(created_at: :desc).
       page(params[:page])

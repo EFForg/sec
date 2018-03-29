@@ -44,11 +44,6 @@ module ContentHelper
     safe_join(links)
   end
 
-  def managed_content(region, **html_options)
-    content = ManagedContent.find_by!(region: region)
-    html(content.body, **html_options)
-  end
-
   private
 
   def process_links(doc, new_tab_for_all_links)
