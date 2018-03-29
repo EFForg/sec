@@ -1,4 +1,5 @@
 require_dependency "duration"
+require_dependency "pdf_template"
 
 class LessonPlan < ApplicationRecord
   has_many :lesson_plan_lessons,
@@ -23,32 +24,13 @@ class LessonPlan < ApplicationRecord
   end
 
   def recreate_pdf_file
-    controller = LessonPlansController.new
-    controller.instance_variable_set("@lesson_plan", self)
-
-    doc = controller.render_to_string(
-      template: "lesson_plans/show.pdf.erb",
-      layout: "layouts/pdf.html.erb"
+    pdf = PdfTemplate.new(
+      name: "Lesson Plan",
+      template: "lesson_plans/show.pdf.erb"
     )
 
-    pdf = WickedPdf.new.pdf_from_string(
-      doc,
-      pdf: "Lesson Plan",
-      margin: {
-        top: "0.6in",
-        bottom: "1in",
-        left: "1in",
-        right: "0.6in"
-      }
-    )
-
-    tmp = Tempfile.new(["lesson_plan", ".pdf"])
-    tmp.binmode
-    tmp.write(pdf)
-    tmp.flush
-    tmp.rewind
-
-    update!(pdf_file: tmp, pdf_file_updated_at: Time.now)
+    update!(pdf_file: pdf.render(lesson_plan: self),
+            pdf_file_updated_at: Time.now)
   end
 
   def pdf_file_filename
