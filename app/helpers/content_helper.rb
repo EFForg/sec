@@ -3,7 +3,7 @@ module ContentHelper
     %w(b strong i em u s strike del p)
   end
 
-  def preview(object, allowed_tags: allowed_tags_for_preview)
+  def preview(object, length: 500, allowed_tags: allowed_tags_for_preview)
     if object.respond_to?(:summary?) && object.summary?
       html = object.summary
     elsif object.respond_to?(:body)
@@ -17,7 +17,7 @@ module ContentHelper
     html = doc.to_html
 
     html = truncate(sanitize(html, tags: allowed_tags),
-                    length: 500, escape: false, separator: /\s/)
+                    length: length, escape: false, separator: /\s/)
 
     doc = Nokogiri::HTML.fragment(html)
     doc.to_html.html_safe # rubocop:disable Rails/OutputSafety
@@ -42,6 +42,17 @@ module ContentHelper
       link_to tag.name, send(url_helper, tag: tag.name)
     end
     safe_join(links)
+  end
+
+  def content_type(content)
+    case content
+    when Article
+      "Security Education 101"
+    when Topic
+      "Lesson"
+    else
+      content.class.name.titleize
+    end
   end
 
   private

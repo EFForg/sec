@@ -27,7 +27,7 @@ Rails.application.routes.draw do
   end
 
   get "/credits", as: :credits, to: "credits#index"
-  get "/search", as: :search, to: "search#index"
+  get "/search", as: :search, to: "search#results"
 
   get "/404", to: "errors#not_found"
   get "/422", to: "errors#unacceptable"

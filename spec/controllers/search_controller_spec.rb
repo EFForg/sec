@@ -2,15 +2,15 @@ require 'rails_helper'
 
 RSpec.describe SearchController, type: :controller do
 
-  describe "GET #index" do
+  describe "GET #results" do
     before do
-      FactoryGirl.create(:blog_post,
+      FactoryGirl.create(:article,
                          name: "a searchable name",
                          body: "some searchable content")
     end
 
     it "returns http success" do
-      get :index, params: { q: "searchable" }
+      get :results, params: { q: "searchable" }
       expect(response).to have_http_status(:success)
     end
   end
