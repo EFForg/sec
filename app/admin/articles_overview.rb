@@ -2,10 +2,10 @@ ActiveAdmin.register_page "Articles Overview" do
   menu parent: "Pages"
 
   page_action :update, method: :patch do
-    intro = ManagedContent.find_by!(region: "articles-intro")
+    page = Page.find_by!(name: "articles-overview")
 
-    unless intro.update(body: params[:page][:intro])
-      messages = intro.errors.full_messages.join
+    unless page.update(body: params[:articles_page][:overview])
+      messages = page.errors.full_messages.join
       flash[:error] = "Error: " + messages
       return redirect_to admin_articles_overview_path
     end
@@ -64,8 +64,8 @@ ActiveAdmin.register_page "Articles Overview" do
       true
     end
 
-    def intro
-      ManagedContent.find_by(region: "articles-intro").try(:body)
+    def overview
+      Page.find_by(name: "articles-overview").try(:body)
     end
 
     def sections
