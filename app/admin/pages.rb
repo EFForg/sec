@@ -1,6 +1,13 @@
 ActiveAdmin.register Page do
-  menu parent: "Content"
   actions :index, :edit, :update
+
+  permit_params :body
+
+  controller do
+    def find_resource
+      scoped_collection.friendly.find(params[:id])
+    end
+  end
 
   index do
     column :name do |page|
@@ -14,5 +21,7 @@ ActiveAdmin.register Page do
     inputs do
       f.input :body, as: :ckeditor
     end
+
+    f.actions
   end
 end

@@ -39,6 +39,6 @@ Page.find_or_create_by!(name: "credits")
 ["articles", "blog", "materials", "topics"].each do |region|
   page = Page.find_or_create_by!(name: "#{region}-overview")
   page.update!(
-    body: %(Intro text to #{region}. Edit me <a href="/admin/pages">here</a>.)
+    body: %(Intro text to #{region}. Edit me <a href="/admin/pages/#{region}-overview/edit">here</a>.)
   )
 end
