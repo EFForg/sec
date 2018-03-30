@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180323225102) do
+ActiveRecord::Schema.define(version: 20180330231744) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -215,16 +215,6 @@ ActiveRecord::Schema.define(version: 20180323225102) do
     t.index ["topic_id"], name: "index_lessons_on_topic_id"
   end
 
-  create_table "managed_content", force: :cascade do |t|
-    t.string "region", null: false
-    t.text "body", default: "", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.bigint "page_id"
-    t.index ["page_id"], name: "index_managed_content_on_page_id"
-    t.index ["region"], name: "index_managed_content_on_region", unique: true
-  end
-
   create_table "materials", force: :cascade do |t|
     t.string "name", default: "", null: false
     t.text "description", default: "", null: false
@@ -329,5 +319,4 @@ ActiveRecord::Schema.define(version: 20180323225102) do
     t.index ["material_id"], name: "index_uploads_on_material_id"
   end
 
-  add_foreign_key "managed_content", "pages"
 end
