@@ -1,14 +1,14 @@
-<% if lesson.duration.length > 0 %>
-  <div class="duration">
-    Duration: <%= lesson.duration.in_words %>
-  </div>
-<% end %>
+<div class="lesson card">
+  <div class="top">
+    <% if lesson.topic.icon.present? %>
+      <div class="icon"><%= link_to image_tag(lesson.topic.icon.url), [lesson.topic, lesson] %></div>
+    <% end %>
 
-<% if lesson.objective? %>
-  <div class="objective">
-    <h3>Learning Objectives</h3>
-    <div class="content">
-      <%= html(lesson.objective, glossary: true) %>
-    </div>
+    <h3><%= link_to lesson.topic.name, [lesson.topic, lesson] %></h3>
+
+    <div class="duration">Duration: <%= lesson.duration.in_words %></div>
+    <div class="levels"><%= difficulty_tag(lesson.level_id) %></div>
+
+    <%= yield %>
   </div>
-<% end %>
+</div>
