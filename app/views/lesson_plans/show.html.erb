@@ -25,7 +25,7 @@
 
       <% @lesson_plan_lessons.each do |lesson_plan_lesson| %>
 
-        <%= render "lessons/summary", lesson: lesson_plan_lesson.lesson do %>
+        <%= render "lessons/card", lesson: lesson_plan_lesson.lesson do %>
           <%= form_for current_lesson_plan, remote: true do |f| %>
             <%= f.fields_for :lesson_plan_lessons, lesson_plan_lesson do |sf| %>
               <%= sf.hidden_field :_destroy, value: true %>
