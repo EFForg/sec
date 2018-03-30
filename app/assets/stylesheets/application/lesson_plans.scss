@@ -35,6 +35,9 @@
 }
 
 .section-lesson_plans .lesson {
+  border-left: 16px solid $light-teal;
+  border-top: 2px solid $light-teal;
+
   .icon {
     display: none;
     float: left;
