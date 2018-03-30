@@ -185,9 +185,13 @@ table {
 
 
 ul, ol {
-  margin-left: 3rem;
+  margin-left: 1.6rem;
 }
 
 h1 {
   margin-bottom: 1rem;
+}
+
+.page-break {
+  page-break-before: always;
 }

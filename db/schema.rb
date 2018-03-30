@@ -194,6 +194,8 @@ ActiveRecord::Schema.define(version: 20180330231744) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "key"
+    t.string "pdf_file"
+    t.datetime "pdf_file_updated_at"
   end
 
   create_table "lessons", force: :cascade do |t|
