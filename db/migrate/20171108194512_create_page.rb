@@ -3,8 +3,10 @@ class CreatePage < ActiveRecord::Migration[5.1]
     create_table :pages do |t|
       t.string :name, null: false
       t.text :body
+      t.string :slug
 
       t.index :name, unique: true
+      t.index :slug, unique: true
 
       t.timestamps
     end
