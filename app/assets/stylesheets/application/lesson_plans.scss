@@ -33,3 +33,17 @@
     }
   }
 }
+
+.section-lesson_plans .lesson {
+  .icon {
+    display: none;
+    float: left;
+    margin-right: 20px;
+    width: 190px;
+    text-align: center;
+
+    @include breakpoint(medium) {
+      display: block;
+    }
+  }
+}
