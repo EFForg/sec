@@ -46,4 +46,19 @@
       display: block;
     }
   }
+
+  .remove-lesson {
+    background-image: image-url('x-icon.png');
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+    background-color: transparent;
+    height: 40px;
+    width: 40px;
+    border: 2px solid $light-teal;
+    color: transparent;
+    cursor: pointer;
+    position: absolute;
+    top: -2px;
+    right: -2px;
+  }
 }
