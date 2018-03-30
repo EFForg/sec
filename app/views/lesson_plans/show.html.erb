@@ -3,24 +3,26 @@
     <div class="breadcrumb"><a href="/topics">&lt; Back to Lesson Topics</a></div>
     <h1>Lesson Planner</h1>
 
-    <% if @lesson_plan_lessons.any? %>
-      <div class="export-formats">
-        <%= link_to "Download", lesson_plan_path(@lesson_plan, format: "zip") %>
-        <!-- Share this lesson plan: <input type="text" value="<%= lesson_plan_url @lesson_plan %>"> -->
-      </div>
-    <% end %>
-
     <p>
       In the lesson planner, you can organize your selected lessons to prepare for your next teaching opportunity. Drag the lesson to reorder and remove lessons you have completed or no longer need.
     </p>
 
-    <div>Your lessons (<span id="lesson-count"><%= @lesson_plan.lessons.count %></span>)</div>
-    <div>Total duration: <%= @lesson_plan.duration.in_words %></div>
+    <div class="your-lessons">
+      Your lessons (<span id="lesson-count"><%= @lesson_plan.lessons.count %></span>)
+    </div>
+    <div class="total-duration">
+      Total duration: <%= @lesson_plan.duration.in_words %>
+    </div>
 
     <% if @lesson_plan_lessons.empty? %>
       <p>It looks like you have not added any lessons to your Lesson Planner.</p>
       <p>Go to <%= link_to "LESSONS", topics_path %> to start choosing which lessons you would like to include.</p>
     <% else %>
+      <div class="export">
+        <%= link_to "Download", lesson_plan_path(@lesson_plan, format: "zip") %>
+        <!-- Share this lesson plan: <input type="text" value="<%= lesson_plan_url @lesson_plan %>"> -->
+      </div>
+
       <% @lesson_plan_lessons.each do |lesson_plan_lesson| %>
 
         <%= render "lessons/summary", lesson: lesson_plan_lesson.lesson do %>
