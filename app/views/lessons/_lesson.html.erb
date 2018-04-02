@@ -1,19 +1,23 @@
 <% if Flipper.enabled?(:lesson_plans) && @lesson.published? %>
   <%= form_for(current_lesson_plan, remote: true) do |f| %>
     <%= f.fields_for :lesson_plan_lessons, current_lesson_plan_lesson(@lesson) do |sf| %>
-      <div class="actions <%= 'disabled' if sf.object.persisted? %>">
+      <div class="actions">
         <%= sf.hidden_field :lesson_id %>
 
         <% if sf.object.persisted? %>
           <%= sf.hidden_field :_destroy, value: 1 %>
-          <%= f.submit "Remove From Lesson Plan (#{current_lesson_plan.lessons_count})" %>
+          <%= f.button "<i class='fa fa-minus'></i> Remove From Lesson Plan (#{current_lesson_plan.lessons_count})".html_safe, type: "submit" %>
         <% else %>
-          <%= f.submit "Add To Lesson Plan (#{current_lesson_plan.lessons_count})" %>
+          <%= f.button "<i class='fa fa-plus'></i> Add To Lesson Plan (#{current_lesson_plan.lessons_count})".html_safe, type: "submit" %>
         <% end %>
       </div>
-    <% end %>
 
-    <em class="notice"><%= link_to "Added To Lesson Plan", current_lesson_plan_path %></em>
+      <% if sf.object.persisted? %>
+        <em class="notice"><%= link_to current_lesson_plan_path do %><i class="fa fa-check"></i> Removed<% end %></em>
+      <% else %>
+        <em class="notice"><%= link_to current_lesson_plan_path do %><i class="fa fa-check"></i> Added<% end %></em>
+      <% end %>
+    <% end %>
   <% end %>
 <% end %>
 
