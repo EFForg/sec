@@ -7,6 +7,11 @@
     margin-bottom: 20px;
   }
 
+  .lesson-plan-overview {
+    width: 100%;
+    @include clearfix;
+  }
+
   .your-lessons,
   .total-duration {
     @extend h3;

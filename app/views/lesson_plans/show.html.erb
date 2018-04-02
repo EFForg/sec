@@ -7,11 +7,13 @@
       In the lesson planner, you can organize your selected lessons to prepare for your next teaching opportunity. Drag the lesson to reorder and remove lessons you have completed or no longer need.
     </p>
 
-    <div class="your-lessons">
-      Your lessons (<span id="lesson-count"><%= @lesson_plan.lessons.count %></span>)
-    </div>
-    <div class="total-duration">
-      Total duration: <%= @lesson_plan.duration.in_words %>
+    <div class="lesson-plan-overview">
+      <div class="your-lessons">
+        Your lessons (<span id="lesson-count"><%= @lesson_plan.lessons.count %></span>)
+      </div>
+      <div class="total-duration">
+        Total duration: <%= @lesson_plan.duration.in_words %>
+      </div>
     </div>
 
     <% if @lesson_plan_lessons.empty? %>
@@ -25,7 +27,7 @@
 
       <% @lesson_plan_lessons.each do |lesson_plan_lesson| %>
 
-        <%= render "lessons/card", lesson: lesson_plan_lesson.lesson do %>
+        <%= render "lessons/teaser", lesson: lesson_plan_lesson.lesson do %>
           <%= form_for current_lesson_plan, remote: true do |f| %>
             <%= f.fields_for :lesson_plan_lessons, lesson_plan_lesson do |sf| %>
               <%= sf.hidden_field :_destroy, value: true %>
