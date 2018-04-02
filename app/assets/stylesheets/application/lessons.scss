@@ -1,25 +1,3 @@
-@mixin add-lesson {
-  background: transparent;
-  border: 1px solid $darkest-teal;
-  color: $darkest-teal;
-  display: inline-block;
-  white-space: normal;
-  width: 20rem;
-  text-align: center;
-  margin-bottom: 1rem;
-  cursor: pointer;
-
-  font-size: 1rem;
-  line-height: 1rem;
-  padding: 0.2rem 1rem;
-
-
-  @include breakpoint(large) {
-    float: right;
-    margin-bottom: 0;
-  }
-}
-
 .difficulty-legend {
   margin: 0;
   li {
