@@ -25,13 +25,15 @@ module ContentHelper
 
   def html(html, new_tab_for_all_links: true, glossary: nil)
     if html
-      cache_if(glossary, glossary && cache_key_for_html(html)) do
-        doc = Nokogiri::HTML.fragment(html)
-        process_links(doc, new_tab_for_all_links)
-        link_glossary(doc, glossary) if glossary
+      capture do
+        cache_if(glossary, glossary && cache_key_for_html(html)) do
+          doc = Nokogiri::HTML.fragment(html)
+          process_links(doc, new_tab_for_all_links)
+          link_glossary(doc, glossary) if glossary
 
-        r = doc.to_html.html_safe # rubocop:disable Rails/OutputSafety
-        concat(r)
+          r = doc.to_html.html_safe # rubocop:disable Rails/OutputSafety
+          concat(r)
+        end
       end
     end
   end
