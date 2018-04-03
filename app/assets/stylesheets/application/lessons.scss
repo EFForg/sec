@@ -197,21 +197,9 @@
   }
 
 
-  .new_lesson_plan, .edit_lesson_plan {
+  .add_remove_lesson {
     i.fa {
       margin-right: 0.35rem;
-    }
-
-    .notice {
-      display: none;
-    }
-
-    .disabled {
-      display: none;
-    }
-
-    .disabled + .notice, .disabled + input + .notice {
-      display: initial;
     }
   }
 
@@ -297,4 +285,20 @@
 
 .section-topics.page-index .lesson-planner-link {
   text-transform: uppercase;
+}
+
+form.add_remove_lesson {
+  button[value=destroy] {
+    display: none !important;
+  }
+
+  input[name=_method][value=delete] + .actions {
+    button[value=add] {
+      display: none !important;
+    }
+
+    button[value=destroy] {
+      display: flex !important;
+    }
+  }
 }

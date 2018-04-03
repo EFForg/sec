@@ -13,7 +13,11 @@ Rails.application.routes.draw do
     resources :lessons, path: "", only: [:show]
   end
 
-  resources :lesson_plans, path: "/lesson-plans", only: [:create, :update, :show]
+  resources :lesson_plans, path: "/lesson-plans", only: [:create, :update, :show] do
+    post :lessons, to: "lesson_plans#create_lesson"
+    delete :lessons, to: "lesson_plans#destroy_lesson"
+  end
+
   get "/lesson-plan", as: :current_lesson_plan, to: "lesson_plans#show"
 
   resources :materials, only: [:index, :show]

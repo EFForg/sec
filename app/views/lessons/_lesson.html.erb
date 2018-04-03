@@ -1,23 +1,15 @@
 <% if Flipper.enabled?(:lesson_plans) && @lesson.published? %>
-  <%= form_for(current_lesson_plan, remote: true) do |f| %>
-    <%= f.fields_for :lesson_plan_lessons, current_lesson_plan_lesson(@lesson) do |sf| %>
-      <div class="actions">
-        <%= sf.hidden_field :lesson_id %>
-
-        <% if sf.object.persisted? %>
-          <%= sf.hidden_field :_destroy, value: 1 %>
-          <%= f.button "<i class='fa fa-minus'></i> Remove From Lesson Plan (#{current_lesson_plan.lessons_count})".html_safe, type: "submit" %>
-        <% else %>
-          <%= f.button "<i class='fa fa-plus'></i> Add To Lesson Plan (#{current_lesson_plan.lessons_count})".html_safe, type: "submit" %>
-        <% end %>
-      </div>
-
-      <% if sf.object.persisted? %>
-        <em class="notice"><%= link_to current_lesson_plan_path do %><i class="fa fa-check"></i> Removed<% end %></em>
-      <% else %>
-        <em class="notice"><%= link_to current_lesson_plan_path do %><i class="fa fa-check"></i> Added<% end %></em>
+  <%= form_tag([current_lesson_plan, :lessons], remote: true, method: "post", class: "add_remove_lesson", data: { lesson_id: @lesson.id }) do %>
+    <%= hidden_field_tag :_method, current_lesson_plan_lesson(@lesson).persisted? ? "delete" : "post" %>
+    <div class="actions">
+      <%= hidden_field_tag :lesson_id, @lesson.id %>
+      <%= button_tag type: "submit", value: "add" do %>
+        <i class="fa fa-plus"></i><span>Add To<br/ >Lesson Plan (<span class="lesson-count"><%= current_lesson_plan.lessons_count %></span>)</span>
       <% end %>
-    <% end %>
+      <%= button_tag type: "submit", value: "destroy" do %>
+        <i class="fa fa-plus"></i><span>Remove From<br/ >Lesson Plan (<span class="lesson-count"><%= current_lesson_plan.lessons_count %></span>)</span>
+      <% end %>
+    </div>
   <% end %>
 <% end %>
 

@@ -1,8 +1,9 @@
 <div class="row">
   <div class="large-8 large-centered columns">
     <% if Flipper.enabled?(:lesson_plans) %>
-      <%= link_to "Lesson Planner (#{current_lesson_plan.lessons_count})".html_safe,
-                  current_lesson_plan_path, class: "lesson-planner-link arrow-link" %>
+      <%= link_to current_lesson_plan_path, class: "lesson-planner-link arrow-link" do %>
+        Lesson<br />Planner (<span class="lesson-count"><%= current_lesson_plan.lessons_count %></span>)
+      <% end %>
     <% end %>
 
     <div class="lesson-back"><a href="/topics">&lt; Back to Lesson Topics</a></div>
