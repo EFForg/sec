@@ -7,40 +7,42 @@
       In the lesson planner, you can organize your selected lessons to prepare for your next teaching opportunity. Drag the lesson to reorder and remove lessons you have completed or no longer need.
     </p>
 
-    <div class="lesson-plan-overview">
-      <div class="your-lessons">
-        Your lessons (<span id="lesson-count"><%= @lesson_plan.lessons.count %></span>)
-      </div>
-      <div class="total-duration">
-        Total duration: <%= @lesson_plan.duration.in_words %>
-      </div>
-    </div>
+    <%= react_component "LessonPlan", render("lesson_plan.json") %>
 
-    <% if @lesson_plan_lessons.empty? %>
-      <p>It looks like you have not added any lessons to your Lesson Planner.</p>
-      <p>Go to <%= link_to "LESSONS", topics_path %> to start choosing which lessons you would like to include.</p>
-    <% else %>
-      <div class="export">
-        <%= link_to "Download", lesson_plan_path(@lesson_plan, format: "zip") %>
-        <!-- Share this lesson plan: <input type="text" value="<%= lesson_plan_url @lesson_plan %>"> -->
-      </div>
-
-      <ul id="lesson-plan-lessons">
-        <% @lesson_plan_lessons.each do |lesson_plan_lesson| %>
-
-          <%= render "lessons/teaser", lesson: lesson_plan_lesson.lesson do %>
-            <%= form_for current_lesson_plan, remote: true do |f| %>
-              <%= f.fields_for :lesson_plan_lessons, lesson_plan_lesson do |sf| %>
-                <%= sf.hidden_field :_destroy, value: true %>
-              <% end %>
-
-              <%= f.submit "Remove this lesson", class: "remove-lesson" %>
-            <% end %>
-            <div class="handle">Drag to reorder</div>
-          <% end %>
-
-        <% end %>
-      </ul>
-    <% end %>
+    <!-- <div class="lesson&#45;plan&#45;overview"> -->
+    <!--   <div class="your&#45;lessons"> -->
+    <!--     Your lessons (<span id="lesson&#45;count"><%= @lesson_plan.lessons.count %></span>) -->
+    <!--   </div> -->
+    <!--   <div class="total&#45;duration"> -->
+    <!--     Total duration: <%= @lesson_plan.duration.in_words %> -->
+    <!--   </div> -->
+    <!-- </div> -->
+    <!--  -->
+    <!-- <% if @lesson_plan_lessons.empty? %> -->
+    <!--   <p>It looks like you have not added any lessons to your Lesson Planner.</p> -->
+    <!--   <p>Go to <%= link_to "LESSONS", topics_path %> to start choosing which lessons you would like to include.</p> -->
+    <!-- <% else %> -->
+    <!--   <div class="export"> -->
+    <!--     <%= link_to "Download", lesson_plan_path(@lesson_plan, format: "zip") %> -->
+    <!--     <!&#45;&#45; Share this lesson plan: <input type="text" value="<%= lesson_plan_url @lesson_plan %>"> &#45;&#45;> -->
+    <!--   </div> -->
+    <!--  -->
+    <!--   <ul id="lesson&#45;plan&#45;lessons"> -->
+    <!--     <% @lesson_plan_lessons.each do |lesson_plan_lesson| %> -->
+    <!--  -->
+    <!--       <%= render "lessons/teaser", lesson: lesson_plan_lesson.lesson do %> -->
+    <!--         <%= form_for current_lesson_plan, remote: true do |f| %> -->
+    <!--           <%= f.fields_for :lesson_plan_lessons, lesson_plan_lesson do |sf| %> -->
+    <!--             <%= sf.hidden_field :_destroy, value: true %> -->
+    <!--           <% end %> -->
+    <!--  -->
+    <!--           <%= f.submit "Remove this lesson", class: "remove&#45;lesson" %> -->
+    <!--         <% end %> -->
+    <!--         <div class="handle">Drag to reorder</div> -->
+    <!--       <% end %> -->
+    <!--  -->
+    <!--     <% end %> -->
+    <!--   </ul> -->
+    <!-- <% end %> -->
   </div>
 </div>

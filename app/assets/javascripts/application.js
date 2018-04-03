@@ -11,9 +11,10 @@
 // about supported directives.
 //
 //= require jquery
-//= require jquery-ui-sortable-npm
 //= require rails-ujs
 //= require turbolinks
+//= require react
+//= require react_ujs
 //= require_tree ./application
 //= require foundation
 
