@@ -37,11 +37,16 @@
       right: 15px;
     }
   }
+
+  #lesson-plan-lessons {
+    margin: 0;
+  }
 }
 
 .section-lesson_plans .lesson {
   border-left: 16px solid $light-teal;
   border-top: 2px solid $light-teal;
+  background-color: white;
 
   .top {
     padding-right: 1.8rem;
