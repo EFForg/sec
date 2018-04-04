@@ -21,7 +21,7 @@ class LessonsController < ApplicationController
       format.html { render "topics/show" }
       format.js
       format.pdf do
-        if Rails.env.development?
+        if Rails.env.development? && !request.headers["X-No-Pdf"]
           UpdateLessonPdf.perform_now(@lesson.id)
           send_file(@lesson.reload.pdf.path, disposition: "inline")
         else
