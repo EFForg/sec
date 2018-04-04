@@ -170,11 +170,7 @@
       line-height: 1.1rem;
       margin: 1rem 0 0;
     }
-    .actions {
-      button[type="submit"] {
-        @include add-lesson;
-      }
-    }
+
     @include breakpoint(medium) {
       font-size: 16px;
       line-height: 1.4rem;
@@ -184,22 +180,6 @@
         line-height: 1.8rem;
         margin: 1rem 0 0.7rem 0;
       }
-    }
-  }
-  .notice a {
-    @include add-lesson;
-    font-style: normal;
-    text-decoration: none;
-
-    border-color: $dark-teal;
-    background-color: $dark-teal;
-    color: white;
-  }
-
-
-  .add_remove_lesson {
-    i.fa {
-      margin-right: 0.35rem;
     }
   }
 
@@ -301,4 +281,15 @@ form.add_remove_lesson {
       display: flex !important;
     }
   }
+
+  i.fa {
+    margin-right: 0.35rem;
+  }
+
+  .actions {
+    button[type="submit"] {
+      @include add-lesson;
+    }
+  }
 }
+
