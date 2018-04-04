@@ -58,7 +58,7 @@ class LessonPlansController < ApplicationController
 
   def create_lesson
     params[:lesson_plan] = {
-      lesson_plan_lessons_attributes:[
+      lesson_plan_lessons_attributes: [
         { lesson_id: params[:lesson_id] }
       ]
     }
@@ -71,12 +71,13 @@ class LessonPlansController < ApplicationController
   end
 
   def destroy_lesson
-    lesson_plan_lesson = helpers.current_lesson_plan_lesson(Lesson.find(params[:lesson_id]))
+    lesson = Lesson.find(params[:lesson_id])
+    lesson_plan_lesson = helpers.current_lesson_plan_lesson(lesson)
 
     params[:lesson_plan] = {
       lesson_plan_lessons_attributes: [
         id: lesson_plan_lesson.id,
-        _destroy: '1'
+        _destroy: "1"
       ]
     }
 

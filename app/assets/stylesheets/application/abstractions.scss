@@ -1,14 +1,13 @@
 @mixin add-lesson {
   float: right;
   display: flex;
-  margin-bottom: 0;
+  margin-bottom: 1rem;
 
   background: transparent;
   border: 1px solid $darkest-teal;
   color: $darkest-teal;
 
   text-align: left;
-  margin-bottom: 1rem;
   cursor: pointer;
 
   font-size: 1rem;
