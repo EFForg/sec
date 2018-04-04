@@ -3,10 +3,10 @@
     <%= hidden_field_tag :_method, current_lesson_plan_lesson(@lesson).persisted? ? "delete" : "post" %>
     <div class="actions">
       <%= hidden_field_tag :lesson_id, @lesson.id %>
-      <%= button_tag type: "submit", value: "add" do %>
+      <%= button_tag type: "submit", value: "add", title: "Add To Lesson Plan" do %>
         <i class="fa fa-plus"></i><span>Add To<br/ >Lesson Plan (<span class="lesson-count"><%= current_lesson_plan.lessons_count %></span>)</span>
       <% end %>
-      <%= button_tag type: "submit", value: "destroy" do %>
+      <%= button_tag type: "submit", value: "destroy", title: "Remove From Lesson Plan" do %>
         <i class="fa fa-plus"></i><span>Remove From<br/ >Lesson Plan (<span class="lesson-count"><%= current_lesson_plan.lessons_count %></span>)</span>
       <% end %>
     </div>
