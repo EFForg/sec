@@ -5,6 +5,8 @@ class LessonsController < ApplicationController
   breadcrumbs "Security Education" => routes.root_path,
               "Lessons" => routes.topics_path
 
+  skip_before_action :verify_authenticity_token, only: :show
+
   def show
     @topic = Topic.friendly.find(params[:topic_id])
     protect_unpublished! @topic

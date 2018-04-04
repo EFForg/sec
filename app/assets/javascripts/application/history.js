@@ -4,11 +4,11 @@
  */
 
 mark_remote = function(url) {
-  return url + "?remote";
+  return url + ".js?remote";
 }
 
 unmark_remote = function(url) {
-  return url.replace("?remote", "");
+  return url.replace(".js?remote", "");
 }
 
 $(document).on("ajax:before", function(e) {

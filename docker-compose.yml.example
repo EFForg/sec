@@ -38,19 +38,17 @@ services:
     image: redis
 
   nginx:
-    build:
-      context: ./nginx
+    image: nginx
+    volumes:
+      - ./nginx/sec.conf:/etc/nginx/conf.d/default.conf
+      - ./site:/var/www/html:ro
+      - ./files:/var/www/files
 
     depends_on:
       - app
 
     ports:
       - '3000:3000'
-
-    volumes:
-      - ./nginx/sec.conf:/etc/nginx/sites-enabled/sec.conf
-      - ./public:/var/www/html
-      - ./files:/var/www/files
 
 # Cron service for production
 #   cron:

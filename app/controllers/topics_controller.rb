@@ -5,6 +5,8 @@ class TopicsController < ApplicationController
   breadcrumbs "Security Education" => routes.root_path,
               "Lessons" => routes.topics_path
 
+  skip_before_action :verify_authenticity_token, only: :show
+
   def index
     @topics = tagged_scope.preload(:lessons, :tags).
       published.order(created_at: :desc).

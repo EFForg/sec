@@ -3,8 +3,14 @@ class ApplicationController < ActionController::Base
 
   include Sharing
 
+  skip_before_action :verify_authenticity_token, only: :session_data
+
   def not_found
     raise ActionController::RoutingError.new("Not Found")
+  end
+
+  def session_data
+    render "shared/session_data"
   end
 
   include BreadcrumbsHelper::ControllerMethods

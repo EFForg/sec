@@ -2,6 +2,8 @@ Rails.application.routes.draw do
   mount Ckeditor::Engine => '/ckeditor'
   root to: "home#index"
 
+  get "session.js", to: "application#session_data", as: :session_data
+
   resources :articles, only: [:index, :show]
 
   scope :blog, controller: "blog" do
