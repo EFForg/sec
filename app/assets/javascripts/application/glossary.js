@@ -14,18 +14,6 @@ $(document).on('mouseout', '.glossary-term, .glossary-definition', (e) => {
 });
 
 $(document).on('click', '.glossary-term', (e) => {
-  if(e.target == e.currentTarget) {
-    id = $(e.target).data()['toggle'];
-
-    $('.glossary-definition').not(e.currentTarget).hide('fast');
-    $('#'+id).toggle('fast');
-  }
+  url = $(e.target).find('a').attr('href');
+  window.open(url);
 });
-
-$(document).click((e) => {
-  if (!$(e.target).closest('.glossary-term').length) {
-    $('.glossary-definition').hide('fast');
-  };
-});
-
-
