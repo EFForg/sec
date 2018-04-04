@@ -1,6 +1,9 @@
 class LessonPlansController < ApplicationController
   include Zipping
 
+  skip_before_action :verify_authenticity_token
+  before_action :verify_request_origin
+
   def show
     if params[:id]
       @lesson_plan = LessonPlan.find_by(key: params[:id])
