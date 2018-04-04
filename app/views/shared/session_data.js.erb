@@ -1,5 +1,5 @@
 window.session = {
-  lesson_plan_id: <%= session[:lesson_plan_id].to_json %>
+  lessonPlanId: <%= session[:lesson_plan_id].to_json %>,
+  lessonPlanSize: <%= current_lesson_plan.lessons_count %>,
+  lessonPlanLessons: <%= current_lesson_plan.lesson_ids.to_json %>
 };
-
-document.querySelector('meta[name=csrf-token]').content = "<%= form_authenticity_token %>";

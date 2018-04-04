@@ -1,16 +1,8 @@
-$('#lesson-count, .lesson-count').html('<%= @lesson_plan.lessons.count %>');
+window.session.lessonPlanLessons = <%= @lesson_plan.lesson_ids.to_json %>;
 
 // Remove deleted lessons from plan
 var lesson_plan_lesson_ids = <%= @lesson_plan.lesson_plan_lessons.pluck(:id).to_json %>;
 $('#planned-lessons .lesson').each(function(i, el) {
   var lesson_is_planned = $.inArray($(el).data('lpl'), lesson_plan_lesson_ids);
   if (lesson_is_planned < 0) { $(el).remove(); }
-});
-
-var lesson_ids = <%= @lesson_plan.lessons.pluck(:id).to_json %>;
-$('form.add_remove_lesson').each(function() {
-  if (lesson_ids.indexOf($(this).data('lesson-id')) != -1)
-    $('input[name=_method]', this).attr('value', 'delete');
-  else
-    $('input[name=_method]', this).attr('value', 'post');
 });

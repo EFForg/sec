@@ -13,7 +13,7 @@
     </div>
 
     <div class="your-lessons">
-      <h3>Your lessons (<span id="lesson-count"><%= @lesson_plan.lessons.count %></span>)</h3>
+      <h3>Your lessons <span id="lesson-count">(<%= @lesson_plan.lessons.count %>)</span></h3>
 
       <div class="export-formats">
         <%= link_to "Download", lesson_plan_path(@lesson_plan, format: "zip") %>
