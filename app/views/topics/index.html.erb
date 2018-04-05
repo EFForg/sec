@@ -8,16 +8,13 @@
 
     <% if Flipper.enabled?(:lesson_plans) %>
       <div class="column large-4">
-        <div style="font-size: 0.8rem;
-                    line-height: 1.2rem;
-                    border: 2px solid #c7dddb;
-                    padding: 1rem;">
+        <aside>
           <p>In the Lesson Planner, you can organize your selected lessons to prepare for your next teaching opportunity.</p>
 
           <%= link_to "See Lesson Planner", current_lesson_plan_path,
                       class: "lesson-planner-link arrow-link-small",
                       style: "float: none" %>
-        </div>
+        </aside>
       </div>
     <% end %>
   </div>
