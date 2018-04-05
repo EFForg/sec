@@ -1,20 +1,5 @@
 //= require jquery-ui-sortable-npm
 
-$(window).on("load", function() {
-  var lessons = $("#lesson-plan-lessons");
-  lessons.sortable({
-    // handle: ".handle",
-    axis: "y",
-    // stop: updatePositions
-  });
-
-  // function updatePositions() {
-  //   lessons.each(function(i) {
-  //     $(this).find("input[name*=position]").val(i);
-  //   });
-  // }
-});
-
 var LessonPlan = createReactClass({
   getInitialState: function() {
     return {
@@ -25,14 +10,19 @@ var LessonPlan = createReactClass({
   },
 
   componentDidMount: function() {
+    var self = this;
 
+    $(this.refs.lessons).sortable({
+      axis: "y",
+      stop: self.reorderLessons
+    });
   },
 
-  componentWillUnmount: function() {
-
+  reorderLessons: function(e) {
+    console.log("Pending functionality");
   },
 
-  onRemoveLesson: function(e) {
+  removeLesson: function(e) {
     var self = this;
 
     $.ajax({
@@ -57,12 +47,12 @@ var LessonPlan = createReactClass({
     return (
       <div className="lesson-plan">
         <div className="your-lessons">
-          Your lessons (<span id="lesson-count">{state.lessonsCount}</span>)
+          Your lessons ({state.lessonsCount})
         </div>
         <div className="total-duration">
           Total duration: {state.durationInWords}
         </div>
-        <ul id="lesson-plan-lessons">
+        <ul id="lesson-plan-lessons" ref="lessons">
           {state.lessons.map((lesson) =>
             <Lesson key={lesson.id}
                     id={lesson.id}
@@ -70,7 +60,7 @@ var LessonPlan = createReactClass({
                     duration={lesson.duration}
                     difficultyTag={lesson.difficulty_tag}
                     renderedIcon={lesson.rendered_icon}
-                    onRemoveLesson={this.onRemoveLesson} />
+                    removeLesson={this.removeLesson} />
           )}
         </ul>
       </div>
@@ -89,7 +79,7 @@ var Lesson = createReactClass({
           <h3>{props.name}</h3>
           <div className="duration">Duration: {props.duration}</div>
           <div className="levels" dangerouslySetInnerHTML={{__html: props.difficultyTag}} />
-          <button id={props.id} onClick={this.props.onRemoveLesson}>Remove</button>
+          <button id={props.id} onClick={props.removeLesson}>Remove</button>
         </div>
       </li>
     );

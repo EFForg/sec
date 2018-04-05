@@ -57,7 +57,7 @@ class LessonPlansController < ApplicationController
     @lesson_plan.lesson_plan_lessons.
       where(lesson_id: params[:lesson_id]).destroy_all
 
-    render "_teaser"
+    render @lesson_plan
   end
 
   private
