@@ -12,7 +12,8 @@ unmark_remote = function(url) {
 }
 
 $(document).on("ajax:before", function(e) {
-  e.target.href = mark_remote(e.target.href);
+  if (e.target.nodeName == "A")
+    e.target.href = mark_remote(e.target.href);
 });
 
 $(document).on("ajax:success", function(e) {
@@ -22,11 +23,12 @@ $(document).on("ajax:success", function(e) {
 });
 
 $(document).on("ajax:complete", function(e) {
-  e.target.href = unmark_remote(e.target.href);
+  if (e.target.nodeName == "A")
+    e.target.href = unmark_remote(e.target.href);
 });
 
 window.onpopstate = function(event) {
-  if (event.state.remote) {
+  if (event.state && event.state.remote) {
     var target = mark_remote(window.location.pathname);
     $.getScript(target);
   }
