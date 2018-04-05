@@ -97,9 +97,9 @@ group :test do
   gem "capybara", "~> 2.13"
   gem "capybara-webkit"
   gem "factory_girl_rails"
+  gem "rack_session_access"
   gem "rspec-core"
   gem "rspec-rails"
-  gem "rack_session_access"
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
