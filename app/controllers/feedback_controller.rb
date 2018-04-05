@@ -1,6 +1,9 @@
 class FeedbackController < ApplicationController
   invisible_captcha only: :create
 
+  skip_before_action :verify_authenticity_token
+  before_action :verify_request_origin
+
   def new
     @feedback = Feedback.new
 
