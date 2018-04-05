@@ -8,8 +8,8 @@ if [ "$DB_MIGRATE" = "true" ]; then
   bundle exec rake db:migrate
 fi
 
-if [ "$ROLE" = "web" ]; then
-  cp -ru public/* nginx_static
+if [ "$ROLE" = "web" -a "$RAILS_ENV" == "production" ]; then
+    bundle exec rake static:generate
 fi
 
 rm -rf "/tmp/.X$DISPLAY-lock"
