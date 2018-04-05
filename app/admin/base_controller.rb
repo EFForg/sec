@@ -1,4 +1,6 @@
 class ActiveAdmin::BaseController
+  include CacheUpdates
+
   actions :all, except: [:show]
   after_action :set_flash_header
 

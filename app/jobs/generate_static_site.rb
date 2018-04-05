@@ -1,5 +1,9 @@
 class GenerateStaticSite < ApplicationJob
-  def perform
+  RetryLater = Class.new(Exception)
+
+  def perform(force=true)
+    check_for_recent_build unless force
+
     FileUtils.mkdir_p(Rails.root.join("site"))
     Dir.chdir(Rails.root.join("site"))
 
@@ -57,9 +61,40 @@ class GenerateStaticSite < ApplicationJob
       wget("#{url_base}/#{f}", "-O", "#{f}/index.html")
       FileUtils.rm("#{f}/index.html") unless $?.success?
     end
+
+    FileUtils.touch("index.html")
   end
 
   def wget(*args)
-    system("wget", "-q", "--header", "X-No-Pdf: 1", *args)
+    system("wget", "-q",
+           "--header", "X-No-Pdf: 1",
+           "--header", "Host: #{ENV['SERVER_HOST']}",
+           *args)
+  end
+
+  def check_for_recent_build
+    if last_build_time >= Time.now - 30.seconds
+      raise RetryLater, "build is #{Time.now-last_build_time}s old"
+    end
+  end
+
+  def last_build_time
+    File.mtime(Rails.root.join("site/index.html")) rescue Time.at(0)
+  end
+
+  def max_attempts
+    5
+  end
+
+  def max_run_time
+    30.seconds
+  end
+
+  def reschedule_at(current_time, attempts)
+    current_time + 15.seconds
+  end
+
+  def destroy_failed_jobs?
+    last_build_time >= created_at + 30.seconds
   end
 end
