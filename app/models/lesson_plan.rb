@@ -42,7 +42,7 @@ class LessonPlan < ApplicationRecord
   end
 
   def to_param
-    key
+    persisted? ? key : "current"
   end
 
   private

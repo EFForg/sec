@@ -221,6 +221,9 @@ GEM
     rack (2.0.4)
     rack-test (0.8.2)
       rack (>= 1.0, < 3)
+    rack_session_access (0.1.1)
+      builder (>= 2.0.0)
+      rack (>= 1.0.0)
     rails (5.1.4)
       actioncable (= 5.1.4)
       actionmailer (= 5.1.4)
@@ -394,6 +397,7 @@ DEPENDENCIES
   pg (~> 0.18)
   pg_search
   puma (~> 3.7)
+  rack_session_access
   rails (~> 5.1.4)
   react-rails
   redis (~> 3.0)

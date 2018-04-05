@@ -40,51 +40,11 @@
 
   .last-modified {
     clear: left;
-    margin-bottom: 2rem;
     text-transform: uppercase;
-  }
+    margin-bottom: 1rem;
 
-  .view-lesson-planner {
-    margin-top: 1rem;
-    position: relative;
-    .lesson-planner-link {
-      background: $darkest-teal;
-      color: white;
-      display: inline-block;
-      height: 2rem;
-      font-size: 0.7rem;
-      line-height: 0.8rem;
-      padding: 0.3rem 2.7rem 0 1rem;
-      position: absolute;
-      right: 0;
-      text-decoration: none;
-      text-transform: uppercase;
-      width: 143px;
-      @include breakpoint(medium) {
-        font-size: 1rem;
-        height: 3rem;
-        line-height: 1rem;
-        margin-right: 2.95rem;
-        padding: 0.9rem 1rem;
-        width: auto;
-      }
-    }
-    .lesson-arrow {
-      background: white;
-      width: 0;
-      height: 0;
-      border-left: 1rem solid $darkest-teal;
-      border-right: 1rem solid transparent;
-      border-bottom: 1rem solid transparent;
-      border-top: 1rem solid transparent;
-      position: absolute;
-      right: 0;
-      @include breakpoint(medium) {
-        border-left: 1.5rem solid $darkest-teal;
-        border-right: 1.5rem solid transparent;
-        border-bottom: 1.5rem solid transparent;
-        border-top: 1.5rem solid transparent;
-      }
+    @include breakpoint(large) {
+      float: left;
     }
   }
   .topics-cards {
@@ -100,7 +60,7 @@
 
   .tags {
     float: left;
-    margin: 0 1rem 0 0;
+    margin: 1rem 1rem 0 0;
     width: auto;
     @include breakpoint(medium) {
       width: 60%;
@@ -193,11 +153,7 @@
       line-height: 1.1rem;
       margin: 1rem 0 0;
     }
-    .actions {
-      input[type="submit"] {
-        @include add-lesson;
-      }
-    }
+
     @include breakpoint(medium) {
       font-size: 16px;
       line-height: 1.4rem;
@@ -207,26 +163,6 @@
         line-height: 1.8rem;
         margin: 1rem 0 0.7rem 0;
       }
-    }
-  }
-  .notice a {
-    @include add-lesson;
-    font-style: normal;
-    text-decoration: none;
-  }
-
-
-  .new_lesson_plan, .edit_lesson_plan {
-    .notice {
-      display: none;
-    }
-
-    .disabled {
-      display: none;
-    }
-
-    .disabled + .notice, .disabled + input + .notice {
-      display: initial;
     }
   }
 
@@ -302,3 +238,45 @@
   font-size: 0.9rem;
   text-decoration: none;
 }
+
+
+.section-topics.page-show, .section-lessons.page-show {
+  .lesson-planner-link {
+    float: right;
+  }
+}
+
+.section-topics.page-index .lesson-planner-link {
+  text-transform: uppercase;
+}
+
+form.add_remove_lesson {
+  button[type="submit"] {
+    @include add-lesson;
+  }
+
+  input[name=_method][value=post] + .actions {
+    button[type=submit][value=add] {
+      display: flex;
+    }
+
+    button[type=submit][value=destroy] {
+      display: none;
+    }
+  }
+
+  input[name=_method][value=delete] + .actions {
+    button[type=submit][value=add] {
+      display: none;
+    }
+
+    button[type=submit][value=destroy] {
+      display: flex;
+    }
+  }
+
+  i.fa {
+    margin-right: 0.35rem;
+  }
+}
+

@@ -1,28 +1,25 @@
 <div class="row">
   <h1>Lesson Topics</h1>
 
-  <div class="view-lesson-planner">
+  <div class="row">
+    <div class="column large-8 content">
+      <%= managed_content("topics-intro") %>
+    </div>
+
     <% if Flipper.enabled?(:lesson_plans) %>
-      <%= link_to "View Lesson Planner",  current_lesson_plan_path,
-        class: "lesson-planner-link" %>
-        <span class="lesson-arrow"></span>
-        <% end %>
-  </div>
+      <div class="column large-4">
+        <aside>
+          <p>In the Lesson Planner, you can organize your selected lessons to prepare for your next teaching opportunity.</p>
 
-
-  <div class="content description-text">
-    <%= managed_content("topics-intro") %>
+          <%= link_to "See Lesson Planner", current_lesson_plan_path,
+                      class: "lesson-planner-link arrow-link-small",
+                      style: "float: none" %>
+        </aside>
+      </div>
+    <% end %>
   </div>
 
   <%= render "tags/nav", tags: @tags %>
-
-  <div class="view-lesson-planner">
-    <% if Flipper.enabled?(:lesson_plans) %>
-      <%= link_to "View Lesson Planner", current_lesson_plan_path,
-        class: "lesson-planner-link" %>
-        <span class="lesson-arrow"></span>
-        <% end %>
-  </div>
 </div>
 
 <% cache(cache_key_for_topics(@topics)) do %>
