@@ -57,7 +57,7 @@ class LessonPlansController < ApplicationController
     @lesson_plan.lesson_plan_lessons.
       where(lesson_id: params[:lesson_id]).destroy_all
 
-    render "update_form_state" # rubocop:disable GitHub/RailsControllerRenderPathsExist
+    render "_teaser"
   end
 
   private

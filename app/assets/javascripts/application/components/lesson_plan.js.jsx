@@ -33,10 +33,20 @@ var LessonPlan = createReactClass({
   },
 
   onRemoveLesson: function(e) {
-    var state = this.state;
-    this.setState({
-      lessonsCount: state.lessonsCount - 1,
-      lessons: state.lessons.filter(el => el.id.toString() !== e.target.id)
+    var self = this;
+
+    $.ajax({
+      type: "DELETE",
+      url: `/lesson-plans/${self.props.id}/lessons`,
+      data: {
+        lesson_id: e.target.id
+      }
+    }).success((res) => {
+      self.setState({
+        lessonsCount: res.lessons_count,
+        durationInWords: res.duration_in_words,
+        lessons: res.lessons
+      });
     });
   },
 
@@ -50,7 +60,7 @@ var LessonPlan = createReactClass({
           Your lessons (<span id="lesson-count">{state.lessonsCount}</span>)
         </div>
         <div className="total-duration">
-          Total duration: {props.duration_in_words}
+          Total duration: {state.durationInWords}
         </div>
         <ul id="lesson-plan-lessons">
           {state.lessons.map((lesson) =>
