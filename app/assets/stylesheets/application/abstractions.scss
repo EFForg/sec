@@ -3,7 +3,7 @@
   display: flex;
   margin-bottom: 1rem;
 
-  background: transparent;
+  background: white;
   border: 1px solid $darkest-teal;
   color: $darkest-teal;
 
@@ -13,6 +13,11 @@
   font-size: 1rem;
   line-height: 1rem;
   padding: 0.3rem 1rem 0.3rem 0.8rem;
+
+  &:hover {
+    background-color: darken(white, 5%);
+    transition: background-color 165ms;
+  }
 }
 
 @mixin arrow-link($font-size) {
@@ -41,6 +46,8 @@
 
   &:hover {
     color: white;
+    background-color: darken($dark-teal, 10%);
+    transition: background-color 165ms;
   }
 }
 
