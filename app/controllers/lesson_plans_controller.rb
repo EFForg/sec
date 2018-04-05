@@ -33,19 +33,6 @@ class LessonPlansController < ApplicationController
     end
   end
 
-  def create
-    @lesson_plan = LessonPlan.new(lesson_plan_params)
-
-    if @lesson_plan.save
-      session[:lesson_plan_id] = @lesson_plan.id
-
-      respond_to do |format|
-        format.html{ redirect_back fallback_location: topics_path }
-        format.js{ render "update_form_state" } # rubocop:disable GitHub/RailsControllerRenderPathsExist
-      end
-    end
-  end
-
   def update
     @lesson_plan = current_lesson_plan
 
@@ -58,31 +45,19 @@ class LessonPlansController < ApplicationController
   end
 
   def create_lesson
-    params[:lesson_plan] = {
-      lesson_plan_lessons_attributes: [
-        { lesson_id: params[:lesson_id] }
-      ]
-    }
+    @lesson_plan = current_lesson_plan!
+    @lesson_plan.lessons << Lesson.find(params[:lesson_id])
 
-    if helpers.current_lesson_plan.persisted?
-      update
-    else
-      create
-    end
+    render "update_form_state" # rubocop:disable GitHub/RailsControllerRenderPathsExist
   end
 
   def destroy_lesson
-    lesson = Lesson.find(params[:lesson_id])
-    lesson_plan_lesson = helpers.current_lesson_plan_lesson(lesson)
+    @lesson_plan = current_lesson_plan
 
-    params[:lesson_plan] = {
-      lesson_plan_lessons_attributes: [
-        id: lesson_plan_lesson.id,
-        _destroy: "1"
-      ]
-    }
+    @lesson_plan.lesson_plan_lessons.
+      where(lesson_id: params[:lesson_id]).destroy_all
 
-    update
+    render "update_form_state" # rubocop:disable GitHub/RailsControllerRenderPathsExist
   end
 
   private

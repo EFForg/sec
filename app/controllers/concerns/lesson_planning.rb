@@ -11,6 +11,13 @@ module LessonPlanning
     @_current_lesson_plan ||= LessonPlan.new
   end
 
+  def current_lesson_plan!
+    current_lesson_plan.tap do |lesson_plan|
+      lesson_plan.save!
+      session[:lesson_plan_id] = lesson_plan.id
+    end
+  end
+
   def current_lesson_plan_lesson(lesson)
     current_lesson_plan.
       lesson_plan_lessons.
