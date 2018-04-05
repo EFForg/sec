@@ -1,6 +1,7 @@
 class LessonsController < ApplicationController
   include ContentPermissioning
   include Pdfing
+  include LessonPlanning
 
   breadcrumbs "Security Education" => routes.root_path,
               "Lessons" => routes.topics_path

@@ -1,11 +1,12 @@
 class LessonPlansController < ApplicationController
   include Zipping
+  include LessonPlanning
 
   def show
     if params[:id]
       @lesson_plan = LessonPlan.find_by(key: params[:id])
     else
-      @lesson_plan = helpers.current_lesson_plan
+      @lesson_plan = current_lesson_plan
     end
     @lesson_plan_lessons = @lesson_plan.lesson_plan_lessons.published
 
@@ -32,21 +33,8 @@ class LessonPlansController < ApplicationController
     end
   end
 
-  def create
-    @lesson_plan = LessonPlan.new(lesson_plan_params)
-
-    if @lesson_plan.save
-      session[:lesson_plan_id] = @lesson_plan.id
-
-      respond_to do |format|
-        format.html{ redirect_back fallback_location: topics_path }
-        format.js{ render "update_form_state" } # rubocop:disable GitHub/RailsControllerRenderPathsExist
-      end
-    end
-  end
-
   def update
-    @lesson_plan = helpers.current_lesson_plan
+    @lesson_plan = current_lesson_plan
 
     if @lesson_plan.update_attributes(lesson_plan_params)
       respond_to do |format|
@@ -54,6 +42,22 @@ class LessonPlansController < ApplicationController
         format.js{ render "update_form_state" } # rubocop:disable GitHub/RailsControllerRenderPathsExist
       end
     end
+  end
+
+  def create_lesson
+    @lesson_plan = current_lesson_plan!
+    @lesson_plan.lessons << Lesson.find(params[:lesson_id])
+
+    render "update_form_state" # rubocop:disable GitHub/RailsControllerRenderPathsExist
+  end
+
+  def destroy_lesson
+    @lesson_plan = current_lesson_plan
+
+    @lesson_plan.lesson_plan_lessons.
+      where(lesson_id: params[:lesson_id]).destroy_all
+
+    render "update_form_state" # rubocop:disable GitHub/RailsControllerRenderPathsExist
   end
 
   private
