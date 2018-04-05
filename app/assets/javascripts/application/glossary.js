@@ -14,6 +14,5 @@ $(document).on('mouseout', '.glossary-term, .glossary-definition', (e) => {
 });
 
 $(document).on('click', '.glossary-term', (e) => {
-  url = $(e.target).find('a').attr('href');
-  window.open(url);
+  window.open($(e.target).find('a').attr('href'));
 });
