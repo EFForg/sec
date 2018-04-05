@@ -268,28 +268,32 @@
 }
 
 form.add_remove_lesson {
-  button[value=destroy] {
-    display: none !important;
+  button[type="submit"] {
+    @include add-lesson;
+  }
+
+  input[name=_method][value=post] + .actions {
+    button[type=submit][value=add] {
+      display: flex;
+    }
+
+    button[type=submit][value=destroy] {
+      display: none;
+    }
   }
 
   input[name=_method][value=delete] + .actions {
-    button[value=add] {
-      display: none !important;
+    button[type=submit][value=add] {
+      display: none;
     }
 
-    button[value=destroy] {
-      display: flex !important;
+    button[type=submit][value=destroy] {
+      display: flex;
     }
   }
 
   i.fa {
     margin-right: 0.35rem;
-  }
-
-  .actions {
-    button[type="submit"] {
-      @include add-lesson;
-    }
   }
 }
 
