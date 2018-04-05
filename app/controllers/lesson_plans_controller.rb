@@ -1,11 +1,12 @@
 class LessonPlansController < ApplicationController
   include Zipping
+  include LessonPlanning
 
   def show
     if params[:id]
       @lesson_plan = LessonPlan.find_by(key: params[:id])
     else
-      @lesson_plan = helpers.current_lesson_plan
+      @lesson_plan = current_lesson_plan
     end
     @lesson_plan_lessons = @lesson_plan.lesson_plan_lessons.published
 
@@ -46,7 +47,7 @@ class LessonPlansController < ApplicationController
   end
 
   def update
-    @lesson_plan = helpers.current_lesson_plan
+    @lesson_plan = current_lesson_plan
 
     if @lesson_plan.update_attributes(lesson_plan_params)
       respond_to do |format|
