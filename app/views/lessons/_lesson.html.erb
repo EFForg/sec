@@ -13,7 +13,20 @@
   <% end %>
 <% end %>
 
-<%= render partial: "lessons/summary", locals: { lesson: @lesson } %>
+<% if @lesson.duration.length > 0 %>
+  <div class="duration">
+    Duration: <%= @lesson.duration.in_words %>
+  </div>
+<% end %>
+
+<% if @lesson.objective? %>
+  <div class="objective">
+    <h3>Learning Objectives</h3>
+    <div class="content">
+      <%= html(@lesson.objective, glossary: true) %>
+    </div>
+  </div>
+<% end %>
 
 <% if @lesson.prerequisites? %>
   <div class="prereqs">
