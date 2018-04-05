@@ -44,11 +44,19 @@ var LessonPlan = createReactClass({
     var props = this.props;
     var state = this.state;
 
-    return (
-      <div className="lesson-plan">
-        <div className="your-lessons">
-          Your lessons ({state.lessonsCount})
-        </div>
+    const noLessonsMarkup = (
+      <div>
+        <p>
+          It looks like you have not added any lessons to your Lesson Planner.
+        </p>
+        <p>
+          Go to <a href="/topics">LESSONS</a> to start choosing which lessons you would like to include.
+        </p>
+      </div>
+    );
+
+    const lessonsMarkup = (
+      <div>
         <div className="total-duration">
           Total duration: {state.durationInWords}
         </div>
@@ -63,6 +71,16 @@ var LessonPlan = createReactClass({
                     removeLesson={this.removeLesson} />
           )}
         </ul>
+      </div>
+    );
+
+    return (
+      <div className="lesson-plan">
+        <div className="your-lessons">
+          Your lessons ({state.lessonsCount})
+        </div>
+
+        {(state.lessonsCount > 0) ? lessonsMarkup : noLessonsMarkup}
       </div>
     );
   }
