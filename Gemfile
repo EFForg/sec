@@ -99,6 +99,7 @@ group :test do
   gem "factory_girl_rails"
   gem "rspec-core"
   gem "rspec-rails"
+  gem "rack_session_access"
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
