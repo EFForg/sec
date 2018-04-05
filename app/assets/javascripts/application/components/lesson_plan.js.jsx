@@ -76,6 +76,9 @@ var LessonPlan = createReactClass({
 
     return (
       <div className="lesson-plan">
+        <div className="export">
+          <a href={props.links.download}>Download</a>
+        </div>
         <div className="your-lessons">
           Your lessons ({state.lessonsCount})
         </div>
