@@ -6,6 +6,7 @@ class BlogController < ApplicationController
               "Blog" => routes.blog_path
 
   def index
+    @page = Page.find_by!(name: "blog-overview")
     @blog_posts = tagged_scope.preload(:tags).
       published.order(published_at: :desc).
       page(params[:page])

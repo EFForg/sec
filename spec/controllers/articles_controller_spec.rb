@@ -1,10 +1,11 @@
 require 'rails_helper'
 
 RSpec.describe ArticlesController, type: :controller do
-  let(:article){ FactoryGirl.create(:article) }
+  let(:article) { FactoryGirl.create(:article) }
 
   describe "GET #index" do
     it "returns http success" do
+      FactoryGirl.create(:page, name: "articles-overview")
       get :index
       expect(response).to have_http_status(:success)
     end

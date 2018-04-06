@@ -4,6 +4,7 @@ class ArticlesController < ApplicationController
               "Articles" => routes.articles_path
 
   def index
+    @page = Page.find_by!(name: "articles-overview")
     @sections = Article.published.
       includes(:section).
       references(:article_sections).
