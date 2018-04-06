@@ -1,6 +1,7 @@
 class TopicsController < ApplicationController
   include ContentPermissioning
   include Tagging
+  include LessonPlanning
 
   breadcrumbs "Security Education" => routes.root_path,
               "Lessons" => routes.topics_path

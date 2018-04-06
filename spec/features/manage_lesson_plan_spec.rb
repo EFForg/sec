@@ -6,9 +6,7 @@ RSpec.feature "ManageLessonPlan", type: :feature do
   let(:lesson_plan) { FactoryGirl.create(:lesson_plan_with_lesson) }
 
   scenario "user removes a lesson from their lesson plan" do
-    allow_any_instance_of(LessonPlansHelper).to receive(:current_lesson_plan) do
-      LessonPlan.find(lesson_plan.id)
-    end
+    page.set_rack_session(lesson_plan_id: lesson_plan.id)
 
     visit "/lesson-plan"
     click_button "Remove this lesson"
