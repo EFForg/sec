@@ -38,7 +38,7 @@ RUN apt-get update \
 
     && mkdir -p /var/www/html /etc/nginx/conf.d /etc/nginx/sites-enabled \
 
-    && cp ./conf/mime.types /etc/nginx/mime.types
+    && cp ./conf/mime.types /etc/nginx/mime.types \
 
     && cd .. \
     && rm -f nginx-${NGINX_VERSION}.tar.gz \
