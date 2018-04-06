@@ -48,7 +48,7 @@ class LessonPlansController < ApplicationController
     @lesson_plan = current_lesson_plan!
     @lesson_plan.lessons << Lesson.find(params[:lesson_id])
 
-    render "update_form_state" # rubocop:disable GitHub/RailsControllerRenderPathsExist
+    render @lesson_plan
   end
 
   def destroy_lesson
