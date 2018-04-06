@@ -30,7 +30,7 @@ Dir[Rails.root.join('spec/support/**/*.rb')].each { |f| require f }
 ActiveRecord::Migration.maintain_test_schema!
 
 require "capybara/rspec"
-Capybara.javascript_driver = :webkit
+Capybara.javascript_driver = :selenium_chrome_headless
 
 RSpec.configure do |config|
   # Load authentication helpers
@@ -65,7 +65,8 @@ RSpec.configure do |config|
   config.filter_rails_from_backtrace!
   # arbitrary gems may also be filtered via:
   # config.filter_gems_from_backtrace("gem name")
-end
 
+  config.file_fixture_path = Rails.root.join("spec", "fixtures", "files")
+end
 
 Lesson.skip_callback(:save, :after, :enqueue_pdf_update)
