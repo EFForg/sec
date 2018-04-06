@@ -3,8 +3,8 @@
 var LessonPlan = createReactClass({
   getInitialState: function() {
     return {
-      lessonsCount: this.props.lessons_count,
-      durationInWords: this.props.duration_in_words,
+      lessons_count: this.props.lessons_count,
+      duration_in_words: this.props.duration_in_words,
       lessons: this.props.lessons
     };
   },
@@ -33,8 +33,8 @@ var LessonPlan = createReactClass({
       }
     }).success((res) => {
       self.setState({
-        lessonsCount: res.lessons_count,
-        durationInWords: res.duration_in_words,
+        lessons_count: res.lessons_count,
+        duration_in_words: res.duration_in_words,
         lessons: res.lessons
       });
     });
@@ -58,16 +58,12 @@ var LessonPlan = createReactClass({
     const lessonsMarkup = (
       <div>
         <div className="total-duration">
-          Total duration: {state.durationInWords}
+          Total duration: {state.duration_in_words}
         </div>
         <ul id="lesson-plan-lessons" ref="lessons">
           {state.lessons.map((lesson) =>
-            <Lesson key={lesson.id}
-                    id={lesson.id}
-                    name={lesson.name}
-                    duration={lesson.duration}
-                    difficultyTag={lesson.difficulty_tag}
-                    renderedIcon={lesson.rendered_icon}
+            <Lesson {...lesson}
+                    key={lesson.id}
                     removeLesson={this.removeLesson} />
           )}
         </ul>
@@ -80,10 +76,10 @@ var LessonPlan = createReactClass({
           <a href={props.links.download}>Download</a>
         </div>
         <div className="your-lessons">
-          Your lessons ({state.lessonsCount})
+          Your lessons ({state.lessons_count})
         </div>
 
-        {(state.lessonsCount > 0) ? lessonsMarkup : noLessonsMarkup}
+        {(state.lessons_count > 0) ? lessonsMarkup : noLessonsMarkup}
       </div>
     );
   }
@@ -96,10 +92,10 @@ var Lesson = createReactClass({
     return (
       <li className="lesson card">
         <div className="top">
-          <div className="icon" dangerouslySetInnerHTML={{__html: props.renderedIcon}} />
+          <div className="icon" dangerouslySetInnerHTML={{__html: props.rendered_icon}} />
           <h3>{props.name}</h3>
           <div className="duration">Duration: {props.duration}</div>
-          <div className="levels" dangerouslySetInnerHTML={{__html: props.difficultyTag}} />
+          <div className="levels" dangerouslySetInnerHTML={{__html: props.difficulty_tag}} />
           <button id={props.id} className="remove-lesson" onClick={props.removeLesson}>
             Remove this lesson
           </button>
