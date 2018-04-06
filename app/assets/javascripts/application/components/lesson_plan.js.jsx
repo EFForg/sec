@@ -100,7 +100,9 @@ var Lesson = createReactClass({
           <h3>{props.name}</h3>
           <div className="duration">Duration: {props.duration}</div>
           <div className="levels" dangerouslySetInnerHTML={{__html: props.difficultyTag}} />
-          <button id={props.id} onClick={props.removeLesson}>Remove</button>
+          <button id={props.id} className="remove-lesson" onClick={props.removeLesson}>
+            Remove this lesson
+          </button>
         </div>
       </li>
     );
