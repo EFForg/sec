@@ -99,8 +99,9 @@ group :test do
   gem "rack_session_access"
   gem "rspec-core"
   gem "rspec-rails"
-  gem "selenium-webdriver"
+  # Run browser tests with selenium and headless chrome
   gem "chromedriver-helper"
+  gem "selenium-webdriver"
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
