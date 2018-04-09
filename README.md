@@ -16,3 +16,6 @@ After running `rake db:setup` you can navigate to `http://localhost:3000/admin` 
 
 * Install Ruby, Rails, and other gems the usual way.
 * [install Yarn](https://yarnpkg.com/lang/en/docs/install/) and run `yarn install` to install Javascript dependencies.
+* Install chromedriver to run browser tests with headless Chrome/Chromium.
+  * `sudo apt install chromium chromium-chromedriver`
+  * `sudo ln -s /usr/lib/chromium-browser/chromedriver /usr/local/bin/chromedriver`

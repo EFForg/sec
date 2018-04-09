@@ -1,9 +1,40 @@
 
-a.glossary-term {
-  text-decoration: none;
+.glossary-term {
+  position: relative;
+  cursor: pointer;
+  color: $darkest-teal;
+  font-weight: bold;
+  display: inline-block;
 
+  a {
+    text-decoration: none;
+  }
   img {
     vertical-align: text-top;
     margin-left: 2px;
+  }
+}
+
+.glossary-definition {
+  cursor: default;
+  font-weight: 300;
+  display: none;
+  border-radius: 6px;
+  -webkit-box-shadow: 0px 4px 15px 0px rgba(0, 0, 0, 0.3);
+  -moz-box-shadow: 0px 4px 15px 0px rgba(0, 0, 0, 0.3);
+  box-shadow: 0px 4px 15px 0px rgba(0, 0, 0, 0.3);
+  color: $white;
+  background-color: black;
+  position: absolute;
+  right: -40%;
+  bottom: 109%;
+  width: 30rem;
+  padding: 10px 15px;
+  z-index: 1;
+
+  a {
+    color: $teal;
+    padding: 5px;
+    font-weight: bold;
   }
 }
