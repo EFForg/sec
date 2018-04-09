@@ -42,10 +42,6 @@
     clear: left;
     text-transform: uppercase;
     margin-bottom: 1rem;
-
-    @include breakpoint(large) {
-      float: left;
-    }
   }
   .topics-cards {
     padding-left: 0;
@@ -59,9 +55,6 @@
   }
 
   .tags {
-    float: left;
-    margin: 1rem 1rem 0 0;
-    width: auto;
     @include breakpoint(medium) {
       width: 60%;
     }
