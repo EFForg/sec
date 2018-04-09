@@ -100,6 +100,7 @@ group :test do
   gem "rspec-core"
   gem "rspec-rails"
   gem "selenium-webdriver"
+  gem "chromedriver-helper"
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

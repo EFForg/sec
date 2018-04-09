@@ -26,13 +26,9 @@ RUN echo "@edge http://nl.alpinelinux.org/alpine/edge/main" >>/etc/apk/repositor
     nodejs \
     yarn \
     chromium \
-    chromium-chromedriver \
 
     # Needed for wkhtmltopdf
     dbus \
-
-  # Set up chromedriver.
-  && ln -s /usr/lib/chromium-browser/chromedriver /usr/local/bin/chromedriver \
 
   # Set up crontab.
   && echo "*/15 * * * * su -s/bin/sh www-data -c \
