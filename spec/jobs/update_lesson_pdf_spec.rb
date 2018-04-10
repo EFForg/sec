@@ -5,11 +5,12 @@ RSpec.describe UpdateLessonPdf do
 
   describe "#perform" do
     it "should create a PDF" do
-      expect(lesson.reload.pdf).not_to be_present
+      pdf = double()
+      expect_any_instance_of(PdfTemplate).to receive(:render){ pdf }
 
+      expect(Lesson).to receive(:find){ lesson }
+      expect(lesson).to receive(:update!).with(pdf: pdf)
       UpdateLessonPdf.new.perform(lesson.id)
-
-      expect(lesson.reload.pdf).to be_present
     end
   end
 end
