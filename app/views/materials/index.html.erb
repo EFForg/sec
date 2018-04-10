@@ -2,7 +2,7 @@
   <h1>Teaching Materials</h1>
 
   <div class="content description-text">
-    <%= managed_content("materials-intro") %>
+    <%= html(@page.body) %>
   </div>
 
   <% @materials.each_slice(3) do |row| %>

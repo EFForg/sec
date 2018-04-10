@@ -5,6 +5,7 @@ class MaterialsController < ApplicationController
               "Training Materials" => routes.materials_path
 
   def index
+    @page = Page.find_by!(name: "materials-overview")
     @materials = Material.published.page(params[:page])
   end
 

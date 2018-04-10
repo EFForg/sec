@@ -5,6 +5,7 @@ RSpec.describe TopicsController, type: :controller do
 
   describe "GET #index" do
     it "returns http success" do
+      FactoryGirl.create(:page, name: "topics-overview")
       get :index
       expect(response).to have_http_status(:success)
     end

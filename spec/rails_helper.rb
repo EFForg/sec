@@ -30,7 +30,20 @@ Dir[Rails.root.join('spec/support/**/*.rb')].each { |f| require f }
 ActiveRecord::Migration.maintain_test_schema!
 
 require "capybara/rspec"
-Capybara.javascript_driver = :selenium_chrome_headless
+
+capabilities = Selenium::WebDriver::Remote::Capabilities.chrome(
+  'chromeOptions' => {
+    'args' => ['--headless', '--disable-gpu'].tap do |a|
+      a.push('--no-sandbox') if ENV['TRAVIS']
+    end
+  }
+)
+
+Capybara.register_driver :chrome_headless do |app|
+  Capybara::Selenium::Driver.new(app, browser: :chrome, desired_capabilities: capabilities)
+end
+
+Capybara.javascript_driver = :chrome_headless
 
 RSpec.configure do |config|
   # Load authentication helpers

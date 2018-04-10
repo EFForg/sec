@@ -2,10 +2,10 @@ ActiveAdmin.register_page "Articles Overview" do
   menu parent: "Pages"
 
   page_action :update, method: :patch do
-    intro = ManagedContent.find_by!(region: "articles-intro")
+    page = ArticlesPage.find_by!(name: "articles-overview")
 
-    unless intro.update(body: params[:page][:intro])
-      messages = intro.errors.full_messages.join
+    unless page.update(body: params[:articles_page][:body])
+      messages = page.errors.full_messages.join
       flash[:error] = "Error: " + messages
       return redirect_to admin_articles_overview_path
     end
@@ -52,24 +52,7 @@ ActiveAdmin.register_page "Articles Overview" do
   end
 
   content do
-    render "admin/pages/articles_overview", page: Page.new
-  end
-
-
-  class Page
-    extend ActiveModel::Naming
-    include ActiveModel::Conversion
-
-    def persisted?
-      true
-    end
-
-    def intro
-      ManagedContent.find_by(region: "articles-intro").try(:body)
-    end
-
-    def sections
-      @sections ||= ArticleSection.order(:position)
-    end
+    render "admin/pages/articles_overview",
+      page: ArticlesPage.find_by!(name: "articles-overview")
   end
 end
