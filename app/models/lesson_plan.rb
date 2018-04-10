@@ -29,7 +29,12 @@ class LessonPlan < ApplicationRecord
       template: "lesson_plans/show.pdf.erb"
     )
 
-    update!(pdf_file: pdf.render(lesson_plan: self),
+    locals = {
+      lesson_plan: self,
+      materials: bundled_materials
+    }
+
+    update!(pdf_file: pdf.render(locals),
             pdf_file_updated_at: Time.now)
   end
 
@@ -43,6 +48,17 @@ class LessonPlan < ApplicationRecord
 
   def to_param
     persisted? ? key : "current"
+  end
+
+  def bundled_materials
+    url_helper = Rails.application.routes.url_helpers
+
+    Material.all.select do |material|
+      path = url_helper.material_path(material)
+      lessons.any? do |lesson|
+        lesson.suggested_materials[path]
+      end
+    end
   end
 
   private
