@@ -52,7 +52,7 @@ class PdfTemplate
       url_base = %(#{ENV["SERVER_PROTOCOL"]}://#{ENV["SERVER_HOST"]})
       url_base << %(:#{ENV["SERVER_PORT"]}) if ENV["SERVER_PORT"]
 
-      doc.css("a, img").each do |a|
+      doc.css("a, img, link, script").each do |a|
         if a["href"] && a["href"] !~ /^https?:\/\//
           path = a["href"].sub(/^\//, "")
           a["href"] = %(#{url_base}/#{path})

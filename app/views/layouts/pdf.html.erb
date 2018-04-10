@@ -2,14 +2,10 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <title><%= page_title %></title>
 
-  <style type="text/css">
-    <%= File.read(Rails.root.join("app/assets/stylesheets/pdf.css")).html_safe %>
-  </style>
-
+  <%= stylesheet_link_tag "pdf", media: "all" %>
 </head>
 
 <body class="section-<%= controller_name %> page-<%= action_name %>">
