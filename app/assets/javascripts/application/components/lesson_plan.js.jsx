@@ -45,7 +45,7 @@ var LessonPlan = createReactClass({
     var state = this.state;
 
     const noLessonsMarkup = (
-      <div>
+      <div className="lessons">
         <p>
           It looks like you have not added any lessons to your Lesson Planner.
         </p>
@@ -60,7 +60,7 @@ var LessonPlan = createReactClass({
         <div className="total-duration">
           Total duration: {state.duration_in_words}
         </div>
-        <ul id="lesson-plan-lessons" ref="lessons">
+        <ul className="lessons" ref="lessons">
           {state.lessons.map((lesson) =>
             <Lesson {...lesson}
                     key={lesson.id}
