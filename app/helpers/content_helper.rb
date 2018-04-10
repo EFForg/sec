@@ -46,11 +46,6 @@ module ContentHelper
     safe_join(links)
   end
 
-  def managed_content(region, **html_options)
-    content = ManagedContent.find_by!(region: region)
-    html(content.body, **html_options)
-  end
-
   def content_type(content)
     case content
     when Article

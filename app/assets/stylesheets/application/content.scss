@@ -1,0 +1,12 @@
+.content {
+  a {
+    word-break: break-word;
+  }
+
+  table {
+    td:not(:last-child),
+    th:not(:last-child) {
+      padding-right: 1rem;
+    }
+  }
+}

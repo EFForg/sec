@@ -14,5 +14,8 @@ $(document).on('mouseout', '.glossary-term, .glossary-definition', (e) => {
 });
 
 $(document).on('click', '.glossary-term', (e) => {
-  window.open($(e.target).find('a').attr('href'));
+  if (!$(e.target).closest('.glossary-definition').length) {
+    var url = $(e.target).closest('.glossary-term').find('a').attr('href');
+    window.open(url);
+  }
 });

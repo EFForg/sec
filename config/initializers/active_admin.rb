@@ -298,7 +298,19 @@ ActiveAdmin.setup do |config|
     end
 
     admin.build_menu do |menu|
-      menu.add label: "Pages", priority: 2
+      menu.add label: "Pages", priority: 2 do |pages|
+        pages.add label: "Credits",
+          url: "admin/pages/credits/edit"
+
+        pages.add label: "Topics Overview",
+          url: "admin/pages/topics-overview/edit"
+
+        pages.add label: "Blog Overview",
+          url: "admin/pages/blog-overview/edit"
+
+        pages.add label: "Materials Overview",
+          url: "admin/pages/materials-overview/edit"
+      end
     end
 
     admin.build_menu do |menu|

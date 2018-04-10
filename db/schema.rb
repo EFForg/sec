@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180328223103) do
+ActiveRecord::Schema.define(version: 20180330231744) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -217,14 +217,6 @@ ActiveRecord::Schema.define(version: 20180328223103) do
     t.index ["topic_id"], name: "index_lessons_on_topic_id"
   end
 
-  create_table "managed_content", force: :cascade do |t|
-    t.string "region", null: false
-    t.text "body", default: "", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["region"], name: "index_managed_content_on_region", unique: true
-  end
-
   create_table "materials", force: :cascade do |t|
     t.string "name", default: "", null: false
     t.text "description", default: "", null: false
@@ -233,6 +225,16 @@ ActiveRecord::Schema.define(version: 20180328223103) do
     t.string "flag"
     t.boolean "published", default: false, null: false
     t.string "slug"
+  end
+
+  create_table "pages", force: :cascade do |t|
+    t.string "name", null: false
+    t.text "body", default: "", null: false
+    t.string "slug"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["name"], name: "index_pages_on_name", unique: true
+    t.index ["slug"], name: "index_pages_on_slug", unique: true
   end
 
   create_table "pg_search_documents", force: :cascade do |t|
