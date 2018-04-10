@@ -1,22 +1,13 @@
+require "shellwords"
+
 class PdfTemplate
-  attr_reader :controller_options, :wicked_options
+  attr_reader :controller_options
 
   def initialize(options)
     @controller_options = {
       template: options.fetch(:template),
       layout: "layouts/pdf.html.erb"
     }
-
-    @wicked_options = options.slice!(:template)
-    wicked_options[:pdf] = wicked_options.delete(:name)
-    wicked_options.reverse_merge!(
-      margin: {
-        top: "0.6in",
-        bottom: "1in",
-        left: "1in",
-        right: "0.6in"
-      }
-    )
   end
 
   def render(locals)
@@ -28,15 +19,30 @@ class PdfTemplate
 
     doc = rebase_urls(controller.render_to_string(controller_options))
 
-    pdf = WickedPdf.new.pdf_from_string(doc, wicked_options)
+    input = Tempfile.new(["pdf", ".html"])
+    input.binmode
+    input.write(doc)
+    input.flush
+    input.rewind
 
-    tmp = Tempfile.new(["pdf", ".pdf"])
-    tmp.binmode
-    tmp.write(pdf)
-    tmp.flush
-    tmp.rewind
+    print_pdf(input.path)
+  end
 
-    tmp
+  private
+
+  def print_pdf(input)
+    output = Tempfile.new(["pdf", ".pdf"])
+    chrome_wrapper = Rails.root.join("bin/chrome-stub").to_s
+    command = ["timeout", "-t", "5",
+               "node_modules/.bin/chrome-headless-render-pdf",
+               "--chrome-binary", chrome_wrapper,
+               "--no-margins",
+               "--url", "file://#{input}",
+               "--pdf", output.path]
+
+    Rails.logger.info(Shellwords.shelljoin(command))
+
+    output if system(*command)
   end
 
   def rebase_urls(html)

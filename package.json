@@ -2,6 +2,7 @@
   "name": "trainers-hub",
   "private": true,
   "dependencies": {
+    "chrome-headless-render-pdf": "^1.5.1",
     "jquery": "^3.2.1"
   },
   "devDependencies": {

@@ -12,7 +12,4 @@ if [ "$ROLE" = "web" ]; then
   cp -ru public/* nginx_static
 fi
 
-rm -rf "/tmp/.X$DISPLAY-lock"
-/usr/bin/Xvfb "$DISPLAY" -ac &
-
 exec "$@"

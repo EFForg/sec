@@ -13,6 +13,10 @@
 </head>
 
 <body class="section-<%= controller_name %> page-<%= action_name %>">
+  <div id="header">
+    <img src="<%= image_url("print-header.png") %>" />
+  </div>
+
   <div id="main-content">
     <%= yield %>
   </div>
