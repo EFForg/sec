@@ -10,7 +10,7 @@ class PdfTemplate
     }
   end
 
-  def render(locals={})
+  def render(locals = {})
     controller = ApplicationController.new
 
     locals.each do |name, value|
