@@ -33,7 +33,9 @@ require "capybara/rspec"
 
 capabilities = Selenium::WebDriver::Remote::Capabilities.chrome(
   'chromeOptions' => {
-    'args' => ['--headless', '--disable-gpu', '--no-sandbox']
+    'args' => ['--headless', '--disable-gpu'].tap do |a|
+      a.push('--no-sandbox') if ENV['TRAVIS']
+    end
   }
 )
 
