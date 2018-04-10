@@ -8,6 +8,7 @@ rvm:
 services:
   - postgresql
 addons:
+  chrome: stable
   apt:
     packages:
       - wkhtmltopdf

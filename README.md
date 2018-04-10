@@ -12,7 +12,10 @@ After running `rake db:setup` you can navigate to `http://localhost:3000/admin` 
 - **User**: admin@example.com
 - **Password**: password
 
+Running browser tests from within Docker is not currently supported. See [#477](https://github.com/EFForg/sec/pull/447) for more information.
+
 ## Development without Docker
 
 * Install Ruby, Rails, and other gems the usual way.
 * [install Yarn](https://yarnpkg.com/lang/en/docs/install/) and run `yarn install` to install Javascript dependencies.
+* If you don't already have it, install or Chrome or Chromium for browser tests, eg `sudo apt install chromium-browser`.
