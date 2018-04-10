@@ -1,4 +1,4 @@
-json.(@lesson_plan, :id, :lessons_count)
+json.call(@lesson_plan, :id, :lessons_count)
 json.duration_in_words @lesson_plan.duration.in_words
 json.lessons @lesson_plan.lessons do |lesson|
   json.id lesson.id

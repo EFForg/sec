@@ -40,7 +40,7 @@ class LessonPlansController < ApplicationController
   #   if @lesson_plan.update_attributes(lesson_plan_params)
   #     respond_to do |format|
   #       format.html { redirect_back fallback_location: "/lesson-plan" }
-  #       format.js{ render @lesson_plan } # rubocop:disable GitHub/RailsControllerRenderPathsExist
+  #       format.js{ render @lesson_plan }
   #     end
   #   end
   # end
@@ -49,7 +49,7 @@ class LessonPlansController < ApplicationController
     @lesson_plan = current_lesson_plan!
     @lesson_plan.lessons << Lesson.find(params[:lesson_id])
 
-    render @lesson_plan
+    render "lesson_plans/_lesson_plan"
   end
 
   def destroy_lesson
@@ -58,7 +58,7 @@ class LessonPlansController < ApplicationController
     @lesson_plan.lesson_plan_lessons.
       where(lesson_id: params[:lesson_id]).destroy_all
 
-    render @lesson_plan
+    render "lesson_plans/_lesson_plan"
   end
 
   private
