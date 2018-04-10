@@ -25,7 +25,6 @@ RUN echo "@edge http://nl.alpinelinux.org/alpine/edge/main" >>/etc/apk/repositor
     wkhtmltopdf@edgetesting \
     nodejs \
     yarn \
-    chromium \
 
     # Needed for wkhtmltopdf
     dbus \
@@ -38,9 +37,6 @@ RUN echo "@edge http://nl.alpinelinux.org/alpine/edge/main" >>/etc/apk/repositor
     'cd /opt/trainers-hub && bundle exec rake glossary:update' >>/proc/1/fd/1 2>&1" >>/etc/crontab
 
 ENV DISPLAY=:99
-ENV CHROME_BIN=/usr/bin/chromium-browser
-ENV CHROME_PATH=/usr/lib/chromium/
-
 COPY Gemfile* ./
 RUN bundle install
 
