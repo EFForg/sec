@@ -20,13 +20,20 @@ RSpec.describe PdfTemplate do
                                   template: template).
                              and_return(doc)
       expect(pdf_template).to receive(:rebase_urls).and_return(doc)
-
-      expect_any_instance_of(WickedPdf).
-        to receive(:pdf_from_string).
-            with(doc, anything)
+      expect(pdf_template).to receive(:print_pdf)
 
       pdf_file = pdf_template.render(topic: topic)
-      expect(pdf_file).to be_a(Tempfile)
+    end
+  end
+
+  describe "#print_pdf" do
+    it "should shell out to chrome-headless-render-pdf" do
+      expect(pdf_template).to receive(:system) do |*args|
+        expect(args.grep(/chrome-headless-render-pdf/)).
+          not_to be_empty
+      end
+
+      pdf_template.send(:print_pdf, "/tmp/input.html")
     end
   end
 
@@ -37,10 +44,10 @@ RSpec.describe PdfTemplate do
                       at_least(:once)
 
       html = %(<a href="/relative">anchor</a>")
-      expect(pdf_template.rebase_urls(html)).to eq(html)
+      expect(pdf_template.send(:rebase_urls, html)).to eq(html)
 
       html = %(<img src="/relative">")
-      expect(pdf_template.rebase_urls(html)).to eq(html)
+      expect(pdf_template.send(:rebase_urls, html)).to eq(html)
     end
 
     it "should rewrite relative urls when ENV['SERVER_HOST'] is set" do
@@ -56,11 +63,11 @@ RSpec.describe PdfTemplate do
                       at_least(:once)
 
       html = %(<a href="/relative">anchor</a>")
-      expect(pdf_template.rebase_urls(html)).
+      expect(pdf_template.send(:rebase_urls, html)).
         to eq(html.sub(%r{/relative}, "https://sec.eff.org/relative"))
 
       html = %(<img src="/relative">")
-      expect(pdf_template.rebase_urls(html)).
+      expect(pdf_template.send(:rebase_urls, html)).
         to eq(html.sub(%r{/relative}, "https://sec.eff.org/relative"))
     end
   end
