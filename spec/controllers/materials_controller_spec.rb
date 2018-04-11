@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe MaterialsController, type: :controller do
-  let(:topic){ FactoryGirl.create(:topic) }
+  let(:lesson){ FactoryGirl.create(:lesson) }
   let(:material){ FactoryGirl.create(:material) }
 
   describe "GET #index" do
@@ -14,7 +14,7 @@ RSpec.describe MaterialsController, type: :controller do
 
   describe "GET #show" do
     it "returns http success" do
-      topic.lessons.take.update(
+      lesson.update(
         suggested_materials: "/materials/#{material.to_param}"
       )
 
