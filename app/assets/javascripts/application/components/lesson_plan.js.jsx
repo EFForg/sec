@@ -22,14 +22,14 @@ var LessonPlan = createReactClass({
     console.log("Pending functionality");
   },
 
-  removeLesson: function(e) {
+  removeLesson: function(lesson) {
     var self = this;
 
     $.ajax({
       type: "DELETE",
       url: `/lesson-plans/${self.props.id}/lessons`,
       data: {
-        lesson_id: e.target.id
+        lesson_id: lesson.id
       }
     }).success((res) => {
       self.setState({
@@ -64,7 +64,7 @@ var LessonPlan = createReactClass({
           {state.lessons.map((lesson) =>
             <Lesson {...lesson}
                     key={lesson.id}
-                    removeLesson={this.removeLesson} />
+                    removeLesson={(e) => this.removeLesson(lesson)} />
           )}
         </ul>
       </div>
@@ -96,7 +96,7 @@ var Lesson = createReactClass({
           <h3>{props.name}</h3>
           <div className="duration">Duration: {props.duration}</div>
           <div className="levels" dangerouslySetInnerHTML={{__html: props.difficulty_tag}} />
-          <button id={props.id} className="remove-lesson" onClick={props.removeLesson}>
+          <button className="remove-lesson" onClick={props.removeLesson}>
             Remove this lesson
           </button>
         </div>
