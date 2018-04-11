@@ -43,18 +43,18 @@ class PdfTemplate
     doc = Nokogiri::HTML.fragment(html)
 
     if ENV["SERVER_HOST"]
-      url_base = %(#{ENV["SERVER_PROTOCOL"]}://#{ENV["SERVER_HOST"]})
-      url_base << %(:#{ENV["SERVER_PORT"]}) if ENV["SERVER_PORT"]
+      url_base = [ENV["SERVER_PROTOCOL"], ENV["SERVER_HOST"]].join("://")
+      url_base = [url_base, ENV["SERVER_PORT"]].join(":") if ENV["SERVER_PORT"]
 
       doc.css("a, img").each do |a|
         if a["href"] && a["href"] !~ /^https?:\/\//
           path = a["href"].sub(/^\//, "")
-          a["href"] = %(#{url_base}/#{path})
+          a["href"] = "#{url_base}/#{path}"
         end
 
         if a["src"] && a["src"] !~ /^https?:\/\//
           path = a["src"].sub(/^\//, "")
-          a["src"] = %(#{url_base}/#{path})
+          a["src"] = "#{url_base}/#{path}"
         end
       end
     end
