@@ -37,11 +37,17 @@
       right: 15px;
     }
   }
+
+  .lessons {
+    clear: both;
+    margin: 0;
+  }
 }
 
 .section-lesson_plans .lesson {
   border-left: 16px solid $light-teal;
   border-top: 2px solid $light-teal;
+  background-color: white;
 
   .top {
     padding-right: 1.8rem;
@@ -60,6 +66,7 @@
   }
 
   .remove-lesson {
+    @include light-teal-hover;
     background-image: image-url('x-icon.png');
     background-repeat: no-repeat;
     background-position: 50% 50%;
@@ -67,7 +74,6 @@
     height: 40px;
     width: 40px;
     border: 2px solid $light-teal;
-    color: transparent;
     cursor: pointer;
     position: absolute;
     top: -2px;

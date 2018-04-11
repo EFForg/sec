@@ -1,9 +1,9 @@
 @mixin add-lesson {
+  @include light-teal-hover;
   float: right;
   display: flex;
   margin-bottom: 1rem;
 
-  background: white;
   border: 1px solid $darkest-teal;
   color: $darkest-teal;
 
@@ -13,11 +13,6 @@
   font-size: 1rem;
   line-height: 1rem;
   padding: 0.3rem 1rem 0.3rem 0.8rem;
-
-  &:hover {
-    background-color: darken(white, 5%);
-    transition: background-color 165ms;
-  }
 }
 
 @mixin arrow-link($font-size) {
@@ -57,4 +52,12 @@
 
 .arrow-link-small {
   @include arrow-link(0.8rem);
+}
+
+@mixin light-teal-hover {
+  transition: background-color 0.5s ease;
+
+  &:hover {
+    background-color: lighten($light-teal, 13%);
+  }
 }
