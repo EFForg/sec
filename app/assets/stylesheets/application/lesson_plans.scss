@@ -66,6 +66,7 @@
   }
 
   .remove-lesson {
+    @include light-teal-hover;
     background-image: image-url('x-icon.png');
     background-repeat: no-repeat;
     background-position: 50% 50%;
