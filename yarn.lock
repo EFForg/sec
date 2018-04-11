@@ -743,6 +743,10 @@ isexe@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/isexe/-/isexe-2.0.0.tgz#e8fbf374dc556ff8947a10dcb0572d633f2cfa10"
 
+jquery-ui-sortable-npm@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/jquery-ui-sortable-npm/-/jquery-ui-sortable-npm-1.0.0.tgz#5fa27c36b76d1fbd45de9e24a0c940c19ba1f6ce"
+
 jquery@^3.2.1:
   version "3.2.1"
   resolved "https://registry.yarnpkg.com/jquery/-/jquery-3.2.1.tgz#5c4d9de652af6cd0a770154a631bba12b015c787"
