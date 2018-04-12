@@ -4,6 +4,7 @@ json.lessons @lesson_plan.lesson_plan_lessons.published do |lesson_plan_lesson|
   json.position lesson_plan_lesson.position
   json.id lesson_plan_lesson.id
   lesson = lesson_plan_lesson.lesson
+  json.lesson_id lesson.id
   json.name lesson.topic.name
   json.duration lesson.duration.in_words
   if lesson.topic.icon

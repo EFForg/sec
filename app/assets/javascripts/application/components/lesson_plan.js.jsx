@@ -11,49 +11,43 @@ const LessonPlan = createReactClass({
     };
   },
 
-  reorderLessons: function({oldIndex, newIndex}) {
-    var self = this;
-
-    // Optimistically update during AJAX
-    this.setState({
-      lessons: arrayMove(this.state.lessons, oldIndex, newIndex)
-    });
-
+  persistLessonPlan: function(data) {
+    self = this;
     $.ajax({
       type: "PATCH",
       url: `/lesson-plans/${self.props.id}`,
-      data: {
-        lesson_plan: {
-          lesson_plan_lessons_attributes: self.state.lessons.map((el, index) => {
-            return {
-              id: el.id,
-              position: index
-            }
-          })
-        }
-      }
-    }).success((res) => {
-      self.setState({
-        lessons: res.lessons
-      });
-    });
-  },
-
-  removeLesson: function(lesson) {
-    var self = this;
-
-    $.ajax({
-      type: "DELETE",
-      url: `/lesson-plans/${self.props.id}/lessons`,
-      data: {
-        lesson_id: lesson.id
-      }
+      data: { lesson_plan: data }
     }).success((res) => {
       self.setState({
         lessons_count: res.lessons_count,
         duration_in_words: res.duration_in_words,
         lessons: res.lessons
       });
+    });
+  },
+
+  reorderLessons: function({oldIndex, newIndex}) {
+    // Optimistically update during AJAX
+    this.setState({
+      lessons: arrayMove(this.state.lessons, oldIndex, newIndex)
+    });
+
+    this.persistLessonPlan({
+      lesson_plan_lessons_attributes: this.state.lessons.map((el, index) => {
+        return {
+          id: el.id,
+          position: index
+        }
+      })
+    });
+  },
+
+  removeLesson: function(lesson) {
+    this.persistLessonPlan({
+      lesson_plan_lessons_attributes: {
+        id: lesson.id,
+        _destroy: true
+      }
     });
   },
 
