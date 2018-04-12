@@ -1,6 +1,6 @@
 //= require react-sortable-hoc/dist/umd/react-sortable-hoc.js
 
-const {SortableContainer, SortableElement, arrayMove} = window.SortableHOC;
+const {SortableContainer, SortableElement, SortableHandle, arrayMove} = window.SortableHOC;
 
 const LessonPlan = createReactClass({
   getInitialState: function() {
@@ -73,7 +73,8 @@ const LessonPlan = createReactClass({
         </div>
         <LessonsList lessons={state.lessons}
           onRemove={this.removeLesson}
-          onSortEnd={this.reorderLessons} />
+          onSortEnd={this.reorderLessons}
+          useDragHandle={true} />
       </div>
     );
 
@@ -105,6 +106,15 @@ const LessonsList = SortableContainer(({lessons, onRemove}) => {
   );
 });
 
+const LessonHandle = SortableHandle(() => {
+  return (
+    <div className="handle">
+      <i className="fa fa-bars" />
+      Drag to reorder
+    </div>
+  );
+});
+
 const Lesson = SortableElement((props) => {
   return (
     <li className="lesson card">
@@ -117,6 +127,7 @@ const Lesson = SortableElement((props) => {
         <button className="remove-lesson" onClick={props.onRemove}>
           <span className="show-for-sr">Remove this lesson</span>
         </button>
+        <LessonHandle />
       </div>
     </li>
   );
