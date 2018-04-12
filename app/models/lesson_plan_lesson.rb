@@ -10,9 +10,19 @@ class LessonPlanLesson < ApplicationRecord
 
   validate :lesson_must_be_published
 
+  before_create :set_position_to_last
+
+  private
   def lesson_must_be_published
     unless lesson.published?
       errors.add(:lesson, "must be published")
+    end
+  end
+
+  # Add planned lessons to the end of the plan.
+  def set_position_to_last
+    if max_position = lesson_plan.lessons.maximum("position")
+      self.position = max_position + 1
     end
   end
 end
