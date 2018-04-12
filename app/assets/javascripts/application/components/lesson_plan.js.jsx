@@ -12,9 +12,30 @@ const LessonPlan = createReactClass({
   },
 
   reorderLessons: function({oldIndex, newIndex}) {
+    var self = this;
+
     // Optimistically update during AJAX
     this.setState({
       lessons: arrayMove(this.state.lessons, oldIndex, newIndex)
+    });
+
+    $.ajax({
+      type: "PATCH",
+      url: `/lesson-plans/${self.props.id}`,
+      data: {
+        lesson_plan: {
+          lesson_plan_lessons_attributes: self.state.lessons.map((el, index) => {
+            return {
+              id: el.id,
+              position: index
+            }
+          })
+        }
+      }
+    }).success((res) => {
+      self.setState({
+        lessons: res.lessons
+      });
     });
   },
 

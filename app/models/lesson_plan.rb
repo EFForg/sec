@@ -2,8 +2,8 @@ require_dependency "duration"
 require_dependency "pdf_template"
 
 class LessonPlan < ApplicationRecord
-  has_many :lesson_plan_lessons,
-           after_remove: ->(plan, _){ plan.update_column(:pdf_file_updated_at, nil) }
+  has_many :lesson_plan_lessons, -> { order(:position) },
+    after_remove: ->(plan, _){ plan.update_column(:pdf_file_updated_at, nil) }
 
   has_many :lessons, through: :lesson_plan_lessons
 

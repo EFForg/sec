@@ -33,17 +33,16 @@ class LessonPlansController < ApplicationController
     end
   end
 
-  # Pending reordering lessons
-  # def update
-  #   @lesson_plan = current_lesson_plan
-  #
-  #   if @lesson_plan.update_attributes(lesson_plan_params)
-  #     respond_to do |format|
-  #       format.html { redirect_back fallback_location: "/lesson-plan" }
-  #       format.js{ render @lesson_plan }
-  #     end
-  #   end
-  # end
+  def update
+    @lesson_plan = current_lesson_plan
+
+    if @lesson_plan.update_attributes(lesson_plan_params)
+      respond_to do |format|
+        format.json { render @lesson_plan }
+        format.html { redirect_back fallback_location: "/lesson-plan" }
+      end
+    end
+  end
 
   def create_lesson
     @lesson_plan = current_lesson_plan!
@@ -64,6 +63,6 @@ class LessonPlansController < ApplicationController
   private
 
   def lesson_plan_params
-    params[:lesson_plan].permit(lesson_plan_lessons_attributes: [:id, :_destroy, :lesson_id])
+    params[:lesson_plan].permit(lesson_plan_lessons_attributes: [:id, :_destroy, :position])
   end
 end
