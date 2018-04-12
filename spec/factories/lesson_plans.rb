@@ -4,8 +4,8 @@ FactoryGirl.define do
 
     factory :lesson_plan_with_lesson do
       after(:create) do |plan|
-        topic = FactoryGirl.create(:topic)
-        plan.lessons << topic.lessons.first
+        lesson = FactoryGirl.create(:lesson)
+        plan.lessons << lesson
       end
     end
 

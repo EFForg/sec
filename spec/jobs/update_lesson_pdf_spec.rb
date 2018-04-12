@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe UpdateLessonPdf do
-  let(:lesson){ FactoryGirl.create(:topic).lessons.take }
+  let(:lesson){ FactoryGirl.create(:lesson) }
 
   describe "#perform" do
     it "should create a PDF" do

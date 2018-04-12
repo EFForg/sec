@@ -1,10 +1,33 @@
-<h1>Lesson Plan:</h1>
+<div class="toc">
+  <h1>Lesson Plan:</h1>
 
-<% @lesson_plan.lessons.each_with_index do |lesson, ilesson| %>
-  <%= ilesson + 1 %>. <%= lesson.name %> (<%= lesson.duration.in_words %>)<br />
-<% end %>
+  <ol>
+    <% @lesson_plan.lessons.each do |lesson| %>
+      <li><em><strong><%= lesson.name %></strong> <%= "(#{lesson.duration.in_words})" unless lesson.duration.length.zero? %></em></li>
+    <% end %>
+  </ol>
 
-<p>Total duration: <%= @lesson_plan.duration.in_words %></p>
+  <p><strong>Total duration:</strong> <%= @lesson_plan.duration.in_words %></p>
+
+  <% if @materials.present? %>
+    <h2>Handouts and Materials</h2>
+    <ol>
+      <% @materials.each do |material| %>
+        <li>
+          <strong><em><%= material.name %></em></strong>
+
+          <p><%= html(material.description) %></p>
+
+          <ol>
+            <% material.uploads.each do |upload| %>
+              <li><%= link_to upload.name, upload.file.url %></li>
+            <% end %>
+          </ol>
+        </li>
+      <% end %>
+    </ol>
+  <% end %>
+</div>
 
 <% @lesson_plan.lessons.each do |lesson| %>
   <%= page_break %>

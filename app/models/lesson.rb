@@ -42,4 +42,13 @@ class Lesson < ApplicationRecord
   def decide_published
     self.published = body.try(:strip).present?
   end
+
+  def materials
+    url_helper = Rails.application.routes.url_helpers
+
+    Material.select do |material|
+      path = url_helper.material_path(material)
+      suggested_materials[path]
+    end
+  end
 end
