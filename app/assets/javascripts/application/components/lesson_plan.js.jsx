@@ -1,6 +1,8 @@
-//= require jquery-ui-sortable-npm
+//= require react-sortable-hoc/dist/umd/react-sortable-hoc.js
 
-var LessonPlan = createReactClass({
+const {SortableContainer, SortableElement, arrayMove} = window.SortableHOC;
+
+const LessonPlan = createReactClass({
   getInitialState: function() {
     return {
       lessons_count: this.props.lessons_count,
@@ -9,17 +11,11 @@ var LessonPlan = createReactClass({
     };
   },
 
-  componentDidMount: function() {
-    var self = this;
-
-    $(this.refs.lessons).sortable({
-      axis: "y",
-      stop: self.reorderLessons
+  reorderLessons: function({oldIndex, newIndex}) {
+    // Optimistically update during AJAX
+    this.setState({
+      lessons: arrayMove(this.state.lessons, oldIndex, newIndex)
     });
-  },
-
-  reorderLessons: function(e) {
-    console.log("Pending functionality");
   },
 
   removeLesson: function(lesson) {
@@ -60,13 +56,9 @@ var LessonPlan = createReactClass({
         <div className="total-duration">
           Total duration: {state.duration_in_words}
         </div>
-        <ul className="lessons" ref="lessons">
-          {state.lessons.map((lesson) =>
-            <Lesson {...lesson}
-                    key={lesson.id}
-                    removeLesson={(e) => this.removeLesson(lesson)} />
-          )}
-        </ul>
+        <LessonsList lessons={state.lessons}
+          onRemove={this.removeLesson}
+          onSortEnd={this.reorderLessons} />
       </div>
     );
 
@@ -85,22 +77,32 @@ var LessonPlan = createReactClass({
   }
 });
 
-var Lesson = createReactClass({
-  render: function() {
-    var props = this.props;
+const LessonsList = SortableContainer(({lessons, onRemove}) => {
+  return (
+    <ul className="lessons">
+      {lessons.map((lesson, index) =>
+        <Lesson {...lesson}
+          key={lesson.id}
+          index={index}
+          onRemove={(e) => onRemove(lesson)} />
+      )}
+    </ul>
+  );
+});
 
-    return (
-      <li className="lesson card">
-        <div className="top">
-          <div className="icon" dangerouslySetInnerHTML={{__html: props.rendered_icon}} />
-          <h3>{props.name}</h3>
-          <div className="duration">Duration: {props.duration}</div>
-          <div className="levels" dangerouslySetInnerHTML={{__html: props.difficulty_tag}} />
-          <button className="remove-lesson" onClick={props.removeLesson}>
-            <span className="show-for-sr">Remove this lesson</span>
-          </button>
-        </div>
-      </li>
-    );
-  }
+const Lesson = SortableElement((props) => {
+  return (
+    <li className="lesson card">
+      <div className="top">
+        <div className="icon" dangerouslySetInnerHTML={{__html: props.rendered_icon}} />
+        <h3>{props.name}</h3>
+        <div className="duration">Duration: {props.duration}</div>
+        <div className="levels"
+          dangerouslySetInnerHTML={{__html: props.difficulty_tag}} />
+        <button className="remove-lesson" onClick={props.onRemove}>
+          <span className="show-for-sr">Remove this lesson</span>
+        </button>
+      </div>
+    </li>
+  );
 });

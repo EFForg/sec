@@ -3,7 +3,7 @@
   "private": true,
   "dependencies": {
     "jquery": "^3.2.1",
-    "jquery-ui-sortable-npm": "^1.0.0"
+    "react-sortable-hoc": "^0.6.8"
   },
   "devDependencies": {
     "sass-lint": "^1.12.0"
