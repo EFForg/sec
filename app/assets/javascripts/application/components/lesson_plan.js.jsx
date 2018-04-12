@@ -1,6 +1,6 @@
 //= require react-sortable-hoc/dist/umd/react-sortable-hoc.js
 
-const {SortableContainer, SortableElement, SortableHandle, arrayMove} = window.SortableHOC;
+const {SortableContainer, SortableElement, SortableHandle, arrayMove} = SortableHOC;
 
 const LessonPlan = createReactClass({
   getInitialState: function() {
