@@ -42,13 +42,15 @@ const LessonPlan = createReactClass({
     });
   },
 
-  removeLesson: function(lesson) {
+  removeLesson: function(e, lesson) {
     this.persistLessonPlan({
       lesson_plan_lessons_attributes: {
         id: lesson.id,
         _destroy: true
       }
     });
+
+    e.preventDefault();
   },
 
   render: function() {
@@ -72,6 +74,7 @@ const LessonPlan = createReactClass({
           Total duration: {state.duration_in_words}
         </div>
         <LessonsList lessons={state.lessons}
+          planId={props.id}
           onRemove={this.removeLesson}
           onSortEnd={this.reorderLessons}
           useDragHandle={true} />
@@ -93,14 +96,15 @@ const LessonPlan = createReactClass({
   }
 });
 
-const LessonsList = SortableContainer(({lessons, onRemove}) => {
+const LessonsList = SortableContainer(({planId, lessons, onRemove}) => {
   return (
     <ul className="lessons">
       {lessons.map((lesson, index) =>
         <Lesson {...lesson}
           key={lesson.id}
           index={index}
-          onRemove={(e) => onRemove(lesson)} />
+          planId={planId}
+          onRemove={(e) => onRemove(e, lesson)} />
       )}
     </ul>
   );
@@ -124,11 +128,30 @@ const Lesson = SortableElement((props) => {
         <div className="duration">Duration: {props.duration}</div>
         <div className="levels"
           dangerouslySetInnerHTML={{__html: props.difficulty_tag}} />
-        <button className="remove-lesson" onClick={props.onRemove}>
-          <span className="show-for-sr">Remove this lesson</span>
-        </button>
         <LessonHandle />
+        <RemoveLessonForm id={props.id} planId={props.planId} onRemove={props.onRemove} />
       </div>
     </li>
   );
 });
+
+const RemoveLessonForm = createReactClass({
+  render: function() {
+    const action = `/lesson-plans/${this.props.planId}`;
+
+    return (
+      <form action={action} method="post" onSubmit={this.props.onRemove}>
+        <input type="hidden" name="_method" value="patch" />
+        <input name="lesson_plan[lesson_plan_lessons_attributes][0][_destroy]"
+          type="hidden"
+          value="true" />
+        <input name="lesson_plan[lesson_plan_lessons_attributes][0][id]"
+          type="hidden"
+          value={this.props.id} />
+        <input type="submit"
+          className="remove-lesson"
+          value="Remove this lesson" />
+      </form>
+    );
+  }
+})
