@@ -73,11 +73,8 @@ const LessonPlan = createReactClass({
         <div className="total-duration">
           Total duration: {state.duration_in_words}
         </div>
-        <LessonsList lessons={state.lessons}
-          planId={props.id}
-          onRemove={this.removeLesson}
-          onSortEnd={this.reorderLessons}
-          useDragHandle={true} />
+        <LessonsList lessons={state.lessons} planId={props.id} onRemove={this.removeLesson}
+          onSortEnd={this.reorderLessons} useDragHandle={true} />
       </div>
     );
 
@@ -136,8 +133,7 @@ const Lesson = createReactClass({
           <div className="icon" dangerouslySetInnerHTML={{__html: props.rendered_icon}} />
           <h3>{props.name}</h3>
           <div className="duration">Duration: {props.duration}</div>
-          <div className="levels"
-            dangerouslySetInnerHTML={{__html: props.difficulty_tag}} />
+          <div className="levels" dangerouslySetInnerHTML={{__html: props.difficulty_tag}} />
           { this.state.draggable && <LessonHandle /> }
           <RemoveLessonForm id={props.id} planId={props.planId} onRemove={props.onRemove} />
         </div>
@@ -154,14 +150,10 @@ const RemoveLessonForm = createReactClass({
       <form action={action} method="post" onSubmit={this.props.onRemove}>
         <input type="hidden" name="_method" value="patch" />
         <input name="lesson_plan[lesson_plan_lessons_attributes][0][_destroy]"
-          type="hidden"
-          value="true" />
+          type="hidden" value="true" />
         <input name="lesson_plan[lesson_plan_lessons_attributes][0][id]"
-          type="hidden"
-          value={this.props.id} />
-        <input type="submit"
-          className="remove-lesson"
-          value="Remove this lesson" />
+          type="hidden" value={this.props.id} />
+        <input type="submit" className="remove-lesson" value="Remove this lesson" />
       </form>
     );
   }
