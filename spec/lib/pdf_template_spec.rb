@@ -28,10 +28,12 @@ RSpec.describe PdfTemplate do
 
   describe "#print_pdf" do
     it "should shell out to chrome-headless-render-pdf" do
-      expect(pdf_template).to receive(:system) do |*args|
+      expect(Process).to receive(:spawn) do |*args|
         expect(args.grep(/chrome-headless-render-pdf/)).
           not_to be_empty
       end
+
+      expect(Timeout).to receive(:timeout)
 
       pdf_template.send(:print_pdf, "/tmp/input.html")
     end
@@ -51,7 +53,7 @@ RSpec.describe PdfTemplate do
     end
 
     it "should rewrite relative urls when ENV['SERVER_HOST'] is set" do
-      proto, host, port = "https", "sec.eff.org", "81"
+      proto, host, port = "https", "sec.eff.org", "8"
       expect(ENV).to receive(:[]).with("SERVER_HOST").
                       and_return(host).
                       at_least(:once)
@@ -59,16 +61,16 @@ RSpec.describe PdfTemplate do
                       and_return(proto).
                       at_least(:once)
       expect(ENV).to receive(:[]).with("SERVER_PORT").
-                      and_return(nil).
+                      and_return(port).
                       at_least(:once)
 
       html = %(<a href="/relative">anchor</a>")
       expect(pdf_template.send(:rebase_urls, html)).
-        to eq(html.sub(%r{/relative}, "https://sec.eff.org/relative"))
+        to eq(html.sub(%r{/relative}, "https://sec.eff.org:8/relative"))
 
       html = %(<img src="/relative">")
       expect(pdf_template.send(:rebase_urls, html)).
-        to eq(html.sub(%r{/relative}, "https://sec.eff.org/relative"))
+        to eq(html.sub(%r{/relative}, "https://sec.eff.org:8/relative"))
     end
   end
 end
