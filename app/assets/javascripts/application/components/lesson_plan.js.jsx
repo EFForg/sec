@@ -100,10 +100,7 @@ const LessonsList = SortableContainer(({planId, lessons, onRemove}) => {
   return (
     <ul className="lessons">
       {lessons.map((lesson, index) =>
-        <Lesson {...lesson}
-          key={lesson.id}
-          index={index}
-          planId={planId}
+        <SortableLesson {...lesson} key={lesson.id} index={index} planId={planId}
           onRemove={(e) => onRemove(e, lesson)} />
       )}
     </ul>
@@ -119,20 +116,34 @@ const LessonHandle = SortableHandle(() => {
   );
 });
 
-const Lesson = SortableElement((props) => {
-  return (
-    <li className="lesson card">
-      <div className="top">
-        <div className="icon" dangerouslySetInnerHTML={{__html: props.rendered_icon}} />
-        <h3>{props.name}</h3>
-        <div className="duration">Duration: {props.duration}</div>
-        <div className="levels"
-          dangerouslySetInnerHTML={{__html: props.difficulty_tag}} />
-        <LessonHandle />
-        <RemoveLessonForm id={props.id} planId={props.planId} onRemove={props.onRemove} />
-      </div>
-    </li>
-  );
+const SortableLesson = SortableElement((props) => <Lesson {...props} /> );
+
+const Lesson = createReactClass({
+  getInitialState: function() {
+    return { draggable: false };
+  },
+
+  componentDidMount: function() {
+    this.setState({ draggable: true });
+  },
+
+  render: function() {
+    const props = this.props;
+
+    return (
+      <li className="lesson card">
+        <div className="top">
+          <div className="icon" dangerouslySetInnerHTML={{__html: props.rendered_icon}} />
+          <h3>{props.name}</h3>
+          <div className="duration">Duration: {props.duration}</div>
+          <div className="levels"
+            dangerouslySetInnerHTML={{__html: props.difficulty_tag}} />
+          { this.state.draggable && <LessonHandle /> }
+          <RemoveLessonForm id={props.id} planId={props.planId} onRemove={props.onRemove} />
+        </div>
+      </li>
+    );
+  }
 });
 
 const RemoveLessonForm = createReactClass({
