@@ -32,13 +32,17 @@ class PdfTemplate
 
   def print_pdf(input)
     output = Tempfile.new(["pdf", ".pdf"])
-    chrome_wrapper = Rails.root.join("bin/chrome-stub").to_s
 
     command = ["node_modules/.bin/chrome-headless-render-pdf",
-               "--chrome-binary", chrome_wrapper,
+               "--chrome-option=--no-sandbox",
                "--no-margins",
                "--url", "file://#{input}",
                "--pdf", output.path]
+
+    if `which chromium-browser`.present?
+      command << "--chrome-binary" << "chromium-browser"
+    end
+
     Rails.logger.info(Shellwords.shelljoin(command))
 
     begin

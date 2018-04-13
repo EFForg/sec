@@ -2,8 +2,7 @@
   "name": "trainers-hub",
   "private": true,
   "dependencies": {
-    "chrome-headless-render-pdf": "^1.5.1",
-    "jquery": "^3.2.1",
+    "chrome-headless-render-pdf": "^1.6.1",
     "jquery": "^3.2.1",
     "jquery-ui-sortable-npm": "^1.0.0"
   },

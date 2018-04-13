@@ -1,7 +1,0 @@
-#!/usr/bin/env sh
-
-if [ -z "$CHROME_BIN" ]; then
-    CHROME_BIN=$(which chromium-browser)
-fi
-
-exec "$CHROME_BIN" --disable-gpu --no-sandbox "$@"

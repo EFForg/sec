@@ -157,9 +157,9 @@ chalk@^2.0.1:
     escape-string-regexp "^1.0.5"
     supports-color "^5.3.0"
 
-chrome-headless-render-pdf@^1.5.1:
-  version "1.5.1"
-  resolved "https://registry.yarnpkg.com/chrome-headless-render-pdf/-/chrome-headless-render-pdf-1.5.1.tgz#9ed0ab68fe4367ee61d590f72946afafd47a9387"
+chrome-headless-render-pdf@^1.6.1:
+  version "1.6.1"
+  resolved "https://registry.yarnpkg.com/chrome-headless-render-pdf/-/chrome-headless-render-pdf-1.6.1.tgz#5269513850bb44bd2b198f9265f14a343b8c342f"
   dependencies:
     "@types/node" "^8.0.15"
     babel-polyfill "^6.23.0"
