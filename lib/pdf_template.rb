@@ -33,16 +33,25 @@ class PdfTemplate
   def print_pdf(input)
     output = Tempfile.new(["pdf", ".pdf"])
     chrome_wrapper = Rails.root.join("bin/chrome-stub").to_s
-    command = ["timeout", "-t", "5",
-               "node_modules/.bin/chrome-headless-render-pdf",
+
+    command = ["node_modules/.bin/chrome-headless-render-pdf",
                "--chrome-binary", chrome_wrapper,
                "--no-margins",
                "--url", "file://#{input}",
                "--pdf", output.path]
-
     Rails.logger.info(Shellwords.shelljoin(command))
 
-    output if system(*command)
+    begin
+      retries ||= 1
+      pid = Process.spawn(*command)
+      Timeout.timeout(3){ Process.waitpid(pid) }
+    rescue Timeout::Error => e
+      Process.kill("TERM", pid)
+      raise e if (retries += 1) > 3
+      retry
+    end
+
+    output
   end
 
   def rebase_urls(html)
