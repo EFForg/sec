@@ -11,7 +11,7 @@ module PdfHelper
 
   def pdf_style_sheet
     content_tag(:style, type: "text/css") do
-      Rails.application.assets.find_asset("pdf.scss").to_s.html_safe
+      Rails.application.assets.find_asset("pdf.scss").to_s.html_safe # rubocop:disable Rails/OutputSafety
     end
   end
 end
