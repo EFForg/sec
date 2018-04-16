@@ -5,12 +5,12 @@
 
   <title><%= page_title %></title>
 
-  <%= stylesheet_link_tag "pdf", media: "all" %>
+  <%= pdf_style_sheet %>
 </head>
 
 <body class="section-<%= controller_name %> page-<%= action_name %>">
   <div id="header">
-    <img src="<%= image_url("print-header.png") %>" />
+    <img src="<%= asset_data_uri("print-header.png") %>" />
   </div>
 
   <div id="main-content">

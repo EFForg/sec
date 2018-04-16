@@ -66,12 +66,12 @@ class PdfTemplate
       url_base = [url_base, ENV["SERVER_PORT"]].join(":") if ENV["SERVER_PORT"]
 
       doc.css("a, img, link, script").each do |a|
-        if a["href"] && a["href"] !~ /^https?:\/\//
+        if a["href"] && a["href"] !~ /^(https?:\/\/|data:)/
           path = a["href"].sub(/^\//, "")
           a["href"] = "#{url_base}/#{path}"
         end
 
-        if a["src"] && a["src"] !~ /^https?:\/\//
+        if a["src"] && a["src"] !~ /^(https?:\/\/|data:)/
           path = a["src"].sub(/^\//, "")
           a["src"] = "#{url_base}/#{path}"
         end
