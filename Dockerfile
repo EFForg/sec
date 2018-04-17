@@ -12,7 +12,6 @@ RUN if [ "$BUILD_ENV" = "development" ]; then \
     fi
 
 RUN echo "@edge http://nl.alpinelinux.org/alpine/edge/main" >>/etc/apk/repositories \
-  && echo "@edgetesting http://nl.alpinelinux.org/alpine/edge/testing" >>/etc/apk/repositories \
   && echo "@edgecommunity http://nl.alpinelinux.org/alpine/edge/community" >>/etc/apk/repositories \
   && apk upgrade --update-cache \
   && apk add \
@@ -22,13 +21,10 @@ RUN echo "@edge http://nl.alpinelinux.org/alpine/edge/main" >>/etc/apk/repositor
     postgresql-client \
     imagemagick \
     ghostscript \
-    xvfb \
-    wkhtmltopdf@edgetesting \
     nodejs \
     yarn \
 
     # Needed for wkhtmltopdf
-    dbus \
     chromium@edgecommunity \
 
   # Set up crontab.
