@@ -13,8 +13,6 @@
 //= require jquery
 //= require rails-ujs
 //= require turbolinks
-//= require react
-//= require react_ujs
 //= require_tree ./application
 //= require foundation
 

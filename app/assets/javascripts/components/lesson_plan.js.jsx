@@ -27,13 +27,15 @@ const LessonPlan = createReactClass({
   },
 
   reorderLessons: function({oldIndex, newIndex}) {
+    const reordered_lessons = arrayMove(this.state.lessons, oldIndex, newIndex);
+
     // Optimistically update during AJAX
     this.setState({
-      lessons: arrayMove(this.state.lessons, oldIndex, newIndex)
+      lessons: reordered_lessons
     });
 
     this.persistLessonPlan({
-      lesson_plan_lessons_attributes: this.state.lessons.map((el, index) => {
+      lesson_plan_lessons_attributes: reordered_lessons.map((el, index) => {
         return {
           id: el.id,
           position: index
