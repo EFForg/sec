@@ -46,6 +46,10 @@ class LessonPlan < ApplicationRecord
     Duration.new(lessons.sum :duration)
   end
 
+  def lengthy?
+    duration.length >= 4.hours
+  end
+
   def to_param
     persisted? ? key : "current"
   end
