@@ -14,7 +14,7 @@ document.addEventListener('ajax:success', function(e) {
 
     $('.lesson-count').html(res.lessons_count);
 
-    const lesson_ids = res.lessons.map(el => el.id);
+    const lesson_ids = res.lessons.map(el => el.lesson_id);
     $('form.add_remove_lesson').each(function() {
       if (lesson_ids.indexOf($(this).data('lesson-id')) != -1)
         $('input[name=_method]', this).attr('value', 'delete');

@@ -79,4 +79,11 @@ RSpec.feature "GiveFeedback", type: :feature, js: true do
 
     expect(feedback.source_url).to eq(source_url)
   end
+
+  scenario "user submits site-wide feedback" do
+    Homepage.create(welcome: "", articles_intro: "")
+    visit root_path
+    find("footer a", text: /Submit Feedback/i).click
+    expect(page).to have_content("SEC Website Satisfaction Survey")
+  end
 end

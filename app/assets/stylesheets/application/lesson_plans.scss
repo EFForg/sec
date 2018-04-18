@@ -51,6 +51,7 @@
 
   .top {
     padding-right: 1.8rem;
+    margin-bottom: 1.5rem;
   }
 
   .icon {
@@ -60,8 +61,24 @@
     width: 190px;
     text-align: center;
 
-    @include breakpoint(medium) {
+    @include breakpoint(large) {
       display: block;
+    }
+  }
+
+  .levels {
+    margin-top: 1rem;
+    float: left;
+  }
+
+  .handle {
+    margin-top: 1rem;
+    color: $darkest-teal;
+    text-align: right;
+    cursor: pointer;
+
+    .fa-bars {
+      padding-right: 6px;
     }
   }
 
