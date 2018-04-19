@@ -40,13 +40,11 @@ class PdfTemplate
     Rails.logger.info(Shellwords.shelljoin(command))
 
     begin
-      retries ||= 1
       pid = Process.spawn(*command)
       Timeout.timeout(3){ Process.waitpid(pid) }
     rescue Timeout::Error => e
       Process.kill("TERM", pid)
-      raise e if (retries += 1) > 3
-      retry
+      raise e
     end
 
     output
