@@ -2,10 +2,15 @@ require_dependency "duration"
 require_dependency "pdf_template"
 
 class LessonPlan < ApplicationRecord
-  has_many :lesson_plan_lessons, -> { order(:position) },
+  has_many :lesson_plan_lessons,
+    counter_cache: "lessons_count",
     after_remove: ->(plan, _){ plan.update_column(:pdf_file_updated_at, nil) }
 
-  has_many :lessons, through: :lesson_plan_lessons
+  has_many :lessons, through: :lesson_plan_lessons do
+    def ordered
+      merge(LessonPlanLesson.ordered)
+    end
+  end
 
   accepts_nested_attributes_for :lesson_plan_lessons,
                                 allow_destroy: true
