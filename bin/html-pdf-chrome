@@ -17,6 +17,7 @@ if (!argv['html'] || !argv['pdf']) {
 var html = fs.readFileSync(argv['html']).toString();
 
 var options = {
+  chromePath: 'chromium-browser',
   chromeFlags: [
     '--disable-gpu',
     '--no-sandbox',
