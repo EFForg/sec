@@ -27,10 +27,9 @@ RSpec.describe PdfTemplate do
   end
 
   describe "#print_pdf" do
-    it "should shell out to chrome-headless-render-pdf" do
+    it "should shell out to bin/html-pdf-chrome" do
       expect(Process).to receive(:spawn) do |*args|
-        expect(args.grep(/chrome-headless-render-pdf/)).
-          not_to be_empty
+        expect(args[0]).to eq("bin/html-pdf-chrome")
       end
 
       expect(Timeout).to receive(:timeout)
