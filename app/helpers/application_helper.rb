@@ -20,4 +20,10 @@ module ApplicationHelper
   def escape_page_title
     URI.escape(page_title , Regexp.new("[^#{URI::PATTERN::UNRESERVED}]"))
   end
+
+  def modal(name = nil, &block)
+    unless name && session.fetch(:dismissed_modals, []).include?(name)
+      render "shared/modal", name: name, &block
+    end
+  end
 end

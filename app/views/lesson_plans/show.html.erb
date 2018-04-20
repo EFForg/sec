@@ -7,6 +7,19 @@
       In the lesson planner, you can organize your selected lessons to prepare for your next teaching opportunity. Drag the lesson to reorder and remove lessons you have completed or no longer need.
     </p>
 
+    <% if params[:id].blank? && @lesson_plan.lengthy? %>
+      <%= modal("lesson_plan_is_lengthy") do %>
+        <p>
+          This seems like a lot to cover for one day!
+          Your learners might be overwhelmed.
+        </p>
+        <p>
+          Consider spreading it across a view days,
+          or teaching fewer modules.
+        </p>
+      <% end %>
+    <% end %>
+
     <%= javascript_include_tag 'react_components', 'data-turbolinks-track': 'reload' %>
 
     <%= react_component "LessonPlan",

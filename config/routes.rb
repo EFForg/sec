@@ -2,6 +2,8 @@ Rails.application.routes.draw do
   mount Ckeditor::Engine => '/ckeditor'
   root to: "home#index"
 
+  post "/dismiss", as: "dismiss_modal", to: "application#dismiss_modal"
+
   resources :articles, only: [:index, :show]
 
   scope :blog, controller: "blog" do
