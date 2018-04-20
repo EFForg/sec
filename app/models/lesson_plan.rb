@@ -6,11 +6,8 @@ class LessonPlan < ApplicationRecord
     counter_cache: "lessons_count",
     after_remove: ->(plan, _){ plan.update_column(:pdf_file_updated_at, nil) }
 
-  has_many :lessons, through: :lesson_plan_lessons do
-    def ordered
-      merge(LessonPlanLesson.ordered)
-    end
-  end
+  has_many :lessons, ->{ reorder!.merge(LessonPlanLesson.ordered) },
+    through: :lesson_plan_lessons
 
   accepts_nested_attributes_for :lesson_plan_lessons,
                                 allow_destroy: true
