@@ -64,6 +64,6 @@ class LessonPlan < ApplicationRecord
   private
 
   def set_key
-    self.key = SecureRandom.urlsafe_base64
+    self.key = EffDiceware.generate(4).gsub(" ", "-")
   end
 end
