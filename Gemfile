@@ -58,6 +58,9 @@ gem "delayed_job_active_record"
 # Prevent form submissions by bots
 gem "invisible_captcha"
 
+# Generate passphrases using the diceware method
+gem "eff_diceware"
+
 # Content administration
 gem "active_material", github: "vigetlabs/active_material"
 gem "activeadmin"
