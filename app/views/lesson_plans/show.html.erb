@@ -7,8 +7,6 @@
       In the lesson planner, you can organize your selected lessons to prepare for your next teaching opportunity. Drag the lesson to reorder and remove lessons you have completed or no longer need.
     </p>
 
-    <%= javascript_include_tag 'react_components', 'data-turbolinks-track': 'reload' %>
-
     <%= react_component "LessonPlan",
       render(partial: @lesson_plan, formats: [:json]),
       prerender: true %>
