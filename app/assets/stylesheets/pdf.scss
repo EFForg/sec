@@ -183,7 +183,6 @@ table {
   width: 100%;
 }
 
-
 ul, ol {
   margin-left: 1.6rem;
 }
@@ -196,6 +195,25 @@ h1 {
   page-break-before: always;
 }
 
+@page {
+  size: auto;
+  margin: 0.6in 1in 1.5in 1in;
+}
+
+#header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+
+#header img {
+  width: 100%;
+}
+
+#main-content {
+  margin-top: 65px;
+}
 
 .toc ol {
   margin-left: 0;

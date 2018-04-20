@@ -49,9 +49,6 @@ gem "httparty"
 # Slugging/permalinks
 gem "friendly_id"
 
-# HTML to PDF
-gem "wicked_pdf"
-
 # Feature flipping
 gem "flipper", github: "jnunemaker/flipper"
 

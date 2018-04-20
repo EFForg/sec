@@ -12,7 +12,7 @@ RUN if [ "$BUILD_ENV" = "development" ]; then \
     fi
 
 RUN echo "@edge http://nl.alpinelinux.org/alpine/edge/main" >>/etc/apk/repositories \
-  && echo "@edgetesting http://nl.alpinelinux.org/alpine/edge/testing" >>/etc/apk/repositories \
+  && echo "@edgecommunity http://nl.alpinelinux.org/alpine/edge/community" >>/etc/apk/repositories \
   && apk upgrade --update-cache \
   && apk add \
     build-base \
@@ -21,13 +21,13 @@ RUN echo "@edge http://nl.alpinelinux.org/alpine/edge/main" >>/etc/apk/repositor
     postgresql-client \
     imagemagick \
     ghostscript \
-    xvfb \
-    wkhtmltopdf@edgetesting \
     nodejs \
     yarn \
 
-    # Needed for wkhtmltopdf
-    dbus \
+    chromium@edgecommunity \
+
+    # Needed by html-pdf-chrome dependency
+    grep@edge \
 
   # Set up crontab.
   && echo "*/15 * * * * su -s/bin/sh www-data -c \
@@ -36,7 +36,9 @@ RUN echo "@edge http://nl.alpinelinux.org/alpine/edge/main" >>/etc/apk/repositor
   && echo "*/15 * * * * root su -s/bin/sh www-data -c \
     'cd /opt/trainers-hub && bundle exec rake glossary:update' >>/proc/1/fd/1 2>&1" >>/etc/crontab
 
-ENV DISPLAY=:99
+ENV CHROME_BIN=/usr/bin/chromium-browser
+ENV CHROME_PATH=/usr/lib/chromium/
+
 COPY Gemfile* ./
 RUN bundle install
 
