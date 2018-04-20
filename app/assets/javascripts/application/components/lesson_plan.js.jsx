@@ -123,7 +123,9 @@ const Lesson = createReactClass({
   },
 
   componentDidMount: function() {
-    this.setState({ draggable: true });
+    requestAnimationFrame(() => {
+      this.setState({ draggable: true });
+    });
   },
 
   render: function() {
