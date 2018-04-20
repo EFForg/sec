@@ -1,0 +1,13 @@
+<div class="modal">
+  <div class="sign"></div>
+
+  <div class="content">
+    <%= yield %>
+
+    <%= form_tag dismiss_modal_path, remote: true, action: "post", class: "dismiss" do %>
+      <%= hidden_field_tag "modal_name", name %>
+      <%= check_mark_tag "dismiss", "Do not show this message again." %>
+      <%= submit_tag "Ok" %>
+    <% end %>
+  </div>
+</div>

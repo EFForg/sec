@@ -10,6 +10,10 @@ RSpec.feature "ManageLessonPlan", type: :feature do
     second_lesson
   }
 
+  let(:lots_of_lessons) {
+    FactoryGirl.create_list(:lesson, 4, duration: Duration.new(1.hour))
+  }
+
   before do
     page.set_rack_session(lesson_plan_id: lesson_plan.id)
   end
@@ -34,5 +38,19 @@ RSpec.feature "ManageLessonPlan", type: :feature do
 
     expect(find(".lesson:nth-child(1)")).to have_content("Another Topic")
     expect(lesson_plan.lesson_plan_lessons.find_by(lesson: second_lesson).position).to eq(0)
+  end
+
+  scenario "user dismisses notice about lesson plan length" do
+    lesson_plan.lessons << lots_of_lessons
+    visit "/lesson-plan"
+
+    expect(page).to have_css("body.is-reveal-open")
+    expect(page).to have_content("This seems like a lot to cover for one day!")
+
+    click_on "Ok"
+
+    page.driver.refresh
+
+    expect(page).not_to have_content("This seems like a lot to cover for one day!")
   end
 end
