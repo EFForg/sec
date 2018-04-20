@@ -40,7 +40,7 @@ RSpec.feature "ManageLessonPlan", type: :feature do
     expect(lesson_plan.lesson_plan_lessons.find_by(lesson: second_lesson).position).to eq(0)
   end
 
-  scenario "user dismisses notice about lesson plan length" do
+  scenario "user dismisses notice about lesson plan length", js: true do
     lesson_plan.lessons << lots_of_lessons
     visit "/lesson-plan"
 
