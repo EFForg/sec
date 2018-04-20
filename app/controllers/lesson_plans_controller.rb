@@ -22,10 +22,10 @@ class LessonPlansController < ApplicationController
       end
 
       format.zip do
-        files = @lesson_plan_lessons.map(&:lesson).map(&:pdf)
+        files = @lesson_plan.files
 
         unless files.all?(&:present?)
-          raise Exception.new("lesson pdf not present")
+          raise Exception.new("lesson plan files not present")
         end
 
         send_archive(files)
