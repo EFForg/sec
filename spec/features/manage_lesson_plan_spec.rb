@@ -11,11 +11,7 @@ RSpec.feature "ManageLessonPlan", type: :feature, js: true do
   }
 
   let(:lots_of_lessons) {
-    anhour = Duration.new(1.hour)
-    lesson_plan.lessons << FactoryGirl.create(:lesson, duration: anhour)
-    lesson_plan.lessons << FactoryGirl.create(:lesson, duration: anhour)
-    lesson_plan.lessons << FactoryGirl.create(:lesson, duration: anhour)
-    lesson_plan.lessons << FactoryGirl.create(:lesson, duration: anhour)
+    FactoryGirl.create_list(:lesson, 4, duration: Duration.new(1.hour))
   }
 
   before do
@@ -43,7 +39,7 @@ RSpec.feature "ManageLessonPlan", type: :feature, js: true do
   end
 
   scenario "user dismisses notice about lesson plan length" do
-    lots_of_lessons
+    lesson_plan.lessons << lots_of_lessons
     visit "/lesson-plan"
 
     expect(page).to have_css("body.is-reveal-open")
