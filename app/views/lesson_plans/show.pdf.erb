@@ -2,7 +2,7 @@
   <h1>Lesson Plan:</h1>
 
   <ol>
-    <% @lesson_plan.lessons.ordered.each do |lesson| %>
+    <% @lesson_plan.lessons.published.each do |lesson| %>
       <li><em><strong><%= lesson.name %></strong> <%= "(#{lesson.duration.in_words})" unless lesson.duration.length.zero? %></em></li>
     <% end %>
   </ol>
@@ -29,7 +29,7 @@
   <% end %>
 </div>
 
-<% @lesson_plan.lessons.ordered.each do |lesson| %>
+<% @lesson_plan.lessons.published.each do |lesson| %>
   <%= page_break %>
   <% @topic, @lesson = lesson.topic, lesson %>
   <%= render template: "lessons/show" %>
