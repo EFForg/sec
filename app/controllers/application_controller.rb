@@ -1,7 +1,8 @@
 class ApplicationController < ActionController::Base
-  protect_from_forgery with: :exception
-
+  include RequestOriginValidation
   include Sharing
+
+  protect_from_forgery with: :exception
 
   def dismiss_modal
     if params[:dismiss]
