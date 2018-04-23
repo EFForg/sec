@@ -44,4 +44,6 @@ Rails.application.routes.draw do
                controllers: { :invitations => "user_invitations" }
              )
   ActiveAdmin.routes(self)
+
+  get "*page_id", as: :page, to: "pages#show"
 end
