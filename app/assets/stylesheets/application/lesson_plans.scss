@@ -23,6 +23,12 @@
     width: 100%;
   }
 
+  .row aside {
+    margin-bottom: 20px;
+    font-size: 0.9rem;
+    line-height: 1.5rem;
+  }
+
   .your-lessons,
   .total-duration {
     @extend h3;
