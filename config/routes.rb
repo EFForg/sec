@@ -44,5 +44,7 @@ Rails.application.routes.draw do
              )
   ActiveAdmin.routes(self)
 
-  get "*page_id", as: :page, to: "pages#show"
+  ["credits", "translations"].each do |page|
+    get page, as: page, to: "pages#show", defaults: { page_id: page }
+  end
 end
