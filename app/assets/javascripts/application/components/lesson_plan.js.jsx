@@ -12,7 +12,7 @@ const LessonPlan = createReactClass({
   },
 
   persistLessonPlan: function(data) {
-    self = this;
+    var self = this;
     $.ajax({
       type: "PATCH",
       url: `/lesson-plans/${self.props.id}`,
