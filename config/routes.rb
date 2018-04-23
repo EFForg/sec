@@ -32,7 +32,6 @@ Rails.application.routes.draw do
     get :thanks
   end
 
-  get "/credits", as: :credits, to: "credits#index"
   get "/search", as: :search, to: "search#results"
 
   get "/404", to: "errors#not_found"
