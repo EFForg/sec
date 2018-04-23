@@ -4,6 +4,7 @@ module Zipping
 
     manifest = files.each_with_index.map do |file, i|
       path = URI::escape(file.path[Rails.root.join("public").to_s.size..-1])
+      path = "/#{path}" unless path.starts_with?("/")
 
       filename = File.basename(path)
       filename = sprintf("%0#{digits}d-%s", i+1, filename) if number

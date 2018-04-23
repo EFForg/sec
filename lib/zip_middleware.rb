@@ -1,4 +1,5 @@
 require "shellwords"
+require "open3"
 
 class ZipMiddleware
   attr_reader :app
