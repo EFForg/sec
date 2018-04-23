@@ -19,3 +19,4 @@ json.links do
   json.pdf lesson_plan_path(@lesson_plan, format: "pdf")
   json.share lesson_plan_url(@lesson_plan)
 end
+json.shared @shared

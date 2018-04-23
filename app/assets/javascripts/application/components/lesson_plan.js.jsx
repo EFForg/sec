@@ -81,8 +81,8 @@ const LessonPlan = createReactClass({
         <div className="total-duration">
           Total duration: {state.duration_in_words}
         </div>
-        <LessonsList lessons={state.lessons} planId={props.id} onRemove={this.removeLesson}
-          onSortEnd={this.reorderLessons} useDragHandle={true} />
+        <LessonsList lessons={state.lessons} planId={props.id} shared={props.shared}
+          onRemove={this.removeLesson} onSortEnd={this.reorderLessons} useDragHandle={true} />
       </div>
     );
 
@@ -104,12 +104,12 @@ const LessonPlan = createReactClass({
   }
 });
 
-const LessonsList = SortableContainer(({planId, lessons, onRemove}) => {
+const LessonsList = SortableContainer((props) => {
   return (
     <ul className="lessons">
-      {lessons.map((lesson, index) =>
-        <SortableLesson {...lesson} key={lesson.id} index={index} planId={planId}
-          onRemove={(e) => onRemove(e, lesson)} />
+      {props.lessons.map((lesson, index) =>
+        <SortableLesson {...lesson} key={lesson.id} index={index} planId={props.planId}
+          shared={props.shared} onRemove={(e) => props.onRemove(e, lesson)} />
       )}
     </ul>
   );
@@ -133,7 +133,7 @@ const Lesson = createReactClass({
 
   componentDidMount: function() {
     requestAnimationFrame(() => {
-      this.setState({ draggable: true });
+      this.setState({ draggable: !this.props.shared });
     });
   },
 
@@ -148,7 +148,8 @@ const Lesson = createReactClass({
           <div className="duration">Duration: {props.duration}</div>
           <div className="levels" dangerouslySetInnerHTML={{__html: props.difficulty_tag}} />
           { this.state.draggable && <LessonHandle /> }
-          <RemoveLessonForm id={props.id} planId={props.planId} onRemove={props.onRemove} />
+          { !this.props.shared && <RemoveLessonForm id={props.id}
+              planId={props.planId} onRemove={props.onRemove} /> }
         </div>
       </li>
     );
