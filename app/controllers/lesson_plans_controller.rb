@@ -48,19 +48,27 @@ class LessonPlansController < ApplicationController
   end
 
   def create_lesson
+    lesson = Lesson.find(params[:lesson_id])
     @lesson_plan = current_lesson_plan!
-    @lesson_plan.lessons << Lesson.find(params[:lesson_id])
+    @lesson_plan.lessons << lesson
 
-    render "lesson_plans/_lesson_plan"
+    respond_to do |format|
+      format.json{ render "lesson_plans/_lesson_plan" }
+      format.html{ redirect_to topic_lesson_path(lesson.topic, lesson.level) }
+    end
   end
 
   def destroy_lesson
+    lesson = Lesson.find(params[:lesson_id])
     @lesson_plan = current_lesson_plan
 
     @lesson_plan.lesson_plan_lessons.
-      where(lesson_id: params[:lesson_id]).destroy_all
+      where(lesson_id: lesson.id).destroy_all
 
-    render "lesson_plans/_lesson_plan"
+    respond_to do |format|
+      format.json{ render "lesson_plans/_lesson_plan" }
+      format.html{ redirect_to topic_lesson_path(lesson.topic, lesson.level) }
+    end
   end
 
   private
