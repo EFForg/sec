@@ -67,6 +67,13 @@ class LessonPlan < ApplicationRecord
     end
   end
 
+  def files
+    lessons.published.flat_map do |lesson|
+      files = Array(lesson.pdf)
+      files.concat(lesson.materials.flat_map(&:files))
+    end.uniq
+  end
+
   private
 
   def set_key
