@@ -1,6 +1,8 @@
 require "shellwords"
 
 class PdfTemplate
+  Error = Class.new(Exception)
+
   attr_reader :controller_options
 
   def initialize(options)
@@ -37,6 +39,14 @@ class PdfTemplate
                "--html=#{input}",
                "--pdf=#{output.path}"]
 
+    if ENV["CHROME_HOST"]
+      command << "--chrome-host=#{ENV["CHROME_HOST"]}"
+    end
+
+    if ENV["CHROME_PORT"]
+      command << "--chrome-port=#{ENV["CHROME_PORT"]}"
+    end
+
     Rails.logger.info(Shellwords.shelljoin(command))
 
     begin
@@ -46,6 +56,8 @@ class PdfTemplate
       Process.kill("TERM", pid)
       raise e
     end
+
+    raise Error, "html-pdf-chrome command failed" unless $?.success?
 
     output
   end

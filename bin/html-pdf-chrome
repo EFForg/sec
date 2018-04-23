@@ -2,9 +2,10 @@
 
 var process = require('process');
 var fs = require('fs');
+var dns = require('dns');
 
 var argv = require('minimist')(process.argv.slice(2), {
-  string: ['html', 'pdf']
+  string: ['html', 'pdf', 'chrome-host', 'chrome-port']
 });
 
 var htmlPdf = require('../node_modules/html-pdf-chrome');
@@ -26,6 +27,29 @@ var options = {
   ]
 };
 
-htmlPdf.create(html, options).then(function(pdf) {
-  pdf.toFile(argv['pdf']);
-});
+if (argv['chrome-port']) {
+  options.port = argv['chrome-port'];
+}
+
+if (argv['chrome-host']) {
+  dns.lookup(argv['chrome-host'], function(err, ip) {
+    if (err) {
+      console.error(err);
+      process.exit(1);
+    }
+
+    options.host = ip;
+    run();
+  });
+} else {
+  run();
+}
+
+function run() {
+  htmlPdf.create(html, options).then(function(pdf) {
+    pdf.toFile(argv['pdf']);
+  }).catch(function(e) {
+    console.error(e);
+    process.exit(1);
+  });
+}

@@ -76,3 +76,10 @@ services:
 #     env_file: .env
 #
 #     command: bundle exec rake jobs:work
+
+# Chrome browser for production
+#   chrome:
+#     image: justinribeiro/chrome-headless:latest
+#     command: --headless --disable-gpu --no-sandbox \
+#              --remote-debugging-address=0.0.0.0 \
+#              --remote-debugging-port=9222
