@@ -1,0 +1,27 @@
+label.checkmark {
+  position: relative;
+  cursor: pointer;
+
+  .box {
+    display: inline-block;
+    width: 1.3rem;
+  }
+
+  input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+  }
+
+  input:checked ~ .fa-square-o {
+    display: none;
+  }
+
+  input:not(:checked) ~ .fa-check-square-o {
+    display: none;
+  }
+
+  &:hover .checkmark {
+    background-color: #eee;
+  }
+}

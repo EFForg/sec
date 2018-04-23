@@ -49,9 +49,6 @@ gem "httparty"
 # Slugging/permalinks
 gem "friendly_id"
 
-# HTML to PDF
-gem "wicked_pdf"
-
 # Feature flipping
 gem "flipper", github: "jnunemaker/flipper"
 
@@ -61,6 +58,9 @@ gem "delayed_job_active_record"
 # Prevent form submissions by bots
 gem "invisible_captcha"
 
+# Generate passphrases using the diceware method
+gem "eff_diceware"
+
 # Content administration
 gem "active_material", github: "vigetlabs/active_material"
 gem "activeadmin"
@@ -69,7 +69,7 @@ gem "ckeditor"
 gem "devise"
 gem "devise_invitable"
 gem "font-awesome-rails"
-gem "react-rails"
+gem "react-rails", ">= 2.4.4"
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

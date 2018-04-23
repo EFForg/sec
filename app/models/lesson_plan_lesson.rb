@@ -3,10 +3,13 @@ class LessonPlanLesson < ApplicationRecord
   belongs_to :lesson
 
   scope :published, ->{
+    ordered.
     joins(lesson: :topic).
       merge(Topic.published).
       merge(Lesson.published)
   }
+
+  scope :ordered, ->{ order(:position) }
 
   validate :lesson_must_be_published
 

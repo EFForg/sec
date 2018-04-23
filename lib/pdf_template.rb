@@ -1,25 +1,16 @@
+require "shellwords"
+
 class PdfTemplate
-  attr_reader :controller_options, :wicked_options
+  attr_reader :controller_options
 
   def initialize(options)
     @controller_options = {
       template: options.fetch(:template),
       layout: "layouts/pdf.html.erb"
     }
-
-    @wicked_options = options.slice!(:template)
-    wicked_options[:pdf] = wicked_options.delete(:name)
-    wicked_options.reverse_merge!(
-      margin: {
-        top: "0.6in",
-        bottom: "1in",
-        left: "1in",
-        right: "0.6in"
-      }
-    )
   end
 
-  def render(locals)
+  def render(locals = {})
     controller = ApplicationController.new
 
     locals.each do |name, value|
@@ -28,15 +19,35 @@ class PdfTemplate
 
     doc = rebase_urls(controller.render_to_string(controller_options))
 
-    pdf = WickedPdf.new.pdf_from_string(doc, wicked_options)
+    input = Tempfile.new(["pdf", ".html"])
+    input.binmode
+    input.write(doc)
+    input.flush
+    input.rewind
 
-    tmp = Tempfile.new(["pdf", ".pdf"])
-    tmp.binmode
-    tmp.write(pdf)
-    tmp.flush
-    tmp.rewind
+    print_pdf(input.path)
+  end
 
-    tmp
+  private
+
+  def print_pdf(input)
+    output = Tempfile.new(["pdf", ".pdf"])
+
+    command = ["bin/html-pdf-chrome",
+               "--html=#{input}",
+               "--pdf=#{output.path}"]
+
+    Rails.logger.info(Shellwords.shelljoin(command))
+
+    begin
+      pid = Process.spawn(*command)
+      Timeout.timeout(3){ Process.waitpid(pid) }
+    rescue Timeout::Error => e
+      Process.kill("TERM", pid)
+      raise e
+    end
+
+    output
   end
 
   def rebase_urls(html)
@@ -46,13 +57,13 @@ class PdfTemplate
       url_base = [ENV["SERVER_PROTOCOL"], ENV["SERVER_HOST"]].join("://")
       url_base = [url_base, ENV["SERVER_PORT"]].join(":") if ENV["SERVER_PORT"]
 
-      doc.css("a, img").each do |a|
-        if a["href"] && a["href"] !~ /^https?:\/\//
+      doc.css("a, img, link, script").each do |a|
+        if a["href"] && a["href"] !~ /^(https?:\/\/|data:)/
           path = a["href"].sub(/^\//, "")
           a["href"] = "#{url_base}/#{path}"
         end
 
-        if a["src"] && a["src"] !~ /^https?:\/\//
+        if a["src"] && a["src"] !~ /^(https?:\/\/|data:)/
           path = a["src"].sub(/^\//, "")
           a["src"] = "#{url_base}/#{path}"
         end

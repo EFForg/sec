@@ -2,10 +2,12 @@ require_dependency "duration"
 require_dependency "pdf_template"
 
 class LessonPlan < ApplicationRecord
-  has_many :lesson_plan_lessons, -> { order(:position) },
+  has_many :lesson_plan_lessons,
+    counter_cache: "lessons_count",
     after_remove: ->(plan, _){ plan.update_column(:pdf_file_updated_at, nil) }
 
-  has_many :lessons, through: :lesson_plan_lessons
+  has_many :lessons, ->{ reorder!.merge(LessonPlanLesson.ordered) },
+    through: :lesson_plan_lessons
 
   accepts_nested_attributes_for :lesson_plan_lessons,
                                 allow_destroy: true
@@ -46,6 +48,10 @@ class LessonPlan < ApplicationRecord
     Duration.new(lessons.sum :duration)
   end
 
+  def lengthy?
+    duration.length >= 4.hours
+  end
+
   def to_param
     persisted? ? key : "current"
   end
@@ -71,6 +77,6 @@ class LessonPlan < ApplicationRecord
   private
 
   def set_key
-    self.key = SecureRandom.urlsafe_base64
+    self.key = EffDiceware.generate(4).gsub(" ", "-")
   end
 end
