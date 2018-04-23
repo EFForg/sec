@@ -5,16 +5,20 @@
 .section-lesson_plans {
   .export {
     margin-bottom: 20px;
+    width: 100%;
 
     a {
       padding-right: 25px;
     }
 
-    input {
-      display: inline-block;
-      font-weight: 300;
+    .copy-share-link {
       margin-top: 9px;
       width: 100%;
+
+      input {
+        font-weight: 300;
+        width: 50%;
+      }
     }
   }
 

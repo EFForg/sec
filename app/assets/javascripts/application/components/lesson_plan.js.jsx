@@ -85,7 +85,11 @@ const LessonPlan = createReactClass({
           <a href={props.links.pdf}>Print</a>
           <a href={props.links.zip}>Download</a>
           <a href={props.links.share} onClick={this.toggleShare}>Share</a>
-          { this.state.share && <input type="text" value={props.links.share} readOnly={true} /> }
+          { this.state.share &&
+            <div className="copy-share-link">
+              <input type="text" value={props.links.share} readOnly={true} />
+            </div>
+          }
         </div>
         <LessonsList lessons={state.lessons} planId={props.id} shared={props.shared}
           onRemove={this.removeLesson} onSortEnd={this.reorderLessons} useDragHandle={true} />
