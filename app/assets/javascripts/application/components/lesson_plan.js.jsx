@@ -7,7 +7,8 @@ const LessonPlan = createReactClass({
     return {
       lessons_count: this.props.lessons_count,
       duration_in_words: this.props.duration_in_words,
-      lessons: this.props.lessons
+      lessons: this.props.lessons,
+      share: false
     };
   },
 
@@ -55,6 +56,11 @@ const LessonPlan = createReactClass({
     e.preventDefault();
   },
 
+  toggleShare: function(e) {
+    this.setState({ share: !this.state.share });
+    e.preventDefault();
+  },
+
   render: function() {
     var props = this.props;
     var state = this.state;
@@ -83,7 +89,10 @@ const LessonPlan = createReactClass({
     return (
       <div className="lesson-plan">
         <div className="export">
-          <a href={props.links.download}>Download</a>
+          <a href={props.links.pdf}>Print</a>
+          <a href={props.links.zip}>Download</a>
+          <a href={props.links.share} onClick={this.toggleShare}>Share</a>
+          { this.state.share && <input type="text" value={props.links.share} readOnly={true} /> }
         </div>
         <div className="your-lessons">
           Your lessons ({state.lessons_count})
