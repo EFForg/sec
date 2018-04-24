@@ -135,7 +135,9 @@ const Lesson = createReactClass({
       <li className="lesson card">
         <div className="top">
           <div className="icon" dangerouslySetInnerHTML={{__html: props.rendered_icon}} />
-          <h3>{props.name}</h3>
+          <h3>
+            <a href={props.path}>{props.name}</a>
+          </h3>
           <div className="duration">Duration: {props.duration}</div>
           <div className="levels" dangerouslySetInnerHTML={{__html: props.difficulty_tag}} />
           { this.state.draggable && <LessonHandle /> }
