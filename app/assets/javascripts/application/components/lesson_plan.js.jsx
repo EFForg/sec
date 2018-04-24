@@ -104,7 +104,9 @@ const ExportLinks = createReactClass({
     this.setState({ share: !this.state.share }, function() {
       this.state.share && this.refs.input.select();
     });
-    e.preventDefault();
+    if (!e.ctrlKey && !e.shiftKey && !e.altKey && !e.metaKey) {
+      e.preventDefault();
+    }
   },
 
   render: function() {
