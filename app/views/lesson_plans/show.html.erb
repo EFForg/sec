@@ -3,11 +3,17 @@
     <div class="breadcrumb"><a href="/topics">&lt; Back to Lesson Topics</a></div>
     <h1>Lesson Planner</h1>
 
+    <% if @shared && @lesson_plan == current_lesson_plan %>
+      <aside>
+        This is the page other users see when they visit your lesson plan. To edit it, <%= link_to "click here", current_lesson_plan_path %>.
+      </aside>
+    <% end %>
+
     <p>
       In the lesson planner, you can organize your selected lessons to prepare for your next teaching opportunity. Drag the lesson to reorder and remove lessons you have completed or no longer need.
     </p>
 
-    <% if params[:id].blank? && @lesson_plan.lengthy? %>
+    <% if !@shared && @lesson_plan.lengthy? %>
       <%= modal("lesson_plan_is_lengthy") do %>
         <p>
           This seems like a lot to cover for one day!
