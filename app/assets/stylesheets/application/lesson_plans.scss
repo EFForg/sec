@@ -16,6 +16,9 @@
   .total-duration {
     @extend h3;
     text-transform: uppercase;
+    a {
+      text-decoration: none;
+    }
   }
 
   @include breakpoint(large) {
