@@ -11,7 +11,7 @@ class LessonPlansController < ApplicationController
     else
       @lesson_plan = current_lesson_plan
     end
-    @lesson_plan_lessons = @lesson_plan.lesson_plan_lessons.published
+    @planned_lessons = @lesson_plan.planned_lessons.published
 
     respond_to do |format|
       format.html
@@ -62,7 +62,7 @@ class LessonPlansController < ApplicationController
     lesson = Lesson.find(params[:lesson_id])
     @lesson_plan = current_lesson_plan
 
-    @lesson_plan.lesson_plan_lessons.
+    @lesson_plan.planned_lessons.
       where(lesson_id: lesson.id).destroy_all
 
     respond_to do |format|
@@ -74,6 +74,6 @@ class LessonPlansController < ApplicationController
   private
 
   def lesson_plan_params
-    params[:lesson_plan].permit(lesson_plan_lessons_attributes: [:id, :_destroy, :position])
+    params[:lesson_plan].permit(planned_lessons_attributes: [:id, :_destroy, :position])
   end
 end
