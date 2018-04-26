@@ -12,6 +12,7 @@ class LessonPlansController < ApplicationController
       @lesson_plan = current_lesson_plan
     end
     @planned_lessons = @lesson_plan.planned_lessons.published
+    @shared = params[:id]
 
     respond_to do |format|
       format.html

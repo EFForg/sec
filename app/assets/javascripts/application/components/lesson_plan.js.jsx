@@ -7,12 +7,12 @@ const LessonPlan = createReactClass({
     return {
       lessons_count: this.props.lessons_count,
       duration_in_words: this.props.duration_in_words,
-      lessons: this.props.lessons
+      lessons: this.props.lessons,
     };
   },
 
   persistLessonPlan: function(data) {
-    self = this;
+    var self = this;
     $.ajax({
       type: "PATCH",
       url: `/lesson-plans/${self.props.id}`,
@@ -75,16 +75,14 @@ const LessonPlan = createReactClass({
         <div className="total-duration">
           Total duration: {state.duration_in_words}
         </div>
-        <LessonsList lessons={state.lessons} planId={props.id} onRemove={this.removeLesson}
-          onSortEnd={this.reorderLessons} useDragHandle={true} />
+        <ExportLinks links={props.links} />
+        <LessonsList lessons={state.lessons} planId={props.id} shared={props.shared}
+          onRemove={this.removeLesson} onSortEnd={this.reorderLessons} useDragHandle={true} />
       </div>
     );
 
     return (
       <div className="lesson-plan">
-        <div className="export">
-          <a href={props.links.download}>Download</a>
-        </div>
         <div className="your-lessons">
           Your lessons ({state.lessons_count})
         </div>
@@ -95,12 +93,44 @@ const LessonPlan = createReactClass({
   }
 });
 
-const LessonsList = SortableContainer(({planId, lessons, onRemove}) => {
+const ExportLinks = createReactClass({
+  getInitialState: function() {
+    return {
+      share: false
+    };
+  },
+
+  toggleShare: function(e) {
+    this.setState({ share: !this.state.share }, function() {
+      this.state.share && this.refs.input.select();
+    });
+    if (!e.ctrlKey && !e.shiftKey && !e.altKey && !e.metaKey) {
+      e.preventDefault();
+    }
+  },
+
+  render: function() {
+    return (
+      <div className="export">
+        <a href={this.props.links.pdf}>Print</a>
+        <a href={this.props.links.zip}>Download</a>
+        <a href={this.props.links.share} onClick={this.toggleShare}>Share</a>
+        { this.state.share &&
+          <div className="copy-share-link">
+            <input type="text" value={this.props.links.share} ref="input" readOnly={true} />
+          </div>
+        }
+      </div>
+    );
+  }
+});
+
+const LessonsList = SortableContainer((props) => {
   return (
     <ul className="lessons">
-      {lessons.map((lesson, index) =>
-        <SortableLesson {...lesson} key={lesson.id} index={index} planId={planId}
-          onRemove={(e) => onRemove(e, lesson)} />
+      {props.lessons.map((lesson, index) =>
+        <SortableLesson {...lesson} key={lesson.id} index={index} planId={props.planId}
+          shared={props.shared} onRemove={(e) => props.onRemove(e, lesson)} />
       )}
     </ul>
   );
@@ -124,7 +154,7 @@ const Lesson = createReactClass({
 
   componentDidMount: function() {
     requestAnimationFrame(() => {
-      this.setState({ draggable: true });
+      this.setState({ draggable: !this.props.shared });
     });
   },
 
@@ -135,11 +165,14 @@ const Lesson = createReactClass({
       <li className="lesson card">
         <div className="top">
           <div className="icon" dangerouslySetInnerHTML={{__html: props.rendered_icon}} />
-          <h3>{props.name}</h3>
+          <h3>
+            <a href={props.path}>{props.name}</a>
+          </h3>
           <div className="duration">Duration: {props.duration}</div>
           <div className="levels" dangerouslySetInnerHTML={{__html: props.difficulty_tag}} />
           { this.state.draggable && <LessonHandle /> }
-          <RemoveLessonForm id={props.id} planId={props.planId} onRemove={props.onRemove} />
+          { !this.props.shared && <RemoveLessonForm id={props.id}
+              planId={props.planId} onRemove={props.onRemove} /> }
         </div>
       </li>
     );

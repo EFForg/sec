@@ -15,5 +15,8 @@ json.lessons @lesson_plan.planned_lessons.published do |planned_lesson|
   json.difficulty_tag difficulty_tag(planned_lesson.level_id)
 end
 json.links do
-  json.download lesson_plan_path(@lesson_plan, format: "zip")
+  json.zip lesson_plan_path(@lesson_plan, format: "zip")
+  json.pdf lesson_plan_path(@lesson_plan, format: "pdf")
+  json.share lesson_plan_url(@lesson_plan)
 end
+json.shared @shared
