@@ -1,6 +1,8 @@
-class LessonPlanLesson < ApplicationRecord
+class PlannedLesson < ApplicationRecord
   belongs_to :lesson_plan, counter_cache: :lessons_count
   belongs_to :lesson
+
+  delegate :topic, :duration, :level_id, to: :lesson
 
   scope :published, ->{
     ordered.

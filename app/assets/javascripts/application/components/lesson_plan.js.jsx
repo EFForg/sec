@@ -35,7 +35,7 @@ const LessonPlan = createReactClass({
     });
 
     this.persistLessonPlan({
-      lesson_plan_lessons_attributes: reordered_lessons.map((el, index) => {
+      planned_lessons_attributes: reordered_lessons.map((el, index) => {
         return {
           id: el.id,
           position: index
@@ -46,7 +46,7 @@ const LessonPlan = createReactClass({
 
   removeLesson: function(e, lesson) {
     this.persistLessonPlan({
-      lesson_plan_lessons_attributes: {
+      planned_lessons_attributes: {
         id: lesson.id,
         _destroy: true
       }
@@ -186,9 +186,9 @@ const RemoveLessonForm = createReactClass({
     return (
       <form action={action} method="post" onSubmit={this.props.onRemove}>
         <input type="hidden" name="_method" value="patch" />
-        <input name="lesson_plan[lesson_plan_lessons_attributes][0][_destroy]"
+        <input name="lesson_plan[planned_lessons_attributes][0][_destroy]"
           type="hidden" value="true" />
-        <input name="lesson_plan[lesson_plan_lessons_attributes][0][id]"
+        <input name="lesson_plan[planned_lessons_attributes][0][id]"
           type="hidden" value={this.props.id} />
         <input type="submit" className="remove-lesson" value="Remove this lesson" />
       </form>
