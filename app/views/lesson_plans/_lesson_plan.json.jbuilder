@@ -6,6 +6,7 @@ json.lessons @lesson_plan.planned_lessons.published do |planned_lesson|
   json.position planned_lesson.position
   json.id planned_lesson.id
   json.lesson_id planned_lesson.lesson.id
+  json.path topic_lesson_path(planned_lesson.topic, planned_lesson.lesson)
   json.name planned_lesson.topic.name
   json.duration planned_lesson.duration.in_words
   if planned_lesson.topic.icon
