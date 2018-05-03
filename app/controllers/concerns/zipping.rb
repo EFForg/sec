@@ -6,7 +6,7 @@ module Zipping
       path = URI::escape(file.path[Rails.root.join("public").to_s.size..-1])
       path = "/#{path}" unless path.starts_with?("/")
 
-      filename = File.basename(path)
+      filename = File.basename(file.path)
       filename = sprintf("%0#{digits}d-%s", i+1, filename) if number
 
       "- #{file.size} #{path} #{filename}"

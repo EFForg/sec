@@ -33,7 +33,6 @@ class ZipMiddleware
         _, size, path, filename = item.strip.split(" ", 4)
 
         path = URI::unescape(path).remove(%r{^/+})
-        filename = URI::unescape(filename)
 
         link = Pathname.new(dir).join(filename)
 
