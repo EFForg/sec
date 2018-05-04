@@ -11,7 +11,8 @@ class LessonPlansController < ApplicationController
     else
       @lesson_plan = current_lesson_plan
     end
-    @lesson_plan_lessons = @lesson_plan.lesson_plan_lessons.published
+    @planned_lessons = @lesson_plan.planned_lessons.published
+    @shared = params[:id]
 
     respond_to do |format|
       format.html
@@ -25,10 +26,10 @@ class LessonPlansController < ApplicationController
       end
 
       format.zip do
-        files = @lesson_plan_lessons.map(&:lesson).map(&:pdf)
+        files = @lesson_plan.files
 
         unless files.all?(&:present?)
-          raise Exception.new("lesson pdf not present")
+          raise Exception.new("lesson plan files not present")
         end
 
         send_archive(files)
@@ -48,24 +49,32 @@ class LessonPlansController < ApplicationController
   end
 
   def create_lesson
+    lesson = Lesson.find(params[:lesson_id])
     @lesson_plan = current_lesson_plan!
-    @lesson_plan.lessons << Lesson.find(params[:lesson_id])
+    @lesson_plan.lessons << lesson
 
-    render "lesson_plans/_lesson_plan"
+    respond_to do |format|
+      format.json{ render "lesson_plans/_lesson_plan" }
+      format.html{ redirect_to topic_lesson_path(lesson.topic, lesson.level) }
+    end
   end
 
   def destroy_lesson
+    lesson = Lesson.find(params[:lesson_id])
     @lesson_plan = current_lesson_plan
 
-    @lesson_plan.lesson_plan_lessons.
-      where(lesson_id: params[:lesson_id]).destroy_all
+    @lesson_plan.planned_lessons.
+      where(lesson_id: lesson.id).destroy_all
 
-    render "lesson_plans/_lesson_plan"
+    respond_to do |format|
+      format.json{ render "lesson_plans/_lesson_plan" }
+      format.html{ redirect_to topic_lesson_path(lesson.topic, lesson.level) }
+    end
   end
 
   private
 
   def lesson_plan_params
-    params[:lesson_plan].permit(lesson_plan_lessons_attributes: [:id, :_destroy, :position])
+    params[:lesson_plan].permit(planned_lessons_attributes: [:id, :_destroy, :position])
   end
 end

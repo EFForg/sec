@@ -3,7 +3,7 @@ module LessonPlanning
 
   included do
     helper_method :current_lesson_plan
-    helper_method :current_lesson_plan_lesson
+    helper_method :current_planned_lesson
   end
 
   def current_lesson_plan
@@ -18,9 +18,9 @@ module LessonPlanning
     end
   end
 
-  def current_lesson_plan_lesson(lesson)
+  def current_planned_lesson(lesson)
     current_lesson_plan.
-      lesson_plan_lessons.
+      planned_lessons.
       find_or_initialize_by(lesson_id: lesson.id)
   end
 end

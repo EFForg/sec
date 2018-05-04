@@ -2,14 +2,14 @@ require_dependency "duration"
 require_dependency "pdf_template"
 
 class LessonPlan < ApplicationRecord
-  has_many :lesson_plan_lessons,
+  has_many :planned_lessons,
     counter_cache: "lessons_count",
     after_remove: ->(plan, _){ plan.update_column(:pdf_file_updated_at, nil) }
 
-  has_many :lessons, ->{ reorder!.merge(LessonPlanLesson.ordered) },
-    through: :lesson_plan_lessons
+  has_many :lessons, ->{ reorder!.merge(PlannedLesson.ordered) },
+    through: :planned_lessons
 
-  accepts_nested_attributes_for :lesson_plan_lessons,
+  accepts_nested_attributes_for :planned_lessons,
                                 allow_destroy: true
 
   validates_uniqueness_of :key
@@ -65,6 +65,13 @@ class LessonPlan < ApplicationRecord
         lesson.suggested_materials[path]
       end
     end
+  end
+
+  def files
+    lessons.published.flat_map do |lesson|
+      files = Array(lesson.pdf)
+      files.concat(lesson.materials.flat_map(&:files))
+    end.uniq
   end
 
   private

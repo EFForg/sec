@@ -5,6 +5,21 @@
 .section-lesson_plans {
   .export {
     margin-bottom: 20px;
+    width: 100%;
+
+    a {
+      padding-right: 25px;
+    }
+
+    .copy-share-link {
+      margin-top: 9px;
+      width: 100%;
+    }
+
+    input {
+      font-weight: 300;
+      width: 100%;
+    }
   }
 
   .lesson-plan-overview {
@@ -12,13 +27,22 @@
     width: 100%;
   }
 
+  .row aside {
+    margin-bottom: 20px;
+    font-size: 0.9rem;
+    line-height: 1.5rem;
+  }
+
   .your-lessons,
   .total-duration {
     @extend h3;
     text-transform: uppercase;
+    a {
+      text-decoration: none;
+    }
   }
 
-  @include breakpoint(large) {
+  @include breakpoint(xlarge) {
     .your-lessons {
       float: left;
     }
@@ -35,6 +59,15 @@
       position: absolute;
       top: 0;
       right: 15px;
+      text-align: right;
+
+      a {
+        padding: 0 0 0 25px;
+      }
+
+      input {
+        width: 55%;
+      }
     }
   }
 
@@ -61,7 +94,7 @@
     width: 190px;
     text-align: center;
 
-    @include breakpoint(large) {
+    @include breakpoint(xlarge) {
       display: block;
     }
   }

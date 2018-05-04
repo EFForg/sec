@@ -11,4 +11,8 @@ class Material < ApplicationRecord
     return if uploads.empty?
     uploads.first.file
   end
+
+  def files
+    uploads.map(&:file)
+  end
 end

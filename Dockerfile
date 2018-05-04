@@ -24,11 +24,6 @@ RUN echo "@edge http://nl.alpinelinux.org/alpine/edge/main" >>/etc/apk/repositor
     nodejs \
     yarn \
 
-    chromium@edgecommunity \
-
-    # Needed by html-pdf-chrome dependency
-    grep@edge \
-
   # Set up crontab.
   && echo "*/15 * * * * su -s/bin/sh www-data -c \
     'cd /opt/trainers-hub && bundle exec rake blog:update' >>/proc/1/fd/1 2>&1" >>/etc/crontabs/root \

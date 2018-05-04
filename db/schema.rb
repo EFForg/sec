@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180423180803) do
+ActiveRecord::Schema.define(version: 20180426211644) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -182,14 +182,6 @@ ActiveRecord::Schema.define(version: 20180423180803) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "lesson_plan_lessons", force: :cascade do |t|
-    t.integer "lesson_plan_id", null: false
-    t.integer "lesson_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.integer "position", default: 0, null: false
-  end
-
   create_table "lesson_plans", force: :cascade do |t|
     t.integer "lessons_count", default: 0, null: false
     t.datetime "created_at", null: false
@@ -245,6 +237,14 @@ ActiveRecord::Schema.define(version: 20180423180803) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["searchable_type", "searchable_id"], name: "index_pg_search_documents_on_searchable_type_and_searchable_id"
+  end
+
+  create_table "planned_lessons", force: :cascade do |t|
+    t.integer "lesson_plan_id", null: false
+    t.integer "lesson_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "position", default: 0, null: false
   end
 
   create_table "survey_options", force: :cascade do |t|

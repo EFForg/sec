@@ -37,7 +37,7 @@ RSpec.feature "ManageLessonPlan", type: :feature do
     lesson.drag_to target
 
     expect(find(".lesson:nth-child(1)")).to have_content("Another Topic")
-    expect(lesson_plan.lesson_plan_lessons.find_by(lesson: second_lesson).position).to eq(0)
+    expect(lesson_plan.planned_lessons.find_by(lesson: second_lesson).position).to eq(0)
   end
 
   scenario "user dismisses notice about lesson plan length", js: true do
