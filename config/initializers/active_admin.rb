@@ -310,6 +310,9 @@ ActiveAdmin.setup do |config|
 
         pages.add label: "Materials Overview",
           url: "admin/pages/materials-overview/edit"
+
+        pages.add label: "Translations",
+          url: "admin/pages/translations/edit"
       end
     end
 

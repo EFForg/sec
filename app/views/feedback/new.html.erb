@@ -1,53 +1,55 @@
 <div class="row">
-  <h1>SEC Website Satisfaction Survey</h1>
+  <div class="large-8 large-centered columns">
+    <h1>SEC Website Satisfaction Survey</h1>
 
-  <p>
-    Thank you for giving feedback on the Security Education Companion (SEC)!
-  </p>
+    <p>
+      Thank you for giving feedback on the Security Education Companion (SEC)!
+    </p>
 
-  <p>
-    When possible, please give concrete, specific feedback and examples to our questions below, as this will help us to improve on and add to the site.
-  </p>
+    <p>
+      When possible, please give concrete, specific feedback and examples to our questions below, as this will help us to improve on and add to the site.
+    </p>
 
-  <p>
-    We will hold the information submitted in accordance with
-    <a href="https://eff.org/policy">EFF’s privacy policy.</a>
-  </p>
+    <p>
+      We will hold the information submitted in accordance with
+      <a href="https://eff.org/policy">EFF’s privacy policy.</a>
+    </p>
 
-  <h2>Survey questions</h2>
+    <h2>Survey questions</h2>
 
-  <p>Please rate your level of satisfaction with the following aspects of our site:</p>
+    <p>Please rate your level of satisfaction with the following aspects of our site:</p>
 
-  <p>* Indicates required field</p>
+    <p>* Indicates required field</p>
 
-  <%= form_for(@feedback, url: feedback_create_path) do |f| %>
-    <%= invisible_captcha %>
+    <%= form_for(@feedback, url: feedback_create_path) do |f| %>
+      <%= invisible_captcha %>
 
-    <%= f.fields_for(:survey_responses) do |sf| %>
-      <%= sf.hidden_field :survey_question_id %>
+      <%= f.fields_for(:survey_responses) do |sf| %>
+        <%= sf.hidden_field :survey_question_id %>
 
-      <div class="survey-question <%= "with-errors" if sf.object.errors.any? %>">
-        <p>
-          <%= sf.options[:child_index] + 1 %>)
-          <%= sf.label :value, survey_prompt(sf.object.survey_question),
-                class: sf.object.survey_question.required? ? "required" : "" %>
-        </p>
+        <div class="survey-question <%= "with-errors" if sf.object.errors.any? %>">
+          <p>
+            <%= sf.options[:child_index] + 1 %>)
+            <%= sf.label :value, survey_prompt(sf.object.survey_question),
+                  class: sf.object.survey_question.required? ? "required" : "" %>
+          </p>
 
-        <div class="survey-response">
-          <% sf.object.survey_question.options.each do |option| %>
-            <div class="survey-option">
-              <%= sf.radio_button :value, option.value, required: sf.object.survey_question.required? %>
-              <%= sf.label :value, option.value, value: option.value %>
-            </div>
-          <% end %>
+          <div class="survey-response">
+            <% sf.object.survey_question.options.each do |option| %>
+              <div class="survey-option">
+                <%= sf.radio_button :value, option.value, required: sf.object.survey_question.required? %>
+                <%= sf.label :value, option.value, value: option.value %>
+              </div>
+            <% end %>
 
-          <% unless sf.object.survey_question.options.present? %>
-            <%= sf.text_area :value %>
-          <% end %>
+            <% unless sf.object.survey_question.options.present? %>
+              <%= sf.text_area :value %>
+            <% end %>
+          </div>
         </div>
-      </div>
-    <% end %>
+      <% end %>
 
-    <%= f.submit "Submit", data: { disable_with: false } %>
-  <% end %>
+      <%= f.submit "Submit", data: { disable_with: false } %>
+    <% end %>
+  </div>
 </div>

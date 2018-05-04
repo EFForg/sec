@@ -32,7 +32,6 @@ Rails.application.routes.draw do
     get :thanks
   end
 
-  get "/credits", as: :credits, to: "credits#index"
   get "/search", as: :search, to: "search#results"
 
   get "/404", to: "errors#not_found"
@@ -44,4 +43,8 @@ Rails.application.routes.draw do
                controllers: { :invitations => "user_invitations" }
              )
   ActiveAdmin.routes(self)
+
+  ["credits", "translations"].each do |page|
+    get page, as: page, to: "pages#show", defaults: { page_id: page }
+  end
 end
