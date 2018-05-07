@@ -3,23 +3,20 @@ require "shellwords"
 class PdfTemplate
   Error = Class.new(Exception)
 
-  attr_reader :controller_options
+  attr_reader :controller_options, :source_route
 
   def initialize(options)
     @controller_options = {
       template: options.fetch(:template),
       layout: "layouts/pdf.html.erb"
     }
+
+    @source_route = options[:source]
   end
 
   def render(locals = {})
-    controller = ApplicationController.new
-
-    locals.each do |name, value|
-      controller.instance_variable_set("@#{name}", value)
-    end
-
-    doc = rebase_urls(controller.render_to_string(controller_options))
+    controller_options = self.controller_options.merge(assigns: locals)
+    doc = rebase_urls(ApplicationController.render(controller_options))
 
     input = Tempfile.new(["pdf", ".html"])
     input.binmode
@@ -35,9 +32,15 @@ class PdfTemplate
   def print_pdf(input)
     output = Tempfile.new(["pdf", ".pdf"])
 
-    command = ["bin/html-pdf-chrome",
-               "--html=#{input}",
-               "--pdf=#{output.path}"]
+    command = [
+      "bin/html-pdf-chrome",
+      "--html=#{input}",
+      "--pdf=#{output.path}"
+    ]
+
+    if source_route.present?
+      command << "--footer=#{source}"
+    end
 
     if ENV["CHROME_HOST"]
       command << "--chrome-host=#{ENV["CHROME_HOST"]}"
@@ -83,5 +86,17 @@ class PdfTemplate
     end
 
     doc.to_html
+  end
+
+  include Rails.application.routes.url_helpers
+
+  def source
+    if source_route.present?
+      url_for(source_route)
+    end
+  end
+
+  def default_url_options
+    Rails.application.config.action_controller.default_url_options
   end
 end

@@ -28,7 +28,8 @@ class LessonPlan < ApplicationRecord
   def recreate_pdf_file
     pdf = PdfTemplate.new(
       name: "Lesson Plan",
-      template: "lesson_plans/show.pdf.erb"
+      template: "lesson_plans/show.pdf.erb",
+      source: { controller: "lesson_plans", action: "show", id: key }
     )
 
     locals = {
