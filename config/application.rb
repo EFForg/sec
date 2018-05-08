@@ -17,6 +17,12 @@ module TrainersHub
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
 
+    config.action_controller.default_url_options = {
+      host: ENV["SERVER_HOST"],
+      port: ENV["SERVER_PORT"],
+      protocol: ENV["SERVER_PROTOCOL"]
+    }
+
     if ENV["NO_NGINX"]
       require_dependency "zip_middleware"
       config.middleware.use ZipMiddleware
