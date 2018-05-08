@@ -7,18 +7,16 @@ RSpec.describe PdfTemplate do
 
   describe "#render" do
     let(:topic){ Topic.new }
-    let!(:controller){ ApplicationController.new }
 
     it "should render the template with the given instance variables" do
       doc = "<h1>It works!</h1>"
 
-      expect(ApplicationController).to receive(:new){ controller }
-      expect(controller).to receive(:instance_variable_set).
-                             with("@topic", topic)
-      expect(controller).to receive(:render_to_string).
-                             with(layout: "layouts/pdf.html.erb",
-                                  template: template).
-                             and_return(doc)
+      expect(ApplicationController).to receive(:render) do |opts|
+        expect(opts[:assigns]).to eq(topic: topic)
+        expect(opts[:template]).to eq(template)
+        expect(opts[:layout]).to eq("layouts/pdf.html.erb")
+      end.and_return(doc)
+
       expect(pdf_template).to receive(:rebase_urls).and_return(doc)
       expect(pdf_template).to receive(:print_pdf)
 

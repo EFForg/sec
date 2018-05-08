@@ -5,7 +5,7 @@ var fs = require('fs');
 var dns = require('dns');
 
 var argv = require('minimist')(process.argv.slice(2), {
-  string: ['html', 'pdf', 'chrome-host', 'chrome-port']
+  string: ['html', 'pdf', 'chrome-host', 'chrome-port', 'footer']
 });
 
 var htmlPdf = require('../node_modules/html-pdf-chrome');
@@ -24,8 +24,17 @@ var options = {
     '--no-sandbox',
     '--headless',
     '--hide-scrollbars',
-  ]
+  ],
+  printOptions: {
+    displayHeaderFooter: true,
+    headerTemplate: '<div class="text"></div>',
+    footerTemplate: footerContent('')
+  }
 };
+
+if (argv['footer']) {
+  options.printOptions.footerTemplate = footerContent(argv['footer']);
+}
 
 if (argv['chrome-port']) {
   options.port = argv['chrome-port'];
@@ -52,4 +61,15 @@ function run() {
     console.error(e);
     process.exit(1);
   });
+}
+
+function footerContent(content) {
+  return [
+    '<div class="text center">',
+    content,
+    '<div style="float: right">',
+    '<span class="pageNumber"></span>/<span class="totalPages"></span>',
+    '</div>',
+    '</div>'
+  ].join('');
 }
