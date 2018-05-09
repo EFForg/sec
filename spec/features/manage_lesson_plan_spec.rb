@@ -32,7 +32,7 @@ RSpec.feature "ManageLessonPlan", type: :feature do
     second_lesson
     visit "/lesson-plan"
 
-    lesson = find(".lesson:nth-child(2) .handle")
+    lesson = find(".lesson:nth-child(2)")
     target = find(".lesson:nth-child(1)")
     lesson.drag_to target
 
