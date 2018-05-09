@@ -9,11 +9,9 @@ RSpec.feature "AddToLessonPlans", type: :feature, js: true do
     scenario "user adds a lesson to a new lesson plan" do
       visit topic_path(topic)
 
-      button = click_button("Add To Lesson Plan")
-      expect(button.text).to include("(0)")
-
-      button = find_button("Remove From Lesson Plan")
-      expect(button.text).to include("(1)")
+      click_button("Add To Lesson Plan")
+      expect(page).to have_content("Lesson Planner (1)")
+      expect(LessonPlan.count).to eq(1)
 
       expect(LessonPlan.count).to eq(1)
       expect(LessonPlan.take.lesson_ids).to eq([lesson.id])
@@ -37,6 +35,7 @@ RSpec.feature "AddToLessonPlans", type: :feature, js: true do
       visit topic_path(topic)
       click_button "Remove From Lesson Plan"
       find_button("Add To Lesson Plan")
+      expect(page).to have_content("Lesson Planner (0)")
 
       expect(lesson_plan.lessons.count).to eq(0)
     end
