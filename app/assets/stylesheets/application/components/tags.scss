@@ -2,9 +2,8 @@
   float: none;
   margin: 0 1rem 0 0;
   width: auto;
-  @include breakpoint(medium) {
-    margin: 1rem 0;
-  }
+  margin: 1rem 0;
+
   a {
     border: 2px solid $darkest-teal;
     border-radius: 10px;
