@@ -8,8 +8,8 @@ FactoryGirl.define do
 
     factory :used_lesson_plan_link do
       after(:create) do |link|
-        plan = FactoryGirl.create(:lesson_plan)
-        plan.lesson_ids = link.lesson_ids
+        link.update_attribute(:lesson_plan, FactoryGirl.create(:lesson_plan))
+        link.lesson_plan.lesson_ids = link.lesson_ids
       end
     end
   end

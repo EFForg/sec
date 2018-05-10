@@ -81,11 +81,13 @@ class LessonPlan < ApplicationRecord
   end
 
   def self.from_share_string(key)
-    ids = LessonPlanLink.find_by!(key: key).lesson_ids
-    plan = LessonPlan.create
-    # @todo Add plan to LessonPlanLink for next time
-    plan.lesson_ids = ids
-    plan
+    link = LessonPlanLink.find_by!(key: key)
+    return link.lesson_plan if link.lesson_plan
+
+    LessonPlan.create.tap do |plan|
+      link.update_attribute(:lesson_plan, plan)
+      plan.lesson_ids = link.lesson_ids
+    end
   end
 
   private
