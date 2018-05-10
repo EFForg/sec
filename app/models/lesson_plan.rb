@@ -76,20 +76,15 @@ class LessonPlan < ApplicationRecord
   end
 
   def share_link
-    "/lesson-plan?" + {
-      lessons: lessons.pluck(:id)
-    }.to_param
+    link = LessonPlanLink.find_or_create_by(lesson_ids: lessons.pluck(:id))
+    "/lesson-plans/#{link.key}"
   end
 
-  def self.from_lesson_ids(ids)
+  def self.from_share_string(key)
+    ids = LessonPlanLink.find_by!(key: key).lesson_ids
     plan = LessonPlan.create
+    # @todo Add plan to LessonPlanLink for next time
     plan.lesson_ids = ids
-    # ids.each do |id|
-    #   lesson = Lesson.find(id)
-    #   if lesson
-    #     plan.lessons << lesson
-    #   end
-    # end
     plan
   end
 

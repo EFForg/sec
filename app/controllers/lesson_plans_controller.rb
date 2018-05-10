@@ -8,7 +8,7 @@ class LessonPlansController < ApplicationController
   def show
     if params[:lessons]
       # @lesson_plan = LessonPlan.find_by(key: params[:id])
-      @lesson_plan = LessonPlan.from_lesson_ids(params[:lessons])
+      @lesson_plan = LessonPlan.from_share_string(params[:lessons])
     else
       @lesson_plan = current_lesson_plan
     end
