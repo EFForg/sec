@@ -6,13 +6,14 @@ class LessonPlansController < ApplicationController
   before_action :verify_request_origin
 
   def show
-    if params[:id]
-      @lesson_plan = LessonPlan.find_by(key: params[:id])
+    if params[:lessons]
+      # @lesson_plan = LessonPlan.find_by(key: params[:id])
+      @lesson_plan = LessonPlan.from_lesson_ids(params[:lessons])
     else
       @lesson_plan = current_lesson_plan
     end
     @planned_lessons = @lesson_plan.planned_lessons.published
-    @shared = params[:id]
+    @shared = params[:lessons]
 
     respond_to do |format|
       format.html

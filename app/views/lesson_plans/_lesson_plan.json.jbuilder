@@ -18,6 +18,6 @@ end
 json.links do
   json.zip lesson_plan_path(@lesson_plan, format: "zip")
   json.pdf lesson_plan_path(@lesson_plan, format: "pdf")
-  json.share lesson_plan_url(@lesson_plan)
+  json.share @lesson_plan.share_link
 end
 json.shared @shared

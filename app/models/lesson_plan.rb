@@ -75,6 +75,24 @@ class LessonPlan < ApplicationRecord
     end.uniq
   end
 
+  def share_link
+    "/lesson-plan?" + {
+      lessons: lessons.pluck(:id)
+    }.to_param
+  end
+
+  def self.from_lesson_ids(ids)
+    plan = LessonPlan.create
+    plan.lesson_ids = ids
+    # ids.each do |id|
+    #   lesson = Lesson.find(id)
+    #   if lesson
+    #     plan.lessons << lesson
+    #   end
+    # end
+    plan
+  end
+
   private
 
   def set_key
