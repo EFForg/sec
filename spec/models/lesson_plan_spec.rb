@@ -1,9 +1,9 @@
 require 'rails_helper'
 
 RSpec.describe LessonPlan do
-  describe "LessonPlan#from_share_string" do
+  describe "LessonPlan#find_or_create_by_key" do
     let(:lesson_plan_link) { FactoryGirl.create(:lesson_plan_link) }
-    subject { LessonPlan.from_share_string(lesson_plan_link.key) }
+    subject { LessonPlan.find_or_create_by_key(lesson_plan_link.key) }
 
     it "returns a lesson plan with lessons" do
       expect(subject.lessons.count).to eq(2)
