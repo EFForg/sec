@@ -15,6 +15,8 @@ class LessonPlan < ApplicationRecord
 
   mount_uploader :pdf_file, GenericUploader
 
+  validate :force_immutable_if_linked
+
   def pdf
     unless pdf_file_updated_at.try(:>=, lessons.pluck(:updated_at).max)
       self.recreate_pdf_file
@@ -80,6 +82,13 @@ class LessonPlan < ApplicationRecord
     LessonPlan.create.tap do |plan|
       link.update_attribute(:lesson_plan, plan)
       plan.lesson_ids = link.lesson_ids
+    end
+  end
+
+  def force_immutable_if_linked
+    if self.lesson_plan_link && self.persisted? && self.changed?
+      errors.add(:base, :immutable)
+      self.reload
     end
   end
 end
