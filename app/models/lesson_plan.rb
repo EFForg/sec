@@ -51,10 +51,6 @@ class LessonPlan < ApplicationRecord
     duration.length >= 4.hours
   end
 
-  def to_param
-    persisted? ? key : "current"
-  end
-
   def bundled_materials
     url_helper = Rails.application.routes.url_helpers
 
@@ -73,7 +69,7 @@ class LessonPlan < ApplicationRecord
     end.uniq
   end
 
-  def key
+  def key!
     LessonPlanLink.find_or_create_by(lesson_ids: lessons.pluck(:id)).key
   end
 
