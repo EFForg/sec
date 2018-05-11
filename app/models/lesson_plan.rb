@@ -71,6 +71,10 @@ class LessonPlan < ApplicationRecord
     end.uniq
   end
 
+  def to_param
+    persisted? ? id : "current"
+  end
+
   def key!
     LessonPlanLink.find_or_create_by(lesson_ids: lessons.pluck(:id)).key
   end
