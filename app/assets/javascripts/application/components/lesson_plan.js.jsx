@@ -8,6 +8,7 @@ const LessonPlan = createReactClass({
       lessons_count: this.props.lessons_count,
       duration_in_words: this.props.duration_in_words,
       lessons: this.props.lessons,
+      share_link: this.props.links.share
     };
   },
 
@@ -21,7 +22,8 @@ const LessonPlan = createReactClass({
       self.setState({
         lessons_count: res.lessons_count,
         duration_in_words: res.duration_in_words,
-        lessons: res.lessons
+        lessons: res.lessons,
+        share_link: res.links.share
       });
     });
   },
@@ -75,7 +77,7 @@ const LessonPlan = createReactClass({
         <div className="total-duration">
           Total duration: {state.duration_in_words}
         </div>
-        <ExportLinks links={props.links} />
+        <ExportLinks links={props.links} share_link={this.state.share_link} />
         <LessonsList lessons={state.lessons} planId={props.id} shared={props.shared}
           onRemove={this.removeLesson} onSortEnd={this.reorderLessons} useDragHandle={true} />
       </div>
@@ -114,10 +116,10 @@ const ExportLinks = createReactClass({
       <div className="export">
         <a href={this.props.links.pdf}>Print</a>
         <a href={this.props.links.zip}>Download</a>
-        <a href={this.props.links.share} onClick={this.toggleShare}>Share</a>
+        <a href={this.props.share_link} onClick={this.toggleShare}>Share</a>
         { this.state.share &&
           <div className="copy-share-link">
-            <input type="text" value={this.props.links.share} ref="input" readOnly={true} />
+            <input type="text" value={this.props.share_link} ref="input" readOnly={true} />
           </div>
         }
       </div>
