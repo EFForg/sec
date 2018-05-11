@@ -54,7 +54,7 @@ class LessonPlansController < ApplicationController
     @lesson_plan.lessons << lesson
 
     respond_to do |format|
-      format.json{ render "lesson_plans/_lesson_plan" }
+      format.json{ render json: @lesson_plan.lessons.pluck(:id) }
       format.html{ redirect_to topic_lesson_path(lesson.topic, lesson.level) }
     end
   end
@@ -67,7 +67,7 @@ class LessonPlansController < ApplicationController
       where(lesson_id: lesson.id).destroy_all
 
     respond_to do |format|
-      format.json{ render "lesson_plans/_lesson_plan" }
+      format.json{ render json: @lesson_plan.lessons.pluck(:id) }
       format.html{ redirect_to topic_lesson_path(lesson.topic, lesson.level) }
     end
   end
