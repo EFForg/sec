@@ -7,7 +7,6 @@ class LessonPlansController < ApplicationController
 
   def show
     if params[:id]
-      # @lesson_plan = LessonPlan.find_by(key: params[:id])
       @lesson_plan = LessonPlan.find_or_create_by_key(params[:id])
     else
       @lesson_plan = current_lesson_plan

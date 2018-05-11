@@ -27,7 +27,7 @@ class LessonPlan < ApplicationRecord
     pdf = PdfTemplate.new(
       name: "Lesson Plan",
       template: "lesson_plans/show.pdf.erb",
-      source: { controller: "lesson_plans", action: "show", id: key }
+      source: { controller: "lesson_plans", action: "show", id: key! }
     )
 
     locals = {
