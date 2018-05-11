@@ -1,6 +1,6 @@
 json.call(@lesson_plan, :id, :lessons_count)
 json.id @lesson_plan.id
-json.lessons_count @lesson_plan.lessons.count
+json.lessons_count @lesson_plan.lessons_count
 json.duration_in_words @lesson_plan.duration.in_words
 json.lessons @lesson_plan.planned_lessons.published do |planned_lesson|
   json.position planned_lesson.position
