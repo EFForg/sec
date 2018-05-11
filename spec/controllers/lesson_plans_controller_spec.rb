@@ -11,7 +11,7 @@ RSpec.describe LessonPlansController, type: :controller do
         controller.head :ok
       end
 
-      get :show, params: { id: lesson_plan.key, format: :zip }
+      get :show, params: { id: lesson_plan.key!, format: :zip }
     end
   end
 end

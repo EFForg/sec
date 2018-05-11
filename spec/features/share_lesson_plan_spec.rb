@@ -7,7 +7,6 @@ RSpec.feature "ShareLessonPlan", type: :feature do
     page.set_rack_session(lesson_plan_id: lesson_plan.id)
   end
 
-  # TODO: refactor, repeated in manage_lesson_plan_spec
   let(:second_lesson) {
     second_lesson = FactoryGirl.create(:lesson)
     second_lesson.topic.update_attribute(:name,  "Another Topic")
