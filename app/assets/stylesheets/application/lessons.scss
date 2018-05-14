@@ -119,7 +119,9 @@
   }
 
   .tabs .tab.active {
-    border-bottom: 1px solid white;
+    border-left: 1px solid $dark-teal;
+    border-right: 1px solid $dark-teal;
+    border-bottom: 2px solid white;
 
     @-moz-document url-prefix() { //firefox only
       border-bottom: 0.13rem solid white;
