@@ -9,7 +9,13 @@ $(document).on('turbolinks:load', function() {
 });
 
 $(document).on('ajax:before', '.modal form.dismiss', function(e) {
-  $(this).closest('.modal').foundation('close');
+  var modal = $(this).closest('.modal');
+
+  if (modal.is('.reveal'))
+    modal.foundation('close');
+  else
+    modal.remove();
+
   return $(this).find('input[name=dismiss]').is(':checked');
 });
 
