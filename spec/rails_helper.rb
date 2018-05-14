@@ -32,6 +32,12 @@ ActiveRecord::Migration.maintain_test_schema!
 require "capybara/rspec"
 
 capabilities = Selenium::WebDriver::Remote::Capabilities.chrome(
+  loggingPrefs: {
+    browser: "ALL",
+    client: "ALL",
+    driver: "ALL",
+    server: "ALL"
+  },
   'chromeOptions' => {
     'args' => ['--headless', '--disable-gpu'].tap do |a|
       a.push('--no-sandbox') if ENV['TRAVIS']
@@ -83,3 +89,7 @@ RSpec.configure do |config|
 end
 
 Lesson.skip_callback(:save, :after, :enqueue_pdf_update)
+
+def javascript_console_messages
+  page.driver.browser.manage.logs.get(:browser)
+end
