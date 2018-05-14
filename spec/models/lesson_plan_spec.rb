@@ -9,6 +9,11 @@ RSpec.describe LessonPlan do
       expect(subject.lessons.count).to eq(2)
     end
 
+    it "returns a readonly lesson plan" do
+      expect{subject.update_attribute(:lessons, [])}.
+        to raise_error(ActiveRecord::ActiveRecordError)
+    end
+
     describe "with an existing lesson plan" do
       let(:lesson_plan_link) { FactoryGirl.create(:used_lesson_plan_link) }
 

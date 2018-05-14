@@ -9,13 +9,13 @@ class LessonPlan < ApplicationRecord
 
   has_many :lessons, ->{ reorder!.merge(PlannedLesson.ordered) },
     through: :planned_lessons
+  attr_readonly :lessons, if: :lesson_plan_link
 
   accepts_nested_attributes_for :planned_lessons,
                                 allow_destroy: true
 
   mount_uploader :pdf_file, GenericUploader
 
-  validate :force_immutable_if_linked
 
   def pdf
     unless pdf_file_updated_at.try(:>=, lessons.pluck(:updated_at).max)
@@ -86,13 +86,6 @@ class LessonPlan < ApplicationRecord
     LessonPlan.create.tap do |plan|
       link.update_attribute(:lesson_plan, plan)
       plan.lesson_ids = link.lesson_ids
-    end
-  end
-
-  def force_immutable_if_linked
-    if self.lesson_plan_link && self.persisted? && self.changed?
-      errors.add(:base, :immutable)
-      self.reload
     end
   end
 end
