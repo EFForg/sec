@@ -15,9 +15,12 @@ Rails.application.routes.draw do
     resources :lessons, path: "", only: [:show]
   end
 
-  resources :lesson_plans, path: "/lesson-plans", only: [:create, :update, :show] do
+  resources :lesson_plans, path: "/lesson-plans", only: [:create, :update] do
     post :lessons, to: "lesson_plans#create_lesson"
     delete :lessons, to: "lesson_plans#destroy_lesson"
+    collection do
+      get ":key", to: "lesson_plans#show"
+    end
   end
 
   get "/lesson-plan", as: :current_lesson_plan, to: "lesson_plans#show"
