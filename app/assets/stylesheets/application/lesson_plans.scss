@@ -78,6 +78,7 @@
   border-left: 16px solid $light-teal;
   border-top: 2px solid $light-teal;
   background-color: white;
+  cursor: pointer;
 
   .top {
     padding-right: 1.8rem;
@@ -105,7 +106,6 @@
     margin-top: 1rem;
     color: $darkest-teal;
     text-align: right;
-    cursor: pointer;
 
     .fa-bars {
       padding-right: 6px;
