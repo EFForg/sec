@@ -33,7 +33,15 @@
 
   form.dismiss {
     input[type=submit] {
-      float: right;
+      @include breakpoint(small only) {
+        display: block;
+        margin-top: 1rem;
+      }
+
+      @include breakpoint(medium) {
+        float: right;
+      }
+
       border: 0;
       background: $dark-teal;
       color: white;
