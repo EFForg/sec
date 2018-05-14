@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180426211644) do
+ActiveRecord::Schema.define(version: 20180511184553) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -182,11 +182,17 @@ ActiveRecord::Schema.define(version: 20180426211644) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "lesson_plan_links", force: :cascade do |t|
+    t.bigint "lesson_plan_id"
+    t.string "key"
+    t.text "lesson_ids", default: [], array: true
+    t.index ["lesson_plan_id"], name: "index_lesson_plan_links_on_lesson_plan_id"
+  end
+
   create_table "lesson_plans", force: :cascade do |t|
     t.integer "lessons_count", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "key"
     t.string "pdf_file"
     t.datetime "pdf_file_updated_at"
   end

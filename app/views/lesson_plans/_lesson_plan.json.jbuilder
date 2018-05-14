@@ -1,6 +1,6 @@
 json.call(@lesson_plan, :id, :lessons_count)
 json.id @lesson_plan.id
-json.lessons_count @lesson_plan.lessons.count
+json.lessons_count @lesson_plan.lessons_count
 json.duration_in_words @lesson_plan.duration.in_words
 json.lessons @lesson_plan.planned_lessons.published do |planned_lesson|
   json.position planned_lesson.position
@@ -16,8 +16,8 @@ json.lessons @lesson_plan.planned_lessons.published do |planned_lesson|
   json.difficulty_tag difficulty_tag(planned_lesson.level_id)
 end
 json.links do
-  json.zip lesson_plan_path(@lesson_plan, format: "zip")
-  json.pdf lesson_plan_path(@lesson_plan, format: "pdf")
-  json.share lesson_plan_url(@lesson_plan)
+  json.zip lesson_plan_share_path!(@lesson_plan, ".zip")
+  json.pdf lesson_plan_share_path!(@lesson_plan, ".pdf")
+  json.share lesson_plan_share_url!(@lesson_plan)
 end
 json.shared @shared

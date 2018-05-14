@@ -5,17 +5,17 @@ class LessonPlan < ApplicationRecord
   has_many :planned_lessons,
     counter_cache: "lessons_count",
     after_remove: ->(plan, _){ plan.update_column(:pdf_file_updated_at, nil) }
+  has_one :lesson_plan_link
 
   has_many :lessons, ->{ reorder!.merge(PlannedLesson.ordered) },
     through: :planned_lessons
+  attr_readonly :lessons, if: :lesson_plan_link
 
   accepts_nested_attributes_for :planned_lessons,
                                 allow_destroy: true
 
-  validates_uniqueness_of :key
-  before_validation :set_key, on: :create
-
   mount_uploader :pdf_file, GenericUploader
+
 
   def pdf
     unless pdf_file_updated_at.try(:>=, lessons.pluck(:updated_at).max)
@@ -29,7 +29,7 @@ class LessonPlan < ApplicationRecord
     pdf = PdfTemplate.new(
       name: "Lesson Plan",
       template: "lesson_plans/show.pdf.erb",
-      source: { controller: "lesson_plans", action: "show", id: key }
+      source: { controller: "lesson_plans", action: "show", id: key! }
     )
 
     locals = {
@@ -53,10 +53,6 @@ class LessonPlan < ApplicationRecord
     duration.length >= 4.hours
   end
 
-  def to_param
-    persisted? ? key : "current"
-  end
-
   def bundled_materials
     url_helper = Rails.application.routes.url_helpers
 
@@ -75,9 +71,21 @@ class LessonPlan < ApplicationRecord
     end.uniq
   end
 
-  private
+  def to_param
+    persisted? ? id : "current"
+  end
 
-  def set_key
-    self.key = EffDiceware.generate(4).gsub(" ", "-")
+  def key!
+    LessonPlanLink.find_or_create_by(lesson_ids: lessons.pluck(:id)).key
+  end
+
+  def self.find_or_create_by_key(key)
+    link = LessonPlanLink.find_by!(key: key)
+    return link.lesson_plan if link.lesson_plan
+
+    LessonPlan.create.tap do |plan|
+      link.update_attribute(:lesson_plan, plan)
+      plan.lesson_ids = link.lesson_ids
+    end
   end
 end

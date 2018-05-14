@@ -6,13 +6,13 @@ class LessonPlansController < ApplicationController
   before_action :verify_request_origin
 
   def show
-    if params[:id]
-      @lesson_plan = LessonPlan.find_by(key: params[:id])
+    if params[:key]
+      @lesson_plan = LessonPlan.find_or_create_by_key(params[:key])
     else
       @lesson_plan = current_lesson_plan
     end
     @planned_lessons = @lesson_plan.planned_lessons.published
-    @shared = params[:id]
+    @shared = params[:key]
 
     respond_to do |format|
       format.html
@@ -54,7 +54,7 @@ class LessonPlansController < ApplicationController
     @lesson_plan.lessons << lesson
 
     respond_to do |format|
-      format.json{ render "lesson_plans/_lesson_plan" }
+      format.json{ render json: @lesson_plan.lessons.pluck(:id) }
       format.html{ redirect_to topic_lesson_path(lesson.topic, lesson.level) }
     end
   end
@@ -67,7 +67,7 @@ class LessonPlansController < ApplicationController
       where(lesson_id: lesson.id).destroy_all
 
     respond_to do |format|
-      format.json{ render "lesson_plans/_lesson_plan" }
+      format.json{ render json: @lesson_plan.lessons.pluck(:id) }
       format.html{ redirect_to topic_lesson_path(lesson.topic, lesson.level) }
     end
   end
