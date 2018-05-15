@@ -52,11 +52,9 @@ RUN if [ "$BUILD_ENV" = "production" ]; \
   DATABASE_URL=postgres://noop; fi
 
 RUN mkdir -p /var/www /opt/trainers-hub/files \
-  && touch /opt/trainers-hub/flipper.pstore \
   && chown -R www-data /opt/trainers-hub/public \
                        /opt/trainers-hub/files \
                        /opt/trainers-hub/tmp \
-                       /opt/trainers-hub/flipper.pstore \
                        /var/www \
                        /usr/local/bundle
 USER www-data
