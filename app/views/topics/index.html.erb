@@ -6,17 +6,15 @@
       <%= html(@page.body) %>
     </div>
 
-    <% if Flipper.enabled?(:lesson_plans) %>
-      <div class="column large-4">
-        <aside>
-          <p>In the Lesson Planner, you can organize your selected lessons to prepare for your next teaching opportunity.</p>
+    <div class="column large-4">
+      <aside>
+        <p>In the Lesson Planner, you can organize your selected lessons to prepare for your next teaching opportunity.</p>
 
-          <%= link_to "See Lesson Planner", current_lesson_plan_path,
-                      class: "lesson-planner-link arrow-link-small",
-                      style: "float: none" %>
-        </aside>
-      </div>
-    <% end %>
+        <%= link_to "See Lesson Planner", current_lesson_plan_path,
+                    class: "lesson-planner-link arrow-link-small",
+                    style: "float: none" %>
+      </aside>
+    </div>
   </div>
 
   <%= render "tags/nav", tags: @tags %>

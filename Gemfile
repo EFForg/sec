@@ -49,9 +49,6 @@ gem "httparty"
 # Slugging/permalinks
 gem "friendly_id"
 
-# Feature flipping
-gem "flipper", github: "jnunemaker/flipper"
-
 # ActiveJob backend
 gem "delayed_job_active_record"
 
