@@ -82,8 +82,7 @@ module GlossaryHelper
       link["class"] = "glossary-term"
       link["href"] = glossary_path(term)
       link["data-description"] =
-        content_tag(:h3) { link_to(term.name, glossary_path(term)) } +
-        strip_tags(term.body)
+        capture{ render("glossary/tooltip", term: term) }
 
       link.content = content
 

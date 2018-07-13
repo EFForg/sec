@@ -1,3 +1,5 @@
-<span class="glossary-definition" id="<%= id %>" >
-  <%= truncate(strip_tags(term.body), length: 200, separator: " ") { link_to "Read more", glossary_path(term.slug) } %>
-</span>
+<div class="close"><span class="sr-only">Close glossary term</span><span class="icon"></span></div>
+
+<h3><%= link_to(term.name, glossary_path(term)) %></h3>
+
+<%= strip_tags(term.body) %>

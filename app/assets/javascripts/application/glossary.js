@@ -9,7 +9,8 @@ $(document).on('click', '.glossary-term', function(e) {
 });
 
 $(document).on('click', function(e) {
-  if (!$(e.target).closest('.glossary-term, #glossary').length) {
+  if ($(e.target).closest('#glossary .close').length
+      || !$(e.target).closest('.glossary-term, #glossary').length) {
     $('#glossary')
       .css('max-height', '')
       .css('transition', '')
