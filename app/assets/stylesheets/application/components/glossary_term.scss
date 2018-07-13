@@ -15,7 +15,7 @@
   position: fixed;
   left: 20%;
   right: 20%;
-  overflow-y: auto;
+  overflow-y: hidden;
 
   background-color: #fff;
 
@@ -35,7 +35,7 @@
 
   &.open {
     bottom: 4rem;
-    max-height: 250px;
+    max-height: 100vh;
     padding: 2rem;
   }
 
@@ -52,7 +52,6 @@
 
     &.open {
       bottom: 0;
-      max-height: 45vh;
     }
   }
 

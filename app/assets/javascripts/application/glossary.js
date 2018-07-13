@@ -9,6 +9,10 @@ $(document).on('click', '.glossary-term', function(e) {
 });
 
 $(document).on('click', function(e) {
-  if (!$(e.target).closest('.glossary-term, #glossary').length)
-    $('#glossary').removeClass('open');
+  if (!$(e.target).closest('.glossary-term, #glossary').length) {
+    $('#glossary')
+      .css('max-height', '')
+      .css('transition', '')
+      .removeClass('open');
+  }
 });
