@@ -22,9 +22,6 @@ RSpec.describe GlossaryHelper do
       helper.link_glossary_terms(doc)
 
       expect(sanitize(doc).css('.glossary-term').count).to eq(GlossaryTerm.count)
-
-      expect(sanitize(doc).css('.glossary-definition').map { |el| el.content.strip })
-        .to match_array(GlossaryTerm.pluck(:body))
     end
 
     it 'should not replace content in inappropriate contexts' do
@@ -57,8 +54,8 @@ RSpec.describe GlossaryHelper do
 
       helper.link_glossary_terms(doc)
 
-      expect(sanitize(doc).css('.glossary-definition').map { |el| el.content.strip })
-        .to match_array(best_match.body)
+      expect(sanitize(doc).css('.glossary-term').map { |el| el["data-description"] }[0])
+        .to include(best_match.body)
     end
 
     context 'when definition is too long' do
@@ -78,7 +75,7 @@ RSpec.describe GlossaryHelper do
         el = sanitize(doc).css('.glossary-term').first
 
         expect(el.content.split("\n").first).to eq(term.synonyms.first)
-        expect(el.css('a').first[:href]).to eq("/glossary/#{term.name}")
+        expect(el[:href]).to eq("/glossary/#{term.name}")
       end
     end
   end
