@@ -81,6 +81,7 @@ module GlossaryHelper
     Nokogiri::XML::Element.new("a", doc).tap do |link|
       link["class"] = "glossary-term"
       link["href"] = glossary_path(term)
+      link["data-term_id"] = term.id
       link["data-description"] =
         capture{ render("glossary/tooltip", term: term) }
 
