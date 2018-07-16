@@ -9,8 +9,6 @@
 
   function close() {
     $('#glossary')
-      .css('max-height', '')
-      .css('transition', '')
       .data('term_id', null)
       .removeClass('open');
   }
