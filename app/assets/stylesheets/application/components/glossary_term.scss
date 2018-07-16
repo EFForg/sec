@@ -1,40 +1,75 @@
 
 .glossary-term {
-  position: relative;
-  cursor: pointer;
   color: $darkest-teal;
   font-weight: bold;
-  display: inline-block;
+  text-decoration: none;
 
-  a {
-    text-decoration: none;
-  }
   img {
     vertical-align: text-top;
     margin-left: 2px;
   }
 }
 
-.glossary-definition {
-  cursor: default;
-  font-weight: 300;
-  display: none;
+
+#glossary {
+  position: fixed;
+  left: 20%;
+  right: 20%;
+  overflow-y: hidden;
+
+  background-color: #fff;
+
   border-radius: 6px;
   -webkit-box-shadow: 0px 4px 15px 0px rgba(0, 0, 0, 0.3);
   -moz-box-shadow: 0px 4px 15px 0px rgba(0, 0, 0, 0.3);
   box-shadow: 0px 4px 15px 0px rgba(0, 0, 0, 0.3);
-  color: $white;
-  background-color: black;
-  position: absolute;
-  right: -40%;
-  bottom: 109%;
-  width: 30rem;
-  padding: 10px 15px;
-  z-index: 1;
 
-  a {
-    color: $teal;
-    padding: 5px;
-    font-weight: bold;
+  max-height: 0rem;
+  padding: 0rem 2rem;
+  transition: bottom 200ms ease-out,
+  max-height 200ms ease-out,
+  padding-top 200ms ease-out,
+  padding-bottom 200ms ease-out;
+
+  bottom: 0;
+
+  &.open {
+    bottom: 4rem;
+    max-height: 100vh;
+    padding: 2rem;
+  }
+
+  @include breakpoint(inbetween down) {
+    left: 10%;
+    right: 10%;
+  }
+
+  @include breakpoint(small only) {
+    left: 0;
+    right: 0;
+    z-index: 99999;
+    border-radius: 0;
+
+    &.open {
+      bottom: 0;
+    }
+  }
+
+  h3 {
+    margin-top: 0;
+  }
+
+  .close {
+    float: right;
+    cursor: pointer;
+    padding: 0 0.7rem 0.7rem 0.7rem;
+
+    .icon {
+      display: block;
+      width: 1.2rem;
+      height: 1.2rem;
+      background: image-url('x-icon.png') no-repeat;
+      background-size: 100%;
+    }
   }
 }

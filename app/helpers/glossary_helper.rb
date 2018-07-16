@@ -78,19 +78,18 @@ module GlossaryHelper
   def create_glossary_link(doc, term, content)
     toggle = "dropdown-#{SecureRandom.hex(8)}"
 
-    Nokogiri::XML::Element.new("span", doc).tap do |link|
+    Nokogiri::XML::Element.new("a", doc).tap do |link|
       link["class"] = "glossary-term"
-      link["data-toggle"] = toggle
+      link["href"] = glossary_path(term)
+      link["data-term_id"] = term.id
+      link["data-description"] =
+        capture{ render("glossary/tooltip", term: term) }
+
       link.content = content
 
       img = Nokogiri::XML::Element.new("img", doc)
       img["src"] = image_path("info.png")
       link.add_child(img)
-
-      pane = Nokogiri::XML.fragment(
-        capture{ render("glossary/tooltip", term: term, id: toggle) }
-      )
-      link.add_child(pane)
     end
   end
 end
