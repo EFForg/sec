@@ -9,7 +9,7 @@
   </div>
 
   <% message = nolink ? [:content_tag, :div] : [:link_to, content] %>
-  <%= send(*message, class: "bottom") do %>
+  <%= send(*message, class: "bottom", "aria-hidden" => true, "tabindex" => -1) do %>
     <div class="fold"></div>
   <% end %>
 </div>
