@@ -5,7 +5,7 @@
       .html(term.dataset.description)
       .data('term_id', term.dataset.term_id)
       .addClass('open')
-      .find('h3 a').focus();
+      .focus();
   }
 
   function close() {
