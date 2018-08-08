@@ -1,6 +1,6 @@
 <div class="header">
   <h3><%= link_to(term.name, glossary_path(term)) %></h3>
-  <button class="close"><span class="sr-only">Close tooltip</span><span class="icon"></span></button>
+  <button class="close" aria-describedby="tooltip-action"><span class="icon"></span></button>
 </div>
 
 <%= sanitize(term.body, tags: %w(p a b i strong em), attributes: %w(href)) %>
