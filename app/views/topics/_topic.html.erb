@@ -1,6 +1,6 @@
 <%= render "content/teaser", content: topic do %>
   <% if topic.icon.present? %>
-    <div class="icon"><%= link_to image_tag(topic.icon.url), topic, "aria-hidden" => true %></div>
+    <div class="icon"><%= link_to image_tag(topic.icon.url), topic, "aria-hidden" => true, :tabindex => -1 %></div>
   <% end %>
 
   <h3><%= link_to topic.name, topic %></h3>
