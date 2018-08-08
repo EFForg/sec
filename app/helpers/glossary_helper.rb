@@ -88,6 +88,7 @@ module GlossaryHelper
       link.content = content
 
       img = Nokogiri::XML::Element.new("img", doc)
+      img["aria-hidden"] = "true"
       img["src"] = image_path("info.png")
       link.add_child(img)
     end

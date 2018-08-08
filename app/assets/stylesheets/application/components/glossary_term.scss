@@ -55,17 +55,21 @@
     }
   }
 
+  .header {
+    display: flex;
+  }
+
   h3 {
-    margin-top: 0;
+    margin-top: 0 !important;
+    flex: 1;
   }
 
   .close {
-    float: right;
     cursor: pointer;
     padding: 0 0.7rem 0.7rem 0.7rem;
 
     .icon {
-      display: block;
+      display: inline-block;
       width: 1.2rem;
       height: 1.2rem;
       background: image-url('x-icon.png') no-repeat;
