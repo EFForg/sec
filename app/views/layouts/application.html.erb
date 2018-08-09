@@ -34,7 +34,8 @@
       <%= yield %>
     </div>
 
-    <div id="glossary"></div>
+    <div id="glossary" role="tooltip" tabindex="-1"></div>
+    <span class="hide" id="tooltip-action">Close tooltip</span>
   </div>
 
   <%= render "layouts/footer" %>
