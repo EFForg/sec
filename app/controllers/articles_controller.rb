@@ -1,5 +1,6 @@
 class ArticlesController < ApplicationController
   include ContentPermissioning
+
   breadcrumbs "Security Education" => routes.root_path,
               "Articles" => routes.articles_path
 
@@ -17,5 +18,37 @@ class ArticlesController < ApplicationController
     protect_unpublished! @article
     og_object @article
     breadcrumbs @article.name
+  end
+
+  def preview
+    @preview = true
+    @article = Article.friendly.find(params[:id])
+                      .preview(preview_params.to_h)[0]
+    og_object @article
+    breadcrumbs @article.name
+    render "show"
+  end
+
+  def index_preview
+    @preview = true
+    @page = Page.find_by!(name: "articles-overview")
+    @page = @page.preview(overview_preview_params.to_h)[0]
+    @sections = Article.published.
+      includes(:section).
+      references(:article_sections).
+      order("article_sections.position, articles.section_position").
+      group_by(&:section)
+    render "index"
+  end
+
+  private
+
+  def preview_params
+    params.require(:article).permit(:name, :authorship, :summary, :body,
+                                    :next_article_id)
+  end
+
+  def overview_preview_params
+    params.require(:articles_page).permit(:body)
   end
 end

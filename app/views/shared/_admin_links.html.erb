@@ -1,4 +1,4 @@
-<% if current_admin_user %>
+<% if current_admin_user && !@preview %>
   <div class="admin-links">
     <div class="edit">
       <%= link_to "Edit", [:edit, :admin, resource] %>

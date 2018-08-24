@@ -2,8 +2,14 @@
   <div class="large-8 large-centered columns">
     <h1><%= @page.name.capitalize %></h1>
 
+    <%= render partial: 'shared/preview_card',
+      locals: { publish_link: admin_page_path(@page, params: { article: @page.attributes }) } %>
+
     <div class="content">
       <%= html(@page.body) %>
     </div>
+
+    <%= render partial: 'shared/preview_card',
+      locals: { publish_link: admin_page_path(@page, params: { article: @page.attributes }) } %>
   </div>
 </div>

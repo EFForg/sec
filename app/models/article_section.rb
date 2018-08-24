@@ -1,4 +1,6 @@
 class ArticleSection < ApplicationRecord
+  include Previewing
+
   has_many :articles, ->{ order(:section_position) },
     foreign_key: "section_id", dependent: :nullify
 
