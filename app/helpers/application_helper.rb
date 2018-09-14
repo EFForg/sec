@@ -17,8 +17,13 @@ module ApplicationHelper
     end
   end
 
-  def escape_page_title
-    URI.escape(page_title , Regexp.new("[^#{URI::PATTERN::UNRESERVED}]"))
+  def matomo_url
+    "https://anon-stats.eff.org/js/?" + {
+      idsite: 28,
+      rec: 1,
+      action_name: page_title,
+      url: request.original_url
+    }.to_param
   end
 
   def modal(name = nil, &block)
