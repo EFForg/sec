@@ -19,7 +19,7 @@ module ApplicationHelper
 
   def matomo_url
     "https://anon-stats.eff.org/js/?" + {
-      idsite: 28,
+      idsite: Matomo.site_id,
       rec: 1,
       action_name: page_title,
       url: request.original_url

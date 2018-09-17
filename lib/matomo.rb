@@ -19,7 +19,10 @@ module Matomo
   end
 
   def self.pages_url
-   "#{base_url}/index.php?module=CoreHome&action=index&idSite=28&period=day&date=yesterday&updated=1#?idSite=28&period=month&date=2018-09-13&category=General_Actions&subcategory=General_Pages"
+    "#{base_url}/index.php?module=CoreHome&action=index&"\
+    "idSite=#{site_id}&period=month&date=yesterday&updated=1#?"\
+    "idSite=#{site_id}&period=month&date=#{Date.today.strftime("%Y-%m-%d")}"\
+    "&category=General_Actions&subcategory=General_Pages"
   end
 
   private
@@ -33,10 +36,14 @@ module Matomo
     "https://anon-stats.eff.org"
   end
 
+  def self.site_id
+    ENV["MATOMO_SITE_ID"]
+  end
+
   def self.default_params
     {
       module: "API",
-      idSite: 28,
+      idSite: site_id,
       format: "JSON",
       period: "month",
       date: "today"
