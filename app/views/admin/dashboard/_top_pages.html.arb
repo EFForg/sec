@@ -1,0 +1,23 @@
+panel title do
+  table do
+    thead do
+      tr do
+        th "Label"
+        th "Pageviews"
+        th "Unique Pageviews"
+      end
+    end
+    tbody do
+      pages.each do |article|
+        tr do
+          td article["label"]
+          td article["nb_hits"]
+          td article["nb_visits"]
+        end
+      end
+    end
+  end
+  div class: "padded" do
+    a "See more", href: Matomo.pages_url
+  end
+end
