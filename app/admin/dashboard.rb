@@ -6,6 +6,21 @@ ActiveAdmin.register_page "Dashboard" do
   content title: "Dashboard" do
     columns do
       column do
+        panel "Visits This Month" do
+          div class: "padded" do
+            img src: Matomo.visits_graph_url
+          end
+        end
+      end
+
+      column do
+        render partial: "admin/dashboard/top_referrers",
+          locals: {referrers: Matomo.top_referrers}
+      end
+    end
+
+    columns do
+      column do
         render partial: "admin/dashboard/top_pages",
           locals: {title: "Top Articles This Month", pages: Matomo.top_articles}
       end

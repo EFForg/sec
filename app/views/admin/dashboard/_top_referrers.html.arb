@@ -1,0 +1,23 @@
+panel "Top Referrers This Month" do
+  table do
+    thead do
+      tr do
+        th "Label"
+        th "Visits"
+        th "Actions per Visit"
+      end
+    end
+    tbody do
+      referrers.each do |ref|
+        tr do
+          td ref["label"]
+          td ref["nb_visits"]
+          td (ref["nb_actions"].to_f/ref["nb_visits"]).round(1)
+        end
+      end
+    end
+  end
+  div class: "padded" do
+    a "See more top referrers", href: Matomo.top_referrers_url
+  end
+end

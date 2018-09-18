@@ -3,21 +3,20 @@ panel title do
     thead do
       tr do
         th "Label"
-        th "Pageviews"
         th "Unique Pageviews"
+        th "Pageviews"
       end
     end
     tbody do
-      pages.each do |article|
+      pages.each do |page|
         tr do
-          td article["label"]
-          td article["nb_hits"]
-          td article["nb_visits"]
+          td page["nb_visits"]
+          td page["nb_hits"]
         end
       end
     end
   end
   div class: "padded" do
-    a "See more", href: Matomo.pages_url
+    a "See more top pages", href: Matomo.top_pages_url
   end
 end
