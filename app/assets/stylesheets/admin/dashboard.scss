@@ -1,5 +1,9 @@
 .admin_dashboard {
   .column {
+    @media (max-width: 860px) {
+      width: 100% !important;
+    }
+
     float: left;
   }
 

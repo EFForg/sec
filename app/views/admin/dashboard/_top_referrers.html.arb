@@ -1,4 +1,4 @@
-panel "Top Referrers This Month" do
+panel "Top Referrers (Previous 30 Days)" do
   table do
     thead do
       tr do
@@ -8,11 +8,11 @@ panel "Top Referrers This Month" do
       end
     end
     tbody do
-      referrers.each do |ref|
+      referrers.each do |referrer|
         tr do
-          td ref["label"]
-          td ref["nb_visits"]
-          td (ref["nb_actions"].to_f/ref["nb_visits"]).round(1)
+          td referrer.label
+          td referrer.visits
+          td referrer.actions_per_visit
         end
       end
     end

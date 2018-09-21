@@ -10,8 +10,9 @@ panel title do
     tbody do
       pages.each do |page|
         tr do
-          td page["nb_visits"]
-          td page["nb_hits"]
+          td { a page.label, href: page.path }
+          td page.visits
+          td page.hits
         end
       end
     end
