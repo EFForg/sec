@@ -12,21 +12,15 @@ ActiveAdmin.register_page "Dashboard" do
             img src: Matomo.visits_graph_url
           end
         end
-      end
 
-      column do
         render partial: "admin/dashboard/top_referrers",
           locals: {referrers: Matomo.top_referrers}
       end
-    end
 
-    columns do
       column do
         render partial: "admin/dashboard/top_pages",
           locals: {title: "Top Articles (Previous 30 Days)", pages: Matomo.top_articles}
-      end
 
-      column do
         render partial: "admin/dashboard/top_pages",
           locals: {title: "Top Lesson Topics (Previous 30 Days)", pages: Matomo.top_topics}
       end
