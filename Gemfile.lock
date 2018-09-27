@@ -4,6 +4,13 @@ GIT
   specs:
     active_material (1.4.1)
 
+PATH
+  remote: /home/vivian/dev/eff_matomo
+  specs:
+    eff_matomo (0.1.0)
+      activesupport
+      httparty
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -386,6 +393,7 @@ DEPENDENCIES
   devise_invitable
   dotenv
   eff_diceware
+  eff_matomo!
   factory_girl_rails
   font-awesome-rails
   foundation-rails (>= 6)

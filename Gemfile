@@ -58,6 +58,9 @@ gem "invisible_captcha"
 # Generate passphrases using the diceware method
 gem "eff_diceware"
 
+# Utilities for interacting with our analytics platform
+gem "eff_matomo"
+
 # Content administration
 gem "active_material", github: "vigetlabs/active_material"
 gem "activeadmin"

@@ -40,14 +40,7 @@
 
   <%= render "layouts/footer" %>
 
-  <div id="anon-stats">
-    <noscript
-      <img src=<%= matomo_url %> style="border:0" alt="" />
-    </noscript>
-    <script type="text/javascript">
-      document.getElementById('anon-stats').innerHTML = '<img src="<%= matomo_url %>?urlref='+encodeURIComponent(document.referrer)+' style="border:0" alt="" />';
-    </script>
-  </div>
+  <%= matomo_tracking_embed %>
 
   <span id="desktop-canary" class="show-for-medium"></span>
 </body>
