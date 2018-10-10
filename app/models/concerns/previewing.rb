@@ -60,7 +60,6 @@ module Previewing
     child_params = params.dig(*params_keys).to_h.values
                          .sort! { |a, b| a["id"] <=> b["id"] }
     klass = association_class(params_keys.last)
-    # TODO: test obj creation (nil id)
     saved = klass.where(id: child_params.map { |p| p["id"] }).order(:id)
     klass.collection_preview(saved, child_params)
   end

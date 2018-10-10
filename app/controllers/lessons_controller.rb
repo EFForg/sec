@@ -32,6 +32,7 @@ class LessonsController < ApplicationController
   end
 
   def preview
+    protect_previews!
     @preview = true
     @topic = Topic.friendly.find(params[:topic_id])
     @topic, lessons = @topic.preview(preview_params.to_h)

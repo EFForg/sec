@@ -21,6 +21,7 @@ class ArticlesController < ApplicationController
   end
 
   def preview
+    protect_previews!
     @preview = true
     @article = Article.friendly.find(params[:id])
                       .preview(preview_params.to_h)[0]
@@ -30,6 +31,7 @@ class ArticlesController < ApplicationController
   end
 
   def index_preview
+    protect_previews!
     @preview = true
     @page = Page.find_by!(name: "articles-overview")
     @page = @page.preview(overview_preview_params.to_h)[0]
