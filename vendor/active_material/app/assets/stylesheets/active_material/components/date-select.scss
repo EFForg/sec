@@ -1,0 +1,31 @@
+/**
+ * Date Selects
+ */
+
+.date_select,
+.datetime_select,
+.time_select {
+
+  .fragments-group {
+    @include am-list-blank;
+    @include am-list-inline;
+    @include am-select;
+  }
+
+  .fragment {
+    @include am-select-unit;
+
+    select {
+      @include am-select-input-borderless;
+    }
+  }
+
+  .fragment label {
+    @include am-hidden;
+  }
+
+  .fragment select {
+    @include am-select-input;
+  }
+
+}

@@ -1,0 +1,75 @@
+/**
+ * Utility Nav
+ * Displays current user and logout information
+ */
+
+#utility_nav {
+  background: asset-url("active_material/icons/account_circle.svg") no-repeat;
+  background-size: am-unit(5);
+  width: am-unit(5);
+  height: am-unit(5);
+  margin-top: am-unit(-2.5);
+  position: absolute;
+  z-index: 2;
+  top: 50%;
+  right: am-unit(2);
+
+  // Increase the hit region
+  &:before {
+    content: "";
+    position: absolute;
+    width: 90px;
+    height: 50px;
+    top: 0;
+    right: -12px;
+  }
+
+  a {
+    color: #333;
+  }
+
+  > li {
+    &:first-child {
+      margin-top: 45px;
+
+      &:before {
+        content: "";
+        border: 7px solid transparent;
+        border-bottom-color: #fff;
+        top: -14px;
+        right: 12px;
+        position: absolute;
+      }
+    }
+
+    border-top: 1px solid #d9d9d9;
+    box-shadow: 0 1px 2px rgba(#000, 0.22);
+    width: 200px;
+    float: right;
+    border-bottom-left-radius: 2px;
+    border-bottom-right-radius: 2px;
+    background: #efefef;
+    text-align: right;
+    clip: rect(0, 0, 0, 0);
+    opacity: 0;
+    transition: 0.28s all;
+    position: relative;
+
+    a {
+      @include am-btn;
+    }
+  }
+
+  #current_user {
+    background: #fff;
+    text-align: center;
+  }
+
+  &:hover {
+    > li {
+      clip: initial;
+      opacity: 1;
+    }
+  }
+}
+

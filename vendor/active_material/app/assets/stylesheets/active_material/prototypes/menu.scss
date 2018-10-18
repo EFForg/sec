@@ -1,0 +1,118 @@
+////
+/// Menu
+/// A dropdown menu. Used for nested navigation and selection
+/// @group menu
+////
+
+/// Background color of the menu
+$am-menu-background: #fff !default;
+/// Border radious of the menu
+$am-menu-border-radius: 2px !default;
+/// X-axis offset of opened menu
+$am-menu-offset-x: 0 !default;
+/// Y-axis offset of opened menu
+$am-menu-offset-y: am-unit(4) !default;
+/// Padding of opened menu's container
+$am-menu-padding: am-unit(1) !default;
+/// Padding of individual menu items
+$am-menu-item-padding: am-type-unit(1) am-unit(2) !default;
+/// Transition time of menu opening
+$am-menu-transition: 0.2s !default;
+/// Transition delay when a menu opens
+$am-menu-transition-delay: 0.2s !default;
+/// Minimum allowable width of menu
+$am-menu-min-width: am-unit(14) !default;
+/// Desktop breakpoint
+$am-menu-breakpoint: 1300px !default;
+/// The size of the dropdown carot that displays next to the menu toggle
+$am-menu-carat-size: 5px !default;
+
+@mixin am-menu {
+  display: inline-block;
+  outline: 0;
+  position: relative;
+  text-align: left;
+}
+
+@mixin am-menu-carat {
+  border: $am-menu-carat-size solid transparent;
+  border-color: am-color(primary) transparent transparent;
+  content: "";
+  height: 0;
+  margin-top: $am-menu-carat-size / -2;
+  position: absolute;
+  right: -15px;
+  top: 50%;
+  width: 0;
+}
+
+@mixin am-menu-carat-muted {
+  border-top-color: am-color(hint);
+}
+
+@mixin am-menu-list {
+  background: $am-menu-background;
+  border-radius: $am-menu-border-radius;
+  box-shadow: 0 1px 1px rgba(#000, 0.24), 0 0 1.5px rgba(#000, 0.12);
+  filter: blur(1px);
+  left: $am-menu-offset-x;
+  list-style: none;
+  margin: 0;
+  min-width: $am-menu-min-width;
+  padding: $am-menu-padding 0;
+  position: absolute;
+  text-align: left;
+  top: $am-menu-offset-y;
+  transform-origin: 0 0;
+  transform: translate3d(0, -4px, 0) scaleY(0);
+  transition: $am-menu-transition all;
+  width: auto;
+  will-change: transform;
+  z-index: $am-elevation-top;
+}
+
+@mixin am-menu-list-right {
+  left: auto;
+  right: $am-menu-offset-x;
+}
+
+@mixin am-menu-item {
+  display: block;
+  margin: 0;
+  transition: $am-menu-transition all;
+}
+
+@mixin am-menu-link {
+  @include am-link(secondary-text);
+  @include am-link-no-decoration;
+  display: block;
+  font-size: 14px;
+  opacity: 0;
+  padding: $am-menu-item-padding;
+  transition: 0.28s opacity, 0.28s color;
+  white-space: nowrap;
+
+  &:hover,
+  &:focus {
+    @include am-color(primary);
+  }
+
+  @include am-min-breakpoint($am-menu-breakpoint) {
+    font-size: 13px;
+  }
+}
+
+@mixin am-menu-button {
+  position: relative;
+}
+
+@mixin am-menu-list-open {
+  filter: none;
+  transition: $am-menu-transition all;
+  transform: translateZ(0) scale(1);
+}
+
+@mixin am-menu-item-open {
+  opacity: 1;
+  transition: $am-menu-transition opacity;
+}

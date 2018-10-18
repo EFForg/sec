@@ -1,0 +1,93 @@
+/**
+ * Tables
+ */
+
+.table_tools {
+  @include am-table-header;
+}
+
+.index_table,
+.panel_contents table {
+  @include am-table;
+
+  th {
+    @include am-table-column-heading;
+
+    a {
+      @include am-table-sort;
+    }
+
+    &.sorted-asc a {
+      @include am-table-sort-asc;
+    }
+
+    &.sorted-desc a {
+      @include am-table-sort-desc;
+    }
+  }
+
+  tr {
+    @include am-table-row;
+  }
+
+  tbody tr {
+    &:hover {
+      @include am-table-row-hover;
+    }
+
+    &.selected {
+      @include am-table-row-selected;
+    }
+  }
+
+  td {
+    @include am-table-cell;
+
+  }
+
+  .col-selectable {
+    @include am-table-cell-selectable;
+
+    // ActiveAdmin wraps checkboxes in a div. This rule prevents
+    // that div from messing up vertical alignment
+    .resource_selection_cell {
+      display: inline;
+    }
+  }
+
+  // Styles for non-js actions
+  td.col-actions a {
+    padding: 0 4px
+  }
+
+  .am-js & {
+
+    td.col-actions {
+      @include am-table-cell-actions;
+
+      .table_actions {
+        @include am-menu-list;
+        @include am-menu-list-right;
+        top: 50%;
+        margin-top: am-unit(-2);
+        margin-right: am-unit(2);
+
+        a {
+          @include am-menu-link;
+        }
+      }
+
+      &:hover,
+      &.active {
+        .table_actions {
+          @include am-menu-list-open;
+
+          a {
+            @include am-menu-item-open;
+          }
+        }
+      }
+
+    }
+  }
+}

@@ -16,7 +16,6 @@ RUN echo "@edge http://nl.alpinelinux.org/alpine/edge/main" >>/etc/apk/repositor
   && apk upgrade --update-cache \
   && apk add \
     build-base \
-    git \
     postgresql-dev \
     postgresql-client \
     imagemagick \
@@ -35,6 +34,7 @@ ENV CHROME_BIN=/usr/bin/chromium-browser
 ENV CHROME_PATH=/usr/lib/chromium/
 
 COPY Gemfile* ./
+COPY ./vendor/active_material ./vendor/active_material
 RUN bundle install
 
 COPY package.json ./

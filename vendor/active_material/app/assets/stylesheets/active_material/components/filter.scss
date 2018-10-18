@@ -1,0 +1,61 @@
+/**
+ * Filters
+ * Filters show up as sidebars on most index pages
+ */
+
+.filter_form_field,
+.select_and_search,
+.filter_date_range {
+  @include am-textfield;
+  @include am-textfield-inline;
+
+  label {
+    @include am-textfield-label;
+    @include am-textfield-label-inline;
+  }
+
+  > select:not([multiple]) {
+    @include am-select-input;
+    border-bottom-right-radius: 0;
+    border-top-right-radius: 0;
+    flex-basis: 100px;
+  }
+
+  > select[multiple] {
+    flex-basis: 100%;
+  }
+
+  > select {
+    &:last-child {
+      border-bottom-right-radius: 3px;
+      border-top-right-radius: 3px;
+    }
+
+    + input[type="text"],
+    + input[type="number"] {
+      border-bottom-left-radius: 0;
+      border-top-left-radius: 0;
+      border-left: 0;
+    }
+  }
+
+  > input.datepicker {
+    @include am-textfield-input;
+    @include am-textfield-input-inline;
+    @include am-textfield-input-date;
+    border-bottom-right-radius: 0;
+    border-top-right-radius: 0;
+  }
+
+  > input[type="submit"] {
+    border-bottom-left-radius: 0;
+    border-top-left-radius: 0;
+    margin: 0;
+  }
+}
+
+.filter_string input,
+.filter_numeric input {
+  @include am-textfield-input;
+  @include am-textfield-input-inline;
+}

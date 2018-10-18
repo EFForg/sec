@@ -1,0 +1,23 @@
+/**
+ * Tags
+ * Tags show up as states within tables and other components
+ */
+
+.status_tag {
+  @include am-tag;
+
+  a & {
+    @include am-tag-pressable;
+  }
+
+  &.yes {
+    @include am-tag-success;
+  }
+}
+
+.empty {
+  color: #ccc;
+  font-size: 0.9em;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
