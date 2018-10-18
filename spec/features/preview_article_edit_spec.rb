@@ -11,7 +11,7 @@ RSpec.feature "Preview Changes", type: :feature, js: true do
     fill_in "Name", with: new_name
     click_on "Preview" 
 
-    sleep(5)
+    sleep(1)
     preview_page = page.driver.browser.window_handles.last
     page.driver.browser.switch_to.window(preview_page)
 
@@ -28,7 +28,7 @@ RSpec.feature "Preview Changes", type: :feature, js: true do
     fill_in "Instructor students ratio", with: new_ratio
     click_on "Preview" 
 
-    sleep(5)
+    sleep(1)
     preview_page = page.driver.browser.window_handles.last
     page.driver.browser.switch_to.window(preview_page)
 
@@ -46,7 +46,7 @@ RSpec.feature "Preview Changes", type: :feature, js: true do
     fill_in "Instructor students ratio", with: new_ratio
     click_on "Preview" 
 
-    sleep(5)
+    sleep(1)
     preview_page = page.driver.browser.window_handles.last
     page.driver.browser.switch_to.window(preview_page)
 
