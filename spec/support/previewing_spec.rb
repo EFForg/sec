@@ -5,8 +5,7 @@ shared_examples_for 'previewable' do |params, ignored = []|
   it 'returns model object with new attributes' do
     original_attributes = saved.attributes
     preview = saved.preview(params)
-    expect(preview[0]).to \
-      have_attributes(original_attributes.merge(params))
+    expect(preview).to have_attributes(original_attributes.merge(params))
     expect(strip_attributes(saved.reload.attributes, ignored)).to \
       eq(strip_attributes(original_attributes, ignored))
   end
@@ -24,7 +23,7 @@ shared_examples_for 'previewable with children' do |params, child, association,
     params = sub_id_in_params(params, saved_child.id)
     preview = saved.preview(params)
     child_attrs = params["#{association}_attributes"].values.first
-    expect(preview[1][0][0]).to \
+    expect(preview[1][0]).to \
       have_attributes(strip_attributes(original_attributes.merge(child_attrs),
                                        ignored))
     expect(strip_attributes(saved_child.reload.attributes, ignored)).to \

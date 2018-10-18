@@ -32,16 +32,20 @@ module Previewing
   # [ topic_preview, [beginner_lesson, intermediate_lesson, ...]
   def preview(params)
     p = merged_object(params)
-    child_objs = child_keys(params).map do |k|
-      child = association_from_key(k)
+    child_objs = child_keys(params).map do |key|
+      child = association_from_key(key)
       next unless associations.include?(child)
-      if single_child? k
+      if single_child? key
         self.send(child).preview
       else
-        generate_children(params, k)
+        generate_children(params, key)
       end
     end.compact
-    [p, *child_objs]
+    if child_objs.empty?
+      p
+    else
+      [p, *child_objs]
+    end
   end
 
   private

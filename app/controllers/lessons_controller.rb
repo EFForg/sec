@@ -36,28 +36,28 @@ class LessonsController < ApplicationController
     @preview = true
     @topic = Topic.friendly.find(params[:topic_id])
     @topic, lessons = @topic.preview(preview_params.to_h)
-    lessons.map!(&:first)
     @topic.lessons = lessons.select(&:published)
-    @lesson = lessons.select { |l| l.level == params[:id] }.first
+    @lesson = @topic.lessons.select { |l| l.level == params[:id] }.first
+    @preview_params = { topic: preview_params.to_h }
     breadcrumbs @topic.name
     og_object @lesson, description: ""
-    render "show"
+    render "lessons/show"
   end
 
   private
 
   def preview_params
-    ActionController::Parameters.new(JSON.parse(request.raw_post))
-      .require(:topic)
-      .permit(:name, :description, :summary, :body, :next_article_id,
-              admin_lessons_attributes: [:id, :level_id, :topic_id,
-                                         :instructor_students_ratio,
-                                         :objective, :notes, :body,
-                                         :relevant_articles,
-                                         :recommended_reading, :prerequisites,
-                                         :suggested_materials,
-                                         duration: %i(hours minutes),
-                                         material_ids: [],
-                                         advice_ids: []])
+    params.require(:topic)
+          .permit(:name, :description, :summary, :body, :next_article_id,
+                  admin_lessons_attributes: [:id, :level_id, :topic_id,
+                                             :instructor_students_ratio,
+                                             :objective, :notes, :body,
+                                             :relevant_articles,
+                                             :recommended_reading,
+                                             :prerequisites,
+                                             :suggested_materials,
+                                             duration: %i(hours minutes),
+                                             material_ids: [],
+                                             advice_ids: []])
   end
 end

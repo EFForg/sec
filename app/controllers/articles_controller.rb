@@ -24,23 +24,23 @@ class ArticlesController < ApplicationController
     protect_previews!
     @preview = true
     @article = Article.friendly.find(params[:id])
-                      .preview(preview_params.to_h)[0]
+                      .preview(preview_params.to_h)
     og_object @article
     breadcrumbs @article.name
-    render "show"
+    render "articles/show"
   end
 
   def index_preview
     protect_previews!
     @preview = true
     @page = Page.find_by!(name: "articles-overview")
-    @page = @page.preview(overview_preview_params.to_h)[0]
+    @page = @page.preview(overview_preview_params.to_h)
     @sections = Article.published.
       includes(:section).
       references(:article_sections).
       order("article_sections.position, articles.section_position").
       group_by(&:section)
-    render "index"
+    render "articles/index"
   end
 
   private

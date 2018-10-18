@@ -2,7 +2,6 @@ class TopicsController < ApplicationController
   include ContentPermissioning
   include Tagging
   include LessonPlanning
-  include Previewing
 
   breadcrumbs "Security Education" => routes.root_path,
               "Lessons" => routes.topics_path
@@ -34,13 +33,12 @@ class TopicsController < ApplicationController
     @preview = true
     @topic = Topic.friendly.find(params[:id])
     @topic, lessons = @topic.preview(preview_params.to_h)
-    lessons.map!(&:first)
     @topic.lessons = lessons.select(&:published)
     @lesson = lessons[0] unless @topic.description?
-    @preview_params = { topic: preview_params }
+    @preview_params = { topic: preview_params.to_h }
     og_object @topic
     breadcrumbs @topic.name
-    render "show"
+    render "topics/show"
   end
 
   private
