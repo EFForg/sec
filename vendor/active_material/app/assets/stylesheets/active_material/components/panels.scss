@@ -1,0 +1,38 @@
+/**
+ * Panels
+ * Stand-alone segments of content, in Material Design
+ * these could be considered Cards or pieces of paper.
+ */
+
+.panel,
+.has_many_container,
+body.index #main_content,
+body.edit #main_content > form,
+body.new #main_content > form,
+body.create #main_content > form,
+body.update #main_content > form {
+  @include am-paper;
+
+  > h3 {
+    @include am-subheader;
+  }
+
+  .header_action {
+    float: right
+  }
+
+  .row th {
+    width: 20%;
+    padding-left: am-unit(2);
+  }
+}
+
+.panel {
+  & + & {
+    margin-top: 16px;
+  }
+}
+
+.panel_well {
+  padding: 0 am-unit(2) am-unit(2);
+}

@@ -1,0 +1,20 @@
+/**
+ * Buttons
+ * Various selectors for button like elements
+ */
+
+.clear_filters_btn {
+  @include am-btn;
+}
+
+.button,
+.cancel > a {
+  @include am-btn;
+}
+
+input[type="submit"],
+input[type="reset"],
+input[type="button"] {
+  @include am-btn;
+  @include am-btn-raised;
+}

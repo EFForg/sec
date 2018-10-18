@@ -1,0 +1,26 @@
+/**
+ * Blank Slate
+ * This element appears whenever a resource can not display
+ * any information. For example, the default homescreen.
+ */
+
+.blank_slate_container {
+  @include am-color(tertiary-text);
+  @include am-type-body-1;
+  @include am-type-smooth;
+  font-weight: $am-font-weight-semi-bold;
+  padding: am-unit(3) am-unit(2);
+  text-align: center;
+}
+
+.blank_slate {
+  border: 1px dashed rgba(#000, 0.2);
+  border-radius: 3px;
+  display: inline-block;
+  padding: 16px 24px;
+
+  small {
+    display: block;
+    margin-top: am-unit(1);
+  }
+}

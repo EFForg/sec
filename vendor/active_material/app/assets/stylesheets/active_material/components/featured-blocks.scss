@@ -1,0 +1,12 @@
+.featured-blocks-message {
+  display: block;
+  padding: 0 am-unit(2) am-unit(2);
+}
+
+.new-featured-block {
+  @include am-actions-footer;
+
+  .button {
+    @include am-btn-raised;
+  }
+}

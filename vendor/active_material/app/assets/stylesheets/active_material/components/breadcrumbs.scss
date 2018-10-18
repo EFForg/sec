@@ -1,0 +1,11 @@
+/**
+ * Breadcrumbs
+ * Appear above the title to help users return to previous
+ * steps in their flow.
+ */
+
+.breadcrumb {
+  @include am-type-caption;
+  display: block;
+  margin-bottom: am-unit(1);
+}

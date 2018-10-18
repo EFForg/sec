@@ -59,7 +59,7 @@ gem "invisible_captcha"
 gem "eff_diceware"
 
 # Content administration
-gem "active_material", github: "vigetlabs/active_material"
+gem "active_material", path: "./vendor/active_material"
 gem "activeadmin"
 gem "acts-as-taggable-on", "~> 5.0"
 gem "ckeditor"

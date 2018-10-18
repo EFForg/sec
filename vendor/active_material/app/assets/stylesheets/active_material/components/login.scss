@@ -1,0 +1,53 @@
+/**
+ * Login
+ * This screen appears if no session is active
+ */
+
+#login {
+  @include am-dialog;
+  margin: am-unit(-4) auto 0;
+  max-width: am-unit(50);
+
+  h2 {
+    @include am-hidden;
+  }
+
+  // This is the "forgot password" button
+  > a {
+    @include am-actions-footer;
+    border-bottom-left-radius: 3px;
+    border-bottom-right-radius: 3px;
+  }
+
+  // Annoying br included for whatever reason
+  > br {
+    display: none;
+  }
+
+  .inputs {
+    margin-bottom: 0;
+  }
+
+  // Override actions, in this case the border and shadow are
+  // not applicable
+  .actions {
+    background: transparent;
+    box-shadow: none;
+    padding-top: 0;
+    box-shadow: none;
+
+    .action,
+    input[type='submit'] {
+      margin: 0;
+      width: 100%;
+    }
+  }
+}
+
+body.logged_out {
+  @include am-fill(primary-700);
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}

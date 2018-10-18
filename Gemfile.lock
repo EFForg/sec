@@ -1,6 +1,5 @@
-GIT
-  remote: https://github.com/vigetlabs/active_material.git
-  revision: 853c60a22be2f6a57163a9d762da50c40e2061ec
+PATH
+  remote: ./vendor/active_material
   specs:
     active_material (1.4.1)
 

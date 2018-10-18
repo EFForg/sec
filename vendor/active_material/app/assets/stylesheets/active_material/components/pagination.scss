@@ -1,0 +1,43 @@
+/**
+ * Pagination
+ * Typically appears on index pages, below tables
+ */
+
+.paginated_collection {
+  @include am-clearfix;
+  clear: both;
+
+  .pagination_information,
+  .download_links {
+    @include am-type-caption;
+    padding: am-unit(2);
+  }
+
+  .pagination_information {
+    float: left;
+  }
+
+  .download_links {
+    line-height: am-unit(3);
+    float: right;
+    text-align: right;
+  }
+}
+
+
+.pagination {
+  background: #fff;
+  border-bottom: 1px solid #efefef;
+  display: flex;
+  justify-content: flex-end;
+  padding: 0 am-unit(2);
+
+  .page,
+  .first,
+  .prev,
+  .next,
+  .last {
+    @include am-btn;
+    min-width: am-unit(3);
+  }
+}
