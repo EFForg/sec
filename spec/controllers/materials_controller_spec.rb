@@ -5,10 +5,27 @@ RSpec.describe MaterialsController, type: :controller do
   let(:material){ FactoryGirl.create(:material) }
 
   describe "GET #index" do
-    it "returns http success" do
+    before do
       FactoryGirl.create(:page, name: "materials-overview")
+    end
+
+    it "returns http success" do
       get :index
       expect(response).to have_http_status(:success)
+    end
+
+    describe "response" do
+      render_views
+      it "should include non-third party materials" do
+        FactoryGirl.create(:material, name: "EFF teaching material")
+        FactoryGirl.create(:material, name: "Third party material",
+                                      third_party: true)
+
+        get :index
+
+        expect(response.body).to include("EFF teaching material")
+        expect(response.body).not_to include("Third party material")
+      end
     end
   end
 
