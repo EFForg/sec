@@ -9,11 +9,9 @@ RSpec.feature "Preview Changes", type: :feature, js: true do
     new_name = "Edited name"
     visit edit_admin_article_path(article)
     fill_in "Name", with: new_name
-    click_on "Preview" 
 
-    wait_until { page.driver.browser.window_handles.size == 2 }
-    preview_page = page.driver.browser.window_handles.last
-    page.driver.browser.switch_to.window(preview_page)
+    switch_to_window window_opened_by { click_on 'Preview' }
+    sleep 1
 
     expect(page).to have_content("PREVIEW WARNING")
     expect(page).to have_content(new_name)
@@ -26,11 +24,9 @@ RSpec.feature "Preview Changes", type: :feature, js: true do
     visit edit_admin_topic_path(lesson.topic)
     fill_in "Name", with: new_name
     fill_in "Instructor students ratio", with: new_ratio
-    click_on "Preview" 
 
-    wait_until { page.driver.browser.window_handles.size == 2 }
-    preview_page = page.driver.browser.window_handles.last
-    page.driver.browser.switch_to.window(preview_page)
+    switch_to_window window_opened_by { click_on 'Preview' }
+    sleep 1
 
     expect(page).to have_content("PREVIEW WARNING")
     expect(page).to have_content(new_name)
@@ -44,11 +40,9 @@ RSpec.feature "Preview Changes", type: :feature, js: true do
     visit edit_admin_topic_path(lesson.topic)
     fill_in "Name", with: new_name
     fill_in "Instructor students ratio", with: new_ratio
-    click_on "Preview" 
 
-    wait_until { page.driver.browser.window_handles.size == 2 }
-    preview_page = page.driver.browser.window_handles.last
-    page.driver.browser.switch_to.window(preview_page)
+    switch_to_window window_opened_by { click_on 'Preview' }
+    sleep 1
 
     click_on "Publish changes", match: :first
     visit topic_path(lesson.topic)
