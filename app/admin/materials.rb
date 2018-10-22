@@ -3,7 +3,7 @@ ActiveAdmin.register Material do
 
   menu parent: "Content", priority: 3
 
-  permit_params :name, :description, :slug, :published,
+  permit_params :name, :description, :slug, :published, :third_party,
     uploads_attributes: [:id, :_destroy, :name, :description, :position, :file]
 
 
@@ -17,6 +17,7 @@ ActiveAdmin.register Material do
     selectable_column
     column :name
     column :published
+    column :third_party
     actions do |resource|
       link_to "View", resource
     end
