@@ -32,9 +32,9 @@ class TopicsController < ApplicationController
     protect_previews!
     @preview = true
     @topic = Topic.friendly.find(params[:id])
-    @topic = @topic.preview(preview_params.to_h)
-    @topic.lessons = @topic.admin_lessons.select(&:published)
-    @lesson = @topic.lessons[0] unless @topic.description?
+    @topic, lessons = @topic.preview(preview_params.to_h)
+    @topic.lessons = lessons.select(&:published)
+    @lesson = lessons[0] unless @topic.description?
     @preview_params = { topic: preview_params.to_h }
     og_object @topic
     breadcrumbs @topic.name

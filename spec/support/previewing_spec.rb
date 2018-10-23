@@ -23,7 +23,7 @@ shared_examples_for 'previewable with children' do |params, child, association,
     params = sub_id_in_params(params, saved_child.id)
     preview = saved.preview(params)
     child_attrs = params["#{association}_attributes"].values.first
-    expect(preview.send(association)[0]).to \
+    expect(preview[1][0]).to \
       have_attributes(strip_attributes(original_attributes.merge(child_attrs),
                                        ignored))
     expect(strip_attributes(saved_child.reload.attributes, ignored)).to \

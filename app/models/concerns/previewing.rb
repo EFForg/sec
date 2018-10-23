@@ -31,13 +31,15 @@ module Previewing
   # e.g. for Topics, the return format is
   # [ topic_preview, [beginner_lesson, intermediate_lesson, ...]
   def preview(params)
-    merged_object(params).tap do |p|
-      child_keys(params).each do |key|
-        child = association_from_key(key)
-        next unless associations.include?(child)
-        child_objs = generate_children(params, key)
-        p.send("#{child}=", child_objs)
-      end
+    p = merged_object(params)
+    child_objs = child_keys(params).map do |key|
+      next unless associations.include?(association_from_key(key))
+      generate_children(params, key)
+    end.compact
+    if child_objs.empty?
+      p
+    else
+      [p, *child_objs]
     end
   end
 

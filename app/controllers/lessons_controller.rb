@@ -35,8 +35,8 @@ class LessonsController < ApplicationController
     protect_previews!
     @preview = true
     @topic = Topic.friendly.find(params[:topic_id])
-    @topic = @topic.preview(preview_params.to_h)
-    @topic.lessons = @topic.admin_lessons.select(&:published)
+    @topic, lessons = @topic.preview(preview_params.to_h)
+    @topic.lessons = lessons.select(&:published)
     @lesson = @topic.lessons.select { |l| l.level == params[:id] }.first
     @preview_params = { topic: preview_params.to_h }
     breadcrumbs @topic.name
