@@ -59,7 +59,7 @@ gem "invisible_captcha"
 gem "eff_diceware"
 
 # Utilities for interacting with our analytics platform
-gem "eff_matomo"
+gem "eff_matomo", "~> 0.2.1", require: "matomo"
 
 # Content administration
 gem "active_material", github: "vigetlabs/active_material"

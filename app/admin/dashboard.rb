@@ -1,10 +1,9 @@
-require_dependency "matomo"
 ActiveAdmin.register_page "Dashboard" do
 
   menu priority: 1, label: proc{ I18n.t("active_admin.dashboard") }
 
   content title: "Dashboard" do
-    Matomo.get_subtables
+    Matomo::Page.get_subtables
     columns do
       column do
         panel "Visits Over Time" do
@@ -14,15 +13,17 @@ ActiveAdmin.register_page "Dashboard" do
         end
 
         render partial: "admin/dashboard/top_referrers",
-          locals: {referrers: Matomo.top_referrers}
+          locals: {referrers: Matomo::Referrer.top}
       end
 
       column do
         render partial: "admin/dashboard/top_pages",
-          locals: {title: "Top Articles (Previous 30 Days)", pages: Matomo.top_articles}
+          locals: {title: "Top Articles (Previous 30 Days)",
+                   pages: Matomo::Page.under_path("/articles")}
 
         render partial: "admin/dashboard/top_pages",
-          locals: {title: "Top Lesson Topics (Previous 30 Days)", pages: Matomo.top_topics}
+          locals: {title: "Top Lesson Topics (Previous 30 Days)",
+                   pages: Matomo::Page.under_path("/topics")}
       end
     end
   end
