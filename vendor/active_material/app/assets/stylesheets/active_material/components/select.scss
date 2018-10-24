@@ -1,0 +1,24 @@
+/**
+ * Basic Selects
+ */
+
+.country,
+.select,
+.polymorphic_select {
+
+  select:not([multiple]) {
+    @include am-select-input;
+  }
+
+  select[disabled="disabled"] {
+    @include am-select-input-disabled;
+  }
+}
+
+select[multiple] {
+  @include am-multiselect;
+
+  option {
+    @include am-multiselect-option;
+  }
+}

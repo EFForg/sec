@@ -1,0 +1,30 @@
+/**
+ * Structure
+ * Global structural elements
+ */
+
+body {
+  @include am-fill(backdrop);
+}
+
+#active_admin_content {
+  padding: am-unit(3);
+}
+
+#sidebar {
+  margin-left: am-unit(3);
+}
+
+.with_sidebar {
+  display: flex;
+  width: 100%;
+
+  #main_content_wrapper {
+    flex-grow: 1;
+  }
+
+  #sidebar {
+    max-width: am-unit(40);
+    width: 100%;
+  }
+}

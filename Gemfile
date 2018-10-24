@@ -62,7 +62,7 @@ gem "eff_diceware"
 gem "eff_matomo", "~> 0.2.1", require: "matomo"
 
 # Content administration
-gem "active_material", github: "vigetlabs/active_material"
+gem "active_material", path: "./vendor/active_material"
 gem "activeadmin"
 gem "acts-as-taggable-on", "~> 5.0"
 gem "ckeditor"

@@ -17,6 +17,15 @@ module ApplicationHelper
     end
   end
 
+  def matomo_url
+    "https://anon-stats.eff.org/js/?" + {
+      idsite: 28,
+      rec: 1,
+      action_name: page_title,
+      url: request.original_url
+    }.to_param
+  end
+
   def modal(name = nil, &block)
     unless name && session.fetch(:dismissed_modals, []).include?(name)
       render "shared/modal", name: name, &block

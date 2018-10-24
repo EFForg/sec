@@ -42,6 +42,7 @@ RSpec.feature "GiveFeedback", type: :feature, js: true do
     source_url = current_url
 
     click_on("Feedback")
+    sleep(0.3) # Wait for drawer transition.
 
     within(:css, ".quick-feedback") do
       find(:css, "label[for=feedback_survey_responses_attributes_0_value_partially]").click

@@ -1,0 +1,141 @@
+////
+/// Textfield
+/// Character inputs, for simple form fields
+/// @group textfield
+////
+
+/// Textfield input typography.
+$am-textfield-input-type: normal am-sp(14)/24px $am-font-sans !default;
+/// Textfield label typography.
+$am-textfield-label-type: $am-font-weight-regular am-sp(12)/am-unit(2) $am-font-sans !default;
+/// Textfield margin.
+$am-textfield-margin: am-unit(1) 0 !default;
+/// Textfield padding.
+$am-textfield-padding: am-unit(1) am-unit(2) !default;
+/// Textfield error color.
+$am-textfield-error-color: $am-theme-error !default;
+/// Textfield color.
+$am-textfield-color: rgba(#000, 0.70) !default;
+/// Textfield highlight color.
+$am-textfield-primary: am-color(primary) !default;
+/// Icon for email fields.
+$am-textfield-email-icon: asset-url("active_material/icons/email.svg") !default;
+/// Icon for password fields.
+$am-textfield-password-icon: asset-url("active_material/icons/secret.svg") !default;
+/// Icon for date fields.
+$am-textfield-date-icon: asset-url("active_material/icons/event.svg") !default;
+
+@mixin am-textfield {
+  color: $am-textfield-color;
+  margin: $am-textfield-margin;
+  padding: $am-textfield-padding;
+  position: relative;
+}
+
+@mixin am-textfield-input {
+  background: #fff;
+  border-radius: 3px;
+  border: 1px solid #d3d3d3;
+  box-shadow: inset 1px 1px 1px rgba(#222, 0.08);
+  display: block;
+  font-size: am-sp(14);
+  font-weight: normal;
+  line-height: 24px;
+  margin: 0;
+  padding: am-unit(1);
+  transition: 0.35s border-color, 0.35s box-shadow;
+  width: 100%;
+
+  &:focus {
+    border-color: am-color(primary);
+    outline: 0;
+    transition: 0.15s border-color, 0.15s box-shadow;
+  }
+}
+
+@mixin am-textfield-input-email {
+  background: #fff $am-textfield-email-icon am-unit(1) 50% no-repeat;
+  padding-left: am-unit(5);
+}
+
+@mixin am-textfield-input-password {
+  background: #fff $am-textfield-password-icon am-unit(1) 50% no-repeat;
+  padding-left: am-unit(5);
+}
+
+@mixin am-textfield-input-date {
+  background: #fff $am-textfield-date-icon am-unit(1) 50% no-repeat;
+  padding-left: am-unit(5);
+}
+
+@mixin am-textfield-textarea {
+  border-radius: 2px;
+  height: am-sp(am-unit(7));
+  padding: am-unit(1);
+}
+
+@mixin am-textfield-input-error {
+  border-color: $am-textfield-error-color;
+  box-shadow: 0 1px 0 0 $am-textfield-error-color;
+}
+
+@mixin am-textfield-label {
+  @include am-font-size(13);
+  @include am-color(secondary-text);
+  display: block;
+  line-height: 16px;
+  font-weight: $am-font-weight-regular;
+  margin-bottom: 8px;
+  position: relative;
+  transition: 0.28s all;
+  width: 100%;
+
+  .has-focus & {
+    color: $am-textfield-primary;
+  }
+}
+
+@mixin am-textfield-hint {
+  @include am-type-caption;
+  @include am-color(secondary-text);
+  margin: am-unit(1) 0 0;
+}
+
+@mixin am-textfield-hint-error {
+  @include am-type-caption;
+  color: $am-textfield-error-color;
+  display: inline-block;
+  margin: $am-unit-type 0 0;
+  vertical-align: middle;
+  transition: 0.3s all;
+
+  &:first-letter {
+    text-transform: uppercase;
+  }
+}
+
+@mixin am-textfield-required {
+  @include am-type-caption;
+  border: 0;
+  color: $am-textfield-primary;
+  margin-left: 4px;
+}
+
+@mixin am-textfield-input-disabled {
+  background-color: #eeeeee;
+}
+
+@mixin am-textfield-inline {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+@mixin am-textfield-label-inline {
+  width: 100%;
+}
+
+@mixin am-textfield-input-inline {
+  flex: 1;
+  width: auto;
+}
