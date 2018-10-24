@@ -4,7 +4,8 @@
     <h1><%= @article.name %></h1>
 
     <%= render partial: 'shared/preview_card',
-      locals: { publish_link: admin_article_path(@article, params: { article: @article.attributes }) } %>
+      locals: { publish_link: admin_article_path(@article),
+                preview_params: (@preview_params || {}) } %>
 
     <% if @article.authorship.present? %>
       <div class="byline-etc">by <span class="author"><%= @article.authorship %></span></div>
@@ -25,6 +26,7 @@
     <% end %>
 
     <%= render partial: 'shared/preview_card',
-      locals: { publish_link: admin_article_path(@article, params: { article: @article.attributes }) } %>
+      locals: { publish_link: admin_article_path(@article),
+                preview_params: (@preview_params || {}) } %>
   </div>
 </div>
