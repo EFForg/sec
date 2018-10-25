@@ -11,7 +11,7 @@ RSpec.feature "Preview Changes", type: :feature, js: true do
     fill_in "Name", with: new_name
 
     switch_to_window window_opened_by { click_on 'Preview' }
-    sleep 1
+    sleep 0.1
 
     expect(page).to have_content("PREVIEW WARNING")
     expect(page).to have_content(new_name)
@@ -26,7 +26,7 @@ RSpec.feature "Preview Changes", type: :feature, js: true do
     fill_in "Instructor students ratio", with: new_ratio
 
     switch_to_window window_opened_by { click_on 'Preview' }
-    sleep 1
+    sleep 0.1
 
     expect(page).to have_content("PREVIEW WARNING")
     expect(page).to have_content(new_name)
@@ -42,7 +42,7 @@ RSpec.feature "Preview Changes", type: :feature, js: true do
     fill_in "Instructor students ratio", with: new_ratio
 
     switch_to_window window_opened_by { click_on 'Preview' }
-    sleep 1
+    sleep 0.1
 
     click_on "Publish changes", match: :first
     visit topic_path(lesson.topic)
