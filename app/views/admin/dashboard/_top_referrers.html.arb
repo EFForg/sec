@@ -1,0 +1,23 @@
+panel "Top Referrers (Previous 30 Days)" do
+  table do
+    thead do
+      tr do
+        th "Label"
+        th { span "Visits", tooltip: "If a visitor comes to your website for the first time or if they visit a page more than 30 minutes after their last page view, this will be recorded as a new visit." }
+        th { span "Actions per Visit", tooltip: "The average number of actions (page views, site searches, downloads or outlinks) that were performed during the visits." }
+      end
+    end
+    tbody do
+      referrers.each do |referrer|
+        tr do
+          td referrer.label
+          td referrer.visits
+          td referrer.actions_per_visit
+        end
+      end
+    end
+  end
+  div class: "padded" do
+    a "See more top referrers", href: Matomo.top_referrers_url
+  end
+end

@@ -1,0 +1,27 @@
+.admin_dashboard {
+  .column {
+    @media (max-width: 860px) {
+      width: 100% !important;
+    }
+
+    float: left;
+  }
+
+  div#main_content {
+    background-color: transparent;
+    border-radius: 0;
+    box-shadow: none;
+
+  }
+
+  .panel {
+    background-color: white;
+    border-radius: 2px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.24), 0 0 2px rgba(0, 0, 0, 0.15);
+    margin-bottom: 20px;
+  }
+
+  .padded {
+    padding: 16px;
+  }
+}

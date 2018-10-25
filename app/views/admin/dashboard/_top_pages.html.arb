@@ -1,0 +1,23 @@
+panel title do
+  table do
+    thead do
+      tr do
+        th "Label"
+        th { span "Unique Pageviews", tooltip: "The number of visits that included this page. If a page was viewed multiple times during one visit, it is only counted once." }
+        th { span "Pageviews", tooltip: "The number of times this page was visited." }
+      end
+    end
+    tbody do
+      pages.each do |page|
+        tr do
+          td { a page.label, href: page.path }
+          td page.visits
+          td page.hits
+        end
+      end
+    end
+  end
+  div class: "padded" do
+    a "See more top pages", href: Matomo.top_pages_url
+  end
+end
