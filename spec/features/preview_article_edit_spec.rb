@@ -44,7 +44,7 @@ RSpec.feature "Preview Changes", type: :feature, js: true do
     switch_to_window window_opened_by { click_on 'Preview' }
     sleep 0.1
 
-    click_on "Publish changes", match: :first
+    accept_alert { click_on "Publish changes", match: :first }
     visit topic_path(lesson.topic)
 
     expect(page).to have_content(new_name)
