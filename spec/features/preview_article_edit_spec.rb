@@ -45,7 +45,7 @@ RSpec.feature "Preview Changes", type: :feature, js: true do
     sleep 0.1
 
     accept_alert { click_on "Publish changes", match: :first }
-    visit topic_path(lesson.topic)
+    click_on "View live page"
 
     expect(page).to have_content(new_name)
     expect(page).to have_content(new_ratio)
