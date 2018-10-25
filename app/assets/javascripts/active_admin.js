@@ -78,6 +78,25 @@ $(window).on("load", function() {
     templateSelection: formatImageOption,
   });
 
+  $('#preview').on('click', function() {
+    var url = $('form').attr('action').replace('admin/', '')
+                       .replace('/update', '');
+    for (var instance in CKEDITOR.instances) {
+      CKEDITOR.instances[instance].updateElement();
+    }
+    var original_method = $('input[name="_method"').val();
+    $('input[name="_method"').val('post');
+    $.ajax({
+      method: 'POST',
+      url: url + '/preview',
+      data: $('form').serialize(),
+      dataType: 'html',
+      success: function(data) {
+        $('input[name="_method"').val(original_method);
+        window.open().document.write(data);
+      }
+    });
+  });
 
   ReactRailsUJS.mountComponents();
 });

@@ -17,6 +17,8 @@ class Lesson < ApplicationRecord
   serialize :duration, Duration
 
   include Publishing
+  include Previewing
+
   after_validation :decide_published
 
   mount_uploader :pdf, PdfUploader

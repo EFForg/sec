@@ -20,6 +20,10 @@
       <%= tags(@topic, :topics_path) %>
     </div>
 
+    <%= render partial: 'shared/preview_card',
+      locals: { publish_link: admin_topic_path(@topic),
+                preview_params: (@preview_params || {}) } %>
+
     <div class="tabs">
       <% if @topic.description? %>
         <div class="tab intro <%= "active" if @lesson.nil? %>">
@@ -28,16 +32,30 @@
         </div>
       <% end %>
 
-      <% @topic.lessons.each do |lesson| %>
+      <% @lessons.each do |lesson| %>
         <div class="tab <%= difficulty_class(lesson.level_id) %> <%= "active" if @lesson == lesson %>">
           <div class="hide-for-xlarge-only">
-            <%= link_to "#{lesson.level}", lesson_path(@topic, lesson),
-                  remote: true, data: { history: true } %>
+            <% if @preview %>
+              <%= link_to "#{lesson.level}",
+                preview_topic_lesson_path(@topic, lesson),
+                remote: true, method: :post,
+                data: { history: true, params: @preview_params.to_param, type: 'json' } %>
+            <% else %>
+              <%= link_to "#{lesson.level}", lesson_path(@topic, lesson),
+                remote: true, data: { history: true } %>
+            <% end %>
           </div>
 
           <div class="show-for-xlarge-only">
-            <%= link_to "#{lesson.level} lesson", lesson_path(@topic, lesson),
-                  remote: true, data: { history: true } %>
+            <% if @preview %>
+              <%= link_to "#{lesson.level}",
+                preview_topic_lesson_path(@topic, lesson),
+                remote: true, method: :post,
+                data: { history: true, params: @preview_params.to_param, type: 'json' } %>
+            <% else %>
+              <%= link_to "#{lesson.level}", lesson_path(@topic, lesson),
+                remote: true, data: { history: true } %>
+            <% end %>
           </div>
         </div>
       <% end %>
@@ -57,6 +75,10 @@
                     topic_path(@topic.next_topic) %>
       </div>
     <% end %>
+
+    <%= render partial: 'shared/preview_card',
+      locals: { publish_link: admin_topic_path(@topic),
+                preview_params: (@preview_params || {}) } %>
 
     <%= render "shared/share", show_for: "small-only" %>
   </div>

@@ -1,6 +1,9 @@
 <div class="row">
   <h1>Security Education 101</h1>
 
+  <%= render partial: 'shared/preview_card',
+    locals: { publish_link: admin_page_path(@page, params: { page: @page.attributes }) } %>
+
   <div class="row">
     <div class="large-6 columns">
       <div class="content">

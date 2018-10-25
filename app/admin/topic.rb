@@ -73,9 +73,14 @@ ActiveAdmin.register Topic do
         end
       end
     end
-    f.actions
+    f.actions do
+      f.submit
+      li do
+        button_tag "Preview", type: "button", id: "preview", class: "btn"
+      end
+      f.cancel_link
+    end
   end
-
 
   sidebar :last_updated, only: :edit do
     content_tag(:div, class: "input") do

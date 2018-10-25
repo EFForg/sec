@@ -1,0 +1,16 @@
+<% if @preview && current_admin_user %>
+  <div class="preview-card">
+    <div class="top">
+      <div class="flag">Preview Warning</div>
+      <h3>This is a preview!</h3>
+      <div class="content">
+        <p>
+        All your changes should be shown below. To make further changes, return to the edit window.
+        </p>
+        <%= link_to "Publish changes", publish_link, method: :patch, class: 'btn',
+          remote: true, data: { params: @preview_params.to_param, type: 'json' } %>
+        <%= link_to "Return to edit", '_self', onclick: 'window.close();', class: 'btn-back' %>
+      </div>
+    </div>
+  </div>
+<% end %>

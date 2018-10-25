@@ -17,6 +17,7 @@ class TopicsController < ApplicationController
     @topic = Topic.friendly.find(params[:id])
     protect_unpublished! @topic
 
+    @lessons = @topic.lessons
     @lesson = @topic.lessons.take unless @topic.description?
 
     breadcrumbs @topic.name
@@ -28,7 +29,40 @@ class TopicsController < ApplicationController
     end
   end
 
+  def preview
+    protect_previews!
+    @preview = true
+    @topic = Topic.friendly.find(params[:id])
+    preview = @topic.preview(preview_params.to_h)
+    @topic = preview[:self]
+    @lessons = preview[:admin_lessons].map do |p|
+      lesson = p[:self]
+      lesson.valid? # triggers decide_published callback
+      lesson if lesson.published
+    end.compact
+    @lesson = @lessons[0] unless @topic.description?
+    @preview_params = { topic: preview_params.to_h }
+    og_object @topic
+    breadcrumbs @topic.name
+    render "topics/show"
+  end
+
   private
+
+  def preview_params
+    params.require(:topic)
+          .permit(:name, :description, :summary, :body, :next_article_id,
+                  admin_lessons_attributes: [:id, :level_id, :topic_id,
+                                             :instructor_students_ratio,
+                                             :objective, :notes, :body,
+                                             :relevant_articles,
+                                             :recommended_reading,
+                                             :prerequisites,
+                                             :suggested_materials,
+                                             duration: %i(hours minutes),
+                                             material_ids: [],
+                                             advice_ids: []])
+  end
 
   def taggable_type
     Topic

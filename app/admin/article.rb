@@ -39,7 +39,13 @@ ActiveAdmin.register Article do
       f.input :next_article, input_html: { class: "select2" }
     end
 
-    f.actions
+    f.actions do
+      f.submit
+      li do
+        button_tag "Preview", type: "button", id: "preview", class: "btn"
+      end
+      f.cancel_link
+    end
   end
 
   sidebar :last_updated, only: :edit do

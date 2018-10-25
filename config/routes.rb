@@ -4,7 +4,10 @@ Rails.application.routes.draw do
 
   post "/dismiss", as: "dismiss_modal", to: "application#dismiss_modal"
 
-  resources :articles, only: [:index, :show]
+  resources :articles, only: [:index, :show] do
+    post :preview, on: :member
+  end
+  post '/articles_overview/preview', to: 'articles#index_preview'
 
   scope :blog, controller: "blog" do
     get "/", as: "blog", action: "index"
@@ -12,7 +15,10 @@ Rails.application.routes.draw do
   end
 
   resources :topics, only: [:index, :show] do
-    resources :lessons, path: "", only: [:show]
+    post :preview, on: :member
+    resources :lessons, path: "", only: [:show] do
+      post :preview, on: :member
+    end
   end
 
   resources :lesson_plans, path: "/lesson-plans", only: [:create, :update] do
