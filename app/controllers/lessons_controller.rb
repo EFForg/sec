@@ -38,7 +38,11 @@ class LessonsController < ApplicationController
     @topic = Topic.friendly.find(params[:topic_id])
     preview = @topic.preview(preview_params.to_h)
     @topic = preview[:self]
-    @lessons = preview[:admin_lessons].map { |p| p[:self] }.select(&:published)
+    @lessons = preview[:admin_lessons].map do |p|
+      lesson = p[:self]
+      lesson.valid? # triggers decide_published callback
+      lesson if lesson.published
+    end.compact
     @lesson = @lessons.select { |l| l.level == params[:id] }.first
     @preview_params = { topic: preview_params.to_h }
     breadcrumbs @topic.name

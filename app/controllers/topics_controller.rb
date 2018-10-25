@@ -36,7 +36,9 @@ class TopicsController < ApplicationController
     preview = @topic.preview(preview_params.to_h)
     @topic = preview[:self]
     @lessons = preview[:admin_lessons].map do |p|
-      p[:self] if p[:self].published
+      lesson = p[:self]
+      lesson.valid? # triggers decide_published callback
+      lesson if lesson.published
     end.compact
     @lesson = @lessons[0] unless @topic.description?
     @preview_params = { topic: preview_params.to_h }
