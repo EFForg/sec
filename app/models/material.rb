@@ -7,6 +7,9 @@ class Material < ApplicationRecord
 
   validates_presence_of :name
 
+  scope :third_party, ->{ where(third_party: true) }
+  scope :by_eff, ->{ where(third_party: false) }
+
   def first_file
     return if uploads.empty?
     uploads.first.file

@@ -6,7 +6,7 @@ class MaterialsController < ApplicationController
 
   def index
     @page = Page.find_by!(name: "materials-overview")
-    @materials = Material.published.page(params[:page])
+    @materials = Material.published.by_eff.page(params[:page])
   end
 
   def show
