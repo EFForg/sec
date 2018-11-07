@@ -17,7 +17,6 @@ class TopicsController < ApplicationController
     @topic = Topic.friendly.find(params[:id])
     protect_unpublished! @topic
 
-    @lessons = @topic.lessons
     @lesson = @topic.lessons.take unless @topic.description?
 
     breadcrumbs @topic.name
@@ -33,14 +32,12 @@ class TopicsController < ApplicationController
     protect_previews!
     @preview = true
     @topic = Topic.friendly.find(params[:id])
-    preview = @topic.preview(preview_params.to_h)
-    @topic = preview[:self]
-    @lessons = preview[:admin_lessons].map do |p|
-      lesson = p[:self]
-      lesson.valid? # triggers decide_published callback
-      lesson if lesson.published
+    @topic = @topic.preview(preview_params.to_h)
+    @topic.lessons = @topic.admin_lessons.map do |l|
+      l.valid? # triggers decide_published callback
+      l if l.published
     end.compact
-    @lesson = @lessons[0] unless @topic.description?
+    @lesson = @topic.lessons[0] unless @topic.description?
     @preview_params = { topic: preview_params.to_h }
     og_object @topic
     breadcrumbs @topic.name

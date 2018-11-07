@@ -4,7 +4,7 @@
     <h1><%= @article.name %></h1>
 
     <%= render partial: 'shared/preview_card',
-      locals: { publish_link: admin_article_path(@article),
+      locals: { publish_link: admin_article_path(params[:id]),
                 preview_params: (@preview_params || {}) } %>
 
     <% if @article.authorship.present? %>
@@ -26,7 +26,7 @@
     <% end %>
 
     <%= render partial: 'shared/preview_card',
-      locals: { publish_link: admin_article_path(@article),
+      locals: { publish_link: admin_article_path(params[:id]),
                 preview_params: (@preview_params || {}) } %>
   </div>
 </div>
