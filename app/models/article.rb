@@ -3,7 +3,7 @@ class Article < ApplicationRecord
 
   include Publishing
   include Featuring
-  include Previewing
+  include ActivePreview::Previewing
 
   acts_as_taggable
 

@@ -1,4 +1,4 @@
 class Page < ApplicationRecord
   include FriendlyLocating
-  include Previewing
+  include ActivePreview::Previewing
 end

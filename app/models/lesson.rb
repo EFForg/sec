@@ -17,7 +17,7 @@ class Lesson < ApplicationRecord
   serialize :duration, Duration
 
   include Publishing
-  include Previewing
+  include ActivePreview::Previewing
 
   after_validation :decide_published
 

@@ -2,7 +2,6 @@ class LessonsController < ApplicationController
   include ContentPermissioning
   include Pdfing
   include LessonPlanning
-  include Previewing
 
   breadcrumbs "Security Education" => routes.root_path,
               "Lessons" => routes.topics_path
@@ -10,7 +9,6 @@ class LessonsController < ApplicationController
   def show
     @topic = Topic.friendly.find(params[:topic_id])
     protect_unpublished! @topic
-    @lessons = @topic.lessons
     @lesson = @topic.lessons.with_level(params[:id]).take
     redirect_to @topic && return if @lesson.nil?
 
@@ -36,14 +34,12 @@ class LessonsController < ApplicationController
     protect_previews!
     @preview = true
     @topic = Topic.friendly.find(params[:topic_id])
-    preview = @topic.preview(preview_params.to_h)
-    @topic = preview[:self]
-    @lessons = preview[:admin_lessons].map do |p|
-      lesson = p[:self]
-      lesson.valid? # triggers decide_published callback
-      lesson if lesson.published
+    @topic = @topic.preview(preview_params.to_h)
+    @topic.lessons = @topic.admin_lessons.map do |l|
+      l.valid? # triggers decide_published callback
+      l if l.published
     end.compact
-    @lesson = @lessons.select { |l| l.level == params[:id] }.first
+    @lesson = @topic.lessons.select { |l| l.level == params[:id] }.first
     @preview_params = { topic: preview_params.to_h }
     breadcrumbs @topic.name
     og_object @lesson, description: ""

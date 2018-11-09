@@ -61,6 +61,9 @@ gem "eff_diceware"
 # Utilities for interacting with our analytics platform
 gem "eff_matomo", "~> 0.2.2", require: "matomo"
 
+# For content previews
+gem "active_preview", "~> 0.1.6"
+
 # Content administration
 gem "active_material", path: "./vendor/active_material"
 gem "activeadmin"

@@ -14,7 +14,7 @@ class Topic < ApplicationRecord
   include FriendlyLocating
   include Publishing
   include Featuring
-  include Previewing
+  include ActivePreview::Previewing
 
   include PgSearch
   multisearchable against: %i(name lesson_bodies tag_list),
