@@ -33,7 +33,7 @@ class LessonsController < ApplicationController
   def preview
     protect_previews!
     @preview = true
-    @topic = Topic.friendly.find(params[:id])
+    @topic = Topic.friendly.find(params[:topic_id])
     @topic = @topic.preview(preview_params.to_h)
     @topic.lessons = @topic.admin_lessons.map do |l|
       l.valid? # triggers decide_published callback
