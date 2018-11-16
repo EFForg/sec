@@ -2,7 +2,7 @@
   <h1>Security Education 101</h1>
 
   <%= render partial: 'shared/preview_card',
-    locals: { publish_link: admin_page_path(@page.name, params: @preview_params) } %>
+    locals: { publish_link: admin_page_path(@page.name, params: (@preview_params || {})) } %>
 
   <div class="row">
     <div class="large-6 columns">
