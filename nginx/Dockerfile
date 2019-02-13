@@ -1,6 +1,6 @@
 FROM debian:jessie-slim
 
-ENV NGINX_VERSION=1.12.1
+ENV NGINX_VERSION=1.15.8
 
 # install system packages
 RUN apt-get update \
