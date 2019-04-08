@@ -3,24 +3,20 @@ module UploadsHelper
     return if file.blank?
 
     if file.full_preview.url
-      preview = image_tag(file.full_preview.url)
+      image_tag(file.full_preview.url, alt: "")
     else
-      preview = fallback(file)
+      fallback(file)
     end
-
-    link_to preview, file.url, class: "file-preview"
   end
 
   def thumbnail(file)
     return if file.blank?
 
     if file.thumbnail.url
-      preview = image_tag(file.thumbnail.url)
+      image_tag(file.thumbnail.url, alt: "")
     else
-      preview = fallback(file)
+      fallback(file)
     end
-
-    link_to preview, file.model.material, class: "file-preview"
   end
 
   def fallback(file)
