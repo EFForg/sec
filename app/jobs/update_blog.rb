@@ -5,6 +5,10 @@ class UpdateBlog < ApplicationJob
 
   include BlogHelper
 
+  # Allow optional "alt" attribute on the Enclosure element.
+  # This isn't part of the RSS standard, but Drupal includes it.
+  RSS::Rss::Channel::Item::Enclosure.install_get_attribute("alt", "", false)
+
   def perform
     rss = HTTParty.get("https://www.eff.org/deeplinks.xml?field_issue_tid=11461")
     feed = RSS::Parser.parse(rss)
@@ -25,6 +29,7 @@ class UpdateBlog < ApplicationJob
         name: update.title,
         authorship: authors.presence,
         image_url: update.enclosure.try(:url),
+        image_alt: update.enclosure.try(:alt),
         body: doc.to_html,
         published_at: update.pubDate,
         published: blog_post.persisted? ? blog_post.published : true
