@@ -98,6 +98,10 @@ $(window).on("load", function() {
     });
   });
 
+  $('#utility_nav').click(function() {
+    $(this).toggleClass('open');
+  });
+
   ReactRailsUJS.mountComponents();
 });
 

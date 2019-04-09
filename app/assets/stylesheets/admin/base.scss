@@ -113,3 +113,13 @@ table.histogram {
 .btn:hover {
   background-color: rgb(0, 201, 182);
 }
+
+#utility_nav:hover > li {
+    clip: rect(0, 0, 0, 0);
+    opacity: 0;
+}
+
+#utility_nav.open > li {
+    clip: initial;
+    opacity: 1;
+}
