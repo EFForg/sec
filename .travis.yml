@@ -12,12 +12,8 @@ addons:
   apt:
     packages:
       - wkhtmltopdf
-before_install:
-  - gem install bundler
-install:
-  - bundle install --path vendor/bundle
-  - npm install
 before_script:
+  - npm install
   - psql -c 'create database "trainers-hub_test";' -U postgres
   - "export DISPLAY=:99.0"
   - "sh -e /etc/init.d/xvfb start"
