@@ -1,21 +1,18 @@
-FROM debian:jessie-slim
+FROM nginx:alpine
 
-ENV NGINX_VERSION=1.15.8
-
-# install system packages
-RUN apt-get update \
-    && apt-get install -y --no-install-recommends \
-      build-essential \
-      git \
-      libpcre3-dev \
-      zlib1g-dev \
-      curl \
-    && apt-get clean \
-    && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* \
-    && adduser --system --group --no-create-home --disabled-login --disabled-password nginx \
-
-    # install nginx
-    && curl -LO http://nginx.org/download/nginx-${NGINX_VERSION}.tar.gz \
+# Rebuild nginx with mod_zip so we can serve zippped lesson plans.
+RUN apk add --no-cache --virtual .build-deps \
+		gcc \
+		libc-dev \
+		make \
+		pcre-dev \
+		zlib-dev \
+		linux-headers \
+		curl \
+		libxslt-dev \
+		gd-dev \
+    git \
+    && curl -LO https://nginx.org/download/nginx-${NGINX_VERSION}.tar.gz \
     && tar zxf nginx-${NGINX_VERSION}.tar.gz \
     && cd nginx-${NGINX_VERSION} \
     && git -c http.sslVerify=false clone https://github.com/evanmiller/mod_zip.git \
@@ -23,6 +20,7 @@ RUN apt-get update \
         --prefix=/usr \
         --user=nginx \
         --group=nginx \
+        --conf-path=/etc/nginx/nginx.conf \
         --http-log-path=/dev/stdout \
         --error-log-path=/dev/stdout \
         --with-pcre-jit \
@@ -38,11 +36,8 @@ RUN apt-get update \
     && cd .. \
     && rm -f nginx-${NGINX_VERSION}.tar.gz \
     && rm -rf nginx-${NGINX_VERSION} \
+    && apk del .build-deps \
+    && mkdir -p /etc/nginx/sites-enabled
 
-    && mkdir -p /var/www/html /etc/nginx/conf.d /etc/nginx/sites-enabled
-
-COPY init /
-COPY nginx.conf /etc/nginx/
+COPY nginx.conf /etc/nginx/nginx.conf
 COPY sec.conf /etc/nginx/sites-enabled
-
-CMD [ "/init", "-c", "/etc/nginx/nginx.conf" ]
