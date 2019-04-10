@@ -8,7 +8,7 @@
   <% end %>
 
   <div class="blog-image">
-    <%= image_tag blog_post.image_url if blog_post.image_url? %>
+    <%= image_tag blog_post.image_url, alt: blog_post.image_alt if blog_post.image_url? %>
   </div>
 
   <div class="content">
