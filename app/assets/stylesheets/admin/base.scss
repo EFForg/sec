@@ -114,12 +114,12 @@ table.histogram {
   background-color: rgb(0, 201, 182);
 }
 
-#utility_nav:hover > li {
-    clip: rect(0, 0, 0, 0);
+#utility_nav > li {
+    clip-path: polygon(0px 0px, 0px 0px, 0px 0px, 0px 0px);
     opacity: 0;
 }
 
-#utility_nav.open > li {
-    clip: initial;
+#utility_nav:hover > li {
+    clip-path: initial;
     opacity: 1;
 }
