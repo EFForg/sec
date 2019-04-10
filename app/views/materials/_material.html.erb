@@ -1,10 +1,10 @@
 <%= render "content/teaser", content: material do %>
-  <div class="material-preview">
-    <%= thumbnail(material.first_file) %>
-  </div>
-
-  <h3>
-    <%= link_to material.name, material %>
-  </h3>
-
+  <%= link_to(material, class: "file-preview") do %>
+    <div class="material-preview">
+      <%= thumbnail(material.first_file) %>
+    </div>
+    <h3>
+      <%= material.name %>
+    </h3>
+  <% end %>
 <% end %>
