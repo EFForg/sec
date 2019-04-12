@@ -115,11 +115,11 @@ table.histogram {
 }
 
 #utility_nav > li {
-    clip-path: polygon(0px 0px, 0px 0px, 0px 0px, 0px 0px);
-    opacity: 0;
+  clip-path: polygon(0px 0px, 0px 0px, 0px 0px, 0px 0px);
+  opacity: 0;
 }
 
 #utility_nav:hover > li {
-    clip-path: initial;
-    opacity: 1;
+  clip-path: initial;
+  opacity: 1;
 }
