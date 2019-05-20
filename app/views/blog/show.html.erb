@@ -8,7 +8,7 @@
     <h1><%= @blog_post.name %></h1>
     <div class="byline-etc">
       <% if @blog_post.authorship.present? %>
-      <span class="byline">by <span class="author"><%= @blog_post.authorship %></span></span> |
+        <span class="byline"><%= t("by") %> <span class="author"><%= @blog_post.authorship %></span></span> |
       <% end %>
       <span class="publised-at"><%= @blog_post.published_at.strftime("%B %d, %Y") %></span>
     </div>

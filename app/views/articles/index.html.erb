@@ -1,5 +1,5 @@
 <div class="row">
-  <h1>Security Education 101</h1>
+  <h1><%= t("Security Education 101") %></h1>
 
   <%= render partial: 'shared/preview_card',
     locals: { publish_link: admin_page_path(@page.name, params: (@preview_params || {})) } %>
@@ -34,7 +34,7 @@
   <% cache(cache_key_for_articles(@sections)) do %>
     <% @sections.each do |section, articles| %>
       <h2 id="<%= section_id(section) %>">
-        <%= section.try(:name) || "Other Articles" %>
+        <%= section.try(:name) || t("Other Articles") %>
       </h2>
 
       <%= render articles %>

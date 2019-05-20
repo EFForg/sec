@@ -6,8 +6,8 @@
 
     <%= form_tag dismiss_modal_path, remote: true, action: "post", class: "dismiss" do %>
       <%= hidden_field_tag "modal_name", name %>
-      <%= check_mark_tag "dismiss", "Do not show this message again." %>
-      <%= submit_tag "Ok" %>
+      <%= check_mark_tag "dismiss", t("messages.dismiss_modal") %>
+      <%= submit_tag t("Ok") %>
     <% end %>
   </div>
 </div>

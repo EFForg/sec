@@ -1,14 +1,15 @@
 <div class="row">
   <div class="large-8 large-centered columns">
-    <h1>Security News</h1>
+    <h1><%= t("Security News") %></h1>
     <div class="content description-text">
       <%= html(@page.body) %>
     </div>
+
     <%= render "tags/nav", tags: @tags %>
     <% cache(cache_key_for_blog_posts(@blog_posts)) do %>
       <%= render @blog_posts %>
-      <% end %>
+    <% end %>
 
-      <%= paginate @blog_posts %>
+    <%= paginate @blog_posts %>
   </div>
 </div>

@@ -1,6 +1,6 @@
 <%= semantic_form_for(blog_post, url: admin_blog_post_path(blog_post), remote: true) do |f| %>
   <%= f.inputs do %>
-    <% f.input :slug, hint: "Leave blank to auto-generate" %>
+    <% f.input :slug, hint: t("Leave blank to auto-generate") %>
 
     <% f.input :tags,
          as: :select,

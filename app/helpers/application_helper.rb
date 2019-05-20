@@ -31,4 +31,8 @@ module ApplicationHelper
       render "shared/modal", name: name, &block
     end
   end
+
+  def t_p(*args)
+    safe_join t(*args).lines.map{ |line| content_tag("p", line.html_safe) }
+  end
 end

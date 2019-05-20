@@ -18,7 +18,7 @@
 </head>
 
 <body class="section-<%= controller_name %> page-<%= action_name %>">
-  <a href="#main-content" class="show-for-sr">Skip to main content</a>
+  <a href="#main-content" class="show-for-sr"><%= t("Skip to main content") %></a>
   <%= render "layouts/header" %>
 
   <div id="page">
@@ -35,7 +35,7 @@
     </div>
 
     <div id="glossary" role="tooltip" tabindex="-1"></div>
-    <span class="hide" id="tooltip-action">Close tooltip</span>
+    <span class="hide" id="tooltip-action"><%= t("Close tooltip") %></span>
   </div>
 
   <%= render "layouts/footer" %>

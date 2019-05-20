@@ -1,27 +1,18 @@
 <div class="row">
   <div class="large-8 large-centered columns">
-    <div class="breadcrumb"><a href="/topics">&lt; Back to Lesson Topics</a></div>
-    <h1>Lesson Planner</h1>
+    <div class="breadcrumb"><a href="/topics">&lt; <%= t("Back to Lesson Topics") %></a></div>
+    <h1><%= t("Lesson Planner") %></h1>
 
-    <p>
-      In the lesson planner, you can organize your selected lessons to prepare for your next teaching opportunity. Drag the lesson to reorder and remove lessons you have completed or no longer need.
-    </p>
+    <p><%= t("messages.lesson_planner_explanation") %> <%= t("messages.lesson_planner_instructions") %></p>
 
     <% if !@shared && @lesson_plan.lengthy? %>
       <%= modal("lesson_plan_is_lengthy") do %>
-        <p>
-          This seems like a lot to cover for one day!
-          Your learners might be overwhelmed.
-        </p>
-        <p>
-          Consider spreading it across a view days,
-          or teaching fewer modules.
-        </p>
+        <%= t_p("messages.lesson_planner_lengthy_notice") %>
       <% end %>
     <% end %>
 
     <%= react_component "LessonPlan",
-      render(partial: @lesson_plan, formats: [:json]),
-      prerender: true %>
+          render(partial: @lesson_plan, formats: [:json]),
+          prerender: true %>
   </div>
 </div>

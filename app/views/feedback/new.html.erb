@@ -1,25 +1,14 @@
 <div class="row">
   <div class="large-8 large-centered columns">
-    <h1>SEC Website Satisfaction Survey</h1>
+    <h1><%= t("SEC Website Satisfaction Survey") %></h1>
 
-    <p>
-      Thank you for giving feedback on the Security Education Companion (SEC)!
-    </p>
+    <%= t_p("messages.website_satisfaction_survey_explanation") %>
 
-    <p>
-      When possible, please give concrete, specific feedback and examples to our questions below, as this will help us to improve on and add to the site.
-    </p>
+    <h2><%= t("Survey questions") %></h2>
 
-    <p>
-      We will hold the information submitted in accordance with
-      <a href="https://eff.org/policy">EFF’s privacy policy.</a>
-    </p>
+    <p><%= t("messages.website_satisfaction_survey_instructions") %></p>
 
-    <h2>Survey questions</h2>
-
-    <p>Please rate your level of satisfaction with the following aspects of our site:</p>
-
-    <p>* Indicates required field</p>
+    <p>* <%= t("Indicates required field") %></p>
 
     <%= form_for(@feedback, url: feedback_create_path) do |f| %>
       <%= invisible_captcha %>
@@ -49,7 +38,7 @@
         </div>
       <% end %>
 
-      <%= f.submit "Submit", data: { disable_with: false } %>
+      <%= f.submit t("Submit"), data: { disable_with: false } %>
     <% end %>
   </div>
 </div>

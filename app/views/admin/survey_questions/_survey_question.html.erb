@@ -12,12 +12,12 @@
       <br />
 
       &mdash; <%= link_to response.feedback.created_at.strftime('%b %d, %Y'), "/admin/feedback/#{response.feedback.id}" %>
-      from <%= link_to response.feedback.source_url, response.feedback.source_url %>
+      t("from") <%= link_to response.feedback.source_url, response.feedback.source_url %>
     </blockquote>
   <% end %>
 
   <% if survey_question.responses.size > 3 %>
-    <%= link_to ".. read all responses",
+    <%= link_to t("messages.read_all_responses"),
           show_responses_admin_survey_question_path(survey_question) %>
   <% end %>
 <% end %>

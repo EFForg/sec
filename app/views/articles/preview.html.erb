@@ -1,6 +1,6 @@
 <div class="row">
   <div class="large-8 large-centered columns">
-    <div class="print-button">Print</div>
+    <div class="print-button"><%= t("Print") %></div>
     <%= render partial: 'shared/preview_card',
       locals: { publish_link: admin_article_path(@article, params: { article: @article.attributes }) } %>
     <h1><%= @article.name %></h1>
@@ -17,7 +17,7 @@
 
     <% if @article.next_article.present? %>
       <div class="next-article">
-        <h2>Continue Reading</h2>
+        <h2><%= t("Continue Reading") %></h2>
         <%= render @article.next_article %>
       </div>
     <% end %>
