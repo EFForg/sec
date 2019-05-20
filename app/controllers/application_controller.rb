@@ -4,6 +4,8 @@ class ApplicationController < ActionController::Base
 
   protect_from_forgery with: :exception
 
+  before_action :set_locale
+
   def dismiss_modal
     if params[:dismiss]
       session[:dismissed_modals] ||= []
@@ -18,6 +20,14 @@ class ApplicationController < ActionController::Base
 
   def not_found
     raise ActionController::RoutingError.new("Not Found")
+  end
+
+  def set_locale
+    I18n.locale = params[:locale] || I18n.default_locale
+  end
+
+  def default_url_options(options={})
+    { locale: I18n.locale == I18n.default_locale ? nil : I18n.locale }
   end
 
   include BreadcrumbsHelper::ControllerMethods
