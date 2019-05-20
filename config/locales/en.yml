@@ -66,8 +66,9 @@ en:
   "Thanks!": Thanks!
 
   Last modified: Last modified
-  Accompanying: Accompanying
-  Lesson: Lesson
+  Accompanying Lesson:
+    one: Accompanying Lesson
+    other: Accompanying Lessons
   Downloads: Downloads
   Download: Download
 

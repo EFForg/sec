@@ -10,7 +10,7 @@
     <div class="material-details">
       <% if @topics.present? %>
         <div class="accompanying-lessons">
-          <h3><%= t("Accompanying") <%= t("Lesson").pluralize(@topics.size) %>:</h3>
+          <h3><%= t("Accompanying Lesson", count: @topics.size) %>:</h3>
           <p><%= safe_join(@topics.map{ |topic| link_to topic.name, topic }, ", ") %></p>
         </div>
       <% end %>
