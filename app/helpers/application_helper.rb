@@ -33,6 +33,6 @@ module ApplicationHelper
   end
 
   def t_p(*args)
-    safe_join t(*args).lines.map{ |line| content_tag("p", line.html_safe) }
+    safe_join t(*args).lines.map{ |line| content_tag("p", line.html_safe) } # rubocop:disable Rails/OutputSafety
   end
 end
