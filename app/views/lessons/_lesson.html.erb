@@ -2,7 +2,7 @@
   <%= hidden_field_tag :_method, current_planned_lesson(@lesson).persisted? ? "delete" : "post" %>
   <div class="actions">
     <%= hidden_field_tag :lesson_id, @lesson.id %>
-    <%= button_tag type: "submit", value: "add", title: "#{t('Add To')} #{t('Lesson Plan')}") do %>
+    <%= button_tag type: "submit", value: "add", title: "#{t('Add To')} #{t('Lesson Plan')}" do %>
       <i class="fa fa-plus"></i><span><%= t("Add To") %><br/ ><%= t("Lesson Plan") %></span>
     <% end %>
     <%= button_tag type: "submit", value: "destroy", title: "#{t('Remove From')} #{t('Lesson Plan')}" do %>
