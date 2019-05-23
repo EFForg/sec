@@ -7,7 +7,7 @@
 
     <% if !@shared && @lesson_plan.lengthy? %>
       <%= modal("lesson_plan_is_lengthy") do %>
-        <%= t_p(".length_warning") %>
+        <%= t_p("lesson_plans.show.length_warning") %>
       <% end %>
     <% end %>
 
