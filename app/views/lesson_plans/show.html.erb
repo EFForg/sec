@@ -1,13 +1,13 @@
 <div class="row">
   <div class="large-8 large-centered columns">
-    <div class="breadcrumb"><a href="/topics">&lt; <%= t("Back to Lesson Topics") %></a></div>
-    <h1><%= t("Lesson Planner") %></h1>
+    <div class="breadcrumb"><a href="/topics">&lt; <%= t("topics.show.back_to_topics") %></a></div>
+    <h1><%= t(".planner") %></h1>
 
-    <p><%= t("messages.lesson_planner_explanation") %> <%= t("messages.lesson_planner_instructions") %></p>
+    <p><%= t(".explanation") %> <%= t(".instructions") %></p>
 
     <% if !@shared && @lesson_plan.lengthy? %>
       <%= modal("lesson_plan_is_lengthy") do %>
-        <%= t_p("messages.lesson_planner_lengthy_notice") %>
+        <%= t_p(".length_warning") %>
       <% end %>
     <% end %>
 

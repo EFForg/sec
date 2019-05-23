@@ -20,7 +20,7 @@
 
     <% if @article.next_article.present? %>
       <div class="next-article">
-        <h2><%= t("Continue Reading") %></h2>
+        <h2><%= t(".next") %></h2>
         <%= render @article.next_article %>
       </div>
     <% end %>

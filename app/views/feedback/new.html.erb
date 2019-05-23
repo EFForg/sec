@@ -1,14 +1,14 @@
 <div class="row">
   <div class="large-8 large-centered columns">
-    <h1><%= t("SEC Website Satisfaction Survey") %></h1>
+    <h1><%= t(".title") %></h1>
 
-    <%= t_p("messages.website_satisfaction_survey_explanation") %>
+    <%= t_p(".explanation_html") %>
 
-    <h2><%= t("Survey questions") %></h2>
+    <h2><%= t(".questions") %></h2>
 
-    <p><%= t("messages.website_satisfaction_survey_instructions") %></p>
+    <p><%= t(".instructions") %></p>
 
-    <p>* <%= t("Indicates required field") %></p>
+    <p><%= t(".required_field_explainer") %></p>
 
     <%= form_for(@feedback, url: feedback_create_path) do |f| %>
       <%= invisible_captcha %>
@@ -38,7 +38,7 @@
         </div>
       <% end %>
 
-      <%= f.submit t("Submit"), data: { disable_with: false } %>
+      <%= f.submit t(".submit"), data: { disable_with: false } %>
     <% end %>
   </div>
 </div>

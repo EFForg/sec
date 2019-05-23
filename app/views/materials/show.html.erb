@@ -2,7 +2,7 @@
   <div class="large-8 large-centered columns">
     <h1><%= @material.name %></h1>
     <div class="last-modified">
-      <%= t("Last modified") %> <%= @material.updated_at.strftime("%B %e, %Y") %>
+      <%= t("ui.last_modified") %> <%= @material.updated_at.strftime("%B %e, %Y") %>
     </div>
 
     <%= render partial: "shared/admin_links", locals: { resource: @material } %>
@@ -10,7 +10,7 @@
     <div class="material-details">
       <% if @topics.present? %>
         <div class="accompanying-lessons">
-          <h3><%= t("Accompanying Lesson", count: @topics.size) %>:</h3>
+          <h3><%= t(".lessons", count: @topics.size) %>:</h3>
           <p><%= safe_join(@topics.map{ |topic| link_to topic.name, topic }, ", ") %></p>
         </div>
       <% end %>
@@ -19,7 +19,7 @@
         <%= html(@material.description, glossary: true) %>
       </div>
 
-      <h2><%= t("Downloads") %></h2>
+      <h2><%= t(".downloads") %></h2>
       <% @material.uploads.each do |upload| %>
         <div class="upload">
           <% if upload.name %>
@@ -35,7 +35,7 @@
               <%= full_preview(upload.file) %>
             </div>
             <div class="material-link">
-              <%= t("Download") %> <%= file_name(upload.file) %>
+              <%= t(".download") %> <%= file_name(upload.file) %>
             </div>
           <% end %>
         </div>

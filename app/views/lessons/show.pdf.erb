@@ -4,7 +4,7 @@
 
 <% if @lesson.objective? %>
   <div class="objective content">
-    <h3><%= t("Learning Objectives") %></h3>
+    <h3><%= t(".learning_objectives") %></h3>
 
     <%= html(@lesson.objective) %>
   </div>
@@ -12,7 +12,7 @@
 
 <% if @lesson.prerequisites? %>
   <div class="prereqs">
-    <h3><%= t("Prerequisites") %></h3>
+    <h3><%= t(".prerequisites") %></h3>
 
     <div class="content">
       <%= html(@lesson.prerequisites) %>
@@ -23,8 +23,8 @@
 <div class="meta">
   <% if @lesson.instructor_students_ratio.present? %>
     <div class="ratio">
-      <h3><%= t("Ratio") %></h3>
-      <div class="instructors-to-learners"><%= t("Instructor: Learners") %></div>
+      <h3><%= t(".ratio") %></h3>
+      <div class="instructors-to-learners"><%= t(".instructors_to_learners") %></div>
       <span>
         <%= @lesson.instructor_students_ratio %>
       </span>
@@ -33,7 +33,7 @@
 
   <% if @lesson.suggested_materials? %>
     <div class="suggested-materials">
-      <h3><%= t("Suggested Materials") %></h3>
+      <h3><%= t(".suggested_materials") %></h3>
 
       <div class="content">
         <%= html(@lesson.suggested_materials) %>
@@ -44,7 +44,7 @@
 
   <% if @lesson.relevant_articles? %>
     <div class="articles">
-      <h3><%= t("Relevant Articles") %></h3>
+      <h3><%= t(".relevant_articles") %></h3>
       <%= html(@lesson.relevant_articles) %>
     </div>
   <% end %>
@@ -59,12 +59,12 @@
 <div class="content">
   <% if @lesson.recommended_reading? %>
     <div class="recommended-reading content">
-      <h3><%= t("Recommended Reading") %></h3>
+      <h3><%= t(".recommended_reading") %></h3>
       <%= html(@lesson.recommended_reading) %>
     </div>
   <% end %>
 
-  <h2><%= t("Lesson Content") %></h2>
+  <h2><%= t(".lesson_content") %></h2>
 
   <%= html(@lesson.body) %>
 </div>

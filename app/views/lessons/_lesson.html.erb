@@ -2,24 +2,24 @@
   <%= hidden_field_tag :_method, current_planned_lesson(@lesson).persisted? ? "delete" : "post" %>
   <div class="actions">
     <%= hidden_field_tag :lesson_id, @lesson.id %>
-    <%= button_tag type: "submit", value: "add", title: "#{t('Add To')} #{t('Lesson Plan')}" do %>
-      <i class="fa fa-plus"></i><span><%= t("Add To") %><br/ ><%= t("Lesson Plan") %></span>
+    <%= button_tag type: "submit", value: "add", title: t(".add_to_plan") do %>
+      <i class="fa fa-plus"></i><span><%= t(".add_to_plan_html") %></span>
     <% end %>
-    <%= button_tag type: "submit", value: "destroy", title: "#{t('Remove From')} #{t('Lesson Plan')}" do %>
-      <i class="fa fa-minus"></i><span><%= t("Remove From") %><br/ ><%= t("Lesson Plan") %></span>
+    <%= button_tag type: "submit", value: "destroy", title: t(".remove_from_plan") do %>
+      <i class="fa fa-minus"></i><span><%= t(".remove_from_plan_html") %></span>
     <% end %>
   </div>
 <% end %>
 
 <% if @lesson.duration.length > 0 %>
   <div class="duration">
-    <%= t("Duration") %>: <%= @lesson.duration.in_words %>
+    <%= t("lessons.show.duration") %>: <%= @lesson.duration.in_words %>
   </div>
 <% end %>
 
 <% if @lesson.objective? %>
   <div class="objective">
-    <h3><%= t("Learning Objectives") %></h3>
+    <h3><%= t("lessons.show.learning_objectives") %></h3>
     <div class="content">
       <%= html(@lesson.objective, glossary: true) %>
     </div>
@@ -28,7 +28,7 @@
 
 <% if @lesson.prerequisites? %>
   <div class="prereqs">
-    <h3><%= t("Prerequisites") %></h3>
+    <h3><%= t("lessons.show.prerequisites") %></h3>
 
     <div class="content">
       <%= html(@lesson.prerequisites, glossary: true) %>
@@ -39,8 +39,8 @@
 <div class="meta">
   <% if @lesson.instructor_students_ratio.present? %>
     <div class="ratio">
-      <h3><%= t("Ratio") %></h3>
-      <div class="instructors-to-learners"><%= t("Instructor: Learners") %></div>
+      <h3><%= t("lessons.show.ratio") %></h3>
+      <div class="instructors-to-learners"><%= t("lessons.show.instructors_to_learners") %></div>
       <span>
         <%= @lesson.instructor_students_ratio %>
       </span>
@@ -49,7 +49,7 @@
 
   <% if @lesson.suggested_materials? %>
     <div class="suggested-materials">
-      <h3><%= t("Suggested Materials") %></h3>
+      <h3><%= t("lessons.show.suggested_materials") %></h3>
 
       <div class="content">
         <%= html(@lesson.suggested_materials, glossary: true) %>
@@ -59,7 +59,7 @@
 
   <% if @lesson.relevant_articles? %>
     <div class="articles">
-      <h3><%= t("Relevant Articles") %></h3>
+      <h3><%= t("lessons.show.relevant_articles") %></h3>
       <%= html(@lesson.relevant_articles, glossary: true) %>
     </div>
   <% end %>
@@ -74,14 +74,14 @@
 <div class="content">
   <% if @lesson.recommended_reading? %>
     <div class="recommended-reading content">
-      <h3><%= t("Recommended Reading") %></h3>
+      <h3><%= t("lessons.show.recommended_reading") %></h3>
       <%= html(@lesson.recommended_reading, glossary: true) %>
     </div>
   <% end %>
 
-  <h2><%= t("Lesson Content") %></h2>
+  <h2><%= t("lessons.show.lesson_content") %></h2>
 
   <%= html(@lesson.body, glossary: true) %>
 </div>
 
-<%= link_to t("Printable Version (PDF)"), topic_lesson_path(@lesson.topic, @lesson, format: "pdf"), class: "pdf-link" %>
+<%= link_to t(".printable_version"), topic_lesson_path(@lesson.topic, @lesson, format: "pdf"), class: "pdf-link" %>

@@ -1,15 +1,15 @@
 <div class="row">
   <div class="large-8 large-centered columns">
     <%= link_to current_lesson_plan_path, class: "lesson-planner-link arrow-link" do %>
-      <%= t("Lesson Planner") %> (<span class="lesson-count"><%= current_lesson_plan.lessons_count %></span>)
+      <%= t("ui.lesson_planner") %> (<span class="lesson-count"><%= current_lesson_plan.lessons_count %></span>)
     <% end %>
 
-    <div class="breadcrumb"><a href="/topics">&lt; <%= t("Back to Lesson Topics") %></a></div>
+    <div class="breadcrumb"><a href="/topics">&lt; <%= t(".back_to_topics") %></a></div>
 
     <h1><%= @topic.name %></h1>
 
     <div class="last-modified">
-      <%= t("Last modified") %> <%= @topic.updated_at.strftime("%B %e, %Y") %>
+      <%= t("ui.last_modified") %> <%= @topic.updated_at.strftime("%B %e, %Y") %>
     </div>
 
     <div class="print-button">Print</div>
@@ -27,7 +27,7 @@
     <div class="tabs">
       <% if @topic.description? %>
         <div class="tab intro <%= "active" if @lesson.nil? %>">
-          <%= link_to t("Intro"), topic_path(@topic),
+          <%= link_to t(".intro"), topic_path(@topic),
                 remote: true, data: { history: true } %>
         </div>
       <% end %>
@@ -36,24 +36,24 @@
         <div class="tab <%= difficulty_class(lesson.level_id) %> <%= "active" if @lesson == lesson %>">
           <div class="hide-for-xlarge-only">
             <% if @preview %>
-              <%= link_to t(lesson.level),
+              <%= link_to t(".#{lesson.level}"),
                 preview_topic_lesson_path(@topic, lesson),
                 remote: true, method: :post,
                 data: { history: true, params: @preview_params.to_param, type: 'json' } %>
             <% else %>
-              <%= link_to t(lesson.level), lesson_path(@topic, lesson),
+              <%= link_to t(".#{lesson.level}"), lesson_path(@topic, lesson),
                 remote: true, data: { history: true } %>
             <% end %>
           </div>
 
           <div class="show-for-xlarge-only">
             <% if @preview %>
-              <%= link_to t(lesson.level),
+              <%= link_to t(".#{lesson.level}"),
                 preview_topic_lesson_path(@topic, lesson),
                 remote: true, method: :post,
                 data: { history: true, params: @preview_params.to_param, type: 'json' } %>
             <% else %>
-              <%= link_to t(lesson.level), lesson_path(@topic, lesson),
+              <%= link_to t(".#{lesson.level}"), lesson_path(@topic, lesson),
                 remote: true, data: { history: true } %>
             <% end %>
           </div>
@@ -71,8 +71,7 @@
 
     <% if @topic.next_topic.present? %>
       <div class="next-topic">
-        <%= link_to "#{t('Go to the next suggested lesson topic')} >",
-                    topic_path(@topic.next_topic) %>
+        <%= link_to t(".next_topic").concat(" >"), topic_path(@topic.next_topic) %>
       </div>
     <% end %>
 

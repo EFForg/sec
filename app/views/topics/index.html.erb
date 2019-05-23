@@ -1,5 +1,5 @@
 <div class="row">
-  <h1>Lesson Topics</h1>
+  <h1><%= t(".title") %></h1>
 
   <div class="row">
     <div class="column large-8 content">
@@ -8,9 +8,9 @@
 
     <div class="column large-4">
       <aside>
-        <%= t_p("lesson_planner_explanation") %>
+        <%= t_p(".lesson_planner_explanation") %>
 
-        <%= link_to t("See Lesson Planner"), current_lesson_plan_path,
+        <%= link_to t(".lesson_planner_link"), current_lesson_plan_path,
                     class: "lesson-planner-link arrow-link-small",
                     style: "float: none" %>
       </aside>

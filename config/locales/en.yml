@@ -1,152 +1,174 @@
 en:
-  Edit: Edit
-  Unpublished: Unpublished
+  sec: Security Education Companion
+  eff: Electronic Frontier Foundation
 
-  Feedback: Feedback
-  Send feedback: Send feedback
+  ui:
+    ok: Ok
+    last_modified: Last modified
+    lesson_planner: Lesson Planner
 
-  Preview Warning: Preview Warning
+  layouts:
+    application:
+      skip_link: Skip to main content
+      close_tooltip: Close tooltip
 
-  Publish changes: Publish changes
-  Return to edit: Return to edit
+    header:
+      goto: Go to
+      project_of: A Project of the
+      tagline: A free resource for digital security educators
+      search: Search
 
-  Leave blank to auto-generate: Leave blank to auto-generate
+    footer:
+      division_of: A Division of
+      project_of: A Project of
 
-  Sections: Sections
+    menu:
+      articles: Security Education 101
+      topics: Lessons
+      materials: Teaching Materials
+      blog: Security News
 
-  Update Extras: Update Extras
+      feedback: Submit Feedback
+      translations: Translations
+      contacts: Contacts
+      credits: Credits
+      privacy_policy: Privacy
+      license: License
 
-  from: from
+  topics:
+    index:
+      title: Lesson Topics
+      lesson_planner_explanation: In the Lesson Planner, you can organize your selected lessons to prepare for your next teaching opportunity.
+      lesson_planner_link: See Lesson Planner
 
-  Ok: Ok
+    show:
+      back_to_topics: Back to Lesson Topics
+      next_topic: Go to the next suggested lesson topic
+      intro: Intro
+      beginning: beginning
+      intermediate: intermediate
+      advanced: advanced
 
-  Glossary: Glossary
-  Browse the full glossary: Browse the full glossary
-  Synonyms: Synonyms
+  lessons:
+    show:
+      duration: Duration
+      learning_objectives: Learning Objectives
+      prerequisites: Prerequisites
+      ratio: Ratio
+      instructors_to_learners: "Instructor: Learners"
+      suggested_materials: Suggested Materials
+      relevant_articles: Relevant Articles
+      recommended_reading: Recommended Reading
+      lesson_content: Lesson Content
 
-  All tags: All tags
+    lesson:
+      add_to_plan: Add To Lesson Plan
+      add_to_plan_html: Add To<br/ >Lesson Plan
+      remove_from_plan: Remove From Lesson Plan
+      remove_from_plan_html: Remove From<br />Lesson Plan
+      printable_version: Printable Version (PDF)
 
-  Read More: Read More
+  lesson_plans:
+    show:
+      plan: Lesson Plan
+      planner: Lesson Planner
+      duration: Total duration
+      materials: Handouts and Materials
+      explanation: In the Lesson Planner, you can organize your selected lessons to prepare for your next teaching opportunity.
+      instructions: In the lesson planner, you can organize your selected lessons to prepare for your next teaching opportunity.
+      length_warning:
+        This seems like a lot to cover for one day!
+        Your learners might be overwhelmed.
 
-  Continue Reading: Continue Reading
+        Consider spreading it across a view days,
+        or teaching fewer modules.
 
-  Lesson Plan: Lesson Plan
+  materials:
+    index:
+      title: Teaching Materials
 
-  Total duration: Total duration
+    show:
+      lessons:
+        one: Accompanying Lesson
+        other: Accompanying Lessons
+      downloads: Downloads
+      download: Download
 
-  Handouts and Materials: Handouts and Materials
+  articles:
+    index:
+      title: Security Education 101
+      other: Other Articles
 
-  Lesson Planner: Lesson Planner
+    show:
+      next: Continue Reading
 
-  Back to Lesson Topics: Back to Lesson Topics
+    article:
+      more: Read More
 
-  Learning Objectives: Learning Objectives
-  Prerequisites: Prerequisites
-  Ratio: Ratio
-  "Instructor: Learners": "Instructor: Learners"
-  Suggested Materials: Suggested Materials
-  Relevant Articles: Relevant Articles
-  Recommended Reading: Recommended Reading
-  Lesson Content: Lesson Content
-  Duration: Duration
+  blog:
+    index:
+      title: Security News
 
-  "Printable Version (PDF)": Printable Version (PDF)
+    show:
+      by: by
 
-  Add To: Add To
-  Remove From: Remove From
+    blog_post:
+      more: Read More
 
-  Security Education 101: Security Education 101
-  Other Articles: Other Articles
-  Print: Print
+  tags:
+    nav:
+      all: All tags
 
-  SEC Website Satisfaction Survey: SEC Website Satisfaction Survey
-  Survey questions: Survey questions
-  Indicates required field: Indicates required field
-  Submit: Submit
-  "Thanks!": Thanks!
+  search:
+    results:
+      title: Search Results
+      submit: Search
 
-  Last modified: Last modified
-  Accompanying Lesson:
-    one: Accompanying Lesson
-    other: Accompanying Lessons
-  Downloads: Downloads
-  Download: Download
+  glossary:
+    index:
+      title: Glossary
 
-  Back to Lesson Topics: Back to Lesson Topics
+    show:
+      back_to_glossary: Browse the full glossary
+      synonyms: Synonyms
 
-  Intro: Intro
-  beginning: beginning
-  intermediate: intermediate
-  advanced: advanced
-  Go to the next suggested lesson topic: Go to the next suggested lesson topic
+  feedback:
+    new:
+      title: SEC Website Satisfaction Survey
+      explanation_html:
+        Thank you for giving feedback on the Security Education Companion (SEC)!
 
-  Go to: Go to
-  A Project of the: A Project of the
+        When possible, please give concrete, specific feedback and examples to our questions below, as this will help us to improve on and add to the site.
 
-  Electronic Frontier Foundation: Electronic Frontier Foundation
+        We will hold the information submitted in accordance with
+        <a href="https://eff.org/policy">EFF’s privacy policy.</a>
 
-  SEARCH: SEARCH
-  Search: Search
-  Security Education Companion: Security Education Companion
-  A free resource for digital security educators: A free resource for digital security educators
+      questions: Survey questions
 
-  Security Education 101: Security Education 101
-  Lessons: Lessons
-  Teaching Materials: Teaching Materials
-  Security News: Security News
+      instructions: "Please rate your level of satisfaction with the following aspects of our site:"
 
-  Skip to main content: Skip to main content
+      required_field_explainer: "* Indicates required field"
+      submit: Submit
 
-  Close tooltip: Close tooltip
+    thanks:
+      title: Thanks!
+      message: Thank you for providing feedback on your experience with EFF's Security Education Companion.
 
-  A Division of: A Division of
-  A Project of: A Project of
+  errors:
+    not_found:
+      title: Oops! We couldn't find that...
+      message: The page you were looking for doesn't exist.
 
-  Submit Feedback: Submit Feedback
-  Translations: Translations
-  Contact: Contact
-  Credits: Credits
-  Privacy: Privacy
-  License: License
+    internal_error:
+      title: Oops! Something went wrong...
+      message: There was an error processing this request.
 
-  Search Results: Search Results
+  shared:
+    modal:
+      dismiss: Do not show this message again.
 
-  See Lesson Planner: See Lesson Planner
+    feedback:
+      feedback: Feedback
+      submit: Send feedback
 
-  by: by
 
-  messages:
-    oops_wrong: Oops! Something went wrong...
-    oops_not_found: Oops! We couldn't find that...
-    request_error: There was an error processing this request.
-    page_not_found: The page you were looking for doesn't exist.
-
-    preview_warning: This is a preview!
-    preview_explanation: All your changes should be shown below. To make further changes, return to the edit window.
-
-    one_section_per_article: "Note: Each article can appear in only one section."
-
-    read_all_responses: .. read all responses
-
-    dismiss_modal: Do not show this message again.
-
-    lesson_planner_explanation: In the Lesson Planner, you can organize your selected lessons to prepare for your next teaching opportunity.
-    lesson_planner_instructions: In the lesson planner, you can organize your selected lessons to prepare for your next teaching opportunity.
-
-    lesson_planner_lengthy_notice:
-      This seems like a lot to cover for one day!
-      Your learners might be overwhelmed.
-
-      Consider spreading it across a view days,
-      or teaching fewer modules.
-
-    website_satisfaction_survey_explanation:
-      Thank you for giving feedback on the Security Education Companion (SEC)!
-
-      When possible, please give concrete, specific feedback and examples to our questions below, as this will help us to improve on and add to the site.
-
-      We will hold the information submitted in accordance with
-      <a href="https://eff.org/policy">EFF’s privacy policy.</a>
-
-    website_satisfaction_survey_instructions: "Please rate your level of satisfaction with the following aspects of our site:"
-    website_satisfaction_survey_thanks: Thank you for providing feedback on your experience with EFF's Security Education Companion.

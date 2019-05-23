@@ -1,5 +1,5 @@
 <div class="toc">
-  <h1><%= t("Lesson Plan") %>:</h1>
+  <h1><%= t(".plan") %>:</h1>
 
   <ol>
     <% @lesson_plan.lessons.published.each do |lesson| %>
@@ -7,10 +7,10 @@
     <% end %>
   </ol>
 
-  <p><strong><%= t("Total duration") %>:</strong> <%= @lesson_plan.duration.in_words %></p>
+  <p><strong><%= t(".duration") %>:</strong> <%= @lesson_plan.duration.in_words %></p>
 
   <% if @materials.present? %>
-    <h2><%= t("Handouts and Materials") %></h2>
+    <h2><%= t(".materials") %></h2>
     <ol>
       <% @materials.each do |material| %>
         <li>
