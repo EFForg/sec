@@ -39,7 +39,7 @@ capabilities = Selenium::WebDriver::Remote::Capabilities.chrome(
     server: "ALL"
   },
   'chromeOptions' => {
-    'w3c', => false,
+    'w3c' => false,
     'args' => ['--headless', '--disable-gpu'].tap do |a|
       a.push('--no-sandbox') if ENV['TRAVIS']
     end
