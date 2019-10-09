@@ -46,11 +46,8 @@ capabilities = Selenium::WebDriver::Remote::Capabilities.chrome(
   }
 )
 
-client = Selenium::WebDriver::Remote::Http::Default.new
-
 Capybara.register_driver :chrome_headless do |app|
-  client.timeout = 120
-  Capybara::Selenium::Driver.new(app, browser: :chrome, desired_capabilities: capabilities, http_client: client)
+  Capybara::Selenium::Driver.new(app, browser: :chrome, desired_capabilities: capabilities)
 end
 
 Capybara.javascript_driver = :chrome_headless
