@@ -26,7 +26,7 @@ RUN echo "@edge http://nl.alpinelinux.org/alpine/edge/main" >>/etc/apk/repositor
     yarn \
 
   # Use Bundler 2.
-  && gem install bundler -v "`echo $BUNDLER_VERSION`" --force \
+  && gem install bundler -v "$BUNDLER_VERSION" --force \
 
   # Set up crontab.
   && echo "*/15 * * * * su -s/bin/sh www-data -c \
