@@ -11,6 +11,8 @@ RUN if [ "$BUILD_ENV" = "development" ]; then \
       adduser -DS -h /opt/trainers-hub www-data; \
     fi
 
+ENV BUNDLER_VERSION="2.0.1"
+
 RUN echo "@edge http://nl.alpinelinux.org/alpine/edge/main" >>/etc/apk/repositories \
   && echo "@edgecommunity http://nl.alpinelinux.org/alpine/edge/community" >>/etc/apk/repositories \
   && apk upgrade --update-cache \
@@ -24,7 +26,7 @@ RUN echo "@edge http://nl.alpinelinux.org/alpine/edge/main" >>/etc/apk/repositor
     yarn \
 
   # Use Bundler 2.
-  && gem install bundler \
+  && gem install bundler -v "$BUNDLER_VERSION" --force \
 
   # Set up crontab.
   && echo "*/15 * * * * su -s/bin/sh www-data -c \
