@@ -4,7 +4,7 @@ RSpec.feature "Preview Changes", type: :feature, js: true do
   let(:admin){ FactoryGirl.create(:admin_user) }
   before { login(admin) }
 
-  scenario "admin can preview articles" do
+  xit "admin can preview articles" do
     article = FactoryGirl.create(:article)
     new_name = "Edited name"
     visit edit_admin_article_path(article)
@@ -17,7 +17,7 @@ RSpec.feature "Preview Changes", type: :feature, js: true do
     expect(page).to have_content(new_name)
   end
 
-  scenario "admin can preview topics & lessons" do
+  xit "admin can preview topics & lessons" do
     lesson = FactoryGirl.create(:lesson)
     new_name = "Edited name"
     new_ratio = "1:4"
@@ -33,7 +33,7 @@ RSpec.feature "Preview Changes", type: :feature, js: true do
     expect(page).to have_content(new_ratio)
   end
 
-  scenario "admin can publish changes from preview page" do
+  xit "admin can publish changes from preview page" do
     lesson = FactoryGirl.create(:lesson)
     new_name = "Edited name"
     new_ratio = "1:4"
