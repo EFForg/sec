@@ -161,7 +161,7 @@ const Lesson = createReactClass({
     const props = this.props;
 
     return (
-      <li className="lesson card">
+      <li className="lesson card" tabIndex={0}>
         <div className="top">
           <div className="icon" dangerouslySetInnerHTML={{__html: props.rendered_icon}} />
           <h3>
