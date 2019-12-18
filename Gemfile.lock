@@ -216,7 +216,7 @@ GEM
     powerpack (0.1.1)
     public_suffix (3.0.0)
     puma (3.10.0)
-    rack (2.0.7)
+    rack (2.0.8)
     rack-test (1.1.0)
       rack (>= 1.0, < 3)
     rack_session_access (0.1.1)
