@@ -10,6 +10,7 @@ fi
 
 if [ "$ROLE" = "web" ]; then
   cp -ru public/* nginx_static
+  cp -u public/.sprockets-manifest-* nginx_static
 fi
 
 exec "$@"
