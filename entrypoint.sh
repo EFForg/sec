@@ -9,8 +9,8 @@ if [ "$DB_MIGRATE" = "true" ]; then
 fi
 
 if [ "$ROLE" = "web" ]; then
+  rm nginx_static/assets/.sprockets-manifest-*
   cp -ru public/* nginx_static
-  cp -u public/.sprockets-manifest-* nginx_static
 fi
 
 exec "$@"
