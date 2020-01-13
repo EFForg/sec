@@ -16,10 +16,6 @@ module ShareLinkHelper
     "https://twitter.com/intent/tweet?status=#{u(status)}"
   end
 
-  def google_share_url
-    "https://plus.google.com/share?url=#{u(url_for_share)}"
-  end
-
   def facebook_share_url
     "https://www.facebook.com/sharer/sharer.php?u=#{u(url_for_share)}&display=popup"
   end

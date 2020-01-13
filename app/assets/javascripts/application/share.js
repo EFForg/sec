@@ -10,10 +10,3 @@ $(document).on("click", ".share-links-sidebar .twitter", function(e) {
   window.open(url, "Share on Twitter", "width=550,height=420");
   e.preventDefault();
 });
-
-$(document).on("click", ".share-links-sidebar .google", function(e) {
-  var url = $(this).attr("href");
-  window.open(url, "Share on Google+", "width=500,height=436");
-  e.preventDefault();
-});
-
