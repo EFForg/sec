@@ -215,7 +215,8 @@ GEM
       activerecord (>= 3.0)
     powerpack (0.1.1)
     public_suffix (3.0.0)
-    puma (3.10.0)
+    puma (4.3.1)
+      nio4r (~> 2.0)
     rack (2.1.1)
     rack-test (1.1.0)
       rack (>= 1.0, < 3)
@@ -403,7 +404,7 @@ DEPENDENCIES
   mini_magick
   pg (~> 0.18)
   pg_search
-  puma (~> 3.7)
+  puma (~> 4.3)
   rack_session_access
   rails (~> 5.1.6)
   react-rails (>= 2.4.4)
