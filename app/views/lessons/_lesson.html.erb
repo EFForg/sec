@@ -84,4 +84,6 @@
   <%= html(@lesson.body, glossary: true) %>
 </div>
 
-<%= link_to "Printable Version (PDF)", topic_lesson_path(@lesson.topic, @lesson, format: "pdf"), class: "pdf-link" %>
+<div class="pdf-link">
+  <%= link_to "Printable Version (PDF)", topic_lesson_path(@lesson.topic, @lesson, format: "pdf") %><% if current_admin_user %> / <%= link_to "Markdown", topic_lesson_path(@lesson.topic, @lesson, format: "md") %><% end %>
+</div>

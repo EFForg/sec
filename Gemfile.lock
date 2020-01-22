@@ -284,6 +284,8 @@ GEM
     responders (3.0.0)
       actionpack (>= 5.0)
       railties (>= 5.0)
+    reverse_markdown (1.4.0)
+      nokogiri
     rspec-core (3.7.0)
       rspec-support (~> 3.7.0)
     rspec-expectations (3.7.0)
@@ -410,6 +412,7 @@ DEPENDENCIES
   react-rails (>= 2.4.4)
   redis (~> 3.0)
   redis-rails
+  reverse_markdown
   rspec-core
   rspec-rails
   rubocop (= 0.50.0)

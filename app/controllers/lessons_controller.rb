@@ -18,6 +18,7 @@ class LessonsController < ApplicationController
 
     respond_to do |format|
       format.html { render "topics/show" }
+      format.md
       format.js
       format.pdf do
         if Rails.env.development?

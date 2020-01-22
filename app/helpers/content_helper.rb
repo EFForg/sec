@@ -28,6 +28,8 @@ module ContentHelper
       capture do
         cache_if(glossary, glossary && cache_key_for_html(html)) do
           doc = Nokogiri::HTML.fragment(html)
+          process_text(doc)
+          process_lists(doc)
           process_links(doc, new_tab_for_all_links)
           link_glossary(doc, glossary) if glossary
 
@@ -57,6 +59,10 @@ module ContentHelper
     end
   end
 
+  def markdown(html)
+    ReverseMarkdown.convert(self.html(html), unknown_tags: :bypass)
+  end
+
   private
 
   def process_links(doc, new_tab_for_all_links)
@@ -73,6 +79,18 @@ module ContentHelper
         link["target"] ||= "_blank"
       end
     end if request
+  end
+
+  def process_text(doc)
+    doc.traverse do |node|
+      node.remove if node.text? && node.text !~ /[^\r\n\t]/
+    end
+  end
+
+  def process_lists(doc)
+    doc.css("li > p").each do |p|
+      p.replace(p.children[0]) if p.children.size == 1
+    end
   end
 
   def link_glossary(doc, options)

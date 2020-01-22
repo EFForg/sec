@@ -18,6 +18,11 @@ class ArticlesController < ApplicationController
     protect_unpublished! @article
     og_object @article
     breadcrumbs @article.name
+
+    respond_to do |format|
+      format.html
+      format.md
+    end
   end
 
   def preview
