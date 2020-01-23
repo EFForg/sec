@@ -1,0 +1,43 @@
+# <%= @topic.name %> (<%= @lesson.level %>)
+
+<% if @lesson.objective? %>
+<%= markdown(@lesson.objective) if @lesson.objective? %>
+<% end %>
+
+<% if @lesson.prerequisites? %>
+## Prerequisites
+
+<%= markdown(@lesson.prerequisites) %>
+<% end %>
+
+<% if @lesson.instructor_students_ratio.present? %>
+## Ratio
+
+<%= markdown(@lesson.instructor_students_ratio) %>
+<% end %>
+
+<% if @lesson.suggested_materials? %>
+## Suggested Materials
+
+<%= markdown(@lesson.suggested_materials) %>
+<% end %>
+
+<% if @lesson.relevant_articles? %>
+## Relevant Articles
+
+<%= markdown(@lesson.relevant_articles) %>
+<% end %>
+
+* * * *
+
+<%= markdown(@lesson.notes) if @lesson.notes? %>
+
+<% if @lesson.recommended_reading? %>
+## Recommended Reading
+
+<%= markdown(@lesson.recommended_reading) %>
+<% end %>
+
+## Lesson Content
+
+<%= markdown(@lesson.body) %>

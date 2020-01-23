@@ -24,6 +24,7 @@ class TopicsController < ApplicationController
 
     respond_to do |format|
       format.html
+      format.md
       format.js
     end
   end
