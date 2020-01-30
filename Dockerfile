@@ -24,6 +24,7 @@ RUN echo "@edge http://nl.alpinelinux.org/alpine/edge/main" >>/etc/apk/repositor
     ghostscript \
     nodejs \
     yarn \
+    zip \
 
   # Use Bundler 2.
   && gem install bundler -v "$BUNDLER_VERSION" --force \
