@@ -65,7 +65,7 @@
       <% if @lesson %>
         <%= render @lesson %>
       <% else %>
-        <%= html(@topic.description) %>
+        <%= html(@topic.description, glossary: true) %>
       <% end %>
     </div>
 
