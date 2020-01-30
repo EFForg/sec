@@ -20,12 +20,12 @@ class MarkdownArchive
         end
       end
 
-      zip = Tempfile.new(['archive', '.zip'])
+      zip = Tempfile.new(["archive", ".zip"])
       File.delete(zip.to_path)
 
       system(
-        'sh', '-c',
-        "cd #{tmp.to_s} && zip -r a.zip . && mv a.zip #{zip.to_path}"
+        "sh", "-c",
+        "cd #{tmp} && zip -r a.zip . && mv a.zip #{zip.to_path}"
       )
 
       return zip.to_path
@@ -46,7 +46,7 @@ class MarkdownArchive
     ].join("/")
 
     FileUtils.mkdir_p(File.dirname(tmp.join(path)))
-    File.open(tmp.join(path), 'w'){ |f| f.write(doc) }
+    File.open(tmp.join(path), "w"){ |f| f.write(doc) }
   end
 
   def add_lesson(tmp, lesson)
@@ -61,6 +61,6 @@ class MarkdownArchive
     ].join("/")
 
     FileUtils.mkdir_p(File.dirname(tmp.join(path)))
-    File.open(tmp.join(path), 'w'){ |f| f.write(doc) }
+    File.open(tmp.join(path), "w"){ |f| f.write(doc) }
   end
 end
