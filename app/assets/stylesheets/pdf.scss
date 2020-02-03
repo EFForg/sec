@@ -169,10 +169,8 @@ blockquote {
 }
 
 hr {
-  border: none;
-  height: 2px;
-  color: #c7dddb;
-  background-color: #c7dddb;
+  border: 1px solid #c7dddb;
+  background: #c7dddb;
   width: 70%;
   margin: 3.5rem auto;
 }
