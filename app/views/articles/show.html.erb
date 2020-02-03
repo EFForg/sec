@@ -16,6 +16,10 @@
       <%= html(@article.body, glossary: true) %>
     </div>
 
+    <div class="pdf-link">
+      <%= link_to "Printable Version (PDF)", article_path(@article, format: "pdf") %><% if current_admin_user %> / <%= link_to "Markdown", article_path(@article, format: "md") %><% end %>
+    </div>
+
     <%= render "shared/share", show_for: "small-only" %>
 
     <% if @article.next_article.present? %>

@@ -1,5 +1,6 @@
 class ArticlesController < ApplicationController
   include ContentPermissioning
+  include Pdfing
 
   breadcrumbs "Security Education" => routes.root_path,
               "Articles" => routes.articles_path
@@ -22,6 +23,14 @@ class ArticlesController < ApplicationController
     respond_to do |format|
       format.html
       format.md
+      format.pdf do
+        if Rails.env.development?
+          UpdateArticlePdf.perform_now(@article.id)
+          send_file(@article.reload.pdf.path, disposition: "inline")
+        else
+          redirect_to @article.pdf.url
+        end
+      end
     end
   end
 

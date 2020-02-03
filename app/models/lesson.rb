@@ -53,4 +53,8 @@ class Lesson < ApplicationRecord
       suggested_materials[path]
     end
   end
+
+  def pdf_filename
+    "#{topic.name} - #{level.capitalize}.pdf"
+  end
 end

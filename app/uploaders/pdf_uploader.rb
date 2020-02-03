@@ -14,6 +14,6 @@ class PdfUploader < CarrierWave::Uploader::Base
   end
 
   def filename
-    "#{model.topic.name} - #{model.level.capitalize}.pdf"
+    model.pdf_filename
   end
 end

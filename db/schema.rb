@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190408225226) do
+ActiveRecord::Schema.define(version: 20200201000425) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -78,6 +78,7 @@ ActiveRecord::Schema.define(version: 20190408225226) do
     t.bigint "section_id"
     t.integer "section_position", default: 0, null: false
     t.bigint "next_article_id"
+    t.string "pdf"
     t.index ["slug"], name: "index_articles_on_slug", unique: true
   end
 
