@@ -1,7 +1,7 @@
 /*
- *= require select2
- *= require select2-bootstrap
- *= require font-awesome
+*= require select2
+*= require select2-bootstrap
+*= require font-awesome
 */
 
 // SASS variable overrides must be declared before loading up Active Admin's styles.
@@ -17,3 +17,4 @@
 @import "active_admin/mixins";
 @import "active_material";
 @import "admin/**/*";
+@import "application/components/utility_nav"

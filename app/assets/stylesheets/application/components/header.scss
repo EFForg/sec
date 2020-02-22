@@ -230,3 +230,18 @@ body:not(.section-home) {
     padding: 1rem;
   }
 }
+
+// for active_material
+#header {
+  align-items: start;
+  flex-wrap: wrap;
+  padding-right: 0;
+  @media (min-width: 600px) {
+    flex-wrap: nowrap;
+  }
+}
+
+.site_title {
+  line-height: 1;
+  min-width: 30%;
+}

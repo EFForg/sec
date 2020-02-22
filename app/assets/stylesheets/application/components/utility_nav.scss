@@ -1,0 +1,64 @@
+
+/**
+* overwrite active_admin styles
+*/
+
+#utility_nav {
+  background: none;
+  width: inherit;
+  height: inherit;
+  margin-top: 0 !important;
+  padding: 0;
+  position: relative;
+  right: 0;
+  top: 0;
+  z-index: 2;
+  // remove hit region
+  &:before {
+    content: "";
+    position: relative;
+    width: 0;
+    height: 0;
+    top: 0;
+    right: 0;
+  }
+
+  a {
+    color: inherti;
+  }
+  > li {
+    border: none;
+    box-shadow: none;
+    float: none;
+    background: none;
+    clip:  inherit;
+    opacity: 1;
+    transition: none;
+    position: relative;
+    text-align: left;
+    text-transform: none;
+    width: 73px;
+    &:first-child {
+      margin-top: 0x;
+      width: 163px;
+      &:before {
+        content: "";
+        border: none;
+        position: relative;
+      }
+    }
+    a {
+      color: white;
+      padding: 0;
+      text-align: left;
+      text-transform: none;
+      &:hover {
+        color: yellow;
+      }
+    }
+  }
+
+  #current_user {
+    display: none;
+  }
+}
