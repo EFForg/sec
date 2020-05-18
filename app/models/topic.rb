@@ -16,7 +16,7 @@ class Topic < ApplicationRecord
   include Featuring
   include ActivePreview::Previewing
 
-  include PgSearch
+  include PgSearch::Model
   multisearchable against: %i(name lesson_bodies tag_list),
                   if: :published?
 

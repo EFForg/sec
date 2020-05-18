@@ -7,7 +7,7 @@ class Article < ApplicationRecord
 
   acts_as_taggable
 
-  include PgSearch
+  include PgSearch::Model
   multisearchable against: %i(name body tag_list), if: :published?
 
   belongs_to :section, class_name: "ArticleSection", optional: true
