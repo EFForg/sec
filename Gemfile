@@ -6,7 +6,7 @@ git_source(:github) do |repo_name|
 end
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem "rails", "~> 5.1.6"
+gem "rails", "~> 5.2"
 
 # Use postgresql as the database for Active Record
 gem "pg", "~> 0.18"
@@ -19,6 +19,7 @@ gem "puma", "~> 4.3"
 gem "sentry-raven"
 
 # Use SCSS for stylesheets
+gem "coffee-rails"
 gem "foundation-rails", ">= 6" # Use Foundation for grids and other styles
 gem "sass-rails", "~> 5.0"
 gem "uglifier", ">= 1.3.0" # Use Uglifier as compressor for JavaScript assets
@@ -67,8 +68,8 @@ gem "active_preview", "~> 0.1.6"
 # Content administration
 gem "active_material", path: "./vendor/active_material"
 gem "activeadmin"
-gem "acts-as-taggable-on", "~> 5.0"
-gem "ckeditor"
+gem "acts-as-taggable-on"
+gem "ckeditor", "~> 4.2.4"
 gem "devise"
 gem "devise_invitable"
 gem "font-awesome-rails"

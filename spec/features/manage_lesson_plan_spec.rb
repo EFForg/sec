@@ -25,7 +25,6 @@ RSpec.feature "ManageLessonPlan", type: :feature do
     lesson_plan.lessons << lots_of_lessons
     visit "/lesson-plan"
 
-    expect(page).to have_css("body.is-reveal-open")
     expect(page).to have_content("This seems like a lot to cover for one day!")
 
     click_on "Ok"
