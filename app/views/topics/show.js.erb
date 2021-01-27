@@ -1,2 +1,2 @@
 document.title = "<%= j page_title %>";
-$("#tab-content").html("<%= j html(@topic.description) %>");
+$("#tab-content").html("<%= j render(partial: "topics/intro") %>");
