@@ -48,6 +48,17 @@ class LessonPlansController < ApplicationController
     end
   end
 
+  def batch_create_lesson
+    topic = Topic.find(params[:topic_id])
+    @lesson_plan = current_lesson_plan!
+    @lesson_plan.lessons |= topic.lessons
+
+    respond_to do |format|
+      format.json{ render json: topic.lessons.pluck(:id) }
+      format.html{ redirect_to topic_path(topic) }
+    end
+  end
+
   def create_lesson
     lesson = Lesson.find(params[:lesson_id])
     @lesson_plan = current_lesson_plan!

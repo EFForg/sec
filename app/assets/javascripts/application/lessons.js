@@ -22,3 +22,12 @@ document.addEventListener('ajax:success', function(e) {
     });
   }
 });
+
+document.addEventListener('ajax:success', function(e) {
+  if (e.target.className === 'add_all_lessons_in_topic') {
+
+    $('form.add_all_lessons_in_topic').each(function() {
+      $('input[name=_method]', this).attr('value', 'post');
+    });
+  }
+});

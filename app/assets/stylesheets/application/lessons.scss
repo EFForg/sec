@@ -242,7 +242,7 @@
   text-transform: uppercase;
 }
 
-form.add_remove_lesson {
+form.add_remove_lesson, form.add_all_lessons_in_topic {
   button[type="submit"] {
     @include add-lesson;
   }
