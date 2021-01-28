@@ -23,8 +23,9 @@ Rails.application.routes.draw do
 
   resources :lesson_plans, path: "/lesson-plans", only: [:create, :update] do
     post :lessons, to: "lesson_plans#create_lesson"
-    post :topics, to: "lesson_plans#batch_create_lesson"
+    post :topics, to: "lesson_plans#create_lessons_by_topic"
     delete :lessons, to: "lesson_plans#destroy_lesson"
+    delete :topics, to: "lesson_plans#destroy_lessons_by_topic"
     collection do
       get ":key", to: "lesson_plans#show"
     end

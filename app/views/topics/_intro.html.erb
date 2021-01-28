@@ -1,8 +1,12 @@
-<%= form_tag([current_lesson_plan, :topics], remote: true, method: "post", class: "add_all_lessons_in_topic", data: { topic_id: @topic.id }) do %>
+<%= form_tag([current_lesson_plan, :topics], remote: true, method: "post", class: "add_remove_all_lessons_in_topic", data: { topic_id: @topic.id }) do %>
+  <%= hidden_field_tag :_method, current_lesson_plan_missing_lesson_in_topic?(@topic) ? "post" : "delete" %>
   <div class="actions">
     <%= hidden_field_tag :topic_id, @topic.id %>
     <%= button_tag type: "submit", value: "add", title: "Add All Lessons To Lesson Plan" do %>
       <i class="fa fa-plus"></i><span>Add All Lessons To<br/ >Lesson Plan</span>
+    <% end %>
+    <%= button_tag type: "submit", value: "destroy", title: "Remove All Lessons From Lesson Plan" do %>
+      <i class="fa fa-minus"></i><span>Remove All Lessons<br/ >From Lesson Plan</span>
     <% end %>
   </div>
 <% end %>
