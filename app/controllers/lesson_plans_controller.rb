@@ -76,8 +76,7 @@ class LessonPlansController < ApplicationController
     lessons = topic.lessons
 
     lessons.each do |lesson|
-      @lesson_plan.planned_lessons.
-        where(lesson_id: lesson.id).destroy_all
+      current_planned_lesson(lesson).destroy
     end
 
     respond_to do |format|

@@ -28,11 +28,9 @@ document.addEventListener('ajax:success', function(e) {
 
     $('.lesson-count').html(lesson_ids.length);
 
-    $('form.add_remove_all_lessons_in_topic').each(function() {
-      if (topic_lesson_ids.every(tli => (lesson_ids.includes(tli))))
-        $('input[name=_method]', this).attr('value', 'delete');
-      else
-        $('input[name=_method]', this).attr('value', 'post');
-    });
+    if (topic_lesson_ids.every(tli => (lesson_ids.includes(tli))))
+      $('input[name=_method]', e.target).attr('value', 'delete');
+    else
+      $('input[name=_method]', e.target).attr('value', 'post');
   }
 });

@@ -108,7 +108,7 @@ RSpec.feature "AddRemoveAllLessonsInATopicToCurrentLessonPlan", type: :feature, 
 
     before{ page.set_rack_session(lesson_plan_id: lesson_plan.id) }
 
-    scenario "user adds all lessons in this topic to lesson plan" do
+    scenario "user adds the remaining lesson in this topic to lesson plan" do
       lesson_plan.lessons << lesson_1
       visit topic_path(topic)
 
@@ -133,7 +133,7 @@ RSpec.feature "AddRemoveAllLessonsInATopicToCurrentLessonPlan", type: :feature, 
 
     before{ page.set_rack_session(lesson_plan_id: lesson_plan.id) }
 
-    scenario "user adds all lessons in this topic to lesson plan" do
+    scenario "user removes all lessons in this topic from lesson plan" do
       lesson_plan.lessons << lesson_1
       lesson_plan.lessons << lesson_2
       visit topic_path(topic)

@@ -26,12 +26,7 @@ module LessonPlanning
   end
 
   def current_lesson_plan_missing_lesson_in_topic?(topic)
-    topic.lessons.each do |lesson|
-      if !current_lesson_plan.lessons.include?(lesson)
-        return true
-      end
-    end
-    return false
+    topic.lessons.any? { |lesson| !current_lesson_plan.lessons.include?(lesson) }
   end
 
 end
