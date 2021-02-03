@@ -4,6 +4,7 @@ module LessonPlanning
   included do
     helper_method :current_lesson_plan
     helper_method :current_planned_lesson
+    helper_method :current_lesson_plan_missing_lesson_in_topic?
   end
 
   def current_lesson_plan
@@ -23,4 +24,9 @@ module LessonPlanning
       planned_lessons.
       find_or_initialize_by(lesson_id: lesson.id)
   end
+
+  def current_lesson_plan_missing_lesson_in_topic?(topic)
+    topic.lessons.any? { |lesson| !current_lesson_plan.lessons.include?(lesson) }
+  end
+
 end

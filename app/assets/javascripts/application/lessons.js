@@ -21,4 +21,16 @@ document.addEventListener('ajax:success', function(e) {
         $('input[name=_method]', this).attr('value', 'post');
     });
   }
+
+  if (e.target.className === 'add_remove_all_lessons_in_topic') {
+    const lesson_ids = JSON.parse(e.detail[2].response)[0];
+    const topic_lesson_ids = JSON.parse(e.detail[2].response)[1];
+
+    $('.lesson-count').html(lesson_ids.length);
+
+    if (topic_lesson_ids.every(tli => (lesson_ids.includes(tli))))
+      $('input[name=_method]', e.target).attr('value', 'delete');
+    else
+      $('input[name=_method]', e.target).attr('value', 'post');
+  }
 });

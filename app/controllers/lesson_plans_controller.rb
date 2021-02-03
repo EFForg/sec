@@ -48,6 +48,17 @@ class LessonPlansController < ApplicationController
     end
   end
 
+  def create_lessons_by_topic
+    topic = Topic.find(params[:topic_id])
+    @lesson_plan = current_lesson_plan!
+    @lesson_plan.lessons |= topic.lessons
+
+    respond_to do |format|
+      format.json{ render json: [@lesson_plan.lessons.pluck(:id), topic.lessons.pluck(:id)] }
+      format.html{ redirect_to topic_path(topic) }
+    end
+  end
+
   def create_lesson
     lesson = Lesson.find(params[:lesson_id])
     @lesson_plan = current_lesson_plan!
@@ -56,6 +67,21 @@ class LessonPlansController < ApplicationController
     respond_to do |format|
       format.json{ render json: @lesson_plan.lessons.pluck(:id) }
       format.html{ redirect_to topic_lesson_path(lesson.topic, lesson.level) }
+    end
+  end
+
+  def destroy_lessons_by_topic
+    topic = Topic.find(params[:topic_id])
+    @lesson_plan = current_lesson_plan
+    lessons = topic.lessons
+
+    lessons.each do |lesson|
+      current_planned_lesson(lesson).destroy
+    end
+
+    respond_to do |format|
+      format.json{ render json: [@lesson_plan.lessons.pluck(:id), topic.lessons.pluck(:id)] }
+      format.html{ redirect_to topic_path(topic) }
     end
   end
 
