@@ -58,7 +58,7 @@ class MarkdownArchive
 
     path = [
       "Topics",
-      topic.name.strip.gsub("/", "-") + " - Intro.md"
+      topic.name.strip.gsub("/", "-") + "/Intro.md"
     ].join("/")
 
     FileUtils.mkdir_p(File.dirname(tmp.join(path)))
@@ -73,7 +73,7 @@ class MarkdownArchive
 
     path = [
       "Topics",
-      lesson.topic.name.strip.gsub("/", "-") + " - #{lesson.level.capitalize}.md"
+      lesson.topic.name.strip.gsub("/", "-") + "/#{lesson.level.capitalize}.md"
     ].join("/")
 
     FileUtils.mkdir_p(File.dirname(tmp.join(path)))

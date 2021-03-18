@@ -15,7 +15,7 @@ RSpec.describe MarkdownArchive do
       tmpfile = markdown_archive.zip
       unzippedfiles = `unzip -l #{tmpfile}`
 
-      expect(unzippedfiles).to include("Topics/A topic - Intro.md")
+      expect(unzippedfiles).to include("Topics/A topic/Intro.md")
       expect(unzippedfiles).to include("Articles/An article.md")
     end
 
