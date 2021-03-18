@@ -15,6 +15,7 @@ class MarkdownArchive
       end
 
       topics.each do |topic|
+        add_topic(tmp, topic)
         topic.lessons.each do |lesson|
           add_lesson(tmp, lesson)
         end
@@ -43,6 +44,21 @@ class MarkdownArchive
     path = [
       "Articles",
       article.name.strip.gsub("/", "-") + ".md"
+    ].join("/")
+
+    FileUtils.mkdir_p(File.dirname(tmp.join(path)))
+    File.open(tmp.join(path), "w"){ |f| f.write(doc) }
+  end
+
+  def add_topic(tmp, topic)
+    doc = TopicsController.render(
+      template: "topics/show.md.erb",
+      assigns: { topic: topic }
+    )
+
+    path = [
+      "Topics",
+      topic.name.strip.gsub("/", "-") + " - Intro.md"
     ].join("/")
 
     FileUtils.mkdir_p(File.dirname(tmp.join(path)))
