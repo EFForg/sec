@@ -13,7 +13,7 @@ gem "pg", "~> 0.18"
 gem "pg_search"
 
 # Use Puma as the app server
-gem "puma", "~> 4.3"
+gem "puma", "~> 5.3"
 
 # Error reporting
 gem "sentry-raven"

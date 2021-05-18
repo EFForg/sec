@@ -201,14 +201,16 @@ GEM
     mime-types (3.3.1)
       mime-types-data (~> 3.2015)
     mime-types-data (3.2020.0512)
-    mimemagic (0.3.5)
+    mimemagic (0.3.10)
+      nokogiri (~> 1)
+      rake
     mini_magick (4.10.1)
     mini_mime (1.0.2)
     mini_portile2 (2.4.0)
     minitest (5.14.1)
     multi_xml (0.6.0)
     multipart-post (2.1.1)
-    nio4r (2.5.2)
+    nio4r (2.5.7)
     nokogiri (1.10.9)
       mini_portile2 (~> 2.4.0)
     orm_adapter (0.5.0)
@@ -223,7 +225,7 @@ GEM
       activerecord (>= 5.2.1)
     powerpack (0.1.2)
     public_suffix (4.0.5)
-    puma (4.3.5)
+    puma (5.3.1)
       nio4r (~> 2.0)
     rack (2.2.2)
     rack-test (1.1.0)
@@ -429,7 +431,7 @@ DEPENDENCIES
   mini_magick
   pg (~> 0.18)
   pg_search
-  puma (~> 4.3)
+  puma (~> 5.3)
   rack_session_access
   rails (~> 5.2)
   react-rails (>= 2.4.4)
