@@ -6,14 +6,14 @@ git_source(:github) do |repo_name|
 end
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem "rails", "~> 5.2"
+gem "rails", "5.2.6"
 
 # Use postgresql as the database for Active Record
 gem "pg", "~> 0.18"
 gem "pg_search"
 
 # Use Puma as the app server
-gem "puma", "~> 4.3"
+gem "puma", ">= 5.3.1"
 
 # Error reporting
 gem "sentry-raven"
@@ -41,7 +41,7 @@ gem "redis-rails"
 gem "kaminari"
 
 # File attachments
-gem "carrierwave"
+gem "carrierwave", ">= 2.1.1"
 gem "mini_magick"
 
 # Web requests
